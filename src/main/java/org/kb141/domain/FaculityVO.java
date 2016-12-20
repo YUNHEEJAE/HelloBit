@@ -1,4 +1,5 @@
 package org.kb141.domain;
+
 //copyright zetsubou
 public class FaculityVO {
 	
@@ -27,11 +28,6 @@ public class FaculityVO {
 	public String toString() {
 		return "FaculityVO [fname=" + fname + ", fid=" + fid + ", fpw=" + fpw + "]";
 	}
-	
-	
-	
-	
-	
 	
 
 }
