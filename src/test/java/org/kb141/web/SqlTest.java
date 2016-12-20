@@ -24,3 +24,4 @@ public class SqlTest {
 		System.out.println(dao.getTime());
 	}
 }
+     
