@@ -1,6 +1,7 @@
 package org.kb141.domain;
 
 // Seo In Hyo
+
 public class ImageVO {
 	
 	private Integer ino;
