@@ -3,5 +3,5 @@ package org.kb141.persistence;
 public interface TimeDAO {	
 	public String getTime() throws Exception;
 	//Test
-	//È¸Àå´Ô ¸Æ ¿Ö ¾ÈµÇ¿ä
+	//íšŒì¥ë‹˜ ë§¥ ë˜ìš”?
 }
