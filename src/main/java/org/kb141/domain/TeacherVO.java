@@ -1,6 +1,7 @@
 package org.kb141.domain;
 
 //copyright ju young
+
 public class TeacherVO {
 	
 	private String tname;
