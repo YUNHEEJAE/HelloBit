@@ -2,7 +2,6 @@ package org.kb141.web;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kb141.persistence.TimeDAO;
