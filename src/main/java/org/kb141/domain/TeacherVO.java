@@ -1,5 +1,8 @@
 package org.kb141.domain;
 
+//copyright ju young
+
+
 public class TeacherVO {
 
 	// copyright ju young
