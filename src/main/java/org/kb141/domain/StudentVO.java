@@ -37,7 +37,5 @@ public class StudentVO  {			//hj
 	public String toString() {
 		return "StudentVO [sname=" + sname + ", sid=" + sid + ", spw=" + spw + ", semail=" + semail + "]";
 	}
-	
-	
-      
+
 }
