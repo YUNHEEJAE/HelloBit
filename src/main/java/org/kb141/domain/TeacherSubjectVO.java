@@ -28,9 +28,4 @@ public class TeacherSubjectVO {
 	public String toString() {
 		return "TeacherSubjectVO [tsno=" + tsno + ", tid=" + tid + ", subno=" + subno + "]";
 	}
-	
-	
-	
-	
-
 }
