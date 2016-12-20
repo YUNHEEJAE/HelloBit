@@ -1,11 +1,11 @@
 package org.kb141.domain;
 
-public class TeacherVO {			//hj
+
+public class TeacherVO {
 	
 	private String tname;
 	private String tid;
 	private String tpw;
-	
 	
 	public String getTname() {
 		return tname;
@@ -30,5 +30,6 @@ public class TeacherVO {			//hj
 		return "TeacherVO [tname=" + tname + ", tid=" + tid + ", tpw=" + tpw + "]";
 	}
 	
-	
+
+
 }
