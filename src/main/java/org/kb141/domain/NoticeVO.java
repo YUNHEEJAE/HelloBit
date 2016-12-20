@@ -2,8 +2,8 @@ package org.kb141.domain;
 
 import java.util.Date;
 
+//SY
 public class NoticeVO {
-
 	private Integer nno;
 	private String nwriter;
 	private String ntitle;

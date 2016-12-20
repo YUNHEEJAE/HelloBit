@@ -2,7 +2,6 @@ package org.kb141.domain;
 
 //SY
 public class TakeProgramVO {
-
 	private String sid;
 	private Integer pno;
 

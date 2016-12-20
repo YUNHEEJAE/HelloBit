@@ -2,7 +2,6 @@ package org.kb141.domain;
 //SY
 
 public class CurriculumVO {
-
 	private Integer uno;
 	private Integer pno;
 	private Integer tsno;
