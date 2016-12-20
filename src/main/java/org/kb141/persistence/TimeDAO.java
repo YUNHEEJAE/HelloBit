@@ -5,4 +5,5 @@ public interface TimeDAO {
 	//Test
 	//회장님 맥 되요?
 	//한글주석 달고싶어요ㅕ
+	
 }
