@@ -3,7 +3,6 @@ package org.kb141.domain;
 import java.util.Date;
 
 // Seo In Hyo
-
 public class CheckVO {
 
 	private Integer cno;
