@@ -1,6 +1,6 @@
 package org.kb141.domain;
 
-public class TeacherVO {
+public class TeacherVO {			//hj
 	
 	private String tname;
 	private String tid;
