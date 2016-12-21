@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kb141.mapper.CheckMapper">
+	<insert id="create" parameterType="CheckVO">
+		insert into tbl_check (sid,
+		pno, emotion)
+		values (#{sid}, #{pno}, #{emotion})
+	</insert>
+
+
+	<select id="checkList" resultType="CheckVO">
+		select * from tbl_check order by checktime desc
+	</select>
+
+</mapper>
