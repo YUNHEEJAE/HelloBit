@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class StudentServiceImpl implements StudentService {
 	
-	@Inject
+	@Inject 
 	private StudentDAO studentDAO;
 	
 	@Inject
