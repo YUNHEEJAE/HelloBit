@@ -32,7 +32,7 @@ delete from tbl_take_program where sid = #{sid}
 
 <select id="allList" resultType="TakeProgramVO">
 
-select * from bitcamp.tbl_take_program order by pno
+select * from tbl_take_program order by pno
 
 </select>
 
