@@ -18,7 +18,11 @@ public class StudentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 	
+<<<<<<< HEAD
 	test
+=======
+	aaaaaaa
+>>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 	
 	
 }
