@@ -1,7 +1,7 @@
 package org.kb141.persistence;
 
 import java.util.List;
-
+// IH
 import org.kb141.domain.TeacherSubjectVO;
 
 public interface TeacherSubjectDAO {

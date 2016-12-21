@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.kb141.domain.TeacherSubjectVO;
 import org.springframework.stereotype.Repository;
 
+//IH
 @Repository
 public class TeacherSubjectDAOImpl implements TeacherSubjectDAO {
 	

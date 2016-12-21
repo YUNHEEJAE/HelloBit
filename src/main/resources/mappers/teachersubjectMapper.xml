@@ -24,4 +24,5 @@
 		select * from tbl_teacher_subject
 	</select>
 
+
 </mapper>
