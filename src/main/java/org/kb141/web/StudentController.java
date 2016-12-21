@@ -1,5 +1,8 @@
 package org.kb141.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.kb141.domain.StudentVO;
@@ -104,11 +107,45 @@ public class StudentController {
 		return vo;
 	}
 	
-	@PostMapping("/changeProgram")
+	@PostMapping("/changeprogram")
 	public void changeProgram(TakeProgramVO vo) throws Exception{
 		logger.info("수강변경 !!");
 		logger.info("VO : " + vo);
 		takeprogramService.modify(vo);
 	}
+	
+
+	@GetMapping(value="/alllist", produces="application/json")
+	@ResponseBody
+	public List<TakeProgramVO> getList(Model model) throws Exception {
+		
+		logger.info("list called...");
+		
+		List<TakeProgramVO> list = new ArrayList<TakeProgramVO>();
+		
+		list = takeprogramService.getAllList();
+		
+		logger.info("get list : "  + list);
+		
+		return list;
+		
+	}
+	
+	@GetMapping(value="/programstudentlist" , produces="application/json" )
+	@ResponseBody
+	public List<TakeProgramVO> getprogramStudentList(Integer pno)throws Exception{
+		
+		List<TakeProgramVO> list = new ArrayList<TakeProgramVO>();
+		
+		logger.info("pno" + pno);
+		
+		list = takeprogramService.getList(pno);
+		
+		logger.info("list" + list);
+		
+		return list;
+		
+	}
+	
 	
 }
