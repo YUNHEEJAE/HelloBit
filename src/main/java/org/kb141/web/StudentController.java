@@ -8,6 +8,7 @@ import org.kb141.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -27,6 +28,12 @@ public class StudentController {
 	private StudentService service;
 	
 	
+	@GetMapping("/studentList")
+	public void getStudentList() throws Exception{
+		logger.info("STUDENT LIST.....");
+		
+		
+	}
 	
 	
 }
