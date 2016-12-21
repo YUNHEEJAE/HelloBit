@@ -63,6 +63,7 @@ public class StudentController {
 	}
 	
 
+	
 	@GetMapping("/list")
 	public void getStudentList(Model model) throws Exception {
 		logger.info("STUDENT LIST.....");
