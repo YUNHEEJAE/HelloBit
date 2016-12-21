@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * TBL_STUDENT TBL_CHECK TBL_TAKE_PROGRAM
@@ -36,20 +37,27 @@ public class StudentController {
 
 	
 	@GetMapping("/register")
-	public void registerGET(StudentVO vo) throws Exception{
+	public void registerGET(StudentVO vo, Model model) throws Exception{
 		
 		logger.info("register GET....");
 	}
 	
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public void registerPOST(@RequestBody StudentVO vo) throws Exception{
-		
+
+	@PostMapping("/register")
+	public String registerPOST(StudentVO vo, Model model) throws Exception{
+		logger.info("register POST....");
+
 		logger.info("VO : " + vo);
+
 //		service.register(vo);
+//		model.addAttribute("result","success");
+		
+		return "success";
+
 	}
 	
 	
-	@GetMapping("/modify")
+	@PostMapping("/modify")
 	public void modifyGET(StudentVO vo) throws Exception{
 		service.modify(vo);
 	}

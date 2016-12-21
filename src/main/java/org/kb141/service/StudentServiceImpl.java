@@ -5,19 +5,24 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.kb141.domain.StudentVO;
+import org.kb141.domain.TakeProgramVO;
 import org.kb141.persistence.StudentDAO;
+import org.kb141.persistence.TakeProgramDAO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 	
 	@Inject
-	private StudentDAO dao;
+	private StudentDAO studentDAO;
+	
+	@Inject
+	private TakeProgramDAO takeprogramDAO;
 		
 	@Override
 	public void register(StudentVO vo) {
 		try {
-			dao.create(vo);
+			studentDAO.create(vo);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -29,7 +34,7 @@ public class StudentServiceImpl implements StudentService {
 		StudentVO result = null;
 		
 		try {
-			result = dao.read(sid);
+			result = studentDAO.read(sid);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -41,7 +46,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void modify(StudentVO vo) {
 		try {
-			dao.update(vo);
+			studentDAO.update(vo);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -50,7 +55,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void remove(String sid) {
 		try {
-			dao.delete(sid);
+			studentDAO.delete(sid);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -63,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
 		List<StudentVO> result = null;
 		
 		try {
-			result = dao.allList();
+			result = studentDAO.allList();
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -71,4 +76,70 @@ public class StudentServiceImpl implements StudentService {
 		return result;	
 	}
 
+	@Override
+	public void joinTakeProgram(TakeProgramVO vo) {
+		try {
+			takeprogramDAO.create(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	@Override
+	public TakeProgramVO viewStudentTakeProgram(String sid) {
+		TakeProgramVO result = null;
+		
+		try {
+			result = takeprogramDAO.read(sid);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public void modifyTakeProgram(TakeProgramVO vo) {
+		try {
+			takeprogramDAO.update(vo);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void removeTakeProgram(String sid) {
+		try {
+			takeprogramDAO.delete(sid);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<TakeProgramVO> getAllTakeProgramList() {
+		List<TakeProgramVO> result = null;
+		
+		try {
+			result = takeprogramDAO.allList();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;	
+	}
+
+	@Override
+	public List<TakeProgramVO> getTakeProgramList(Integer pno) {
+		List<TakeProgramVO> result = null;
+		
+		try {
+			result = takeprogramDAO.list(pno);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;	
+	}
 }
