@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * TBL_STUDENT TBL_CHECK TBL_TAKE_PROGRAM
@@ -31,24 +32,20 @@ public class StudentController {
 	private StudentService service;
 
 	
-	
-	@GetMapping("/jptest")
-	public void jptestGET() throws Exception{
-		logger.info("jptest Start");
-		
-	}
-	
 	@GetMapping("/register")
-	public void registerGET(StudentVO vo) throws Exception{
+	public void registerGET(StudentVO vo, Model model) throws Exception{
 		
 		logger.info("register GET....");
 	}
 	
 	@PostMapping("/register")
-	public void registerPOST(StudentVO vo) throws Exception{
-		
+	public String registerPOST(StudentVO vo, Model model) throws Exception{
+		logger.info("register POST....");
 		logger.info("VO : " + vo);
 		service.register(vo);
+		model.addAttribute("result","success");
+		
+		return "success";
 	}
 	
 	@GetMapping("/modify")
