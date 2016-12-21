@@ -94,6 +94,14 @@ public class TakeProgramDAOTest {
 	}
 	
 	@Test
+	public void removeStudentTest() throws Exception{
+		
+				service.remove("jyy");
+		
+	}
+	
+	
+	@Test
 	public void removeTest() throws Exception{
 		
 		service.removeTakeProgram("23");

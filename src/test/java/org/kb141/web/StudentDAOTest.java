@@ -24,9 +24,9 @@ public class StudentDAOTest {
 	@Test
 	public void createTest() throws Exception{
 		StudentVO obj = new StudentVO();
-		obj.setSname("서인효");
-		obj.setSid("sih");
-		obj.setSpw("sih");
+		obj.setSname("정주영");
+		obj.setSid("jyy");
+		obj.setSpw("jyy");
 		obj.setSemail("sih@gmail.com");
 		dao.create(obj);
 	}

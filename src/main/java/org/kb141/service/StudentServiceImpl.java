@@ -9,8 +9,10 @@ import org.kb141.domain.TakeProgramVO;
 import org.kb141.persistence.StudentDAO;
 import org.kb141.persistence.TakeProgramDAO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class StudentServiceImpl implements StudentService {
 	
 	@Inject
@@ -56,6 +58,7 @@ public class StudentServiceImpl implements StudentService {
 	public void remove(String sid) {
 		try {
 			studentDAO.delete(sid);
+			takeprogramDAO.delete(sid);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
