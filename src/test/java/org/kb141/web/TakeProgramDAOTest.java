@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kb141.domain.TakeProgramVO;
 import org.kb141.persistence.TakeProgramDAO;
+import org.kb141.service.StudentService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -16,6 +17,9 @@ public class TakeProgramDAOTest {
 	
 	@Inject
 	private TakeProgramDAO dao;
+	
+	@Inject
+	private StudentService service;
 	
 	
 	@Test
@@ -53,5 +57,28 @@ public class TakeProgramDAOTest {
 	public void listTest() throws Exception {
 		System.out.println(dao.list(3));
 	}
+	
+	
+	// ================ service ================
+	
+	@Test
+	public void registerTest() throws Exception {
+		
+		TakeProgramVO  vo = new TakeProgramVO();
+		
+		vo.setPno(1);
+		vo.setSid("jyyy");
+		
+		service.joinTakeProgram(vo);
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 	
 }
