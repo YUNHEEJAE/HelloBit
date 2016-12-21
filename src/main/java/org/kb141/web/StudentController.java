@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author KB141
  *
  */
-
+//test git by zetsubou
 @Controller
 @RequestMapping("/student/*")
 public class StudentController {
