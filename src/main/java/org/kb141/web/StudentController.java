@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 //test git by zetsubou
 @Controller
-@RequestMapping("/student/*")
+@RequestMapping("/student")
 public class StudentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kb141.mapper.SubjectMapper">
+
+<insert id="create">
+insert into tbl_subject(subno , subname , subgrade) values ( subno , #{subname} , #{subgrade} ) 
+
+</insert>
+
+<select id="read" resultType="SubjectVO">
+
+select * from tbl_subject where subno = #{subno}
+
+</select>
+
+<update id="update">
+
+update tbl_subject set subname = #{subname} ,  subgrade =  #{subgrade}  where  subno = #{subno}
+
+</update>
+
+<delete id="delete">
+
+delete from bitcamp.tbl_subject where subno = #{subno}
+
+</delete>
+
+<select id="allList" resultType="SubjectVO">
+
+select * from tbl_subject
+
+</select>
+
+
+</mapper>

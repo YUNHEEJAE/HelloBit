@@ -23,5 +23,6 @@ public interface TakeProgramService {
 	
 	// 강의별 학생 정보 보기 (pno)
 	public List<TakeProgramVO> getList(Integer pno);
-	
+
+
 }
