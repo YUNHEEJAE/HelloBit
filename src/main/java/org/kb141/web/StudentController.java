@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 
 @Controller
-@RequestMapping("/student/*")
+@RequestMapping("/student")
 public class StudentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
