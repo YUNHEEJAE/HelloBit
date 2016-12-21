@@ -88,32 +88,58 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public TakeProgramVO viewStudentTakeProgram(String sid) {
-		// TODO Auto-generated method stub
-		return null;
+		TakeProgramVO result = null;
+		
+		try {
+			result = takeprogramDAO.read(sid);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override
 	public void modifyTakeProgram(TakeProgramVO vo) {
-		// TODO Auto-generated method stub
-		
+		try {
+			takeprogramDAO.update(vo);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void removeTakeProgram(String sid) {
-		// TODO Auto-generated method stub
-		
+		try {
+			takeprogramDAO.delete(sid);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public List<TakeProgramVO> getAllTakeProgramList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<TakeProgramVO> result = null;
+		
+		try {
+			result = takeprogramDAO.allList();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;	
 	}
 
 	@Override
 	public List<TakeProgramVO> getTakeProgramList(Integer pno) {
-		// TODO Auto-generated method stub
-		return null;
+		List<TakeProgramVO> result = null;
+		
+		try {
+			result = takeprogramDAO.list(pno);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;	
 	}
-
 }
