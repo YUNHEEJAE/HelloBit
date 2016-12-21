@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author KB141
  *
  */
+
 @Controller
 @RequestMapping("/student/*")
 public class StudentController {
