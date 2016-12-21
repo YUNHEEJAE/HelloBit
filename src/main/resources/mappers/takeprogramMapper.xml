@@ -11,7 +11,7 @@ insert into tbl_take_program (sid , pno) values (#{sid} , #{pno})
 
 </insert>
 
-<select id="read"  parameterType="String">
+<select id="read"  parameterType="String" resultType="TakeProgramVO">
 
 select * from tbl_take_program where sid = #{sid} 
 
