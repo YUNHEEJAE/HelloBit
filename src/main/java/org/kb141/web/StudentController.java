@@ -7,12 +7,15 @@ import org.kb141.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * TBL_STUDENT TBL_CHECK TBL_TAKE_PROGRAM
@@ -30,13 +33,7 @@ public class StudentController {
 	@Inject
 	private StudentService service;
 
-	
-	
-	@GetMapping("/jptest")
-	public void jptestGET() throws Exception{
-		logger.info("jptest Start");
-		
-	}
+
 	
 	@GetMapping("/register")
 	public void registerGET(StudentVO vo) throws Exception{
@@ -44,12 +41,13 @@ public class StudentController {
 		logger.info("register GET....");
 	}
 	
-	@PostMapping("/register")
-	public void registerPOST(StudentVO vo) throws Exception{
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	public void registerPOST(@RequestBody StudentVO vo) throws Exception{
 		
 		logger.info("VO : " + vo);
-		service.register(vo);
+//		service.register(vo);
 	}
+	
 	
 	@GetMapping("/modify")
 	public void modifyGET(StudentVO vo) throws Exception{
@@ -70,7 +68,6 @@ public class StudentController {
 
 	}
 
-	
 	@GetMapping("/view")
 	public void view(@RequestParam("sid") String sid, Model model) throws Exception {
 		logger.info("STUDENT VIEW.....");
