@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.kb141.mapper.TeacherMapper">
+  	<insert id="create" parameterType="TeacherVO">
+  		insert into tbl_teacher (tname,tid,tpw) values (#{tname},#{tid},#{tpw})
+  		</insert>
+  		
+  		<select id="read" resultType="TeacherVO">
+		select * from tbl_teacher where tid = #{tid}
+	</select>
+
+	<update id="update" parameterType="TeacherVO">
+		update tbl_teacher set tname = #{tname},  tpw = #{tpw} where tid = #{tid}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_teacher where tid = #{tid}
+	</delete>
+	
+	
+	<select id="allList" resultType="TeacherVO">
+		select * from tbl_teacher order by tname
+	</select>
+  		
+  		
+  		
+  		
+  </mapper>
