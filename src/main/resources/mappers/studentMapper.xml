@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kb141.mapper.StudentMapper">
+	<insert id="create" parameterType="StudentVO">
+		insert into tbl_student (sname, sid, spw, semail)
+		values (#{sname}, #{sid}, #{spw}, #{semail})			
+	</insert> 
+
+	
+	<select id="read" resultType="StudentVO">
+		select * from tbl_student where sid = #{sid}
+	</select>
+
+	<update id="update" parameterType="StudentVO">
+		update tbl_student set sname = #{sname},  spw = #{spw}, 
+		semail = #{semail} where sid = #{sid}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_student where sid = #{sid}
+	</delete>
+	
+	
+	<select id="allList" resultType="StudentVO">
+		select * from tbl_student order by sname
+	</select>
+
+</mapper>
