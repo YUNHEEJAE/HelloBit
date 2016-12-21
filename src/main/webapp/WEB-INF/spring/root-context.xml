@@ -27,8 +27,12 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
+	
+	
 
 
 	<context:component-scan base-package="org.kb141.persistence"></context:component-scan>
+
+	<context:component-scan base-package="org.kb141.service"></context:component-scan>
 
 </beans>
