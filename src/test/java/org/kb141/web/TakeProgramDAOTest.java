@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kb141.domain.TakeProgramVO;
 import org.kb141.persistence.TakeProgramDAO;
-import org.kb141.service.StudentService;
+import org.kb141.service.TakeProgramService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -19,7 +19,7 @@ public class TakeProgramDAOTest {
 	private TakeProgramDAO dao;
 	
 	@Inject
-	private StudentService service;
+	private TakeProgramService service;
 	
 	
 	@Test
@@ -69,7 +69,7 @@ public class TakeProgramDAOTest {
 		vo.setPno(1);
 		vo.setSid("jyyy");
 		
-		service.joinTakeProgram(vo);
+		service.join(vo);
 		
 		
 	}
@@ -77,7 +77,7 @@ public class TakeProgramDAOTest {
 	@Test
 	public void viewTest()throws Exception{
 		
-		System.out.println(service.viewStudentTakeProgram("23"));
+		System.out.println(service.view("23"));
 		
 	}
 	
@@ -89,42 +89,35 @@ public class TakeProgramDAOTest {
 		vo.setSid("23");
 		vo.setPno(1);
 		
-		service.modifyTakeProgram(vo);
+		service.modify(vo);
 		
 	}
 	
 	@Test
-	public void removeStudentTest() throws Exception{
-		
-				service.remove("jyy");
-		
+	public void removeStudentTest() throws Exception {
+		service.remove("jyy");
 	}
-	
-	
+
 	@Test
-	public void removeTest() throws Exception{
-		
-		service.removeTakeProgram("23");
-		
-		
+	public void removeTest() throws Exception {
+
+		service.remove("23");
+
 	}
-	
+
 	@Test
-	public void programAllListTest()throws Exception{
-		
-		System.out.println(service.getAllTakeProgramList());
-		
+	public void programAllListTest() throws Exception {
+
+		System.out.println(service.getAllList());
+
 	}
-	
+
 	@Test
-	public void programListTest() throws Exception{
-		
-		System.out.println(service.getTakeProgramList(1));
-		
+	public void programListTest() throws Exception {
+
+		System.out.println(service.getList(1));
+
 	}
-	
-	
-	
 	
 	
 }

@@ -4,50 +4,44 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.kb141.domain.StudentVO;
-import org.kb141.persistence.StudentDAO;
+import org.kb141.domain.TakeProgramVO;
 import org.kb141.persistence.TakeProgramDAO;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
-public class StudentServiceImpl implements StudentService {
-	
-	@Inject
-	private StudentDAO studentDAO;
+public class TakeProgramServiceImpl implements TakeProgramService{
 	
 	@Inject
 	private TakeProgramDAO takeprogramDAO;
 		
+	
 	@Override
-	public void register(StudentVO vo) {
+	public void join(TakeProgramVO vo) {
 		try {
-			studentDAO.create(vo);
-		} catch (Exception e){
+			takeprogramDAO.create(vo);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 
 	@Override
-	public StudentVO view(String sid) {
-		
-		StudentVO result = null;
+	public TakeProgramVO view(String sid) {
+		TakeProgramVO result = null;
 		
 		try {
-			result = studentDAO.read(sid);
+			result = takeprogramDAO.read(sid);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 		
 		return result;
-		
 	}
 
 	@Override
-	public void modify(StudentVO vo) {
+	public void modify(TakeProgramVO vo) {
 		try {
-			studentDAO.update(vo);
+			takeprogramDAO.update(vo);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -56,21 +50,18 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void remove(String sid) {
 		try {
-			studentDAO.delete(sid);
 			takeprogramDAO.delete(sid);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
-	public List<StudentVO> getStudentList() {
-		
-		List<StudentVO> result = null;
+	public List<TakeProgramVO> getAllList() {
+		List<TakeProgramVO> result = null;
 		
 		try {
-			result = studentDAO.allList();
+			result = takeprogramDAO.allList();
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -78,5 +69,16 @@ public class StudentServiceImpl implements StudentService {
 		return result;	
 	}
 
-	
+	@Override
+	public List<TakeProgramVO> getList(Integer pno) {
+		List<TakeProgramVO> result = null;
+		
+		try {
+			result = takeprogramDAO.list(pno);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return result;	
+	}
 }
