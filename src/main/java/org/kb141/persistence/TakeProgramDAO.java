@@ -19,3 +19,4 @@ public interface TakeProgramDAO {		//HJ
 	public List<TakeProgramVO> list(Integer pno) throws Exception; 
 	
 }
+
