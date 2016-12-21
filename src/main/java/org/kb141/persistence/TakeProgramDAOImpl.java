@@ -36,7 +36,6 @@ public class TakeProgramDAOImpl implements TakeProgramDAO {
 	@Override
 	public void delete(String sid) throws Exception {
 		sqlsession.delete(NAME+"delete", sid);
-
 	}
 
 	@Override
