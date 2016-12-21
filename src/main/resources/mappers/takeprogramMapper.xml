@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kb141.mapper.TakeProgramMapper">
+
+<insert id="create" parameterType="TakeProgramVO">
+
+insert into tbl_take_program (sid , pno) values (#{sid} , #{pno})
+
+</insert>
+
+<select id="read"  parameterType="String">
+
+select * from tbl_take_program where sid = #{sid} 
+
+</select>
+
+<update id="update" parameterType="TakeProgramVO">
+
+update tbl_take_program set pno = #{pno} where sid = #{sid}
+
+</update>
+
+
+<delete id="delete" parameterType="String">
+
+delete from tbl_take_program where sid = #{sid}
+
+</delete>
+
+<select id="allList" resultType="TakeProgramVO">
+
+select * from bitcamp.tbl_take_program order by pno
+
+</select>
+
+<select id="list" parameterType="Integer"  resultType="TakeProgramVO">
+
+select * from tbl_take_program where pno = #{pno}
+
+</select>
+
+</mapper>
+
