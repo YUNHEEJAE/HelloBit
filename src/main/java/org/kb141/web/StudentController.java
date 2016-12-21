@@ -9,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * TBL_STUDENT
- * TBL_CHECK
- * TBL_TAKE_PROGRAM
+ * TBL_STUDENT TBL_CHECK TBL_TAKE_PROGRAM
+ * 
  * @author KB141
  *
  */
@@ -23,9 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StudentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
-	
+
 	@Inject
 	private StudentService service;
+
 	
 	
 	@GetMapping("/jptest")
@@ -59,5 +62,19 @@ public class StudentController {
 	}
 	
 
+	@GetMapping("/list")
+	public void getStudentList(Model model) throws Exception {
+		logger.info("STUDENT LIST.....");
+		model.addAttribute("list", service.getStudentList());
+
+	}
+
 	
+	@GetMapping("/view")
+	public void view(@RequestParam("sid") String sid, Model model) throws Exception {
+		logger.info("STUDENT VIEW.....");
+		model.addAttribute(service.view(sid));
+
+	}
+
 }

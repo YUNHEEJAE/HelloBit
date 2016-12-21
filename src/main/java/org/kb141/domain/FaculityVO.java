@@ -28,6 +28,5 @@ public class FaculityVO {
 	public String toString() {
 		return "FaculityVO [fname=" + fname + ", fid=" + fid + ", fpw=" + fpw + "]";
 	}
-	
 
 }
