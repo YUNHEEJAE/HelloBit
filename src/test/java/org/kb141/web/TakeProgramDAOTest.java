@@ -72,10 +72,48 @@ public class TakeProgramDAOTest {
 		service.joinTakeProgram(vo);
 		
 		
+	}
+	
+	@Test
+	public void viewTest()throws Exception{
+		
+		System.out.println(service.viewStudentTakeProgram("23"));
+		
+	}
+	
+	@Test
+	public void modifyTest()throws Exception{
+		
+		TakeProgramVO  vo = new TakeProgramVO();
+		
+		vo.setSid("23");
+		vo.setPno(1);
+		
+		service.modifyTakeProgram(vo);
+		
+	}
+	
+	@Test
+	public void removeTest() throws Exception{
+		
+		service.removeTakeProgram("23");
 		
 		
 	}
 	
+	@Test
+	public void programAllListTest()throws Exception{
+		
+		System.out.println(service.getAllTakeProgramList());
+		
+	}
+	
+	@Test
+	public void programListTest() throws Exception{
+		
+		System.out.println(service.getTakeProgramList(1));
+		
+	}
 	
 	
 	
