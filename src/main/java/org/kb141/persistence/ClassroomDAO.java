@@ -8,6 +8,7 @@ public interface ClassroomDAO {
 
 	// C R U D allList 
 	
+
 	public void create(ClassroomVO vo) throws Exception;
 	
 	public ClassroomVO read(String roomname) throws Exception;
