@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kb141.mapper.NoticeMapper">
+
+	<insert id="create" parameterType="NoticeVO">
+		insert into tbl_notice (nwriter, ntitle, ncontent)
+		values (#{nwriter}, #{ntitle}, #{ncontent})
+	</insert>
+	
+	<select id="read" resultType="NoticeVO">
+		select * from tbl_notice where nno = #{nno}
+	</select>
+	
+	<update id="update" parameterType="NoticeVO">
+		update tbl_notice set ntitle = #{ntitle} , ncontent = #{ncontent},
+		nupdatedate = current_timestamp where nno = #{nno}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_notice where nno = #{nno}
+	</delete>
+	
+	<select id="allList" resultType="NoticeVO">
+		select * from tbl_notice
+	</select>
+
+
+</mapper>
