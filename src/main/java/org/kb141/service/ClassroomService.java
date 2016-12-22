@@ -6,7 +6,6 @@ import org.kb141.domain.ClassroomVO;
 
 public interface ClassroomService {
 
-	
 	public void register(ClassroomVO vo);
 
 	public ClassroomVO view(String roomname);
