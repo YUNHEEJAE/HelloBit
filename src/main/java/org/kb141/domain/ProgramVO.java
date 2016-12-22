@@ -1,5 +1,8 @@
 package org.kb141.domain;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /*
@@ -52,16 +55,20 @@ public class ProgramVO {
 		return opendate;
 	}
 
-	public void setOpendate(Date opendate) {
-		this.opendate = opendate;
+	public void setOpendate(String opendate) throws Exception {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date tempDate = format.parse(opendate);
+		this.opendate = tempDate;
 	}
 
 	public Date getClosedate() {
 		return closedate;
 	}
 
-	public void setClosedate(Date closedate) {
-		this.closedate = closedate;
+	public void setClosedate(String closedate) throws Exception {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date tempDate = format.parse(closedate);
+		this.closedate = tempDate;
 	}
 
 	public Integer getMaximum() {
