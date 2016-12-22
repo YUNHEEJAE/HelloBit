@@ -24,7 +24,7 @@ update tbl_subject set subname = #{subname} ,  subgrade =  #{subgrade}  where  s
 
 <delete id="delete">
 
-delete from bitcamp.tbl_subject where subno = #{subno}
+delete from tbl_subject where subno = #{subno}
 
 </delete>
 
