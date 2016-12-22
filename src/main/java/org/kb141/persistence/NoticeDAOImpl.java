@@ -16,6 +16,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	
 	private final String NAME = "org.kb141.mapper.NoticeMapper.";
 	
+	
 	@Override
 	public void create(NoticeVO vo) throws Exception {
 		sqlSession.insert(NAME + "create", vo);

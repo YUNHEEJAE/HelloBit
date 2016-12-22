@@ -9,7 +9,7 @@
 		insert into tbl_notice (nwriter, ntitle, ncontent)
 		values (#{nwriter}, #{ntitle}, #{ncontent})
 	</insert>
-	
+		
 	<select id="read" resultType="NoticeVO">
 		select * from tbl_notice where nno = #{nno}
 	</select>
