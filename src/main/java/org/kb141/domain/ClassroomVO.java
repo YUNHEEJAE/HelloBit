@@ -6,17 +6,8 @@ package org.kb141.domain;
 
 public class ClassroomVO {
 
-	private Integer classno;
 	private String roomname;
 	private Boolean empty;
-
-	public Integer getClassno() {
-		return classno;
-	}
-
-	public void setClassno(Integer classno) {
-		this.classno = classno;
-	}
 
 	public String getRoomname() {
 		return roomname;
@@ -36,7 +27,7 @@ public class ClassroomVO {
 
 	@Override
 	public String toString() {
-		return "ClassroomVO [classno=" + classno + ", roomname=" + roomname + ", empty=" + empty + "]";
+		return "ClassroomVO [roomname=" + roomname + ", empty=" + empty + "]";
 	}
 
 }
