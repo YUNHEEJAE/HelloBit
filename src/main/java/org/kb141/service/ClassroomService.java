@@ -7,7 +7,6 @@ import org.kb141.domain.ClassroomVO;
 public interface ClassroomService {
 
 	public void register(ClassroomVO vo);
-	
 
 	public ClassroomVO view(String roomname);
 	
@@ -16,5 +15,6 @@ public interface ClassroomService {
 	public void remove(String roomname);
 	
 	public List<ClassroomVO> getClassroomList();
+	
 	
 }
