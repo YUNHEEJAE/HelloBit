@@ -15,4 +15,5 @@ public interface TeacherSubjectService {	//HJ
 	public void remove(Integer tsno);
 	
 	public List<TeacherSubjectVO> getTeacherSubjectList();
+
 }
