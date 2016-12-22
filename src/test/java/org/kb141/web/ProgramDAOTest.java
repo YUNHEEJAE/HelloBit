@@ -102,7 +102,7 @@ public class ProgramDAOTest {
 		service.remove(14);
 	}
 
-	@Test
+	@Test 
 	public void listServiceTest() throws Exception {
 		System.out.println(service.getProgramList());
 	}
