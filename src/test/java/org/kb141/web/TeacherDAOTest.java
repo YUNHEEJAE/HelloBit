@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kb141.domain.TeacherVO;
 import org.kb141.persistence.TeacherDAO;
+import org.kb141.service.TeacherService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -15,6 +16,9 @@ public class TeacherDAOTest { // HJ
 
 	@Inject
 	private TeacherDAO dao;
+	
+	@Inject
+	private TeacherService service;
 
 	@Test
 	public void createTest() throws Exception {
@@ -51,5 +55,43 @@ public class TeacherDAOTest { // HJ
 		System.out.println(dao.allList());
 
 	}
-
+		
+	// =================== SERVICE =====================  //
+	
+	@Test
+	public void registerTest() throws Exception{
+		
+		TeacherVO obj = new TeacherVO();
+		obj.setTname("토마스");
+		obj.setTid("thomas");
+		obj.setTpw("thomas");
+		
+		service.register(obj);
+	}
+	
+	@Test
+	public void viewTest() throws Exception{
+		System.out.println(service.view("thomas"));
+	}
+	
+	@Test
+	public void modifyTest() throws Exception{
+		
+		TeacherVO  obj = new TeacherVO();
+		obj.setTid("thomas");
+		obj.setTname("나는야토마스");
+		obj.setTpw("Thomas");
+		
+		service.modify(obj);
+	}
+	
+	@Test
+	public void removeTest() throws Exception {
+		service.remove("thomas");
+	}
+	
+	@Test
+	public void getTeacherListTest() throws Exception {
+		System.out.println(service.getTeacherList());
+	}
 }
