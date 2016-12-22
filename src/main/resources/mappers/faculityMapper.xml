@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kb141.mapper.FaculityMapper">
+
+<insert id="create">
+
+insert into tbl_faculity (fname , fid , fpw) values (#{fname} , #{fid} , #{fpw})
+
+</insert>
+
+<select id="read" resultType="FaculityVO">
+
+select * from tbl_faculity where fid = #{fid}
+
+</select>
+
+<update id="update">
+
+update tbl_faculity set fname = #{fname} , fpw= #{fpw} where fid = #{fid}
+
+</update>
+
+
+<delete id="delete">
+
+delete from tbl_faculity where fid = #{fid}
+
+</delete>
+
+<select id="allList" resultType="FaculityVO">
+
+select * from tbl_faculity
+
+</select>
+
+</mapper>
