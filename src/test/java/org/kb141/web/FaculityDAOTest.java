@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kb141.domain.FaculityVO;
 import org.kb141.persistence.FaculityDAO;
+import org.kb141.service.FaculityService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -14,6 +15,9 @@ public class FaculityDAOTest {
 	
 	@Inject
 	private FaculityDAO dao;
+	
+	@Inject
+	private FaculityService service;
 	
 	
 	@Test
@@ -49,5 +53,40 @@ public class FaculityDAOTest {
 		System.out.println(dao.getList());
 	}
 	
+	// ==================== service ===================
+	
+	@Test
+	public void registerTest()throws Exception{
+		FaculityVO vo = new FaculityVO();
+		vo.setFid("yun123");
+		vo.setFname("윤회장");
+		vo.setFpw("yun123");
+		service.register(vo);
+		
+	}
+	
+	@Test
+	public void viewTest()throws Exception{
+		System.out.println(service.view("yun123"));
+	}
+	
+	@Test
+	public void modifyTest()throws Exception{
+		FaculityVO vo = new FaculityVO();
+		vo.setFid("yun123");
+		vo.setFname("윤사장");
+		vo.setFpw("yun123");
+		service.modify(vo);
+	}
+	
+	@Test
+	public void removeTest()throws Exception{
+		service.remove("yun123");
+	}
+	
+	@Test
+	public void getFaculityList()throws Exception{
+		System.out.println(service.getFaculityList());
+	}
 
 }
