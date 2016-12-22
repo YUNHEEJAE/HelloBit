@@ -16,6 +16,4 @@ public interface SubjectDAO {
 	
 	public List<SubjectVO> allList() throws Exception;
 	
-	
-
 }
