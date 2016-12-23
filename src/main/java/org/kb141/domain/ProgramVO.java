@@ -18,6 +18,15 @@ public class ProgramVO {
 	private Date opendate;
 	private Date closedate;
 	private Integer maximum;
+	private String persongroupid;
+
+	public String getPersongroupid() {
+		return persongroupid;
+	}
+
+	public void setPersongroupid(String persongroupid) {
+		this.persongroupid = persongroupid;
+	}
 
 	public Integer getPno() {
 		return pno;
@@ -82,7 +91,10 @@ public class ProgramVO {
 	@Override
 	public String toString() {
 		return "ProgramVO [pno=" + pno + ", pcourse=" + pcourse + ", roomname=" + roomname + ", torder=" + torder
-				+ ", opendate=" + opendate + ", closedate=" + closedate + ", maximum=" + maximum + "]";
+				+ ", opendate=" + opendate + ", closedate=" + closedate + ", maximum=" + maximum + ", persongroupid="
+				+ persongroupid + "]";
 	}
+
+
 
 }

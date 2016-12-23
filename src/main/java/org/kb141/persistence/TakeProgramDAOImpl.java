@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.kb141.domain.TakeProgramVO;
 import org.springframework.stereotype.Repository;
 
-//HJ
+//HJ, IH
 @Repository
 public class TakeProgramDAOImpl implements TakeProgramDAO {	
 
@@ -46,6 +46,12 @@ public class TakeProgramDAOImpl implements TakeProgramDAO {
 	@Override
 	public List<TakeProgramVO> list(Integer pno) throws Exception {
 		return sqlsession.selectList(NAME+"list",pno);
+	}
+
+	@Override
+	public void admission(String sid) throws Exception {
+		sqlsession.update(NAME + "admission", sid);
+		
 	}
 
 }
