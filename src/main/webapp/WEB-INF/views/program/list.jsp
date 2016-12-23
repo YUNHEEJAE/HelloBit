@@ -32,8 +32,7 @@
 		<div class="ThreadListCont">
 			<ul class='threadTable'>
 				<li id='pno'>
-					<div class='pno'>pno</div> <a href="#" class='pcourse'
-					title='pcourse'> pcourse </a>
+					<div class='pno'>pno</div> <a href="#" class='pcourse' title='pcourse'> pcourse </a>
 					<div class='opendate'>opendate</div>
 					<div class='closedate'>closedate</div>
 					<div class='maximum'>maximum</div>
@@ -44,20 +43,43 @@
 	</div>
 
 </body>
+
 <%@include file="footer.jsp"%>
+
+
+
 <script>
-	function getProgramList() {
-		$.getJSON("/web/program/allList", function(data) {
-			console.log(data);
-			console.log(data.length);
-			var str = "";
-			$(data).each(function() {
-				str += this.pno + this.pcourse + this.roomname + this.torder
-				$("#programList").html(str);
+
+		function getProgramList() {
+			$.getJSON("/program/allList", function(data) {
+				console.log(data);
+				console.log(data.length);   
+				var str = "";
+				$(data).each(function() {	// foreach 개념으로 길이만큼 돈다.
+					str += "<li id='pno'>" 
+					+	"<div class='pno'> pno :" + this.pno + "</div>" 
+					+ "<a href=" + "#" + "lass='pcourse' title='pcourse'> pcourse :" + this.pcourse + "</a> "
+					+ "<div class='opendate'> opendate :" + this.opendate + "</div>"
+					+ "<div class='closedate'> closedate :" + this.closedate + "</div>"
+					+ "<div class='maximum'> maximum :" + this.maximum + "</div>"
+				+ "</li>" 
+// 				this.pno + this.pcourse + this.roomname + this.torder;
+					console.log("str : " + str);
+// 					$("#programList").html(str);
+					$(".threadTable").append(str);
+				});
 			});
-		});
-	}
-	getProgramList();
+		}
+		
+		getProgramList();
+		
+		
+		
+	
+
+	
+	
+	
 </script>
 
 </html>
