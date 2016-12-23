@@ -29,22 +29,6 @@
 
 		<!-- Main content -->
 		<section class="content">
-		<div class="ThreadListCont">
-			<ul class='threadTable'>
-				<li id='pno'>
-					<div class='pno'>pno</div> <a href="#" class='pcourse' title='pcourse'> pcourse </a>
-					<div class='opendate'>opendate</div>
-					<div class='closedate'>closedate</div>
-					<div class='maximum'>maximum</div>
-				</li>
-			</ul>
-		</div>
-		</section>
-		
-		
-		
-		<!-- 내가  -->
-		<section class="content">
 	    <hr />
 	    <div class="row">
 	        <div class="col-sm-9 col-md-12">
@@ -88,6 +72,18 @@
 	                            	<span class="glyphicon glyphicon-paperclip"></span>
 	                            </span>
                             </a>
+                            
+                               <a href="#" class="list-group-item">
+	                         		<span class="glyphicon glyphicon-eye-open"></span>
+	                            <span class="name" style="min-width: 120px; display: inline-block;">JAVA 88</span>
+	                          	<span class="">JAVA 88기 중급 Web Developer</span>
+	                            <span class="text-muted" style="font-size: 11px;">- 잘 못 배우는 방법</span>
+	                            <span class="badge">12:10 AM</span>
+	                            <span class="pull-right">
+	                            	<span class="glyphicon glyphicon-paperclip"></span>
+	                            </span>
+                            </a>
+                            
 	                    </div>
 	                </div>
 	                
@@ -106,14 +102,7 @@
 	            </div>
 	           
 	        </div>
-	    </div>
-		
-		
-		<!-- 내가  -->
-			
-		
-			
-			
+	    </div>			
 			</section>
 	</div>
 	
@@ -127,6 +116,7 @@
 
 
 <script>
+$(document).ready(function(){
 
 		function getProgramList() {
 			$.getJSON("/program/allList", function(data) {
@@ -134,13 +124,7 @@
 				console.log(data.length);   
 				var str = "";
 				$(data).each(function() {	// foreach 개념으로 길이만큼 돈다.
-					str += "<li id='pno'>" 
-					+	"<div class='pno'> pno :" + this.pno + "</div>" 
-					+ "<a href=" + "#" + "lass='pcourse' title='pcourse'> pcourse :" + this.pcourse + "</a> "
-					+ "<div class='opendate'> opendate :" + this.opendate + "</div>"
-					+ "<div class='closedate'> closedate :" + this.closedate + "</div>"
-					+ "<div class='maximum'> maximum :" + this.maximum + "</div>"
-				+ "</li>" 
+					str += ""
 // 				this.pno + this.pcourse + this.roomname + this.torder;
 					console.log("str : " + str);
 // 					$("#programList").html(str);
@@ -150,6 +134,17 @@
 		}
 		
 		getProgramList();
+		
+		
+		$(".active ").on("click", function(event){
+				console.log(event);
+		});
+		
+		
+	
+});
+		
+		
 		
 		
 		
