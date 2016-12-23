@@ -29,37 +29,20 @@
 
 		<!-- Main content -->
 		<section class="content">
-		<div class="ThreadListCont">
-			<ul class='threadTable'>
-				<li id='pno'>
-					<div class='pno'>pno</div> <a href="#" class='pcourse'
-					title='pcourse'> pcourse </a>
-					<div class='opendate'>opendate</div>
-					<div class='closedate'>closedate</div>
-					<div class='maximum'>maximum</div>
-				</li>
-			</ul>
-		</div>
-		</section>
-
-
-
-		<!-- 내가  -->
-		<section class="content">
 		<hr />
 		<div class="row">
 			<div class="col-sm-9 col-md-12">
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs subjectTab">
-					<li class="active"><a href="#java" data-toggle="tab" name='java'> <span
-							class="glyphicon glyphicon-th-list"></span>JavaDB
+					<li class="active"><a href="#java" data-toggle="tab"
+						name='java'> <span class="glyphicon glyphicon-th-list"></span>JavaDB
 					</a></li>
 					<li><a href="#beginner" data-toggle="tab" name='beginner'><span
 							class="glyphicon glyphicon-th-list"></span> SW Beginner</a></li>
 					<li><a href="#windows" data-toggle="tab" name='windows'><span
 							class="glyphicon glyphicon-th-list"></span> C / Windows</a></li>
 					<li><a href="#embedded" data-toggle="tab" name='embedded'><span
-							class="glyphicon glyphicon-th-list" ></span> Embedded</a></li>
+							class="glyphicon glyphicon-th-list"></span> Embedded</a></li>
 					<li><a href="#bigdata" data-toggle="tab" name='bigdata'><span
 							class="glyphicon glyphicon-th-list"></span> Big Data & IoT</a></li>
 				</ul>
@@ -118,33 +101,42 @@
 				</div>
 			</div>
 		</div>
-		<!-- 내가  --> </section>
+		</section>
 	</div>
 
 
 </body>
+
 <%@include file="footer.jsp"%>
+
+
+
 <script>
-	function getProgramList() {
-		$.getJSON("/web/program/allList", function(data) {
-			console.log(data);
-			console.log(data.length);
-			var str = "";
-			$(data).each(function() {
-				str += this.pno + this.pcourse + this.roomname + this.torder
-				$("#programList").html(str);
+	$(document).ready(function() {
+
+		function getProgramList() {
+			$.getJSON("/program/allList", function(data) {
+				console.log(data);
+				console.log(data.length);
+				var str = "";
+				$(data).each(function() { // foreach 개념으로 길이만큼 돈다.
+					str += ""
+					// 				this.pno + this.pcourse + this.roomname + this.torder;
+					console.log("str : " + str);
+					// 					$("#programList").html(str);
+					$(".threadTable").append(str);
+				});
 			});
+		}
+
+		getProgramList();
+
+		
+		$(".subjectTab li").on("click", function(event) {
+			console.log(event.target.name);
 		});
-	}
-	getProgramList();
-	
-	
-	$(".subjectTab li").on("click",function(event){
-		console.log(event.target.name);
+
 	});
-	
-	
-	
 </script>
 
 </html>
