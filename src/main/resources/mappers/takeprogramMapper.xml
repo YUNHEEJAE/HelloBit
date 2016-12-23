@@ -5,42 +5,36 @@
 
 <mapper namespace="org.kb141.mapper.TakeProgramMapper">
 
-<insert id="create" parameterType="TakeProgramVO">
+	<insert id="create" parameterType="TakeProgramVO">
+		insert into tbl_take_program (sid , pno) values (#{sid} , #{pno})
+	</insert>
 
-insert into tbl_take_program (sid , pno) values (#{sid} , #{pno})
+	<select id="read" parameterType="String" resultType="TakeProgramVO">
+		select * from tbl_take_program where sid = #{sid}  order by tregdate
+	</select>
 
-</insert>
+	<update id="update" parameterType="TakeProgramVO">
+		update tbl_take_program set pno = #{pno}, state = #{state}, tregdate = current_timestamp where sid = #{sid}
+	</update>
 
-<select id="read"  parameterType="String" resultType="TakeProgramVO">
+	<delete id="delete" parameterType="String">
+		delete from tbl_take_program where sid = #{sid}
+	</delete>
 
-select * from tbl_take_program where sid = #{sid} 
+	<select id="allList" resultType="TakeProgramVO">
+		select * from tbl_take_program order by tregdate
+	</select>
 
-</select>
-
-<update id="update" parameterType="TakeProgramVO">
-
-update tbl_take_program set pno = #{pno} where sid = #{sid}
-
-</update>
-
-
-<delete id="delete" parameterType="String">
-
-delete from tbl_take_program where sid = #{sid}
-
-</delete>
-
-<select id="allList" resultType="TakeProgramVO">
-
-select * from tbl_take_program order by pno
-
-</select>
-
-<select id="list" parameterType="Integer"  resultType="TakeProgramVO">
-
-select * from tbl_take_program where pno = #{pno}
-
-</select>
+	<select id="list" parameterType="Integer" resultType="TakeProgramVO">
+		select * from tbl_take_program where pno = #{pno} order by tregdate
+	</select>
+	
+	
+	
+	<update id="admission">
+		update tbl_take_program set state = true where sid = #{sid}
+	</update>
+	
 
 </mapper>
 

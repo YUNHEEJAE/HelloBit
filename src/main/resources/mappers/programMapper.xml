@@ -8,9 +8,9 @@
 	<insert id="create">
 		insert into tbl_program (pcourse, roomname, torder,
 		opendate, closedate,
-		maximum)
+		maximum, persongroupid)
 		values (#{pcourse}, #{roomname} ,
-		#{torder}, #{opendate},#{closedate},#{maximum})
+		#{torder}, #{opendate},#{closedate},#{maximum}, #{persongroupid})
 	</insert>
 
 	<select id="read" resultType="ProgramVO">
@@ -22,10 +22,11 @@
 
 	<update id="update" parameterType="ProgramVO">
 
-		update tbl_program set pcourse
-		= #{pcourse}, roomname = #{roomname}, torder=#{torder}, opendate =
-		#{opendate}, closedate =#{closedate}, maximum=#{maximum} where
-		pno=#{pno}
+		update tbl_program set
+		pcourse = #{pcourse}, roomname = #{roomname}, torder=#{torder},
+		opendate = #{opendate}, closedate =#{closedate},
+		maximum=#{maximum}, persongroupid=#{persongroupid}
+		where pno=#{pno}
 
 	</update>
 

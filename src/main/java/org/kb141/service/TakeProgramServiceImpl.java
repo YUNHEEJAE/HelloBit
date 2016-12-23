@@ -81,4 +81,16 @@ public class TakeProgramServiceImpl implements TakeProgramService{
 		
 		return result;	
 	}
+
+
+	@Override
+	public void admission(String sid) {
+		try {
+			takeprogramDAO.admission(sid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

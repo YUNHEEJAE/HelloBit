@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.kb141.domain.TakeProgramVO;
 
-public interface TakeProgramDAO {		//HJ
+public interface TakeProgramDAO {		//HJ, IH
 		
 	public void create(TakeProgramVO vo) throws Exception;
 	
@@ -17,6 +17,9 @@ public interface TakeProgramDAO {		//HJ
 	public List<TakeProgramVO> allList() throws Exception;
 	
 	public List<TakeProgramVO> list(Integer pno) throws Exception; 
+	
+	// 수강신청 승인
+	public void admission(String sid) throws Exception;
 	
 }
 

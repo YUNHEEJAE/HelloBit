@@ -25,8 +25,8 @@ public class TakeProgramDAOTest {
 	@Test
 	public void createTest() throws Exception{
 		TakeProgramVO obj = new TakeProgramVO();
-		obj.setSid("sih");
-		obj.setPno(1);
+		obj.setSid("sih2");
+		obj.setPno(8);
 		dao.create(obj);
 	}
 	
@@ -38,14 +38,15 @@ public class TakeProgramDAOTest {
 	@Test
 	public void updateTest() throws Exception {
 		TakeProgramVO obj = new TakeProgramVO();
-		obj.setSid("sih");
-		obj.setPno(2);
+		obj.setSid("sih2");
+		obj.setPno(9);
+		obj.setState(false);
 		dao.update(obj);
 	}
 	
 	@Test
 	public void deleteTest() throws Exception {
-		dao.delete("sih");
+		dao.delete("sih2");
 	}
 	
 	@Test
@@ -58,20 +59,19 @@ public class TakeProgramDAOTest {
 		System.out.println(dao.list(3));
 	}
 	
+	@Test
+	public void admissionTest() throws Exception {
+		dao.admission("lsy");
+	}
 	
 	// ================ service ================
 	
 	@Test
 	public void registerTest() throws Exception {
-		
 		TakeProgramVO  vo = new TakeProgramVO();
-		
 		vo.setPno(1);
 		vo.setSid("jyyy");
-		
 		service.join(vo);
-		
-		
 	}
 	
 	@Test
@@ -117,6 +117,11 @@ public class TakeProgramDAOTest {
 
 		System.out.println(service.getList(1));
 
+	}
+	
+	@Test
+	public void admissionServiceTest() throws Exception {
+		service.admission("yhj");
 	}
 	
 	
