@@ -28,7 +28,7 @@
 		</section>
 
 		<!-- Main content -->
-		<section class="content"> <<<<<<< HEAD
+		<section class="content">
 		<hr />
 		<div class="row">
 			<div class="col-sm-9 col-md-12">
@@ -95,7 +95,6 @@
 			</div>
 		</div>
 		</section>
-		=======
 		<div class="ThreadListCont">
 			<ul class='threadTable'>
 				<li id='pno'>
@@ -117,19 +116,18 @@
 		<div class="row">
 			<div class="col-sm-9 col-md-12">
 				<!-- Nav tabs -->
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#java" data-toggle="tab"> <span
-							class="glyphicon glyphicon-th-list"></span>JavaDB
+				<ul class="nav nav-tabs subjectTab">
+					<li class="active"><a href="#java" data-toggle="tab"
+						name='java'> <span class="glyphicon glyphicon-th-list"></span>JavaDB
 					</a></li>
-					<li><a href="#beginner" data-toggle="tab"><span
+					<li><a href="#beginner" data-toggle="tab" name='beginner'><span
 							class="glyphicon glyphicon-th-list"></span> SW Beginner</a></li>
-					<li><a href="#windows" data-toggle="tab"><span
+					<li><a href="#windows" data-toggle="tab" name='windows'><span
 							class="glyphicon glyphicon-th-list"></span> C / Windows</a></li>
-					<li><a href="#embedded" data-toggle="tab"><span
+					<li><a href="#embedded" data-toggle="tab" name='embedded'><span
 							class="glyphicon glyphicon-th-list"></span> Embedded</a></li>
-					<li><a href="#bigdata" data-toggle="tab"><span
+					<li><a href="#bigdata" data-toggle="tab" name='bigdata'><span
 							class="glyphicon glyphicon-th-list"></span> Big Data & IoT</a></li>
-
 				</ul>
 				<!-- Tab panes -->
 				<div class="tab-content">
@@ -186,7 +184,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- 내가  --> </section>
+		</section>
 	</div>
 
 
@@ -197,41 +195,32 @@
 
 
 <script>
-$(document).ready(function(){
+	$(document).ready(function() {
 
+		
 		function getProgramList() {
 			$.getJSON("/program/allList", function(data) {
 				console.log(data);
-				console.log(data.length);   
+				console.log(data.length);
 				var str = "";
-				$(data).each(function() {	// foreach 개념으로 길이만큼 돈다.
+				$(data).each(function() { // foreach 개념으로 길이만큼 돈다.
 					str += ""
-// 				this.pno + this.pcourse + this.roomname + this.torder;
+					// 				this.pno + this.pcourse + this.roomname + this.torder;
 					console.log("str : " + str);
-// 					$("#programList").html(str);
+					// 					$("#programList").html(str);
 					$(".threadTable").append(str);
 				});
 			});
 		}
-		
-		getProgramList();
-		
-		
-		$(".nav nav-tabs li").on("click", function(event){
-				console.log(event);
-		});
-		
-	
-});
-		
 
-	}
-	getProgramList();
-	
-	
-	
-	
-	
+// 		getProgramList();
+
+		$(".subjectTab li").on("click", function(event) {
+			// 			console.log(event.target.name);
+			console.log(event.target.name);
+		});
+
+	});
 	
 </script>
 
