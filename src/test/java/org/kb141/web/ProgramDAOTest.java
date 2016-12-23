@@ -29,6 +29,7 @@ public class ProgramDAOTest {
 		vo.setOpendate("2016-12-22");
 		vo.setClosedate("2016-12-23");
 		vo.setMaximum(30);
+		vo.setPersongroupid("test_test_18");
 		System.out.println(vo);
 
 		dao.create(vo);
@@ -73,8 +74,8 @@ public class ProgramDAOTest {
 		vo.setOpendate("2016-12-22");
 		vo.setClosedate("2016-12-23");
 		vo.setMaximum(30);
+		vo.setPersongroupid("test_test_18");
 		System.out.println(vo);
-
 		service.register(vo);
 	}
 
@@ -92,14 +93,14 @@ public class ProgramDAOTest {
 		vo.setOpendate("2016-12-22");
 		vo.setClosedate("2016-12-23");
 		vo.setMaximum(5);
-		vo.setPno(14);
-
+		vo.setPno(21);
+		vo.setPersongroupid("test_test_19");
 		service.modify(vo);
 	}
 
 	@Test
 	public void deleteServiceTest() throws Exception {
-		service.remove(14);
+		service.remove(21);
 	}
 
 	@Test 
