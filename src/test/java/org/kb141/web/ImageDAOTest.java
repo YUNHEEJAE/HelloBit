@@ -65,7 +65,7 @@ public class ImageDAOTest {
 	}
 
 	@Test
-	public void removeTest() throws Exception {
+	public void removeTest() throws Exception {    
 		service.remove(3);
 	}
 
