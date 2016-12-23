@@ -41,7 +41,85 @@
 			</ul>
 		</div>
 		</section>
+		
+		
+		
+		<!-- 내가  -->
+		<section class="content">
+	    <hr />
+	    <div class="row">
+	        <div class="col-sm-9 col-md-12">
+	            <!-- Nav tabs -->
+	            <ul class="nav nav-tabs">
+	                <li class="active">
+	                	<a href="#home" data-toggle="tab">
+	                		<span class="glyphicon glyphicon-inbox"></span>Primary
+	                	</a>
+	                </li>
+	                <li><a href="#profile" data-toggle="tab"><span class="glyphicon glyphicon-user"></span>
+	                    Social</a></li>
+	                <li><a href="#messages" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>
+	                    Promotions</a></li>
+	                <li><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-plus no-margin">
+	                </span></a></li>
+	            </ul>
+	            <!-- Tab panes -->
+	            <div class="tab-content">
+	                
+	                
+	                <div class="tab-pane fade in active" id="home">
+	                    <div class="list-group">
+	                        <a href="#" class="list-group-item">
+	                            <span class="glyphicon glyphicon-star-empty"></span>
+	                            <span class="name" style="min-width: 120px; display: inline-block;">JAVA 88</span>
+	                          	<span class="">JAVA 88기 고급 Web Developer</span>
+	                            <span class="text-muted" style="font-size: 11px;">- 잘 배우는 방법</span>
+	                            <span class="badge">12:10 AM</span>
+	                            <span class="pull-right">
+	                            	<span class="glyphicon glyphicon-paperclip"></span>
+	                            </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+	                            <span class="glyphicon glyphicon-star-empty"></span>
+	                            <span class="name" style="min-width: 120px; display: inline-block;">JAVA 88</span>
+	                          	<span class="">JAVA 88기 중급 Web Developer</span>
+	                            <span class="text-muted" style="font-size: 11px;">- 잘 못 배우는 방법</span>
+	                            <span class="badge">12:10 AM</span>
+	                            <span class="pull-right">
+	                            	<span class="glyphicon glyphicon-paperclip"></span>
+	                            </span>
+                            </a>
+	                    </div>
+	                </div>
+	                
+	                
+	                <div class="tab-pane fade in" id="profile">
+	                    <div class="list-group">
+	                        <div class="list-group-item">
+	                            <span class="text-center">This tab is empty.</span>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="tab-pane fade in" id="messages">
+	                    ...</div>
+	                <div class="tab-pane fade in" id="settings">
+	                    This tab is empty.</div>
+	            </div>
+	           
+	        </div>
+	    </div>
+		
+		
+		<!-- 내가  -->
+			
+		
+			
+			
+			</section>
 	</div>
+	
+	
+	
 
 </body>
 <%@include file="footer.jsp"%>
