@@ -14,4 +14,6 @@ public interface ProgramService {
 	public void remove(Integer pno);
 
 	public List<ProgramVO> getProgramList();
+	
+	public List<ProgramVO> getCategoryList(String category);
 }

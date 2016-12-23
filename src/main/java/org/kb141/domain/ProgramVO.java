@@ -19,6 +19,7 @@ public class ProgramVO {
 	private Date closedate;
 	private Integer maximum;
 	private String persongroupid;
+	private String category;
 
 	public String getPersongroupid() {
 		return persongroupid;
@@ -63,6 +64,15 @@ public class ProgramVO {
 	public Date getOpendate() {
 		return opendate;
 	}
+	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public void setOpendate(String opendate) throws Exception {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -92,8 +102,10 @@ public class ProgramVO {
 	public String toString() {
 		return "ProgramVO [pno=" + pno + ", pcourse=" + pcourse + ", roomname=" + roomname + ", torder=" + torder
 				+ ", opendate=" + opendate + ", closedate=" + closedate + ", maximum=" + maximum + ", persongroupid="
-				+ persongroupid + "]";
+				+ persongroupid + ", category=" + category + "]";
 	}
+
+	
 
 
 

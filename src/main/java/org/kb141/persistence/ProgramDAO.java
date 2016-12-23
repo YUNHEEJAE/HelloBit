@@ -15,4 +15,6 @@ public interface ProgramDAO {
 	public void delete(Integer pno) throws Exception;
 
 	public List<ProgramVO> allList() throws Exception;
+	
+	public List<ProgramVO> categoryList(String category) throws Exception;
 }

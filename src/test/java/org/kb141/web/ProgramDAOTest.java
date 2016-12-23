@@ -107,5 +107,10 @@ public class ProgramDAOTest {
 	public void listServiceTest() throws Exception {
 		System.out.println(service.getProgramList());
 	}
+	
+	@Test
+	public void categoryListTest() throws Exception {
+		System.out.println(service.getCategoryList("java"));
+	}
 
 }
