@@ -5,7 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.kb141.domain.NoticeVO;
+import org.kb141.domain.FaculityVO;
+import org.kb141.service.FaculityService;
 import org.kb141.service.NoticeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 
 @Controller
@@ -21,6 +24,7 @@ public class FaculityController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
 	
+
 	
 	@Inject
 	private NoticeService noticeService;
@@ -36,6 +40,23 @@ public class FaculityController {
 	
 	
 	
+
+
+	@Inject
+	private FaculityService faculityService;
+	
+
+	@GetMapping(value="/faculitylist",produces="application/json")
+	@ResponseBody
+	public List<FaculityVO> faculitylist(Model model) throws Exception{
+		
+		logger.info("faculity list..........");
+		List<FaculityVO> list = new ArrayList<FaculityVO>();
+		list = faculityService.getFaculityList();
+		logger.info("get list :" + list);
+		return list;
+		
+	}
 
 	
 }
