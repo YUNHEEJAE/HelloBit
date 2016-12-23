@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 //test git by zetsubou
+
 @Controller
 @RequestMapping("/student")
 public class StudentController {
@@ -46,14 +48,13 @@ public class StudentController {
 	
 
 	@PostMapping("/register")
-	public String registerPOST(StudentVO vo, Model model) throws Exception{
+	public void registerPOST(StudentVO vo, Model model) throws Exception{
 		logger.info("register POST....");
 
 		logger.info("VO : " + vo);
 		studentService.register(vo);
 		model.addAttribute("result","success");
 		
-		return "success";
 
 	}
 	

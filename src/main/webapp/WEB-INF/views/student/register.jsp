@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,18 +9,18 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="/resources/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/resources/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="/resources/dist/css/skins/_all-skins.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,7 +65,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -78,7 +78,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -90,7 +90,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -102,7 +102,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="/resources/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -114,7 +114,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="/resources/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -247,13 +247,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -302,7 +302,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -491,7 +491,7 @@
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-      </ul>
+      </ul> -->
     </section>
     <!-- /.sidebar -->
   </aside>
@@ -509,46 +509,53 @@
         <li class="active">Dashboard</li>
       </ol>
 
+<div class="register-box">
+   <div class="register-logo">
+     <a href="../../index2.html"><b>Admin</b>LTE</a>
+   </div>
 
-  <div class="register-box">
-    <div class="register-logo">
-      <a href="../../index2.html"><b>Admin</b>LTE</a>
-    </div>
+   <div class="register-box-body">
+     <p class="login-box-msg">Register a new membership</p>
 
-    <div class="register-box-body">
-      <p class="login-box-msg">Register a new membership</p>
+     <form  method="post" id="regForm" action="register">
+       <div class="form-group has-feedback">
+         <input type="text" class="form-control" placeholder="USER ID" name="sid" id="userid" value="uid">
+         <span class="glyphicon glyphicon-info-sign form-control-feedback"></span>
+       </div>
+       <div class="form-group has-feedback">
+         <input type="password" class="form-control" placeholder="USER Password" name="spw" value="uipw">
+         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+       </div>
+       <div class="form-group has-feedback">
+         <input type="text" class="form-control" placeholder="Full name" name ="sname" value="uiname">
+         <span class="glyphicon glyphicon-user form-control-feedback"></span>
+       </div>
+       <div class="form-group has-feedback">
+         <input type="email" class="form-control" placeholder="Email" name ="semail" value="uid@name.com">
+         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+       </div>
+     </form>
+   
+     <div class="form-group has-feedback">
+       <input type="file" class="form-control" name ="filename" id="file" >
+       <span class="glyphicon glyphicon-send form-control-feedback"></span>
+        <input type="hidden" class="form-control" name="sid" id="hiddenid">
+     </div>
+     
+     <div class="row">
 
-      <form action="../../index.html" method="post">
-        <div class="form-group has-feedback">
-          <input type="text" class="form-control" placeholder="USER ID" name="sid">
-          <span class="glyphicon glyphicon-info-sign form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="USER Password" name="spw">
-          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="text" class="form-control" placeholder="Full name" name ="sname">
-          <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email" name ="semail">
-          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="row">
-          <!-- /.col -->
-          <div >
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
+         <!-- /.col -->
+         <div >
+           <button class="btn btn-primary btn-block btn-flat" id="regBtn">Register</button>
+         </div>
+         <!-- /.col -->
+       </div>
 
 
 
-    </div>
-    <!-- /.form-box -->
-  </div>
+   </div>
+   <!-- /.form-box -->
+ </div>
 
     </section>
   </div>
@@ -715,3 +722,123 @@
             <p>
               Allow the user to show his name in blog posts
             </p>
+             </div>
+          <!-- /.form-group -->
+
+          <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Show me as online
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Turn off notifications
+              <input type="checkbox" class="pull-right">
+            </label>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Delete chat history
+              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+            </label>
+          </div>
+          <!-- /.form-group -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+
+</div>
+<!-- ./wrapper -->
+
+
+<!-- jQuery 2.2.3 -->
+<script src="/resources/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="/resources/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="/resources/dist/js/app.min.js"></script>
+<!-- Sparkline -->
+<script src="/resources/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="/resources/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="/resources/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- SlimScroll 1.3.0 -->
+<script src="/resources/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- ChartJS 1.0.1 -->
+<script src="/resources/plugins/chartjs/Chart.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/resources/dist/js/pages/dashboard2.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/resources/dist/js/demo.js"></script>
+<script>
+
+
+	
+	$('#regBtn').on("click" , function(event){
+		
+			console.log(event);
+		
+			var userid = $('#userid').val();
+			console.log(userid);
+			
+			var image = $('#file')[0].files[0];
+
+			console.log(image);
+			
+			$('#hiddenid').attr("value" , userid);
+		
+			var formdata = new FormData();
+			
+			formdata.append("sid" , userid);
+			formdata.append("filename" , image); 
+			
+			console.log(formdata);
+			
+			
+				$.ajax({
+					url : "http://192.168.0.18:8081/image/registerImage",
+					data :formdata,
+					type:"post",
+					contentType:false,
+					processData : false,
+					success: function(result){
+						console.log(result);
+						
+						 $('#regForm').submit();   
+						
+					}
+					
+						
+				}); 
+				
+				
+			
+	});
+	
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
+         
