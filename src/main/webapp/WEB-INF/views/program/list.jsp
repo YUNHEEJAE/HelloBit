@@ -29,13 +29,16 @@
 
 		<!-- Main content -->
 		<section class="content">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				pcourse
-			</div>
-			<div class="panel-body">Start creating your amazing application!
-			</div>
-			<div class="box-footer">Footer</div>
+		<div class="ThreadListCont">
+			<ul class='threadTable'>
+				<li id='pno'>
+					<div class='pno'>pno</div> <a href="#" class='pcourse'
+					title='pcourse'> pcourse </a>
+					<div class='opendate'>opendate</div>
+					<div class='closedate'>closedate</div>
+					<div class='maximum'>maximum</div>
+				</li>
+			</ul>
 		</div>
 		</section>
 	</div>

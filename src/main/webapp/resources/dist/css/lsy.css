@@ -1,0 +1,73 @@
+@CHARSET "EUC-KR";
+
+.ThreadListCont {
+	border: 1px solid #f2f3f4;
+	border-width: 0 1px;
+	position: relative;
+	clear: both;
+}
+
+/* div { */
+/* 	display: block; */
+/* } */
+
+/* .threadTable { */
+/* 	clear: both; */
+/* 	border-spacing: 0; */
+/* 	border: 0; */
+/* 	width: 100%; */
+/* 	background: #fff; */
+/* 	border-top: 1px solid #e0e0e0; */
+/* 	cursor: pointer; */
+/* } */
+
+/* ul, menu, dir { */
+/* 	display: block; */
+/* 	list-style-type: disc; */
+/* 	-webkit-margin-before: 1em; */
+/* 	-webkit-margin-after: 1em; */
+/* 	-webkit-margin-start: 0px; */
+/* 	-webkit-margin-end: 0px; */
+/* 	-webkit-padding-start: 40px; */
+/* } */
+
+/* .threadTable li { */
+/* 	display: block; */
+/* 	overflow: hidden; */
+/* 	font-size: 13px; */
+/* 	border-bottom: 1px solid #e0e0e0; */
+/* 	height: 30px; */
+/* 	position: relative; */
+/* 	box-sizing: border-box; */
+/* 	-moz-box-sizing: border-box; */
+/* } */
+
+/* li { */
+/*     display: list-item; */
+/*     text-align: -webkit-match-parent; */
+/* } */
+
+/* .threadTable li div, .threadTable li a { */
+/* 	display: block; */
+/* 	top: 0; */
+/* 	height: 30px; */
+/* 	box-sizing: border-box; */
+/* } */
+
+/* .threadTable .pcourse { */
+/*     width: 100%; */
+/*     overflow: hidden; */
+/*     text-overflow: ellipsis; */
+/*     white-space: nowrap; */
+/*     position: static; */
+/*     padding-left: 10px; */
+/* } */
+
+/* .threadTable li a { */
+/*     line-height: 29px; */
+/* } */
+
+/* .threadTable a { */
+/*     text-decoration: none; */
+/*     color: #222; */
+/* } */
