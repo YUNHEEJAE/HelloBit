@@ -29,6 +29,7 @@
 
 		<!-- Main content -->
 		<section class="content">
+<<<<<<< HEAD
 	    <hr />
 	    <div class="row">
 	        <div class="col-sm-9 col-md-12">
@@ -104,10 +105,102 @@
 	        </div>
 	    </div>			
 			</section>
+=======
+		<div class="ThreadListCont">
+			<ul class='threadTable'>
+				<li id='pno'>
+					<div class='pno'>pno</div> <a href="#" class='pcourse'
+					title='pcourse'> pcourse </a>
+					<div class='opendate'>opendate</div>
+					<div class='closedate'>closedate</div>
+					<div class='maximum'>maximum</div>
+				</li>
+			</ul>
+		</div>
+		</section>
+
+
+
+		<!-- 내가  -->
+		<section class="content">
+		<hr />
+		<div class="row">
+			<div class="col-sm-9 col-md-12">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#java" data-toggle="tab"> <span
+							class="glyphicon glyphicon-th-list"></span>JavaDB
+					</a></li>
+					<li><a href="#beginner" data-toggle="tab"><span
+							class="glyphicon glyphicon-th-list"></span> SW Beginner</a></li>
+					<li><a href="#windows" data-toggle="tab"><span
+							class="glyphicon glyphicon-th-list"></span> C / Windows</a></li>
+					<li><a href="#embedded" data-toggle="tab"><span
+							class="glyphicon glyphicon-th-list"></span> Embedded</a></li>
+					<li><a href="#bigdata" data-toggle="tab"><span
+							class="glyphicon glyphicon-th-list"></span> Big Data & IoT</a></li>
+
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+
+					<!-- Java Data -->
+					<div class="tab-pane fade in active" id="java">
+						<div class="list-group">
+							<a href="#" class="list-group-item"> <span
+								class="glyphicon glyphicon-star-empty"></span> <span
+								class="name" style="min-width: 120px; display: inline-block;">JAVA
+									88</span> <span class="">JAVA 88기 고급 Web Developer</span> <span
+								class="text-muted" style="font-size: 11px;">- 잘 배우는 방법</span> <span
+								class="badge">12:10 AM</span> <span class="pull-right"> <span
+									class="glyphicon glyphicon-paperclip"></span>
+							</span>
+							</a> <a href="#" class="list-group-item"> <span
+								class="glyphicon glyphicon-star-empty"></span> <span
+								class="name" style="min-width: 120px; display: inline-block;">JAVA
+									88</span> <span class="">JAVA 88기 중급 Web Developer</span> <span
+								class="text-muted" style="font-size: 11px;">- 잘 못 배우는 방법</span>
+								<span class="badge">12:10 AM</span> <span class="pull-right">
+									<span class="glyphicon glyphicon-paperclip"></span>
+							</span>
+							</a>
+						</div>
+					</div>
+
+
+					<!-- SW 입문자 Data -->
+					<div class="tab-pane fade in" id="beginner">
+						<div class="list-group">
+							<a href="#" class="list-group-item"> <span
+								class="glyphicon glyphicon-star-empty"></span> <span
+								class="name" style="min-width: 120px; display: inline-block;">JAVA
+									88</span> <span class="">SW 입문자 2기 </span> <span class="text-muted"
+								style="font-size: 11px;">- 시작하기다</span> <span class="badge">12:10
+									AM</span> <span class="pull-right"> <span
+									class="glyphicon glyphicon-paperclip"></span>
+							</span>
+							</a>
+						</div>
+					</div>
+
+					<!-- Windows -->
+					<div class="tab-pane fade in" id="windows">...</div>
+
+					<!-- Embedded -->
+					<div class="tab-pane fade in" id="embedded">This tab is
+						empty.</div>
+
+					<!-- Big Data -->
+					<div class="tab-pane fade in" id="bigdata">This tab is
+						empt2y.</div>
+				</div>
+			</div>
+		</div>
+		<!-- 내가  -->
+		</section>
+>>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 	</div>
-	
-	
-	
+
 
 </body>
 
@@ -139,6 +232,7 @@ $(document).ready(function(){
 		$(".active ").on("click", function(event){
 				console.log(event);
 		});
+<<<<<<< HEAD
 		
 		
 	
@@ -150,6 +244,13 @@ $(document).ready(function(){
 		
 	
 
+=======
+	}
+	getProgramList();
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 	
 	
 	

@@ -65,4 +65,15 @@ public class ProgramServiceImpl implements ProgramService {
 		return result;
 	}
 
+	@Override
+	public List<ProgramVO> getCategoryList(String category) {
+		List<ProgramVO> result = null;
+		try {
+			result = programDAO.categoryList(category);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

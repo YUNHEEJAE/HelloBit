@@ -8,9 +8,9 @@
 	<insert id="create">
 		insert into tbl_program (pcourse, roomname, torder,
 		opendate, closedate,
-		maximum, persongroupid)
+		maximum, persongroupid, category)
 		values (#{pcourse}, #{roomname} ,
-		#{torder}, #{opendate},#{closedate},#{maximum}, #{persongroupid})
+		#{torder}, #{opendate},#{closedate},#{maximum}, #{persongroupid}, #{category})
 	</insert>
 
 	<select id="read" resultType="ProgramVO">
@@ -25,7 +25,7 @@
 		update tbl_program set
 		pcourse = #{pcourse}, roomname = #{roomname}, torder=#{torder},
 		opendate = #{opendate}, closedate =#{closedate},
-		maximum=#{maximum}, persongroupid=#{persongroupid}
+		maximum=#{maximum}, persongroupid=#{persongroupid}, category=#{category}
 		where pno=#{pno}
 
 	</update>
@@ -40,6 +40,10 @@
 
 		select * from tbl_program 
 
+	</select>
+	
+	<select id="categoryList" resultType="ProgramVO">
+		select * from tbL_program where category = #{category}
 	</select>
 
 

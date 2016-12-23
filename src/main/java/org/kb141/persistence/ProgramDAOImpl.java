@@ -41,4 +41,9 @@ public class ProgramDAOImpl implements ProgramDAO {
 		return sqlSession.selectList(NAME + "allList");
 	}
 
+	@Override
+	public List<ProgramVO> categoryList(String category) throws Exception {
+		return sqlSession.selectList(NAME + "categoryList", category);
+	}
+
 }
