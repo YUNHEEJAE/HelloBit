@@ -28,6 +28,13 @@ public class ProgramController {
 	@Inject
 	private ProgramService service;
 
+	
+	@GetMapping("/list")
+	public void list() throws Exception{
+		logger.info("PROGRAM LIST.....");
+	}
+	
+	
 	@GetMapping("/allList")
 	public ResponseEntity<List<ProgramVO>> allList() {
 		ResponseEntity<List<ProgramVO>> entity = null;
