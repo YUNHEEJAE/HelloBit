@@ -7,67 +7,99 @@
 	clear: both;
 }
 
-/* div { */
-/* 	display: block; */
-/* } */
+div {
+	display: block;
+}
 
-/* .threadTable { */
-/* 	clear: both; */
-/* 	border-spacing: 0; */
-/* 	border: 0; */
-/* 	width: 100%; */
-/* 	background: #fff; */
-/* 	border-top: 1px solid #e0e0e0; */
-/* 	cursor: pointer; */
-/* } */
+.threadTable {
+	clear: both;
+	border-spacing: 0;
+	border: 0;
+	width: 100%;
+	background: #fff;
+	border-top: 1px solid #e0e0e0;
+	cursor: pointer;
+}
 
-/* ul, menu, dir { */
-/* 	display: block; */
-/* 	list-style-type: disc; */
-/* 	-webkit-margin-before: 1em; */
-/* 	-webkit-margin-after: 1em; */
-/* 	-webkit-margin-start: 0px; */
-/* 	-webkit-margin-end: 0px; */
-/* 	-webkit-padding-start: 40px; */
-/* } */
+body, ul, ol, li, blockquote, form, p, dl, dt, dd, input, h1, h2, h3, h4,
+	h5, h6 {
+	margin: 0;
+	padding: 0;
+}
 
-/* .threadTable li { */
-/* 	display: block; */
-/* 	overflow: hidden; */
-/* 	font-size: 13px; */
-/* 	border-bottom: 1px solid #e0e0e0; */
-/* 	height: 30px; */
-/* 	position: relative; */
-/* 	box-sizing: border-box; */
-/* 	-moz-box-sizing: border-box; */
-/* } */
+ul, menu, dir {
+	display: block;
+	list-style-type: disc;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 0px;
+}
 
-/* li { */
-/*     display: list-item; */
-/*     text-align: -webkit-match-parent; */
-/* } */
+.threadTable li {
+	padding: 0 100px 0 0;
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid #e0e0e0;
+	height: 100px;
+	position: relative;
+	box-sizing: border-box;
+}
 
-/* .threadTable li div, .threadTable li a { */
-/* 	display: block; */
-/* 	top: 0; */
-/* 	height: 30px; */
-/* 	box-sizing: border-box; */
-/* } */
+.threadTable li {
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid #e0e0e0;
+	height: 100px;
+	position: relative;
+	box-sizing: border-box;
+}
 
-/* .threadTable .pcourse { */
-/*     width: 100%; */
-/*     overflow: hidden; */
-/*     text-overflow: ellipsis; */
-/*     white-space: nowrap; */
-/*     position: static; */
-/*     padding-left: 10px; */
-/* } */
+li {
+	text-align: -webkit-match-parent;
+}
 
-/* .threadTable li a { */
-/*     line-height: 29px; */
-/* } */
+.threadTable li div, .threadTable li a {
+	position: absolute;
+	top: 0;
+	height: 100px;
+	line-height: 100px;
+	box-sizing: border-box;
+	overflow: hidden;
+}
 
-/* .threadTable a { */
-/*     text-decoration: none; */
-/*     color: #222; */
-/* } */
+.threadTable .pno {
+	width: 50px;
+	text-align: center;
+	color: #999;
+	
+}
+
+.threadTable .pcourse {
+	padding-left: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
+}
+
+.threadTable .opendate {
+	text-align: center;
+	color: #666;
+	right:250px;
+}
+
+.threadTable .closedate {
+	right: 100px;
+	color: #666;
+	text-align: center;
+}
+
+.threadTable .maximum {
+	right: 10px;
+	width: 60px;
+	color: #999;
+	text-align: right;
+}
