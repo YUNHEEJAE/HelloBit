@@ -48,55 +48,9 @@
 				</ul>
 				<!-- Tab panes -->
 				<div class="tab-content">
-
-<!-- 					Java Data -->
-<!-- 					<div class="tab-pane fade in active" id="java"> -->
-<!-- 						<div class="list-group"> -->
-<!-- 							<a href="#" class="list-group-item"> <span -->
-<!-- 								class="glyphicon glyphicon-star-empty"></span> <span -->
-<!-- 								class="name" style="min-width: 120px; display: inline-block;">JAVA -->
-<!-- 									88</span> <span class="">JAVA 88기 고급 Web Developer</span> <span -->
-<!-- 								class="text-muted" style="font-size: 11px;">- 잘 배우는 방법</span> <span -->
-<!-- 								class="badge">12:10 AM</span> <span class="pull-right"> <span -->
-<!-- 									class="glyphicon glyphicon-paperclip"></span> -->
-<!-- 							</span> -->
-<!-- 							</a> <a href="#" class="list-group-item"> <span -->
-<!-- 								class="glyphicon glyphicon-star-empty"></span> <span -->
-<!-- 								class="name" style="min-width: 120px; display: inline-block;">JAVA -->
-<!-- 									88</span> <span class="">JAVA 88기 중급 Web Developer</span> <span -->
-<!-- 								class="text-muted" style="font-size: 11px;">- 잘 못 배우는 방법</span> -->
-<!-- 								<span class="badge">12:10 AM</span> <span class="pull-right"> -->
-<!-- 									<span class="glyphicon glyphicon-paperclip"></span> -->
-<!-- 							</span> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-
-
 					<div class="tab-pane fade in programlist" id="java" >
-<!-- 						<div class="list-group"> -->
-<!-- 							<a href="#" class="list-group-item"> <span -->
-<!-- 								class="glyphicon glyphicon-star-empty"></span> <span -->
-<!-- 								class="name" style="min-width: 120px; display: inline-block;">JAVA -->
-<!-- 									88</span> <span class="">SW 입문자 2기 </span> <span class="text-muted" -->
-<!-- 								style="font-size: 11px;">- 시작하기다</span> <span class="badge">12:10 -->
-<!-- 									AM</span> <span class="pull-right"> <span -->
-<!-- 									class="glyphicon glyphicon-paperclip"></span> -->
-<!-- 							</span> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
 					</div>
 
-<!-- 					Windows -->
-<!-- 					<div class="tab-pane fade in" id="windows">...</div> -->
-
-<!-- 					Embedded -->
-<!-- 					<div class="tab-pane fade in" id="embedded">This tab is -->
-<!-- 						empty.</div> -->
-
-<!-- 					Big Data -->
-<!-- 					<div class="tab-pane fade in" id="bigdata">This tab is -->
-<!-- 						empt2y.</div> -->
 				</div>
 			</div>
 		</div>
