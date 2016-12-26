@@ -63,7 +63,7 @@
         <div class="col-sm-4 invoice-col">
 	       
 	        	<div class="info-box">
-            <span class="info-box-icon bg-aqua">30</span>
+            <span class="info-box-icon bg-aqua">${view.maximum}</span>
             <div class="info-box-content">
               <span class="info-box-text"><h1>총정원</h1></span>
             </div>
@@ -136,7 +136,10 @@
         <div class="col-xs-12">
           <form action="../student/enrolment" method="post" id="enolform">
           <button type="button" class="btn btn-success pull-right" id="enolBtn"><i class="glyphicon glyphicon-ok"></i> 수강 신청
-          </button></form>
+          </button>
+          <input type="hidden" value="hhkb" name="sid">
+          <input type="hidden" value="${view.pno}" name="pno">
+          </form>
           <a href ="http://localhost:8081/program/list"><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
             <i class="glyphicon glyphicon-arrow-left"></i> 돌아가기
           </button></a>
