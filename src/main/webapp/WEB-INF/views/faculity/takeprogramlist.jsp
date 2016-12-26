@@ -63,6 +63,7 @@
 					</div>
 		</div>
 		<ul class="stateList"></ul>
+			<button id="trueBtn" class="btn btn-block btn-success btn-lg" style="visibility: hidden">승 인 </button>
 		</section>
 	</div>
 
@@ -152,28 +153,26 @@ $(document).ready(function() {
 							datatype:"json",
 							success:function(result){
 								$('.state').css('visibility' , 'visible');
+								$('#trueBtn').css('visibility' , 'visible');
 										resultStr = "";
 											$(result).each(function(){
 												
 												resultStr += "<a href=#" + this.pno +" class='list-group-item takeprogramlist'> <span class='glyphicon glyphicon-star-empty'></span>"
 												+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.sid+"</span>"
 												+ "<span class=''>"+this.state+"</span>"
-												+ "<span class='text-muted' style='font-size: 11px;'>--" +this.tregdate+"</span>"
-											    + "<span class='pull-right'></span>"; 
-											    
+												+ "<span class='text-muted' style='font-size: 11px;'>--" +this.tregdate+"</span>"			
+											    + "<span class='pull-right'><input type='checkbox' id='check'></span>"; 
 												
 											});
 											$('.stateList').html(resultStr);
-											
-											$('.stateList').on("click" ,function(event){
+							
+											$('#trueBtn').on('click' , function(event){
 												
-												console.log(event.target.style);
 												
-												var target = event.target.style;
+												var result = $('#check:checked');
 												
-												target.css("background-color" , "black");
+												console.log(result);
 												
-	
 												
 											});
 											

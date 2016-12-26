@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
+import org.kb141.domain.JoinTeacherSubjectVO;
+import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -13,6 +15,7 @@ import org.kb141.domain.TeacherVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
 import org.kb141.service.NoticeService;
+import org.kb141.service.ProgramService;
 import org.kb141.service.StudentService;
 import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
@@ -25,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,19 +46,23 @@ public class FaculityController {
 	private FaculityService faculityService;
 
 	@Inject
-	private ClassroomService Classroomservice;
+	private ClassroomService classroomService;
 
 	@Inject
 	private TeacherService teacherService;
 	
 	@Inject
-	private SubjectService Subjectservice;
+	private SubjectService subjectService;
 
 	@Inject
-	private StudentService Studentservice;
+	private StudentService studentService;
 	
 	@Inject
-	private TakeProgramService TakeProgramservice;
+	private TakeProgramService takeprogramService;
+	
+	@Inject
+	private ProgramService programService;
+	
 	
 	@GetMapping("/noticeBoard")
 	public void getNoticeBoard(Model model) throws Exception {
@@ -99,7 +107,7 @@ public class FaculityController {
 	public ResponseEntity<List<ClassroomVO>> classroomList() {
 		ResponseEntity<List<ClassroomVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<ClassroomVO>>(Classroomservice.getClassroomList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<ClassroomVO>>(classroomService.getClassroomList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<ClassroomVO>>(HttpStatus.BAD_REQUEST);
@@ -125,7 +133,7 @@ public class FaculityController {
 	public ResponseEntity<List<SubjectVO>> SubjectList() {
 		ResponseEntity<List<SubjectVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<SubjectVO>>(Subjectservice.getSubjectList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<SubjectVO>>(subjectService.getSubjectList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<SubjectVO>>(HttpStatus.BAD_REQUEST);
@@ -140,7 +148,7 @@ public class FaculityController {
 	public ResponseEntity<List<StudentVO>> StudentList() {
 		ResponseEntity<List<StudentVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<StudentVO>>(Studentservice.getStudentList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<StudentVO>>(studentService.getStudentList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<StudentVO>>(HttpStatus.BAD_REQUEST);
@@ -156,8 +164,36 @@ public class FaculityController {
 	@GetMapping("/statelist")
 	public @ResponseBody List<TakeProgramVO> getStateList(TakeProgramVO vo)throws Exception{
 		logger.info("pno :"+  vo);
-		return TakeProgramservice.getstateList(vo);	
+		return takeprogramService.getstateList(vo);	
 	}
+	
+	//  모든 Join한 강사이름, 과목, 등급 리스트 
+	@GetMapping("/joinalllist")
+	public ResponseEntity<List<JoinTeacherSubjectVO>> joinALlList() {
+		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
+		try {
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(programService.getAllTeacherSubjectList(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	// 프로그램 별 join한 강사이름, 과목, 등급 리스트
+	@GetMapping("/teachersubjectlist/{pno}")
+	public ResponseEntity<List<JoinTeacherSubjectVO>> teacherSubjectList(@PathVariable("pno") Integer pno) {
+		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
+		try {
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(programService.getTeacherSubjectList(pno), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	
 
 	@GetMapping("/teacherregister")
 	public void TeacherCreateGET() throws Exception{
