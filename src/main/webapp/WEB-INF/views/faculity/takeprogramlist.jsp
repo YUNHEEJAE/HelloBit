@@ -111,7 +111,7 @@ $(document).ready(function() {
 						var closeDate = closeyear + "/" + closemonth + "/" + closedate;
 						
 						
-						str += "<a href=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+						str += "<a href=#" + this.pno +" class='list-group-item takeprogramlist'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.category+"</span>"
 							+ "<span class=''>"+this.pcourse+"</span>"
 							+ "<span class='text-muted' style='font-size: 11px;'>--" +openDate+"</span>"
@@ -120,6 +120,32 @@ $(document).ready(function() {
 							+ " </span>";
 					});
 					$("#"+targetCategory).html(str);
+					
+					
+					$("a").on("click" , function(event){
+						
+						console.log(event.currentTarget.hash);
+						
+						var hash = event.currentTarget.hash;
+						
+						var pno =	hash.split("#");
+						
+						console.log(pno[1]);
+						
+					
+						
+						$.ajax({
+							url:"http://localhost:8081/web/faculity/statelist?pno="+pno[1],
+							type:"get",
+							
+							datatype:json,
+							success:function(result){
+								console.log(result);
+							}
+							
+						})
+						
+					});
 				});
 			});
 		}
@@ -132,7 +158,9 @@ $(document).ready(function() {
 			var targetCategory = event.target.name;
 			getCategoryList(targetCategory);
 		});
-
+		
+	
+		
 });
 </script>
 
