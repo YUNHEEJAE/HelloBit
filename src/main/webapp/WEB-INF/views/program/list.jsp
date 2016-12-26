@@ -116,7 +116,7 @@ $(document).ready(function() {
 						var closemonth =closeDateNum.getMonth();
 						var closedate =  closeDateNum.getDate();
 						var closeDate = closeyear + "/" + closemonth + "/" + closedate;
-						
+						  
 						
 						str += "<a href=view?pno=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.category+"</span>"
