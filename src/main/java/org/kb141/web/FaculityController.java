@@ -1,6 +1,5 @@
 package org.kb141.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,6 +9,7 @@ import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
+import org.kb141.domain.TakeProgramVO;
 import org.kb141.domain.TeacherVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
@@ -25,9 +25,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
+import org.springframework.web.bind.annotation.PostMapping;
+=======
 import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/faculity")
@@ -153,8 +156,13 @@ public class FaculityController {
 	public void takeprogramlist() throws Exception{
 		logger.info("takeprogramlist LIST.....");
 	}
-	
-	
-	
+
+	@GetMapping("/statelist")
+	public String getStateList(TakeProgramVO vo)throws Exception{
+		
+		logger.info("pno :"+  vo);
+		return "";	
+	}
+
 	
 }
