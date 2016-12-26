@@ -61,7 +61,8 @@ public class ProgramVO {
 		this.torder = torder;
 	}
 
-	public Date getOpendate() {
+
+	public Date getOpendate() {	
 		return opendate;
 	}
 	

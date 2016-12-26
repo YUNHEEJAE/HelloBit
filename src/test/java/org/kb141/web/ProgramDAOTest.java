@@ -38,6 +38,9 @@ public class ProgramDAOTest {
 	@Test
 	public void readTest() throws Exception {
 		System.out.println(dao.read(15));
+		
+		
+		
 	}
 
 	@Test

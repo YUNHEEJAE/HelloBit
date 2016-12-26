@@ -138,13 +138,13 @@
 
       <div class="row no-print">
         <div class="col-xs-12">
-          <form action="../student/enrolment" method="post" id="enolform">
-          <button type="button" class="btn btn-success pull-right" id="enolBtn"><i class="glyphicon glyphicon-ok"></i> 수강 신청
+          <form action="../student/enrolment" method="post" id="enrolform">
+          <button type="button" class="btn btn-success pull-right" id="enrolBtn"><i class="glyphicon glyphicon-ok"></i> 수강 신청
           </button>
           <input type="hidden" value="hhkb" name="sid">
           <input type="hidden" value="${view.pno}" name="pno">
           </form>
-          <a href ="http://localhost:8081/program/list"><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+          <a href ="http://localhost:8081/web/program/list"><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
             <i class="glyphicon glyphicon-arrow-left"></i> 돌아가기
           </button></a>
         </div>
@@ -185,9 +185,9 @@
 <script>
 
 	
-	$("#enolBtn").on("click",function(){
+	$("#enrolBtn").on("click",function(){
 		console.log("클릭됬다!!!!!!!!");
-		$("#enolform").submit();
+		$("#enrolform").submit();
 		
 	});
 

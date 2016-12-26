@@ -12,6 +12,7 @@ import org.kb141.service.TakeProgramService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.web.servlet.result.FlashAttributeResultMatchers;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -87,15 +88,16 @@ public class StudentController {
 	}
 	
 	@PostMapping("/enrolment")
-	public String enrolment(TakeProgramVO vo) throws Exception{
+	public String enrolment(TakeProgramVO vo , RedirectAttributes rttr) throws Exception{
 	
 		logger.info("수강신청 !!");
 		logger.info("VO : " + vo);
 	
+		rttr.addFlashAttribute("result" , "success");
 		
-		takeprogramService.join(vo);
-		return "success";
-		//return "redict:list?=success";
+//		takeprogramService.join(vo);
+		return "redirect:../program/list";
+	
 		
 	}
 	

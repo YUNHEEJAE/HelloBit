@@ -66,6 +66,13 @@
 
 
 $(document).ready(function() {
+	
+	var result = '${result}';
+	
+	if(result == "success"){
+		alert("수강신청완료");
+		
+	}
 		function getProgramList() {
 			$.getJSON("/web/program/allList", function(data) {
 				console.log(data);
@@ -109,9 +116,9 @@ $(document).ready(function() {
 						var closemonth =closeDateNum.getMonth();
 						var closedate =  closeDateNum.getDate();
 						var closeDate = closeyear + "/" + closemonth + "/" + closedate;
+						  
 						
-						
-						str += "<a href=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+						str += "<a href=view?pno=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.category+"</span>"
 							+ "<span class=''>"+this.pcourse+"</span>"
 							+ "<span class='text-muted' style='font-size: 11px;'>--" +openDate+"</span>"
