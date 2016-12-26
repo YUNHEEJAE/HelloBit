@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/faculity")
 public class FaculityController {
 
+	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
 
 	@Inject
