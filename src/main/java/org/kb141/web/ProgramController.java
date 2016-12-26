@@ -152,20 +152,14 @@ public class ProgramController {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<ProgramVO>>(HttpStatus.BAD_REQUEST);
 		}
-
 		return entity;
-		
 	}
-
-	
 	
 	@GetMapping("/register")
 	public void register(Model model) throws Exception {
 		logger.info("Program Register Called....");
-		
 		model.addAttribute("classroomList", classroomservice.getClassroomList());
 		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
-		
 		
 	}
 	
@@ -174,10 +168,17 @@ public class ProgramController {
 		logger.info("Program Register Post Called....");
 		logger.info("VO : " + vo);
 		logger.info("Curri " + curriculums);
-		
 		service.register(vo, curriculums);
-		
 		return "success";
 	}
+	
+	@GetMapping("/modify")
+	public void modify(Integer pno, Model model) throws Exception {
+		logger.info("PNO : " + pno);
+	}
+	
 
+	
+	
+	
 }
