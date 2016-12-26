@@ -54,6 +54,14 @@ where t.subno = s.subno and t.tid = a.tid order by subname asc, subgrade desc
 	
 	</select>
 	
+	<select id="joinAllTeacherSubjectList" resultType="JoinTeacherSubjectVO">
+	
+select tsno, subname, subgrade, tname from (select * from tbl_teacher_subject
+where tsno in (select tsno from tbl_curriculum ) ) t, tbl_subject s, tbl_teacher a
+where t.subno = s.subno and t.tid = a.tid order by subname asc, subgrade desc
+	
+	</select>
+	
 	
 
 

@@ -164,11 +164,14 @@ public class ProgramController {
 		return entity;
 		
 	}
-	
+
 	
 	@GetMapping("/register")
 	public void register(Model model) throws Exception {
 		logger.info("Program Register Called....");
+		
+		model.addAttribute("classroomList", classroomservice.getClassroomList());
+		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
 		
 		
 	}
