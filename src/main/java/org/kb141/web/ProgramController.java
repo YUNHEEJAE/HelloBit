@@ -119,8 +119,7 @@ public class ProgramController {
 	@Inject
 	private TakeProgramService takeprogramService;
 	
-	@Inject
-	private TeacherSubjectService teacherSubjectService;
+	
 
 
 	
@@ -131,7 +130,7 @@ public class ProgramController {
 		
 		model.addAttribute("view" , service.view(pno));
 
-		model.addAttribute("joinList", teacherSubjectService.getTeacherSubjectList());
+		model.addAttribute("joinList", service.getTeacherSubjectList(pno));
 		
 		model.addAttribute("stateCount" , takeprogramService.getstateTotal(pno));
 		
