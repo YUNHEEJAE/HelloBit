@@ -35,6 +35,11 @@
 		update tbl_take_program set state = true where sid = #{sid}
 	</update>
 	
-
+	<select id="stateCount" resultType="Integer">
+	
+	select count(*) from bitcamp.tbl_take_program where pno = #{pno} and state = true
+		
+	</select>
+	
 </mapper>
 

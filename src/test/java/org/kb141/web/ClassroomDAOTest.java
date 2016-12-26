@@ -36,7 +36,7 @@ public class ClassroomDAOTest {
 	public void updateTest() throws Exception {
 		ClassroomVO vo = new ClassroomVO();
 		vo.setRoomname("504");
-		vo.setEmpty(true);
+		vo.setRempty(true);
 		dao.update(vo);
 	}
 
@@ -68,7 +68,7 @@ public class ClassroomDAOTest {
 	public void ModifyTest() throws Exception {
 		ClassroomVO vo = new ClassroomVO();
 		vo.setRoomname("503");
-		vo.setEmpty(false);
+		vo.setRempty(false);
 		service.modify(vo);
 	}
 

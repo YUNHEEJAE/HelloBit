@@ -1,7 +1,6 @@
 package org.kb141.domain;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,6 +19,7 @@ public class ProgramVO {
 	private Integer maximum;
 	private String persongroupid;
 	private String category;
+	private String pcontent;
 
 	public String getPersongroupid() {
 		return persongroupid;
@@ -61,8 +61,11 @@ public class ProgramVO {
 		this.torder = torder;
 	}
 
-	public Date getOpendate() {
-		return opendate;
+	public String getOpendate() {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		 String month = opendate.toString();
+		
+		return month;
 	}
 	
 
@@ -97,15 +100,24 @@ public class ProgramVO {
 	public void setMaximum(Integer maximum) {
 		this.maximum = maximum;
 	}
+	
+	public String getPcontent() {
+		return pcontent;
+	}
+
+	public void setPcontent(String pcontent) {
+		this.pcontent = pcontent;
+	}
+
 
 	@Override
 	public String toString() {
 		return "ProgramVO [pno=" + pno + ", pcourse=" + pcourse + ", roomname=" + roomname + ", torder=" + torder
 				+ ", opendate=" + opendate + ", closedate=" + closedate + ", maximum=" + maximum + ", persongroupid="
-				+ persongroupid + ", category=" + category + "]";
+				+ persongroupid + ", category=" + category + ", pcontent=" + pcontent + "]";
 	}
 
-	
+
 
 
 

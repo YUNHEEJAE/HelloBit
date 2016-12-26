@@ -52,4 +52,9 @@ public class ProgramDAOImpl implements ProgramDAO {
 		return sqlSession.selectList(NAME + "joinTeacherSubjectList" , pno);
 	}
 
+	@Override
+	public List<JoinTeacherSubjectVO> joinAllList() throws Exception {
+		return sqlSession.selectList(NAME + "joinAllTeacherSubjectList");
+	}
+
 }

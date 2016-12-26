@@ -1,7 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>​
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../program/header.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,9 +55,11 @@
 
           <address>
             <strong>OpenDate</strong><br>
-           ${view.opendate}<br>
+         <fmt:formatDate value="${view.opendate}" type="both" pattern="yyyy년MM월dd일  E요일"/>   
+           		<br>
             <strong>CloseDate</strong><br>
-           ${view.closedate}<br>
+            <fmt:formatDate value="${view.closedate}" type="both" pattern="yyyy년MM월dd일  E요일"/>
+           	<br>
 
           </address>
         </div>
@@ -63,14 +67,14 @@
         <div class="col-sm-4 invoice-col">
 	       
 	        	<div class="info-box">
-            <span class="info-box-icon bg-yellow">30</span>
+            <span class="info-box-icon bg-aqua">${view.maximum}</span>
             <div class="info-box-content">
               <span class="info-box-text"><h1>총정원</h1></span>
             </div>
             <!-- /.info-box-content -->
           </div>
 	          	<div class="info-box">
-            <span class="info-box-icon bg-aqua">3</span>
+            <span class="info-box-icon bg-yellow">${stateCount}</span>
             <div class="info-box-content">
               <span class="info-box-text"><h1>남은 인원</h1></span>
              
@@ -85,48 +89,44 @@
       </div>
       <!-- /.row -->
 
+	      <div class="row">
+        <!-- accepted payments column -->
+      
+        <!-- /.col -->
+        <div class="col-xs-10">
+          <p class="lead">강의 내용</p>
+
+          <div class="table-responsive">
+          	${view.pcontent }
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+		<br>
+		<br>
+
       <!-- Table row -->
       <div class="row">
         <div class="col-xs-12 table-responsive">
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Qty</th>
-              <th>Product</th>
-              <th>Serial #</th>
-              <th>Description</th>
-              <th>Subtotal</th>
+
+              <th>과 목</th>
+              <th>등 급</th>
+              <th>강 사 명</th>
+
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>1</td>
-              <td>Call of Duty</td>
-              <td>455-981-221</td>
-              <td>El snort testosterone trophy driving gloves handsome</td>
-              <td>$64.50</td>
+            <c:forEach var="joinList" items="${joinList}">
+             <tr>
+              <td>${joinList.subname}</td>
+              <td>${joinList.subgrade }</td>
+              <td>${joinList.tname }</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>Need for Speed IV</td>
-              <td>247-925-726</td>
-              <td>Wes Anderson umami biodiesel</td>
-              <td>$50.00</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Monsters DVD</td>
-              <td>735-845-642</td>
-              <td>Terry Richardson helvetica tousled street art master</td>
-              <td>$10.70</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Grown Ups Blue Ray</td>
-              <td>422-568-642</td>
-              <td>Tousled lomo letterpress</td>
-              <td>$25.99</td>
-            </tr>
+          </c:forEach>
             </tbody>
           </table>
         </div>
@@ -134,46 +134,19 @@
       </div>
       <!-- /.row -->
 
-      <div class="row">
-        <!-- accepted payments column -->
-      
-        <!-- /.col -->
-        <div class="col-xs-6">
-          <p class="lead">Amount Due 2/22/2014</p>
 
-          <div class="table-responsive">
-            <table class="table">
-              <tr>
-                <th style="width:50%">Subtotal:</th>
-                <td>$250.30</td>
-              </tr>
-              <tr>
-                <th>Tax (9.3%)</th>
-                <td>$10.34</td>
-              </tr>
-              <tr>
-                <th>Shipping:</th>
-                <td>$5.80</td>
-              </tr>
-              <tr>
-                <th>Total:</th>
-                <td>$265.24</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
 
       <div class="row no-print">
         <div class="col-xs-12">
-          
-          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          <form action="../student/enrolment" method="post" id="enolform">
+          <button type="button" class="btn btn-success pull-right" id="enolBtn"><i class="glyphicon glyphicon-ok"></i> 수강 신청
           </button>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-            <i class="fa fa-download"></i> Generate PDF
-          </button>
+          <input type="hidden" value="hhkb" name="sid">
+          <input type="hidden" value="${view.pno}" name="pno">
+          </form>
+          <a href ="http://localhost:8081/program/list"><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+            <i class="glyphicon glyphicon-arrow-left"></i> 돌아가기
+          </button></a>
         </div>
       </div><!-- this row will not appear when printing -->
       
@@ -209,11 +182,17 @@
 <script src="/resources/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/resources/dist/js/demo.js"></script>
+<script>
+
+	
+	$("#enolBtn").on("click",function(){
+		console.log("클릭됬다!!!!!!!!");
+		$("#enolform").submit();
+		
+	});
 
 
-
-
-
+</script>
 
 
 

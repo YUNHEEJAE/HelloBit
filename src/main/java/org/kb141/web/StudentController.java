@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,12 +88,14 @@ public class StudentController {
 	
 	@PostMapping("/enrolment")
 	public String enrolment(TakeProgramVO vo) throws Exception{
-			
+	
 		logger.info("수강신청 !!");
 		logger.info("VO : " + vo);
-		/*takeprogramService.join(vo);*/
-		return "success";
+	
 		
+		takeprogramService.join(vo);
+		return "success";
+		//return "redict:list?=success";
 		
 	}
 	

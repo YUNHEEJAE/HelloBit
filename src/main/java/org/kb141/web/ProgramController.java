@@ -1,17 +1,20 @@
 package org.kb141.web;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.CurriculumVO;
-import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.ProgramVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.CurriculumService;
 import org.kb141.service.ProgramService;
+import org.kb141.service.TakeProgramService;
+import org.kb141.service.TeacherSubjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -58,11 +61,6 @@ public class ProgramController {
 		model.addAttribute("getclassroomlist", classroomservice.getClassroomList());
 		return list;
 	}
-	
-	
-	
-	
-	
 	
 	
 	
@@ -117,30 +115,43 @@ public class ProgramController {
 
 		return entity;
 	}
-	
 
 	
+
+	@Inject
+	private TakeProgramService takeprogramService;
+	
+	
+
 
 	
 	@GetMapping("/view")
 	public void viewProgram(Integer pno , Model model)throws Exception{
 		
+
 		ProgramVO vo =  service.view(pno);
-		
-		List<JoinTeacherSubjectVO> joinList = service.getTeacherSubjectList(pno);
-		
+
+
 		logger.info("view called .............");
 		
+
 		model.addAttribute("view" , vo);
+
+
+		model.addAttribute("view" , service.view(pno));
+
+
+		model.addAttribute("joinList", service.getTeacherSubjectList(pno));
 		
-		model.addAttribute("joinList", joinList);
+		model.addAttribute("stateCount" , takeprogramService.getstateTotal(pno));
 		
-		
+		       
 	
 	}
-
+	
+	
 	@GetMapping("/categoryList/{category}")
-	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category) {
+	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category){
 		
 		ResponseEntity<List<ProgramVO>> entity = null;
 		try {
@@ -151,6 +162,17 @@ public class ProgramController {
 		}
 
 		return entity;
+		
+	}
+
+	
+	@GetMapping("/register")
+	public void register(Model model) throws Exception {
+		logger.info("Program Register Called....");
+		
+		model.addAttribute("classroomList", classroomservice.getClassroomList());
+		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
+		
 		
 	}
 
