@@ -132,6 +132,7 @@ $(document).ready(function() {
 						
 						console.log(pno[1]);
 						
+
 						var formdata = new FormData();
 						formdata.append("pno",pno);
 						formdata.append("state","false");
