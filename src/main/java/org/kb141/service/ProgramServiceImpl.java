@@ -88,4 +88,15 @@ public class ProgramServiceImpl implements ProgramService {
 		return result;
 	}
 
+	@Override
+	public List<JoinTeacherSubjectVO> getAllTeacherSubjectList() {
+		List<JoinTeacherSubjectVO> result = null;
+		try {
+			result = programDAO.joinAllList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

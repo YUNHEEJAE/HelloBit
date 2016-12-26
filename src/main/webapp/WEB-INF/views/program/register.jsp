@@ -29,6 +29,19 @@
 		<div class="row">
 			<div class="col-md-12"> 
 			
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class=" control-label" >종류</label>  
+				  <select id="category" name="category" class="form-control">
+				      <option value="beginner">SW 입문자를 위한 과정</option>
+				      <option value="java">Java Web 개발자 과정</option>
+				      <option value="windows">C / Windows</option>
+				      <option value="bigdata">Big Data 입문</option>
+				      <option value="embedded">IoT / Embedded</option>
+				    </select>
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				</div>
+			
 				<div class="form-group">
 				  <label class=" control-label" >과정명</label>  
 				  <input id="pcontent" name="pcontent" type="text" placeholder="과정명" class="form-control">
@@ -39,7 +52,7 @@
 				<div class="form-group">
 				  <label class=" control-label" >교실명</label>  
 				  <select id="roomname" name="roomname" class="form-control">
-				  		<c:forEach items= "${classroomlist }" var="vo" >
+				  		<c:forEach items= "${classroomList }" var="vo" >
 				  			<option value="${vo.roomname }">${vo.roomname } ${vo.rempty}</option>					  		
 				  		</c:forEach>
 				    </select>
@@ -72,8 +85,9 @@
 				<div class="form-group">
 				  <label class=" control-label" >상세 과정</label>  
 				     <select id="curriculum" name="curriculum" class="form-control">
-				      <option value="category1">Category 1</option>
-				      <option value="category2">Category 2</option>
+				      <c:forEach items= "${joinAllList }" var="vo" >
+				  			<option value="${vo.tsno }">${vo.subname } - ${vo.subgrade} - ${vo.tname}</option>					  		
+				  		</c:forEach>
 				    </select>
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
@@ -97,40 +111,13 @@
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
-				<!-- Text input-->
-				<div class="form-group">
-				  <label class=" control-label" >종류</label>  
-				  <select id="category" name="category" class="form-control">
-				      <option value="category1">Category 1</option>
-				      <option value="category2">Category 2</option>
-				    </select>
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
-				</div>
 				
 				<div class="form-group">
 				  <label class=" control-label" for="persongroupid" >Person Group ID</label>  
-				  <input id="persongroupid" name="persongroupid" placeholder="정원" disabled class="form-control" required="">
+				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" disabled class="form-control" required="">
 				   <span class="help-block">자동으로 생성됩니다.</span>  
 				</div>
 				
-				
-				<!-- Select Basic -->
-				<div class="form-group">
-				  <label class=" control-label" >Store</label>
-				    <select id="store" name="store" class="form-control">
-				      <option value="Store 1">Store 1</option>
-				      <option value="Store 2">Store 2</option>
-				    </select>
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
-				</div>
-				
-				
-				<!-- Text input-->
-				<div class="form-group">
-				  <label class=" control-label" for="shippingDays">Shipping Days</label>  
-				  <input id="shippingDays" name="shippingDays" type="text" placeholder="Shipping Days" class="form-control input-md">
-				  <span class="help-block">It identify how many days it takes for deliver</span>  
-				</div>
 				
 				<!-- Appended checkbox -->
 				<div class="form-group">
