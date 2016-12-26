@@ -159,7 +159,7 @@ $(document).ready(function () {
 	}
 	
 	function setJoinAllList() {
-		$.getJSON("../faculity/joinAlllist", function(data){
+		$.getJSON("../faculity/joinalllist", function(data){
 			console.log(data);
 			
 			var str = "";
@@ -171,9 +171,26 @@ $(document).ready(function () {
 		});
 	}
 	
+	
+	function setTeacherSubjectTable(pno) {
+		$.getJSON("../faculity/teachersubjectlist/" + pno, function (data) {
+			
+			var str = "";
+			$(data).each(function() {
+				str += "<tr><td>"+this.subname+"</td><td>"+this.subgrade+"</td><td>"+this.tname+"</td></tr>";
+			});
+			
+			
+			$("#addedCurriculum").append(str);
+		});
+	}
+	
+	
 	setClassroomList();
 	
 	setJoinAllList();
+	
+	setTeacherSubjectTable(${param.pno});
 	
 	
 	$("#btnRegister").on("click", function () {

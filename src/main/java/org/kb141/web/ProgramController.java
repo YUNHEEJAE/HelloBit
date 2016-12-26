@@ -160,12 +160,8 @@ public class ProgramController {
 	
 	
 	@GetMapping("/register")
-	public void register(Model model) throws Exception {
+	public void register() throws Exception {
 		logger.info("Program Register Called....");
-		
-		model.addAttribute("classroomList", classroomservice.getClassroomList());
-		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
-		
 		
 	}
 	
@@ -179,5 +175,11 @@ public class ProgramController {
 		
 		return "success";
 	}
+	
+	@GetMapping("/modify")
+	public void modify(Integer pno, Model model) throws Exception {
+		logger.info("PNO : " + pno);
+	}
+	
 
 }
