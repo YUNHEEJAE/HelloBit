@@ -5,6 +5,7 @@
 
 <mapper namespace="org.kb141.mapper.TakeProgramMapper">
 
+
 	<insert id="create" parameterType="TakeProgramVO">
 		insert into tbl_take_program (sid , pno) values (#{sid} , #{pno})
 	</insert>
@@ -37,8 +38,15 @@
 	
 	<select id="stateCount" resultType="Integer">
 	
-	select count(*) from bitcamp.tbl_take_program where pno = #{pno} and state = true
+	select count(*) from tbl_take_program where pno = #{pno} and state = true
 		
+	</select>
+	
+	
+	<select id="stateList" resultType="TakeProgramVO">
+	
+	select * from tbl_take_program where pno = #{pno} and state = #{state};
+	
 	</select>
 	
 </mapper>

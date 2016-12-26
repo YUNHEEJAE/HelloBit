@@ -23,6 +23,8 @@ public interface TakeProgramDAO {		//HJ, IH
 	
 	public Integer stateCount(Integer pno) throws Exception;
 	
+	public List<TakeProgramVO> stateList(TakeProgramVO vo) throws Exception;
+	
 	
 }
 

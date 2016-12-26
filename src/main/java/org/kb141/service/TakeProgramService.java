@@ -27,6 +27,8 @@ public interface TakeProgramService {
 	public void admission(String sid);
 	
 	public Integer getstateTotal(Integer pno);
+	
+	public List<TakeProgramVO> getstateList(TakeProgramVO vo);
 
 
 }

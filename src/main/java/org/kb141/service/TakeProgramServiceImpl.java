@@ -108,4 +108,16 @@ public class TakeProgramServiceImpl implements TakeProgramService{
 		}
 		return stateTotal;
 	}
+
+
+	@Override
+	public List<TakeProgramVO> getstateList(TakeProgramVO vo) {
+		List<TakeProgramVO> list = null;		
+		try {
+			list = takeprogramDAO.stateList(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
