@@ -25,11 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.PostMapping;
-=======
-import org.springframework.web.bind.annotation.PathVariable;
->>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -38,7 +34,7 @@ public class FaculityController {
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
-
+  
 	@Inject
 	private NoticeService noticeService;
 
