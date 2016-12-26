@@ -30,50 +30,100 @@
 			<div class="col-md-12"> 
 			
 				<div class="form-group">
-				  <label class=" control-label" for="giftID">Gift ID</label>  
-				  <input id="giftID" name="giftID" type="text" placeholder="Gift ID" class="form-control">
+				  <label class=" control-label" >과정명</label>  
+				  <input id="pcontent" name="pcontent" type="text" placeholder="과정명" class="form-control">
+					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class=" control-label" for="giftName">Gift Name</label>  
-				  <input id="giftName" name="giftName" type="text" placeholder="Gift Name" class="form-control input-md" required="">
-				    
+				  <label class=" control-label" >교실명</label>  
+				  <select id="roomname" name="roomname" class="form-control">
+				  		<c:forEach items= "${classroomlist }" var="vo" >
+				  			<option value="${vo.roomname }">${vo.roomname } ${vo.rempty}</option>					  		
+				  		</c:forEach>
+				    </select>
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class=" control-label" for="giftPrice">Price</label>  
-				  <input id="giftPrice" name="giftPrice" type="text" placeholder="Price" class="form-control input-md" required="">
-				    
+				  <label class=" control-label" >기수</label>  
+				  <input id="torder" name="torder" type="text" placeholder="기수" class="form-control" required="">
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
+				
+				<table class="table table-striped">
+		            <thead>
+		            <tr>
+		              <th>과 목</th>
+		              <th>등 급</th>
+		              <th>강 사 명</th>
+		            </tr>
+		            </thead>
+		            <tbody>
+		             <tr>
+		              <td>등록된 항목</td>
+		            </tr>
+		            </tbody>
+		          </table>
+		          
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class=" control-label" >상세 과정</label>  
+				     <select id="curriculum" name="curriculum" class="form-control">
+				      <option value="category1">Category 1</option>
+				      <option value="category2">Category 2</option>
+				    </select>
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				</div>
+				
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class=" control-label">열리는 시간</label>  
+				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01" class="form-control" required="">
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				</div>
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class=" control-label" >닫히는 시간</label>  
+				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01" class="form-control" required="">
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				</div>
+				
+				<div class="form-group">
+				  <label class=" control-label" >정원</label>  
+				  <input id="maximum" name="maximum" type="text" placeholder="정원" class="form-control" required="">
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				</div>
+				
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class=" control-label" >종류</label>  
+				  <select id="category" name="category" class="form-control">
+				      <option value="category1">Category 1</option>
+				      <option value="category2">Category 2</option>
+				    </select>
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				</div>
+				
+				<div class="form-group">
+				  <label class=" control-label" for="persongroupid" >Person Group ID</label>  
+				  <input id="persongroupid" name="persongroupid" placeholder="정원" disabled class="form-control" required="">
+				   <span class="help-block">자동으로 생성됩니다.</span>  
+				</div>
+				
 				
 				<!-- Select Basic -->
 				<div class="form-group">
-				  <label class=" control-label" for="store">Store</label>
+				  <label class=" control-label" >Store</label>
 				    <select id="store" name="store" class="form-control">
 				      <option value="Store 1">Store 1</option>
 				      <option value="Store 2">Store 2</option>
 				    </select>
+				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
-				<!-- Select Basic -->
-				<div class="form-group">
-				  <label class=" control-label" for="category">Category</label>
-				    <select id="category" name="category" class="form-control">
-				      <option value="category1">Category 1</option>
-				      <option value="category2">Category 2</option>
-				    </select>
-				</div>
-				
-				<!-- Select Basic -->
-				<div class="form-group">
-				  <label class=" control-label" for="giftStatus">Status</label>
-				    <select id="giftStatus" name="giftStatus" class="form-control">
-				      <option value="1">Available</option>
-				      <option value="0">Not Available</option>
-				    </select>
-				</div>
 				
 				<!-- Text input-->
 				<div class="form-group">
@@ -113,6 +163,7 @@ $(document).ready(function() {
 	
 	
 });
+
 
 
 </script>

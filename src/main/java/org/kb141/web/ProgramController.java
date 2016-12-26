@@ -146,6 +146,7 @@ public class ProgramController {
 	public void register(Model model) throws Exception {
 		logger.info("Program Register Called....");
 		
+		model.addAttribute("classroomlist", classroomservice.getClassroomList());
 		
 	}
 
