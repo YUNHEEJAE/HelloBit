@@ -60,11 +60,6 @@ public class ProgramController {
 	
 	
 	
-	
-	
-	
-	
-	
 	@Inject
 	private CurriculumService curriculumService;
 	
@@ -116,9 +111,6 @@ public class ProgramController {
 
 		return entity;
 	}
-	
-
-	
 
 	
 	@GetMapping("/view")
@@ -134,10 +126,8 @@ public class ProgramController {
 	}
 	
 	
-	
-	
 	@GetMapping("/categoryList/{category}")
-	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category) {
+	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category){
 		
 		ResponseEntity<List<ProgramVO>> entity = null;
 		try {
@@ -148,6 +138,14 @@ public class ProgramController {
 		}
 
 		return entity;
+		
+	}
+	
+	
+	@GetMapping("/register")
+	public void register(Model model) throws Exception {
+		logger.info("Program Register Called....");
+		
 		
 	}
 
