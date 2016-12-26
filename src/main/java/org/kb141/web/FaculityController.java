@@ -1,5 +1,6 @@
 package org.kb141.web;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -28,9 +29,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+<<<<<<< HEAD
+=======
 import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/faculity")
@@ -156,16 +161,53 @@ public class FaculityController {
 		return entity;
 	}
 	
+	
 	@GetMapping("/takeprogramlist")
 	public void takeprogramlist() throws Exception{
 		logger.info("takeprogramlist LIST.....");
 	}
+<<<<<<< HEAD
+	// 승인 상태 리스트 가져오기
+	@GetMapping("/statelist")
+=======
 
 	@GetMapping("/statelist") 
+>>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 	public @ResponseBody List<TakeProgramVO> getStateList(TakeProgramVO vo)throws Exception{
 		logger.info("pno :"+  vo);
 		return takeprogramService.getstateList(vo);	
 	}
+<<<<<<< HEAD
+	
+	// 수강 승인
+	@PostMapping(value="/admission")
+	public String admissionEnrolment(String[] sid , Integer pno , RedirectAttributes rttr)throws Exception{
+		
+		logger.info("admission called....");
+		
+		logger.info("sid" + Arrays.toString(sid));
+		
+		logger.info("pno : " + pno);
+		
+		TakeProgramVO vo = new TakeProgramVO();
+		
+		for(int i = 0 ; i < sid.length ; i ++){
+			vo.setState(true);
+			vo.setSid(sid[i]);
+			vo.setPno(pno);
+		}
+		
+		TakeProgramservice.modify(vo);
+		
+		rttr.addFlashAttribute("result" , "success");
+		
+		return "redirect:takeprogramlist";
+		
+		
+		
+
+	}
+=======
 	
 	//  모든 Join한 강사이름, 과목, 등급 리스트 
 	@GetMapping("/joinalllist")
@@ -238,6 +280,7 @@ public class FaculityController {
 	
 	
 	
+>>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 
 	
 }

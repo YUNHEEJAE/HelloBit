@@ -57,7 +57,7 @@
 					<div class="col-sm-9 col-md-12">
 						<ul class="nav nav-tabs subjectTab">
 							<li class="active"><a href="#beginner" data-toggle="tab" ><span class="glyphicon glyphicon-th-list"></span> 수강 신청 리스트 </a></li>
-							<li><a href="#windows" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span> 수강 신청 완료 리스트</a></li>
+							<li><a href="false" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span> 수강 신청 완료 리스트</a></li>
 						</ul>
 							<div class="tab-content">
 								<div class="tab-pane programlist active in" id="java" ></div>
@@ -66,7 +66,12 @@
 		</div>
 		<ul class="stateList"></ul>
 			<button id="trueBtn" class="btn btn-block btn-success btn-lg" style="visibility: hidden">승 인 </button>
+<<<<<<< HEAD
+			<form id='admission' action="../faculity/admission" method="post">
+			</form>
+=======
 
+>>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 		</section>
 	</div>
 
@@ -81,6 +86,14 @@
 
 
 $(document).ready(function() {
+	
+		var result = '${result}';
+	
+			if(result == "success"){
+					alert("수강신청완료");
+		
+					}
+	
 		function getProgramList() {
 			$.getJSON("/web/program/allList", function(data) {
 				console.log(data);
@@ -139,7 +152,7 @@ $(document).ready(function() {
 					
 					$("a").on("click" , function(event){
 						
-						console.log(event.currentTarget.hash);
+						console.log(event);
 						
 						var hash = event.currentTarget.hash;
 						
@@ -171,19 +184,29 @@ $(document).ready(function() {
 												+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.sid+"</span>"
 												+ "<span class=''>"+this.state+"</span>"
 												+ "<span class='text-muted' style='font-size: 11px;'>--" +this.tregdate+"</span>"			
-											    + "<span class='pull-right'><input type='checkbox' id='check'></span>"; 
+											    + "<span class='pull-right'><input type='checkbox' class='check' value='"+this.sid+"'></span>"; 
 												
 											});
 											$('.stateList').html(resultStr);
-							
+										
 											$('#trueBtn').on('click' , function(event){
+			
+												var result = $('.check:checked');
 												
-												
-												var result = $('#check:checked');
+												console.log(result[0].attributes.value.value);
 												
 												console.log(result);
 												
-												
+												var sid = new Array();
+												 $('#admission').append("<input type='hidden' name='pno' value='"+pno[1]+"'>") 
+												for(var  i = 0 ; i < result.length ; i++){
+													sid[i] = result[i].attributes.value.value;
+													$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
+													
+												}
+												 $('#admission').submit(); 
+												console.log(sid[0]);
+		
 											});
 											
 								
