@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
+import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TeacherVO;
@@ -24,6 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -151,4 +153,8 @@ public class FaculityController {
 	public void takeprogramlist() throws Exception{
 		logger.info("takeprogramlist LIST.....");
 	}
+	
+	
+	
+	
 }
