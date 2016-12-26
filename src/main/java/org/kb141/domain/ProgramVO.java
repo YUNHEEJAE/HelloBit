@@ -61,11 +61,8 @@ public class ProgramVO {
 		this.torder = torder;
 	}
 
-	public String getOpendate() {
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		 String month = opendate.toString();
-		
-		return month;
+	public Date getOpendate() {	
+		return opendate;
 	}
 	
 

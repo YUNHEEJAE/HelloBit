@@ -67,6 +67,13 @@
 
 
 $(document).ready(function() {
+	
+	var result = '${result}';
+	
+	if(result == "success"){
+		alert("수강신청완료");
+		
+	}
 		function getProgramList() {
 			$.getJSON("/web/program/allList", function(data) {
 				console.log(data);
