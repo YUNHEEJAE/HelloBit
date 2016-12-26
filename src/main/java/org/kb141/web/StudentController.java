@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * TBL_STUDENT TBL_CHECK TBL_TAKE_PROGRAM
@@ -48,12 +49,13 @@ public class StudentController {
 	
 
 	@PostMapping("/register")
-	public void registerPOST(StudentVO vo, Model model) throws Exception{
+	public String registerPOST(StudentVO vo,  String filename , RedirectAttributes rttr) throws Exception{
 		logger.info("register POST....");
-
 		logger.info("VO : " + vo);
-		studentService.register(vo);
-		model.addAttribute("result","success");
+		studentService.register(vo , filename);
+		rttr.addFlashAttribute("result","success");
+		
+		return "redirect:list";
 		
 
 	}

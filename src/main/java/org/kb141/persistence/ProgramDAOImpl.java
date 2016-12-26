@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.ProgramVO;
 import org.springframework.stereotype.Repository;
 
@@ -44,6 +45,11 @@ public class ProgramDAOImpl implements ProgramDAO {
 	@Override
 	public List<ProgramVO> categoryList(String category) throws Exception {
 		return sqlSession.selectList(NAME + "categoryList", category);
+	}
+	
+	@Override
+	public List<JoinTeacherSubjectVO> joinList(Integer pno) throws Exception {
+		return sqlSession.selectList(NAME + "joinTeacherSubjectList" , pno);
 	}
 
 }
