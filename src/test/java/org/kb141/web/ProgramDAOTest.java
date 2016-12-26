@@ -37,7 +37,7 @@ public class ProgramDAOTest {
 
 	@Test
 	public void readTest() throws Exception {
-		System.out.println(dao.read(1));
+		System.out.println(dao.read(15));
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class ProgramDAOTest {
 
 	@Test
 	public void readServiceTest() throws Exception {
-		System.out.println(service.view(1));
+		System.out.println(service.view(15));
 	}
 
 	@Test

@@ -89,17 +89,18 @@
         <!-- accepted payments column -->
       
         <!-- /.col -->
-        <div class="col-xs-6">
+        <div class="col-xs-10">
           <p class="lead">강의 내용</p>
 
           <div class="table-responsive">
-          	여기에 내용이 들어갈 예정
+          	${view.pcontent }
           </div>
         </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
-
+		<br>
+		<br>
 
       <!-- Table row -->
       <div class="row">
