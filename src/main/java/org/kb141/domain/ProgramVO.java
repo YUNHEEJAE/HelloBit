@@ -62,6 +62,8 @@ public class ProgramVO {
 	}
 
 	public Date getOpendate() {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
 		return opendate;
 	}
 	
