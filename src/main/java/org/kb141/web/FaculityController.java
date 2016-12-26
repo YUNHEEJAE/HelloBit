@@ -15,6 +15,7 @@ import org.kb141.service.FaculityService;
 import org.kb141.service.NoticeService;
 import org.kb141.service.StudentService;
 import org.kb141.service.SubjectService;
+import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,9 @@ public class FaculityController {
 
 	@Inject
 	private StudentService Studentservice;
+	
+	@Inject
+	private TakeProgramService TakeProgramservice;
 	
 	@GetMapping("/noticeBoard")
 	public void getNoticeBoard(Model model) throws Exception {
@@ -142,5 +146,8 @@ public class FaculityController {
 		return entity;
 	}
 	
-	
+	@GetMapping("/takeprogramlist")
+	public void takeprogramlist() throws Exception{
+		logger.info("takeprogramlist LIST.....");
+	}
 }
