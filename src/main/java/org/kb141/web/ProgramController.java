@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -116,11 +117,9 @@ public class ProgramController {
 		return entity;
 	}
 	
-	
-	
-	
 
 	
+
 	
 	@GetMapping("/view")
 	public void viewProgram(Integer pno , Model model)throws Exception{
@@ -130,20 +129,26 @@ public class ProgramController {
 		logger.info("view called .............");
 		
 		model.addAttribute("view" , vo);
-		
-		
-		
-		
+
 		
 	}
 	
 	
 	
 	
-	
-	
-	
-	
-	
+	@GetMapping("/categoryList/{category}")
+	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category) {
+		
+		ResponseEntity<List<ProgramVO>> entity = null;
+		try {
+			entity = new ResponseEntity<List<ProgramVO>>(service.getCategoryList(category), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<ProgramVO>>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+		
+	}
 
 }
