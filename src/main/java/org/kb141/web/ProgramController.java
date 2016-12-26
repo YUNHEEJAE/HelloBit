@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.CurriculumVO;
+import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.ProgramVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.CurriculumService;
@@ -126,16 +127,18 @@ public class ProgramController {
 		
 		ProgramVO vo =  service.view(pno);
 		
+		List<JoinTeacherSubjectVO> joinList = service.getTeacherSubjectList(pno);
+		
 		logger.info("view called .............");
 		
 		model.addAttribute("view" , vo);
-
 		
+		model.addAttribute("joinList", joinList);
+		
+		
+	
 	}
-	
-	
-	
-	
+
 	@GetMapping("/categoryList/{category}")
 	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category) {
 		
