@@ -133,6 +133,7 @@ public class FaculityController {
 	}
 
 	
+	
 	// 학생 리스트
 	@GetMapping("/studentlist")
 	public ResponseEntity<List<StudentVO>> StudentList() {

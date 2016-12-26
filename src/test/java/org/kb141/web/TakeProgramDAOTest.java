@@ -132,7 +132,7 @@ public class TakeProgramDAOTest {
 		System.out.println(service.getList(1));
 
 	}
-	
+	  
 	@Test
 	public void admissionServiceTest() throws Exception {
 		service.admission("yhj");
