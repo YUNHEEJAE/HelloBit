@@ -1,6 +1,8 @@
 package org.kb141.web;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -126,9 +128,18 @@ public class ProgramController {
 	@GetMapping("/view")
 	public void viewProgram(Integer pno , Model model)throws Exception{
 		
+
+		ProgramVO vo =  service.view(pno);
+
+
 		logger.info("view called .............");
 		
+
+		model.addAttribute("view" , vo);
+
+
 		model.addAttribute("view" , service.view(pno));
+
 
 		model.addAttribute("joinList", service.getTeacherSubjectList(pno));
 		
