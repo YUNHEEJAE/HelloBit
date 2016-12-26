@@ -1,7 +1,6 @@
 package org.kb141.domain;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -107,6 +106,7 @@ public class ProgramVO {
 		this.pcontent = pcontent;
 	}
 
+
 	@Override
 	public String toString() {
 		return "ProgramVO [pno=" + pno + ", pcourse=" + pcourse + ", roomname=" + roomname + ", torder=" + torder
@@ -115,8 +115,6 @@ public class ProgramVO {
 	}
 
 
-	
-	
 
 
 

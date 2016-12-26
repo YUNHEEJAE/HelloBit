@@ -48,7 +48,7 @@
 				</ul>
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<div class="tab-pane fade in programlist active in" id="java" ></div>
+					<div class="tab-pane programlist active in" id="java" ></div>
 
 				</div>
 			</div>
@@ -85,21 +85,40 @@ $(document).ready(function() {
 		getProgramList();
 
 		function getCategoryList(targetCategory) {
+			
+
+			
 			console.log("getCategoryList is called..")
 			console.log(targetCategory);
 			$(".programlist").attr("id", targetCategory);
 			
 			$.getJSON("/web/program/categoryList/" + targetCategory , function(data) {
 				console.log(data);
+
 				$(document).ready(function () {
 					var str = "";
 					$(data).each(function() { // foreach 개념으로 길이만큼 돈다.
+						
+						var openDateNum = new Date(this.opendate);
+						var openyear = openDateNum.getFullYear();
+						var openmonth =openDateNum.getMonth();
+						var opendate =  openDateNum.getDate();
+						var openDate = openyear + "/" + openmonth + "/" + opendate;
+						
+						var closeDateNum = new Date(this.closedate);
+						var closeyear = closeDateNum.getFullYear();
+						var closemonth =closeDateNum.getMonth();
+						var closedate =  closeDateNum.getDate();
+						var closeDate = closeyear + "/" + closemonth + "/" + closedate;
+						
+						
 						str += "<a href=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.category+"</span>"
 							+ "<span class=''>"+this.pcourse+"</span>"
-							+ "<span class='text-muted' style='font-size: 11px;'>--" +this.opendate+"</span>"
+							+ "<span class='text-muted' style='font-size: 11px;'>--" +openDate+"</span>"
+							+"<span class='text-muted' style='font-size: 11px;'> ~ " +closeDate+"</span>"
 							+ "<span class='badge'>"+this.maximum+"</span> <span class='pull-right'>"
-							+ "<span class='glyphicon glyphicon-paperclip'></span> </span>";
+							+ " </span>";
 					});
 					$("#"+targetCategory).html(str);
 				});
