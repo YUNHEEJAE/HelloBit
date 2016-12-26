@@ -1,7 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>​
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../program/header.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,9 +55,11 @@
 
           <address>
             <strong>OpenDate</strong><br>
-           ${view.opendate}<br>
+         <fmt:formatDate value="${view.opendate}" type="both" pattern="yyyy년MM월dd일  E요일"/>   
+           		<br>
             <strong>CloseDate</strong><br>
-           ${view.closedate}<br>
+            <fmt:formatDate value="${view.closedate}" type="both" pattern="yyyy년MM월dd일  E요일"/>
+           	<br>
 
           </address>
         </div>
