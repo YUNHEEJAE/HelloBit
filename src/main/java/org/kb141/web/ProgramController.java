@@ -12,6 +12,7 @@ import org.kb141.domain.ProgramVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.CurriculumService;
 import org.kb141.service.ProgramService;
+import org.kb141.service.TakeProgramService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -119,11 +120,13 @@ public class ProgramController {
 	}
 	
 
-	
+	@Inject
+	private TakeProgramService takeprogramService;
 
 	
 	@GetMapping("/view")
 	public void viewProgram(Integer pno , Model model)throws Exception{
+		
 		
 		ProgramVO vo =  service.view(pno);
 		
@@ -134,6 +137,10 @@ public class ProgramController {
 		model.addAttribute("view" , vo);
 		
 		model.addAttribute("joinList", joinList);
+		
+		model.addAttribute("stateCount" , takeprogramService.getstateTotal(pno));
+		
+		
 		
 		
 	

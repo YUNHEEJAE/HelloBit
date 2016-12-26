@@ -64,6 +64,12 @@ public class TakeProgramDAOTest {
 		dao.admission("lsy");
 	}
 	
+	@Test
+	public void stateCountTest()throws Exception{
+		System.out.println(dao.stateCount(1));
+	}
+	
+	
 	// ================ service ================
 	
 	@Test
@@ -124,5 +130,9 @@ public class TakeProgramDAOTest {
 		service.admission("yhj");
 	}
 	
+	@Test
+	public void getStateTotalTest()throws Exception{
+		System.out.println(service.getstateTotal(0));
+	}
 	
 }
