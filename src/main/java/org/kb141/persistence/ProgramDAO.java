@@ -2,6 +2,7 @@ package org.kb141.persistence;
 
 import java.util.List;
 
+import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.ProgramVO;
 
 public interface ProgramDAO {
@@ -17,4 +18,6 @@ public interface ProgramDAO {
 	public List<ProgramVO> allList() throws Exception;
 	
 	public List<ProgramVO> categoryList(String category) throws Exception;
+	
+	public List<JoinTeacherSubjectVO> joinList(Integer pno)throws Exception;
 }

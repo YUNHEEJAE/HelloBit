@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.TeacherSubjectVO;
 import org.springframework.stereotype.Repository;
 
@@ -42,5 +43,7 @@ public class TeacherSubjectDAOImpl implements TeacherSubjectDAO {
 	public List<TeacherSubjectVO> allList() throws Exception {
 		return sqlsession.selectList(NAME+"allList");
 	}
+
+	
 
 }

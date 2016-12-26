@@ -94,7 +94,7 @@ public class StudentController {
 		logger.info("VO : " + vo);
 		/*takeprogramService.join(vo);*/
 		return "success";
-		
+		//return "redict:list?=success";
 		
 	}
 	

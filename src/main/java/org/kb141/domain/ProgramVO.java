@@ -1,7 +1,6 @@
 package org.kb141.domain;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -98,8 +97,6 @@ public class ProgramVO {
 	public void setMaximum(Integer maximum) {
 		this.maximum = maximum;
 	}
-
-	
 	
 	public String getPcontent() {
 		return pcontent;
@@ -109,12 +106,15 @@ public class ProgramVO {
 		this.pcontent = pcontent;
 	}
 
+
 	@Override
 	public String toString() {
 		return "ProgramVO [pno=" + pno + ", pcourse=" + pcourse + ", roomname=" + roomname + ", torder=" + torder
 				+ ", opendate=" + opendate + ", closedate=" + closedate + ", maximum=" + maximum + ", persongroupid="
 				+ persongroupid + ", category=" + category + ", pcontent=" + pcontent + "]";
 	}
+
+
 
 
 

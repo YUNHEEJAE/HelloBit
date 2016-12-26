@@ -45,6 +45,16 @@
 	<select id="categoryList" resultType="ProgramVO">
 		select * from tbL_program where category = #{category}
 	</select>
+	
+	<select id="joinTeacherSubjectList" resultType="JoinTeacherSubjectVO">
+	
+select tsno, subname, subgrade, tname from (select * from tbl_teacher_subject
+where tsno in (select tsno from tbl_curriculum where pno = #{pno}) ) t, tbl_subject s, tbl_teacher a
+where t.subno = s.subno and t.tid = a.tid order by subname asc, subgrade desc
+	
+	</select>
+	
+	
 
 
 </mapper>

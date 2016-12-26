@@ -55,6 +55,11 @@ public class TeacherSubjectDAOTest {
 		System.out.println(dao.allList());
 	}
 	
+	
+	
+	
+	
+	
 	// ============================ service =======================
 	
 	@Test
@@ -88,4 +93,7 @@ public class TeacherSubjectDAOTest {
 	public void getTeacherSubjectList()throws Exception{
 		System.out.println(teacherSubjectService.getTeacherSubjectList());
 	}
+	
+	
+	
 }
