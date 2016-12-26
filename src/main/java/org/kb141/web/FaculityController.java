@@ -6,7 +6,6 @@ import javax.inject.Inject;
 
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
-import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -25,7 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,7 +45,7 @@ public class FaculityController {
 	private ClassroomService Classroomservice;
 
 	@Inject
-	private TeacherService Teacherservice;
+	private TeacherService teacherService;
 	
 	@Inject
 	private SubjectService Subjectservice;
@@ -113,7 +112,7 @@ public class FaculityController {
 	public ResponseEntity<List<TeacherVO>> TeacherList() {
 		ResponseEntity<List<TeacherVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<TeacherVO>>(Teacherservice.getTeacherList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<TeacherVO>>(teacherService.getTeacherList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<TeacherVO>>(HttpStatus.BAD_REQUEST);
@@ -160,5 +159,52 @@ public class FaculityController {
 		return TakeProgramservice.getstateList(vo);	
 	}
 
+	@GetMapping("/teacherregister")
+	public void TeacherCreateGET() throws Exception{
+		logger.info("Teacher Create.....");
+	}
+	
+	@PostMapping("/teacherregister")
+	public String TeacherRegisterPOST(TeacherVO vo)throws Exception{
+		logger.info("Teacher Register.........................");
+		logger.info("Teacher vo : " + vo);
+		teacherService.register(vo);
+		return "success";
+	}
+	
+	@GetMapping("/teachermodify/{tid}")
+	public void TeacherModifyGET(String tid, Model model) throws Exception{
+		logger.info("Teacher Modify ......");
+		
+		
+	}
+	
+	@PostMapping("/teachermodify")
+	public String TeacherModifyPOST(TeacherVO vo) throws Exception{
+		logger.info("Teacher Modify........");
+		logger.info("TeacherVO : " + vo);
+		teacherService.modify(vo);
+		return "success";
+	}
+	
+	@GetMapping("/faculityregister")
+	public void FaculityRegisterGET() throws Exception{
+		logger.info("Faculity Register.........");
+	}
+	
+	@PostMapping("/faculityregister")
+	public String FaculityRegisterPOST(FaculityVO vo) throws Exception{
+		
+		
+		
+		return "success";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
