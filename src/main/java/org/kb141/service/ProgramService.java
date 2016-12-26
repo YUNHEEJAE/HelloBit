@@ -6,7 +6,7 @@ import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.ProgramVO;
 
 public interface ProgramService {
-	public void register(ProgramVO vo);
+	public void register(ProgramVO vo, String tsnolist);
 
 	public ProgramVO view(Integer pno);
 

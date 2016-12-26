@@ -168,5 +168,16 @@ public class ProgramController {
 		
 		
 	}
+	
+	@PostMapping("/register")
+	public String registerPost(ProgramVO vo, String curriculums) throws Exception {
+		logger.info("Program Register Post Called....");
+		logger.info("VO : " + vo);
+		logger.info("Curri " + curriculums);
+		
+		service.register(vo, curriculums);
+		
+		return "success";
+	}
 
 }

@@ -4,21 +4,36 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.CurriculumVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.ProgramVO;
+import org.kb141.persistence.CurriculumDAO;
 import org.kb141.persistence.ProgramDAO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ProgramServiceImpl implements ProgramService {
 
 	@Inject
 	private ProgramDAO programDAO;
+	
+	@Inject
+	private CurriculumDAO curriculumDAO;
 
 	@Override
-	public void register(ProgramVO vo) {
+	public void register(ProgramVO vo, String tsnolist) {
 		try {
 			programDAO.create(vo);
+
+			String[] listTsno = tsnolist.split(",");
+			for(int i = 0 ; i < listTsno.length ; i ++) {
+				CurriculumVO currVO = new CurriculumVO();
+				currVO.setTsno(Integer.parseInt(listTsno[i]));
+				curriculumDAO.create(currVO);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -78,15 +78,17 @@ public class ProgramDAOTest {
 	@Test
 	public void createServiceTest() throws Exception {
 		ProgramVO vo = new ProgramVO();
-		vo.setPcourse("Test");
-		vo.setRoomname("402");
+		vo.setPcourse("TEST");
+		vo.setRoomname("639");
 		vo.setTorder("3");
 		vo.setOpendate("2016-12-22");
 		vo.setClosedate("2016-12-23");
 		vo.setMaximum(30);
 		vo.setPersongroupid("test_test_18");
+		vo.setCategory("beginner");
+		vo.setPcontent("2016년 12월 26일에 행하는 테스트입니다.");
 		System.out.println(vo);
-		service.register(vo);
+		service.register(vo, "1,2,3,4" );
 	}
 
 	@Test
@@ -97,14 +99,15 @@ public class ProgramDAOTest {
 	@Test
 	public void updateSerivceTest() throws Exception {
 		ProgramVO vo = new ProgramVO();
-		vo.setPcourse("서인효바보");
-		vo.setRoomname("503");
+		vo.setPcourse("빅데이터 바보");
+		vo.setRoomname("703");
 		vo.setTorder("80");
 		vo.setOpendate("2016-12-22");
 		vo.setClosedate("2016-12-23");
 		vo.setMaximum(5);
 		vo.setPno(21);
 		vo.setPersongroupid("test_test_19");
+		vo.setCategory("bigdata");
 		service.modify(vo);
 	}
 
@@ -133,8 +136,6 @@ public class ProgramDAOTest {
 	public void joinAllTeacherSubjectServiceTest()throws Exception{
 		System.out.println(service.getAllTeacherSubjectList());
 	}
-	
-	
 	
 
 }

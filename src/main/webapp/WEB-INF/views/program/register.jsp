@@ -28,7 +28,7 @@
 		<hr />
 		<div class="row">
 			<div class="col-md-12"> 
-			
+				<form method="post" id="inputForm">
 				<!-- Text input-->
 				<div class="form-group">
 				  <label class=" control-label" >종류</label>  
@@ -44,9 +44,16 @@
 			
 				<div class="form-group">
 				  <label class=" control-label" >과정명</label>  
-				  <input id="pcontent" name="pcontent" type="text" placeholder="과정명" class="form-control">
+				  <input id="pcourse" name="pcourse" type="text" placeholder="과정명" value="TEST 74" class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
+				
+				<div class="form-group">
+				  <label class=" control-label" >과정 설명</label>  
+				  <input id="pcontent" name="pcontent" type="text" placeholder="과정 설명" value="TEST CONTENT 74" class="form-control">
+					<span class="help-block">It identify how many days it takes for deliver</span>  
+				</div>
+				
 				
 				<!-- Text input-->
 				<div class="form-group">
@@ -62,77 +69,73 @@
 				<!-- Text input-->
 				<div class="form-group">
 				  <label class=" control-label" >기수</label>  
-				  <input id="torder" name="torder" type="text" placeholder="기수" class="form-control" required="">
+				  <input id="torder" name="torder" type="text" placeholder="99" value="74" class="form-control" required="">
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
-				<table class="table table-striped">
-		            <thead>
-		            <tr>
-		              <th>과 목</th>
-		              <th>등 급</th>
-		              <th>강 사 명</th>
-		            </tr>
-		            </thead>
-		            <tbody>
-		             <tr>
-		              <td>등록된 항목</td>
-		            </tr>
-		            </tbody>
-		          </table>
+				
 		          
-				<!-- Text input-->
 				<div class="form-group">
-				  <label class=" control-label" >상세 과정</label>  
-				     <select id="curriculum" name="curriculum" class="form-control">
-				      <c:forEach items= "${joinAllList }" var="vo" >
-				  			<option value="${vo.tsno }">${vo.subname } - ${vo.subgrade} - ${vo.tname}</option>					  		
-				  		</c:forEach>
-				    </select>
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
-				</div>
+				 	<label class="control-label" >상세 과정</label>  
+					<div>
+						<div class="col-md-10">
+					     	<select id="curriculum" name="curriculum" class="form-control">
+						      	<c:forEach items= "${joinAllList }" var="vo" >
+						  			<option value="${vo.tsno }">${vo.subname } - ${vo.subgrade} - ${vo.tname}</option>
+					  			</c:forEach>
+					    	</select>
+					    </div>
+					    
+					    <div class="col-md-2">
+					   		<button type="button" class="btn btn-info" id="addCurriculum">추가</button>
+					   		<button type="button" class="btn btn-warning" id="delCurriculum">삭제</button>
+				    	</div>
+					</div>
+				    <span class="help-block">It identify how many days it takes for deliver</span>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>과 목</th>
+									<th>등 급</th>
+									<th>강 사 명</th>
+								</tr>
+							</thead>
+							<tbody id="addedCurriculum">
+							</tbody>
+						</table>
+					</div>
 				
 				<!-- Text input-->
 				<div class="form-group">
 				  <label class=" control-label">열리는 시간</label>  
-				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01" class="form-control" required="">
+				  <input id="opendate" name="opendate" type="text" placeholder="2011-01-01" value="2014-04-16" class="form-control" required="">
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				<!-- Text input-->
 				<div class="form-group">
 				  <label class=" control-label" >닫히는 시간</label>  
-				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01" class="form-control" required="">
+				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01" value="2014-04-16" class="form-control" required="">
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
 				<div class="form-group">
 				  <label class=" control-label" >정원</label>  
-				  <input id="maximum" name="maximum" type="text" placeholder="정원" class="form-control" required="">
+				  <input id="maximum" name="maximum" type="text" placeholder="30" class="form-control" value="30" required="">
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
 				
 				<div class="form-group">
 				  <label class=" control-label" for="persongroupid" >Person Group ID</label>  
-				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" disabled class="form-control" required="">
+				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" readonly="readonly" class="form-control" value="remember_0416" required="">
 				   <span class="help-block">자동으로 생성됩니다.</span>  
 				</div>
 				
+				</form>
+				<button type="button" class="btn btn-success" id="btnRegister">Register</button>
+				<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
 				
-				<!-- Appended checkbox -->
-				<div class="form-group">
-				  <label class=" control-label" for="giftPic">Gift Picture</label>
-				    <div class="input-group">
-				      <input id="giftPic" name="giftPic" class="form-control" type="text" placeholder="Gift Picture">
-				            <span class="input-group-addon">     
-				          <input type="checkbox">     
-				      </span>
-				    </div>
-				    <p class="help-block">Please upload the picture of the gift</p>
-				</div>
-				<div class=""></div>
-				<button type="button" class="btn btn-success">Register</button>
-				<button type="button" class="btn btn-warning">Cancel</button>
+				
 			</div>
 		</div>
 		</section>
@@ -146,11 +149,31 @@
 
 <script>
 
-$(document).ready(function() {
+$(document).ready(function () {
 	
+	$("#btnRegister").on("click", function () {
+		event.preventDefault();
+		$("#inputForm").submit();		
+		
+	});
+	
+	
+	$("#addCurriculum").on("click", function () {
+		event.preventDefault();
+		var current = $("#curriculum option:selected");
+		$("#inputForm").append("<input type='hidden' name='curriculums' value="+current.val()+">");
+		var splitData = current.text().split(' - ');
+		
+		$("#addedCurriculum").append("<tr><td>"+splitData[0]+"</td><td>"+splitData[1]+"</td><td>"+splitData[2]+"</td></tr>");
+	});
+	
+	$("#delCurriculum").on("click", function () {
+		event.preventDefault();
+		$("#addedCurriculum > tr:last").remove();
+		$("#inputForm > input:last").remove();
+	});
 	
 });
-
 
 
 </script>
