@@ -124,6 +124,7 @@ $(document).ready(function() {
 			});
 		}
 		
+		
 		getCategoryList("java");
 		
 		$(".subjectTab li").on("click", function(event) {
