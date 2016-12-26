@@ -34,8 +34,7 @@
 			<div class="col-sm-9 col-md-12">
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs subjectTab">
-					<li class="active"><a href="#java" data-toggle="tab"
-						name='java'> <span class="glyphicon glyphicon-th-list"></span>JavaDB
+					<li class="active"><a href="#java" data-toggle="tab" name='java'> <span class="glyphicon glyphicon-th-list"></span>JavaDB
 					</a></li>
 					<li><a href="#beginner" data-toggle="tab" name='beginner'><span
 							class="glyphicon glyphicon-th-list"></span> SW Beginner</a></li>
