@@ -27,6 +27,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/faculity")
@@ -154,10 +155,9 @@ public class FaculityController {
 	}
 
 	@GetMapping("/statelist")
-	public String getStateList(TakeProgramVO vo)throws Exception{
-		
+	public @ResponseBody List<TakeProgramVO> getStateList(TakeProgramVO vo)throws Exception{
 		logger.info("pno :"+  vo);
-		return "";	
+		return TakeProgramservice.getstateList(vo);	
 	}
 
 	

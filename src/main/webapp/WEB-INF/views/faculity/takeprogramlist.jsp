@@ -46,12 +46,23 @@
 							class="glyphicon glyphicon-th-list"></span> Big Data & IoT</a></li>
 				</ul>
 				<!-- Tab panes -->
-				<div class="tab-content">
-					<div class="tab-pane programlist active in" id="java" ></div>
+				<div class="tab-content"><div class="tab-pane programlist active in" id="java" ></div>
 
 				</div>
 			</div>
 		</div>
+		<div class="row state" style="visibility: hidden">	
+					<div class="col-sm-9 col-md-12">
+						<ul class="nav nav-tabs subjectTab">
+							<li class="active"><a href="#beginner" data-toggle="tab" ><span class="glyphicon glyphicon-th-list"></span> 수강 신청 리스트 </a></li>
+							<li><a href="#windows" data-toggle="tab"><span class="glyphicon glyphicon-th-list"></span> 수강 신청 완료 리스트</a></li>
+						</ul>
+							<div class="tab-content">
+								<div class="tab-pane programlist active in" id="java" ></div>
+							</div>
+					</div>
+		</div>
+		<ul class="stateList"></ul>
 		</section>
 	</div>
 
@@ -132,22 +143,45 @@ $(document).ready(function() {
 						
 						console.log(pno[1]);
 						
-
-						var formdata = new FormData();
-						formdata.append("pno",pno);
-						formdata.append("state","false");
-						
+						var obj = {"pno":pno[1] , "state" : "false"};
 						
 						$.ajax({
 							url:"http://localhost:8081/web/faculity/statelist",
 							type:"get",
-							data:formdata,
-							datatype:json,
+							data:obj,
+							datatype:"json",
 							success:function(result){
-								console.log(result);
+								$('.state').css('visibility' , 'visible');
+										resultStr = "";
+											$(result).each(function(){
+												
+												resultStr += "<a href=#" + this.pno +" class='list-group-item takeprogramlist'> <span class='glyphicon glyphicon-star-empty'></span>"
+												+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.sid+"</span>"
+												+ "<span class=''>"+this.state+"</span>"
+												+ "<span class='text-muted' style='font-size: 11px;'>--" +this.tregdate+"</span>"
+											    + "<span class='pull-right'></span>"; 
+											    
+												
+											});
+											$('.stateList').html(resultStr);
+											
+											$('.stateList').on("click" ,function(event){
+												
+												console.log(event.target.style);
+												
+												var target = event.target.style;
+												
+												target.css("background-color" , "black");
+												
+	
+												
+											});
+											
+								
+										
 							}
 							
-						})
+						});
 						
 					});
 				});
