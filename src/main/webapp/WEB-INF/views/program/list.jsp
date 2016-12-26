@@ -119,7 +119,7 @@ $(document).ready(function() {
 						var closeDate = closeyear + "/" + closemonth + "/" + closedate;
 						
 						
-						str += "<a href=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+						str += "<a href=view?pno=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.category+"</span>"
 							+ "<span class=''>"+this.pcourse+"</span>"
 							+ "<span class='text-muted' style='font-size: 11px;'>--" +openDate+"</span>"

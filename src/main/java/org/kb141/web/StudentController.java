@@ -96,7 +96,7 @@ public class StudentController {
 		rttr.addFlashAttribute("result" , "success");
 		
 //		takeprogramService.join(vo);
-		return "redirect:list?page=1";
+		return "redirect:../program/list";
 	
 		
 	}
