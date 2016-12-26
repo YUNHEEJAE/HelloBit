@@ -128,18 +128,10 @@ public class ProgramController {
 	@GetMapping("/view")
 	public void viewProgram(Integer pno , Model model)throws Exception{
 		
-
-		ProgramVO vo =  service.view(pno);
-
-
 		logger.info("view called .............");
 		
 
-		model.addAttribute("view" , vo);
-
-
 		model.addAttribute("view" , service.view(pno));
-
 
 		model.addAttribute("joinList", service.getTeacherSubjectList(pno));
 		
