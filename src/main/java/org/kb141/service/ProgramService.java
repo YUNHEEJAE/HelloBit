@@ -19,4 +19,6 @@ public interface ProgramService {
 	public List<ProgramVO> getCategoryList(String category);
 	
 	public List<JoinTeacherSubjectVO> getTeacherSubjectList(Integer pno);
+	
+	public List<JoinTeacherSubjectVO> getAllTeacherSubjectList();
 }

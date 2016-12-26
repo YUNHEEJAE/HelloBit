@@ -7,7 +7,7 @@ package org.kb141.domain;
 public class ClassroomVO {
 
 	private String roomname;
-	private Boolean empty;
+	private Boolean rempty;
 
 	public String getRoomname() {
 		return roomname;
@@ -17,17 +17,18 @@ public class ClassroomVO {
 		this.roomname = roomname;
 	}
 
-	public Boolean getEmpty() {
-		return empty;
+	public Boolean getRempty() {
+		return rempty;
 	}
 
-	public void setEmpty(Boolean empty) {
-		this.empty = empty;
+	public void setRempty(Boolean rempty) {
+		this.rempty = rempty;
 	}
 
 	@Override
 	public String toString() {
-		return "ClassroomVO [roomname=" + roomname + ", empty=" + empty + "]";
+		return "ClassroomVO [roomname=" + roomname + ", rempty=" + rempty + "]";
 	}
+
 
 }

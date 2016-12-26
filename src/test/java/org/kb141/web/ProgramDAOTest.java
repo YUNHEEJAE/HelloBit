@@ -126,5 +126,12 @@ public class ProgramDAOTest {
 	}
 	
 	
+	@Test
+	public void joinAllTeacherSubjectServiceTest()throws Exception{
+		System.out.println(service.getAllTeacherSubjectList());
+	}
+	
+	
+	
 
 }
