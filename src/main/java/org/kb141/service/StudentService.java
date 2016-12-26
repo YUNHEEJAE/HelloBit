@@ -6,7 +6,7 @@ import org.kb141.domain.StudentVO;
 
 public interface StudentService {
 
-	public void register(StudentVO vo);
+	public void register(StudentVO vo , String fileName);
 	
 	public StudentVO view(String sid);
 	

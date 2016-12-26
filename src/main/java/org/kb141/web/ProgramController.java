@@ -117,6 +117,25 @@ public class ProgramController {
 		return entity;
 	}
 	
+
+	
+
+	
+	@GetMapping("/view")
+	public void viewProgram(Integer pno , Model model)throws Exception{
+		
+		ProgramVO vo =  service.view(pno);
+		
+		logger.info("view called .............");
+		
+		model.addAttribute("view" , vo);
+
+		
+	}
+	
+	
+	
+	
 	@GetMapping("/categoryList/{category}")
 	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category) {
 		

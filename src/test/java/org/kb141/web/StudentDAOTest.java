@@ -69,7 +69,7 @@ public class StudentDAOTest {
 		obj.setSpw("sih2");
 		obj.setSemail("sih2@gmail.com");
 		
-		service.register(obj);
+//		service.register(obj);
 		
 	}
 	
