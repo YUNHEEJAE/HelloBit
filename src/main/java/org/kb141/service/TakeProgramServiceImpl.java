@@ -93,4 +93,19 @@ public class TakeProgramServiceImpl implements TakeProgramService{
 		}
 		
 	}
+
+
+	@Override
+	public Integer getstateTotal(Integer pno) {
+		
+		Integer stateTotal = 0;
+		
+		try {
+			stateTotal = takeprogramDAO.stateCount(pno);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return stateTotal;
+	}
 }

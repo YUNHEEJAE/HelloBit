@@ -21,6 +21,9 @@ public interface TakeProgramDAO {		//HJ, IH
 	// 수강신청 승인
 	public void admission(String sid) throws Exception;
 	
+	public Integer stateCount(Integer pno) throws Exception;
+	
+	
 }
 
   

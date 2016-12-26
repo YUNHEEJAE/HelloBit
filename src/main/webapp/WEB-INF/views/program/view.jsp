@@ -70,7 +70,7 @@
             <!-- /.info-box-content -->
           </div>
 	          	<div class="info-box">
-            <span class="info-box-icon bg-yellow">3</span>
+            <span class="info-box-icon bg-yellow">${stateCount}</span>
             <div class="info-box-content">
               <span class="info-box-text"><h1>남은 인원</h1></span>
              
