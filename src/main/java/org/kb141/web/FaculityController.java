@@ -11,6 +11,7 @@ import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
+import org.kb141.domain.TeacherSubjectVO;
 import org.kb141.domain.TeacherVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
@@ -20,6 +21,7 @@ import org.kb141.service.StudentService;
 import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
+import org.kb141.service.TeacherSubjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -65,6 +67,8 @@ public class FaculityController {
 	@Inject
 	private ProgramService programService;
 	
+	@Inject
+	private TeacherSubjectService teacherSubjectService; 
 	
 	@GetMapping("/noticeBoard")
 	public void getNoticeBoard(Model model) throws Exception {
@@ -142,7 +146,19 @@ public class FaculityController {
 		}
 		return entity;
 	}
-
+	
+	//교수과목 리스트
+	@GetMapping("/teachersubjectlist")
+	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
+		ResponseEntity<List<TeacherSubjectVO>> entity = null;
+		try {
+			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<TeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
 	
 	// 학생 리스트
@@ -261,7 +277,14 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
-
+	@PostMapping("/studentRemove")
+	public String StudentRemove(String sid,RedirectAttributes rttr) throws Exception{
+		logger.info("Student Remove..............");
+		logger.info("Student sid : " + sid);
+		studentService.remove(sid);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
 
 	@GetMapping("/teacherregister")
 	public void TeacherCreateGET() throws Exception{
@@ -317,5 +340,19 @@ public class FaculityController {
 		
 		return "success";
 	}
+	@GetMapping("/classroomregister")
+	public void ClassRoomCreateGET() throws Exception{
+		logger.info("Teacher Create.....");
+	}
+	
+	@PostMapping("/classroomregister")
+	public String ClassRoomRegisterPOST(ClassroomVO vo)throws Exception{
+		logger.info("ClassRoom Register.........................");
+		logger.info("ClassRoom vo : " + vo);
+		classroomService.register(vo);
+		return "success";
+	}
+	
+	
 
 }

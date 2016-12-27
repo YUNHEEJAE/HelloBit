@@ -48,7 +48,8 @@
 							class="glyphicon glyphicon-th-list"></span> Classroom</a></li>
 					<li><a href="#subject" data-toggle="tab" name='subject'><span
 							class="glyphicon glyphicon-th-list"></span> Subject</a></li>
-					
+					<li><a href="#teachersubject" data-toggle="tab" name='teachersubject'><span
+							class="glyphicon glyphicon-th-list"></span> TeacherSubject</a></li>					
 					<input type='hidden' class='saveid'>
 											
 				</ul>
@@ -74,6 +75,8 @@
 
 
 $(document).ready(function() {
+	
+		
 		function getProgramList() {
 			$.getJSON("/web/program/allList", function(data) {
 				console.log(data);
@@ -94,6 +97,11 @@ $(document).ready(function() {
 		function getCategoryList(targetCategory) {
 			console.log("getCategoryList is called..")
 			console.log(targetCategory);
+			if(targetCategory == "student"){
+				$("#createBtn").hide();
+			}else{
+				$("#createBtn").show();
+			}
 			$(".programlist").attr("id", targetCategory);
 			
 			$.getJSON("/web/faculity/"+ targetCategory +"list/" , function(data) {
@@ -128,6 +136,11 @@ $(document).ready(function() {
 							+ "<span class=''>"+this.subname+"</span>"
 							+ "<span class=''>"+this.subgrade+"</span>"
 							break;
+							
+							case 'teachersubject' : str += "<a href=teacherSubjectView?tsno=" + this.tsno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tid+"</span>"
+							+ "<span class=''>"+this.subno+"</span>"
+							break;
 							}
 
 					});
@@ -158,27 +171,7 @@ $(document).ready(function() {
 			
 		}) ;
  		
- 		$("#updateBtn").on("click",function(event){
-			
-			console.log(event);
-			var domain = $(".saveid").val();
-			
-			console.log(domain);
-			
-			$(".updateBtn").attr("action",domain+"modify").submit();			
-			
-		}) ;
- 		
- 		$("#deleteBtn").on("click",function(event){
-			
-			console.log(event);
-			var domain = $(".saveid").val();
-			
-			console.log(domain);
-			
-			$(".deleteBtn").attr("action",domain+"remove").submit();			
-			
-		}) ;
+
 });	
 </script>
 
