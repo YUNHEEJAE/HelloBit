@@ -77,6 +77,7 @@ public class FaculityController {
 		model.addAttribute("list", noticeService.getNoticeList());
 	}
 
+	
 //	@GetMapping(value = "/faculitylist", produces = "application/json")
 //	@ResponseBody
 //	public List<FaculityVO> faculitylist(Model model) throws Exception {
