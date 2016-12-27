@@ -61,9 +61,11 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void modify(StudentVO vo) {
-		try {
+		System.out.println(vo);
+		try{
+			System.out.println("Student Modify Execute............");
 			studentDAO.update(vo);
-		} catch (Exception e){
+		}catch (Exception e){
 			e.printStackTrace();
 		}
 	}

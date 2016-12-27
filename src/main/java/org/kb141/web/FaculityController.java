@@ -1,7 +1,9 @@
 package org.kb141.web;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
@@ -24,8 +26,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -160,14 +162,35 @@ public class FaculityController {
 	public void takeprogramlist() throws Exception{
 		logger.info("takeprogramlist LIST.....");
 	}
-	// 승인 상태 리스트 가져오기
 
 	@GetMapping("/statelist") 
 	public @ResponseBody List<TakeProgramVO> getStateList(TakeProgramVO vo)throws Exception{
 		logger.info("pno :"+  vo);
 		return takeprogramService.getstateList(vo);	
 	}
+
+
+//	@GetMapping("/stateList/{state}&&{pno}")
+//	public ResponseEntity<List<TakeProgramVO>> showStateList(@PathVariable("state") String state , @PathVariable("pno") Integer pno)throws Exception{
+//		logger.info("vo :" + state + pno);
+//		TakeProgramVO vo = new TakeProgramVO();
+//		if(state=="true"){
+//			vo.setState(true);
+//		}
+//		vo.setState(false);
+//		vo.setPno(pno);
+//		ResponseEntity<List<TakeProgramVO>> entity = null;
+//		try{
+//			entity = new ResponseEntity<List<TakeProgramVO>>(takeprogramService.getstateList(vo) , HttpStatus.OK);
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<List<TakeProgramVO>>(HttpStatus.BAD_REQUEST);
+//		}
+//		
+//		return entity;
+//	}
 	
+
 	// 수강 승인
 	@PostMapping(value="/admission")
 	public String admissionEnrolment(String[] sid , Integer pno , RedirectAttributes rttr)throws Exception{
@@ -191,11 +214,9 @@ public class FaculityController {
 		rttr.addFlashAttribute("result" , "success");
 		
 		return "redirect:takeprogramlist";
-		
-		
-		
 
 	}
+
 	
 	//  모든 Join한 강사이름, 과목, 등급 리스트 
 	@GetMapping("/joinalllist")
@@ -222,8 +243,24 @@ public class FaculityController {
 		}
 		return entity;
 	}
+
 	
+	@GetMapping("/studentview")
+	public void StudentView(Model model, String sid) throws Exception {
+		logger.info("viewwwwwwwwwwwwwwwwwwww");
+		model.addAttribute("studentVO", studentService.view(sid));
+	}
 	
+	@PostMapping("/studentmodify")
+	public String StudentModify(StudentVO vo, RedirectAttributes rttr) throws Exception{
+		logger.info("Student Modify..............");
+		logger.info("Student vo : " + vo);
+		studentService.modify(vo);
+//		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+
 
 	@GetMapping("/teacherregister")
 	public void TeacherCreateGET() throws Exception{
@@ -283,9 +320,5 @@ public class FaculityController {
 		
 		return "success";
 	}
-	
-	
-	
 
-	
 }
