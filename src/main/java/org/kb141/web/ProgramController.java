@@ -142,6 +142,7 @@ public class ProgramController {
 	}
 	
 	
+	
 	@GetMapping("/categoryList/{category}")
 	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category){
 		
@@ -175,6 +176,10 @@ public class ProgramController {
 	@GetMapping("/modify")
 	public void modify(Integer pno, Model model) throws Exception {
 		logger.info("PNO : " + pno);
+//		model.addAttribute("classroomList", classroomservice.getClassroomList());
+//		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
+		model.addAttribute("currdata", service.view(pno));
+		
 	}
 	
 

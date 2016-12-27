@@ -44,13 +44,15 @@
 			
 				<div class="form-group">
 				  <label class=" control-label" >과정명</label>  
-				  <input id="pcourse" name="pcourse" type="text" placeholder="과정명" value="TEST 74" class="form-control">
+				  <input id="pcourse" name="pcourse" type="text" placeholder="과정명" value="TEST 74 2" class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
 				<div class="form-group">
 				  <label class=" control-label" >과정 설명</label>  
-				  <input id="pcontent" name="pcontent" type="text" placeholder="과정 설명" value="TEST CONTENT 74" class="form-control">
+<!-- 				  <input id="pcontent" name="pcontent" type="text" placeholder="과정 설명" value="TEST CONTENT 74" class="form-control"> -->
+					<textarea rows="10" name="pcontent" id="pcontent" class="form-control" value="TEST CONTENT 74 2"></textarea>				  
+				  
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
@@ -121,7 +123,7 @@
 				
 				<div class="form-group">
 				  <label class=" control-label" for="persongroupid" >Person Group ID</label>  
-				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" readonly="readonly" class="form-control" value="remember_0416" required="">
+				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" readonly="readonly" class="form-control" value="remember_04163" required="">
 				   <span class="help-block">자동으로 생성됩니다.</span>  
 				</div>
 				
@@ -158,8 +160,10 @@ $(document).ready(function () {
 		});
 	}
 	
+
+	
 	function setJoinAllList() {
-		$.getJSON("../faculity/joinAlllist", function(data){
+		$.getJSON("../faculity/joinalllist", function(data){
 			console.log(data);
 			
 			var str = "";
@@ -178,6 +182,9 @@ $(document).ready(function () {
 	
 	$("#btnRegister").on("click", function () {
 		event.preventDefault();
+		
+		$("#pcontent").val($("#pcontent").val().replace(/\n/g, "<br>"));
+		
 		$("#inputForm").submit();		
 		
 	});

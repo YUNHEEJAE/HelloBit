@@ -33,7 +33,7 @@
 				<div class="form-group">
 				  <label class=" control-label" >종류</label>  
 				  <select id="category" name="category" class="form-control">
-				      <option value="beginner">SW 입문자를 위한 과정</option>
+				      <option value="beginner" >SW 입문자를 위한 과정</option>
 				      <option value="java">Java Web 개발자 과정</option>
 				      <option value="windows">C / Windows</option>
 				      <option value="bigdata">Big Data 입문</option>
@@ -48,9 +48,12 @@
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
+				
+				
 				<div class="form-group">
 				  <label class=" control-label" >과정 설명</label>  
-				  <input id="pcontent" name="pcontent" type="text" placeholder="과정 설명" value="TEST CONTENT 74" class="form-control">
+<%-- 				  <input id="pcontent" name="pcontent" type="text" placeholder="과정 설명" value="${currdata.pcontent}" class="form-control" style="height: 300px" wrap="virtual"> --%>
+						<textarea rows="10" name="pcontent" id="pcontent" class="form-control" value="TEST CONTENT 74 2"></textarea>		
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
@@ -59,6 +62,9 @@
 				<div class="form-group">
 				  <label class=" control-label" >교실명</label>  
 				  <select id="roomname" name="roomname" class="form-control">
+<%-- 				  		<c:forEach items= "${classroomList }" var="vo" > --%>
+<%-- 				  			<option value="${vo.roomname }">${vo.roomname } ${vo.rempty}</option>					  		 --%>
+<%-- 				  		</c:forEach> --%>
 				    </select>
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
@@ -77,6 +83,9 @@
 					<div>
 						<div class="col-md-10">
 					     	<select id="curriculum" name="curriculum" class="form-control">
+<%-- 					     		<c:forEach items= "${joinAllList }" var="vo" > --%>
+<%-- 						  			<option value="${vo.tsno }">${vo.subname } - ${vo.subgrade} - ${vo.tname}</option> --%>
+<%-- 					  			</c:forEach> --%>
 					    	</select>
 					    </div>
 					    
@@ -126,7 +135,7 @@
 				</div>
 				
 				</form>
-				<button type="button" class="btn btn-success" id="btnRegister">Register</button>
+				<button type="button" class="btn btn-success" id="btnModify">Modify</button>
 				<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
 				
 				
@@ -172,8 +181,28 @@ $(document).ready(function () {
 	}
 	
 	
-	function setTeacherSubjectTable(pno) {
-		$.getJSON("../faculity/teachersubjectlist/" + pno, function (data) {
+	// 수정 위해 초기 값 세팅하기.
+	(function(){
+		
+		console.log("this is running");
+
+		$("#category > option[value=${currdata.category}]").attr("selected", "selected");
+		
+		$("#pcourse").attr("value", "${currdata.pcourse}");
+		
+		var currPcontent = "${currdata.pcontent}";
+		
+		$("#pcontent").val(currPcontent.replace(/<br>/gi, "\r\n"));
+		
+		$("#roomname > option[value=${currdata.roomname}]").attr("selected", "selected");
+		
+		$("#torder").attr("value", ${currdata.torder});
+		$("#maximum").attr("value", ${currdata.maximum});
+		$("#persongroupid").attr("value", "${currdata.persongroupid}");
+		
+		
+		
+		$.getJSON("../faculity/teachersubjectlist/${param.pno}" , function (data) {
 			
 			var str = "";
 			$(data).each(function() {
@@ -183,17 +212,18 @@ $(document).ready(function () {
 			
 			$("#addedCurriculum").append(str);
 		});
-	}
+		
+		
+	})();
+	
 	
 	
 	setClassroomList();
 	
 	setJoinAllList();
 	
-	setTeacherSubjectTable(${param.pno});
 	
-	
-	$("#btnRegister").on("click", function () {
+	$("#btnModify").on("click", function () {
 		event.preventDefault();
 		$("#inputForm").submit();		
 		
