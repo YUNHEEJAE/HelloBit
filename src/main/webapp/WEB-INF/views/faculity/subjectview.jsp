@@ -36,40 +36,28 @@
 
 
 					<div class="form-group">
-						<label class=" control-label">학생 아이디</label> <input id="pcourse" name="sid" type="text" placeholder="학생아이디"
-							value="${studentVO.sid}" class="form-control"
-							readonly="readonly"> <span class="help-block">It
-							identify how many days it takes for deliver</span>
+						<label class=" control-label">과목 이름</label> <input id="pcourse" name="subname" type="text" placeholder="과목이름"
+							value="${subjectVO.subname}" class="form-control"
+							readonly="readonly">
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">학생 이름</label> <input id="pcourse"
-							name="sname" type="text" placeholder="학생이름"
-							value="${studentVO.sname}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+						<label class=" control-label">과목 등급</label> <input id="pcourse"
+							name="subgrade" type="text" placeholder="과목등급"
+							value="${subjectVO.subgrade}" class="form-control" readonly="">
 					</div>
 
-					<div class="form-group">
-						<label class=" control-label">학생 비밀번호</label> <input
-							id="pcontent" name="spw" type="text" placeholder="학생비밀번호"
-							value="${studentVO.spw}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
-					</div>
+				 <input
+							id="pcontent" name="subno" type="hidden" placeholder="과목번호"
+							value="${subjectVO.subno}" class="form-control" readonly="">
+		
 
-					<div class="form-group">
-						<label class=" control-label">학생 이메일</label> <input id="pcontent"
-							name="semail" type="text" placeholder="학생이메일"
-							value="${studentVO.semail}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
-					</div>
+		
 
+					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
 					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
 					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
-					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 				</form>
 
 			</div>
@@ -93,18 +81,19 @@
 			console.log("변경잼");
 			$("#btnSuccess").show();
 			$("#btnModify").hide();
+			$("#btnRemove").hide();
 			$("#inputForm div input").attr("readonly", false).submit();
 			$("#pcourse").attr("readonly", true).submit();
 		});
 
 		$("#btnSuccess").on("click", function() {
-			$("#inputForm").attr("action", "studentmodify").submit();
+			$("#inputForm").attr("action", "teachermodify").submit();
 		});
 
 		$("#btnRemove").on("click", function() {
 			if (confirm("정말삭제하시겠습니까?") == true) {
 
-				$("#inputForm").attr("action", "studentRemove").submit();
+				$("#inputForm").attr("action", "teacherremove").submit();
 			} else {
 				return;
 			}

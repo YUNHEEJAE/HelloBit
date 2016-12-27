@@ -433,7 +433,5 @@ public class FaculityController {
 		return "redirect:list";
 	}
 
-	
-
 
 }

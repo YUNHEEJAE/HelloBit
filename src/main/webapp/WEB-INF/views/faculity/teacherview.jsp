@@ -38,32 +38,27 @@
 					<div class="form-group">
 						<label class=" control-label">교사 아이디</label> <input id="pcourse" name="tid" type="text" placeholder="교사아이디"
 							value="${teacherVO.tid}" class="form-control"
-							readonly="readonly"> <span class="help-block">It
-							identify how many days it takes for deliver</span>
+							readonly="readonly">
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label">교사 이름</label> <input id="pcourse"
 							name="tname" type="text" placeholder="교사이름"
 							value="${teacherVO.tname}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label">교사 비밀번호</label> <input
 							id="pcontent" name="tpw" type="text" placeholder="교사비밀번호"
 							value="${teacherVO.tpw}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
 					</div>
 
 		
 
+					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
 					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
 					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
-					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 				</form>
 
 			</div>
