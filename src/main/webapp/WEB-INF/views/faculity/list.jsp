@@ -32,10 +32,7 @@
 		<div class="row">
 				<form class="createBtn">
 				<input type="submit" class='btn btn-block btn-primary' value='create' id='createBtn'></form>
-				<form class="updateBtn">
-				<input type="submit" class='btn btn-block btn-primary' value='update' id='updateBtn'></form>
-				<form class="deleteBtn">
-				<input type="submit" class='btn btn-block btn-primary' value='delete' id='deleteBtn'></form>
+
 				
 			<div class="col-sm-9 col-md-12">
 				<!-- Nav tabs -->
@@ -108,25 +105,25 @@ $(document).ready(function() {
 							
 							switch(targetCategory){
 								
-							case 'student' : 	str += "<a href=" + this.sid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'student' : 	str += "<a href=studentView?sid=" + this.sid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.sname+"</span>"
 							+ "<span class=''>"+this.semail+"</span>"
 							break;
 							
-							case 'teacher' : 	str += "<a href=" + this.tid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'teacher' : 	str += "<a href=teacherView?tid=" + this.tid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
 							break;
 							
-							case 'faculity' : 	str += "<a href=" + this.fid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'faculity' : 	str += "<a href=faculityView?fid=" + this.fid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.fname+"</span>"
 							break;
 							
-							case 'classroom' : 	str += "<a href=" + this.roomname +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'classroom' : 	str += "<a href=classroomView?roomname=" + this.roomname +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.roomname+"</span>"
 							+ "<span class=''>"+this.rempty+"</span>"
 							break;
 							
-							case 'subject' : 	str += "<a href=" + this.subno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'subject' : 	str += "<a href=view?subno=" + this.subno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.subno+"</span>"
 							+ "<span class=''>"+this.subname+"</span>"
 							+ "<span class=''>"+this.subgrade+"</span>"

@@ -223,7 +223,22 @@ public class FaculityController {
 		return entity;
 	}
 	
+	@GetMapping("/studentView")
+	public void StudentView(Model model, String sid) throws Exception {
+		logger.info("viewwwwwwwwwwwwwwwwwwww");
+		model.addAttribute("studentVO", studentService.view(sid));
+	}
 	
+	@PostMapping("/studentModify")
+	public String StudentModify(StudentVO vo,RedirectAttributes rttr) throws Exception{
+		logger.info("Student Modify..............");
+		logger.info("Student vo : " + vo);
+		studentService.modify(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+
 
 	@GetMapping("/teacherregister")
 	public void TeacherCreateGET() throws Exception{
