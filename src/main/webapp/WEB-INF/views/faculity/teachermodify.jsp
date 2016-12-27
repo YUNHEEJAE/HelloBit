@@ -37,10 +37,7 @@
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 			
-			
-		
 				  <input id="pcourse" name="tid" type="hidden" placeholder="강사아이디" value="user01" class="form-control">
-				
 				
 				<div class="form-group">
 				  <label class=" control-label" >강사비밀번호</label>  
@@ -73,6 +70,7 @@ $(document).ready(function () {
 		$("#inputForm").submit();		
 		
 	});
+	
 		
 });
 

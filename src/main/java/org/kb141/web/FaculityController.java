@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
-import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -27,8 +26,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -208,12 +207,26 @@ public class FaculityController {
 		return "success";
 	}
 	
-	@GetMapping("/teachermodify/{tid}")
-	public void TeacherModifyGET(String tid, Model model) throws Exception{
-		logger.info("Teacher Modify ......");
-		
-		
+//	@GetMapping("/teachermodify/{tid}")
+//	public ResponseEntity<TeacherVO> TeacherModifyGET(@PathVariable("tid") String tid) throws Exception{
+//		logger.info("Teacher Modify ......");
+//		
+//		ResponseEntity<TeacherVO> entity = null;
+//		try{
+//			entity = new ResponseEntity<TeacherVO>(teacherService.view(tid),HttpStatus.OK);
+//		}catch(Exception e){
+//			e.printStackTrace();
+//			entity = new ResponseEntity<TeacherVO>(HttpStatus.BAD_REQUEST);
+//		}
+//		
+//		return entity;
+//	}
+	
+	@GetMapping("/teachermodify")
+	public void TeacherModifyGET() throws Exception{
+		logger.info("Teacher Modify Page .........");
 	}
+	
 	
 	@PostMapping("/teachermodify")
 	public String TeacherModifyPOST(TeacherVO vo) throws Exception{
