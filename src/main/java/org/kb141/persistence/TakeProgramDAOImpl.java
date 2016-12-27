@@ -54,4 +54,14 @@ public class TakeProgramDAOImpl implements TakeProgramDAO {
 		
 	}
 
+	@Override
+	public Integer stateCount(Integer pno) throws Exception {		
+		return sqlsession.selectOne(NAME + "stateCount" , pno);
+	}
+
+	@Override
+	public List<TakeProgramVO> stateList(TakeProgramVO vo) throws Exception {	
+		return sqlsession.selectList(NAME + "stateList",vo);
+	}
+
 }

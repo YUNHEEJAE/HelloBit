@@ -15,5 +15,9 @@ public interface CurriculumService {
 	public void remove(Integer uno);
 	
 	public List<CurriculumVO> getAllCurriculumList();
+	
+	public void deletePnoList(Integer pno);
+	
+	public void reCreate(CurriculumVO vo);
 
 }

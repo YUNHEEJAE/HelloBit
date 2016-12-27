@@ -70,6 +70,26 @@ public class CurriculumServiceImpl implements CurriculumService {
 		}
 		return result;
 	}
+
+	@Override
+	public void deletePnoList(Integer pno) {
+		try {
+			curriculumDAO.deletePnoList(pno);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void reCreate(CurriculumVO vo) {
+		try {
+			curriculumDAO.reCreate(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 

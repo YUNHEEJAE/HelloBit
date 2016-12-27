@@ -5,7 +5,7 @@
 
 <mapper namespace="org.kb141.mapper.CurriculumMapper">
 	<insert id="create" parameterType="CurriculumVO">
-		insert into tbl_curriculum(pno, tsno) values (#{pno}, #{tsno})
+		insert into tbl_curriculum(pno, tsno) values ( (select max(pno) from tbl_program) , #{tsno})
 	</insert>
 	
 	<select id="read" resultType="CurriculumVO">
@@ -27,6 +27,14 @@
 	<select id="list" resultType="CurriculumVO">
 		select * from tbl_curriculum where pno = #{pno}
 	</select>
+	
+	<delete id="deletePnoList">
+		delete from tbl_curriculum where pno = #{pno}
+	</delete>
+	
+	<insert id="reCreate">
+		insert into tbl_curriculum(pno, tsno) values (#{pno} , #{tsno})
+	</insert>
 	
  
 </mapper>

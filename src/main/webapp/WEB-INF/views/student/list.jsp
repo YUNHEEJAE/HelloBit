@@ -14,5 +14,20 @@
 			<p>${StudentVO.sname}  ${StudentVO.sid}  ${StudentVO.spw}</p>
 		</c:forEach>
 	</div>
+	
+	
+	<script>
+	
+		var result = '${result}';
+	
+		if(result == "success"){
+			alert("가입완료!");
+			
+		}
+	
+	
+	
+	</script>
+	
 </body>
 </html>

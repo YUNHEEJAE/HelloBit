@@ -61,7 +61,6 @@ public class FaculityServiceImpl implements FaculityService {
 	public List<FaculityVO> getFaculityList() {
 
 		List<FaculityVO> result = null;
-
 		try {
 			result = FaculityDAO.getList();
 		} catch (Exception e) {

@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.ImageVO;
 import org.kb141.domain.StudentVO;
+import org.kb141.persistence.ImageDAO;
 import org.kb141.persistence.StudentDAO;
 import org.kb141.persistence.TakeProgramDAO;
 import org.springframework.stereotype.Service;
@@ -18,12 +20,25 @@ public class StudentServiceImpl implements StudentService {
 	private StudentDAO studentDAO;
 	
 	@Inject
+	private ImageDAO imageDAO;
+	
+	@Inject
 	private TakeProgramDAO takeprogramDAO;
 		
 	@Override
-	public void register(StudentVO vo) {
+	public void register(StudentVO vo , String fileName) {
+		
+		String sid = vo.getSid();
+		
+		ImageVO ivo = new ImageVO();
+		
+		ivo.setSid(sid);
+		ivo.setFilename(fileName);
+		
 		try {
 			studentDAO.create(vo);
+			imageDAO.create(ivo);
+			
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -46,9 +61,11 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void modify(StudentVO vo) {
-		try {
+		System.out.println(vo);
+		try{
+			System.out.println("Student Modify Execute............");
 			studentDAO.update(vo);
-		} catch (Exception e){
+		}catch (Exception e){
 			e.printStackTrace();
 		}
 	}

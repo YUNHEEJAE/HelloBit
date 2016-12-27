@@ -1,6 +1,8 @@
 package org.kb141.persistence;
 
 import java.util.List;
+
+import org.kb141.domain.JoinTeacherSubjectVO;
 // IH
 import org.kb141.domain.TeacherSubjectVO;
 
@@ -15,5 +17,7 @@ public interface TeacherSubjectDAO {
 	public void delete(Integer tsno) throws Exception;
 	
 	public List<TeacherSubjectVO> allList() throws Exception;
+	
+
 	
 }

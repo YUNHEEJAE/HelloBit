@@ -1,0 +1,21 @@
+package org.kb141.web;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/front")
+public class FrontController {
+
+	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
+
+	
+	@GetMapping("/frontend")
+	public void gotofrontend() throws Exception{
+		logger.info("frontend  start .......");
+	}
+	
+}

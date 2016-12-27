@@ -1,6 +1,8 @@
 package org.kb141.web;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,6 +13,8 @@ import org.kb141.domain.ProgramVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.CurriculumService;
 import org.kb141.service.ProgramService;
+import org.kb141.service.TakeProgramService;
+import org.kb141.service.TeacherSubjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -57,11 +61,6 @@ public class ProgramController {
 		model.addAttribute("getclassroomlist", classroomservice.getClassroomList());
 		return list;
 	}
-	
-	
-	
-	
-	
 	
 	
 	
@@ -116,9 +115,36 @@ public class ProgramController {
 
 		return entity;
 	}
+
+	
+
+	@Inject
+	private TakeProgramService takeprogramService;
+	
+	
+
+
+	
+	@GetMapping("/view")
+	public void viewProgram(Integer pno , Model model)throws Exception{
+		
+		logger.info("view called .............");
+		
+
+		model.addAttribute("view" , service.view(pno));
+
+		model.addAttribute("joinList", service.getTeacherSubjectList(pno));
+		
+		model.addAttribute("stateCount" , takeprogramService.getstateTotal(pno));
+		
+		       
+	
+	}
+	
+	
 	
 	@GetMapping("/categoryList/{category}")
-	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category) {
+	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category){
 		
 		ResponseEntity<List<ProgramVO>> entity = null;
 		try {
@@ -127,9 +153,46 @@ public class ProgramController {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<ProgramVO>>(HttpStatus.BAD_REQUEST);
 		}
-
 		return entity;
+	}
+	
+	@GetMapping("/register")
+	public void register(Model model) throws Exception {
+		logger.info("Program Register Called....");
+		model.addAttribute("classroomList", classroomservice.getClassroomList());
+		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
 		
 	}
+	
+	@PostMapping("/register")
+	public String registerPost(ProgramVO vo, String curriculums) throws Exception {
+		logger.info("Program Register Post Called....");
+		logger.info("VO : " + vo);
+		logger.info("Curri " + curriculums);
+		service.register(vo, curriculums);
+		return "success";
+	}
+	
+	@GetMapping("/modify")
+	public void modify(Integer pno, Model model) throws Exception {
+		logger.info("PNO : " + pno);
+//		model.addAttribute("classroomList", classroomservice.getClassroomList());
+//		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
+		model.addAttribute("currdata", service.view(pno));
+		
+	}
+	
+	@PostMapping("/modify")
+	public String modifyPost(ProgramVO vo, String curriculums) throws Exception {
+		logger.info("Program Modify Post Called....");
+		logger.info("VO : " + vo);
+		logger.info("Curri " + curriculums);
+		
+		service.modify(vo, curriculums);
+		
+		return "success";
+	}
+	
 
+	
 }
