@@ -113,7 +113,7 @@ $(document).ready(function() {
 							+ "<span class=''>"+this.semail+"</span>"
 							break;
 							
-							case 'teacher' : 	str += "<a href=" + this.tid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'teacher' : 	str += "<a href= teacherview?tid="+this.tid+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
 							break;
 							
@@ -157,7 +157,7 @@ $(document).ready(function() {
 			
 			console.log(domain);
 			
-			$(".createBtn").attr("action",domain+"create").submit();			
+			$(".createBtn").attr("action",domain+"register").submit();			
 			
 		}) ;
  		
@@ -181,7 +181,14 @@ $(document).ready(function() {
 			
 			$(".deleteBtn").attr("action",domain+"delete").submit();			
 			
-		}) ;
+		});
+ 		
+ 		$(".programlist span").on("click", function(event){
+ 			event.preventDefault();
+ 			console.log(event);
+ 		});
+ 		
+ 		
 });	
 </script>
 
