@@ -26,6 +26,7 @@
 		</ol>
 		</section>
 
+
 		<!-- Main content -->
 		<section class="content">
 		<hr />
@@ -113,20 +114,21 @@ $(document).ready(function() {
 							
 							switch(targetCategory){
 								
-							case 'student' : 	str += "<a href=studentView?sid=" + this.sid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'student' : 	str += "<a href=studentview?sid=" + this.sid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.sname+"</span>"
 							+ "<span class=''>"+this.semail+"</span>"
 							break;
 							
-							case 'teacher' : 	str += "<a href=teacherView?tid=" + this.tid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+
+							case 'teacher' : 	str += "<a href= teacherview?tid="+this.tid+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
 							break;
 							
-							case 'faculity' : 	str += "<a href=faculityView?fid=" + this.fid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'faculity' : 	str += "<a href=faculityview?fid=" + this.fid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.fname+"</span>"
 							break;
 							
-							case 'classroom' : 	str += "<a href=classroomView?roomname=" + this.roomname +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'classroom' : 	str += "<a href=classroomview?roomname=" + this.roomname +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.roomname+"</span>"
 							+ "<span class=''>"+this.rempty+"</span>"
 							break;
@@ -170,6 +172,35 @@ $(document).ready(function() {
 			$(".createBtn").attr("action",domain+"register").submit();			
 			
 		}) ;
+ 		
+
+ 		$("#updateBtn").on("click",function(event){
+			
+			console.log(event);
+			var domain = $(".saveid").val();
+			
+			console.log(domain);
+			
+			$(".updateBtn").attr("action",domain+"modify").submit();			
+			
+		}) ;
+ 		
+ 		$("#deleteBtn").on("click",function(event){
+			
+			console.log(event);
+			var domain = $(".saveid").val();
+			
+			console.log(domain);
+			
+			$(".deleteBtn").attr("action",domain+"remove").submit();			
+			
+		});
+ 		
+ 		$(".programlist span").on("click", function(event){
+ 			event.preventDefault();
+ 			console.log(event);
+ 		});
+ 		
  		
 
 });	

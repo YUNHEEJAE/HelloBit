@@ -1,4 +1,3 @@
-
 package org.kb141.web;
 import java.util.Arrays;
 import java.util.List;
@@ -32,14 +31,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/faculity")
 public class FaculityController {
 
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
   
@@ -262,18 +262,18 @@ public class FaculityController {
 	}
 
 	
-	@GetMapping("/studentView")
+	@GetMapping("/studentview")
 	public void StudentView(Model model, String sid) throws Exception {
 		logger.info("viewwwwwwwwwwwwwwwwwwww");
 		model.addAttribute("studentVO", studentService.view(sid));
 	}
 	
-	@PostMapping("/studentModify")
-	public String StudentModify(StudentVO vo,RedirectAttributes rttr) throws Exception{
+	@PostMapping("/studentmodify")
+	public String StudentModify(StudentVO vo, RedirectAttributes rttr) throws Exception{
 		logger.info("Student Modify..............");
 		logger.info("Student vo : " + vo);
 		studentService.modify(vo);
-		rttr.addFlashAttribute("result", "success");
+//		rttr.addFlashAttribute("result", "success");
 		return "redirect:list";
 	}
 	
@@ -299,6 +299,13 @@ public class FaculityController {
 		return "success";
 	}
 	
+	@GetMapping("/teacherview")
+	public void TeacherViewGET(@RequestParam("tid") String tid, Model model) throws Exception{
+			logger.info("Teacher view...........");
+			logger.info("tid : " + tid);
+			model.addAttribute("view", teacherService.view(tid));
+	}
+	
 //	@GetMapping("/teachermodify/{tid}")
 //	public ResponseEntity<TeacherVO> TeacherModifyGET(@PathVariable("tid") String tid) throws Exception{
 //		logger.info("Teacher Modify ......");
@@ -310,7 +317,6 @@ public class FaculityController {
 //			e.printStackTrace();
 //			entity = new ResponseEntity<TeacherVO>(HttpStatus.BAD_REQUEST);
 //		}
-//		
 //		return entity;
 //	}
 	
@@ -335,8 +341,6 @@ public class FaculityController {
 	
 	@PostMapping("/faculityregister")
 	public String FaculityRegisterPOST(FaculityVO vo) throws Exception{
-		
-		
 		
 		return "success";
 	}

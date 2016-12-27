@@ -43,6 +43,10 @@ public class StudentDAOTest {
 		obj.setSid("ljp");
 		obj.setSpw("ljp");
 		obj.setSemail("ljp@gmail.com");
+		obj.setSid("uid");
+		obj.setSname("uid");
+		obj.setSpw("uid");
+		obj.setSemail("uid@gmail.com");
 		dao.update(obj);
 	}
 	
@@ -83,10 +87,17 @@ public class StudentDAOTest {
 	public void modifyTest() throws Exception {
 		
 		StudentVO obj = new StudentVO();
+
 		obj.setSname("asdasd");
 		obj.setSid("ljp");
 		obj.setSpw("sasdasdasdasdasdih");
 		obj.setSemail("123123123123@gmail.com");
+
+		obj.setSid("uid");
+		obj.setSname("uiduid");
+		obj.setSpw("uiduid");
+		obj.setSemail("uiduid@gmail.com");
+
 		
 		service.modify(obj);
 		

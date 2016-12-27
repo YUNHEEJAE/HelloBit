@@ -15,8 +15,7 @@
 	</select>
 
 	<update id="update" parameterType="StudentVO">
-		update tbl_student set sname = #{sname},  spw = #{spw}, 
-		semail = #{semail} where sid = #{sid}
+		update tbl_student set sname = #{sname}, spw = #{spw}, semail = #{semail} where sid = #{sid}
 	</update>
 	
 	<delete id="delete">
