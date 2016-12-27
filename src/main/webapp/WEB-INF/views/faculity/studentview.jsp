@@ -86,6 +86,7 @@
 	$(document).ready(function() {
 		$("#btnSuccess").hide();
 		
+		
 		$("#btnModify").on("click", function() {
 			console.log("변경잼");
 			$("#btnSuccess").show();

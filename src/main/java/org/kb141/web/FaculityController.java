@@ -38,6 +38,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FaculityController {
 
 	
+	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
   
 	@Inject
