@@ -36,24 +36,24 @@
 
 
 					<div class="form-group">
-						<label class=" control-label">교사 아이디</label> <input id="pcourse" name="tid" type="text" placeholder="교사아이디"
-							value="${teacherVO.tid}" class="form-control"
+						<label class=" control-label">번호</label> <input id="pcourse" name="subno" type="text" placeholder="번호"
+							value="${subjectVO.subno}" class="form-control"
 							readonly="readonly"> <span class="help-block">It
 							identify how many days it takes for deliver</span>
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">교사 이름</label> <input id="pcourse"
-							name="tname" type="text" placeholder="교사이름"
-							value="${teacherVO.tname}" class="form-control" readonly="">
+						<label class=" control-label">과목명</label> <input id="pcourse"
+							name="subname" type="text" placeholder="과목명"
+							value="${subjectVO.subname}" class="form-control" readonly="">
 						<span class="help-block">It identify how many days it takes
 							for deliver</span>
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">교사 비밀번호</label> <input
-							id="pcontent" name="tpw" type="text" placeholder="교사비밀번호"
-							value="${teacherVO.tpw}" class="form-control" readonly="">
+						<label class=" control-label">등급</label> <input
+							id="pcontent" name="subgrade" type="text" placeholder="등급"
+							value="${faculityVO.subgrade}" class="form-control" readonly="">
 						<span class="help-block">It identify how many days it takes
 							for deliver</span>
 					</div>
@@ -93,13 +93,13 @@
 		});
 
 		$("#btnSuccess").on("click", function() {
-			$("#inputForm").attr("action", "teachermodify").submit();
+			$("#inputForm").attr("action", "subjectmodify").submit();
 		});
 
 		$("#btnRemove").on("click", function() {
 			if (confirm("정말삭제하시겠습니까?") == true) {
 
-				$("#inputForm").attr("action", "teacherremove").submit();
+				$("#inputForm").attr("action", "subjectremove").submit();
 			} else {
 				return;
 			}

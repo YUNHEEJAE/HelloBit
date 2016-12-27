@@ -66,10 +66,10 @@
 							for deliver</span>
 					</div>
 
+					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
 					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
 					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
-					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 				</form>
 
 			</div>
@@ -93,6 +93,7 @@
 			console.log("변경잼");
 			$("#btnSuccess").show();
 			$("#btnModify").hide();
+			$("#btnRemove").hide();
 			$("#inputForm div input").attr("readonly", false).submit();
 			$("#pcourse").attr("readonly", true).submit();
 		});

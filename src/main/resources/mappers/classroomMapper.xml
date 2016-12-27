@@ -15,7 +15,7 @@
 	</select>
 
 	<update id="update" parameterType="ClassroomVO">
-		update tbl_classroom set empty = #{empty} where roomname = #{roomname}
+		update tbl_classroom set rempty = #{rempty} where roomname = #{roomname}
 	</update>
 
 	<delete id="delete" parameterType="String">
