@@ -1,9 +1,7 @@
 package org.kb141.web;
-
+import java.util.Arrays;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
@@ -26,10 +24,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/faculity")
@@ -155,15 +154,46 @@ public class FaculityController {
 		return entity;
 	}
 	
+	
 	@GetMapping("/takeprogramlist")
 	public void takeprogramlist() throws Exception{
 		logger.info("takeprogramlist LIST.....");
 	}
+	// 승인 상태 리스트 가져오기
 
-	@GetMapping("/statelist")
+	@GetMapping("/statelist") 
 	public @ResponseBody List<TakeProgramVO> getStateList(TakeProgramVO vo)throws Exception{
 		logger.info("pno :"+  vo);
 		return takeprogramService.getstateList(vo);	
+	}
+	
+	// 수강 승인
+	@PostMapping(value="/admission")
+	public String admissionEnrolment(String[] sid , Integer pno , RedirectAttributes rttr)throws Exception{
+		
+		logger.info("admission called....");
+		
+		logger.info("sid" + Arrays.toString(sid));
+		
+		logger.info("pno : " + pno);
+		
+		TakeProgramVO vo = new TakeProgramVO();
+		
+		for(int i = 0 ; i < sid.length ; i ++){
+			vo.setState(true);
+			vo.setSid(sid[i]);
+			vo.setPno(pno);
+		}
+		
+		takeprogramService.modify(vo);
+		
+		rttr.addFlashAttribute("result" , "success");
+		
+		return "redirect:takeprogramlist";
+		
+		
+		
+
 	}
 	
 	//  모든 Join한 강사이름, 과목, 등급 리스트 
@@ -251,9 +281,6 @@ public class FaculityController {
 	
 	
 	
-	
-	
-	
-	
+
 	
 }

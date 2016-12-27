@@ -30,6 +30,13 @@
 		<section class="content">
 		<hr />
 		<div class="row">
+				<form class="createBtn">
+				<input type="submit" class='btn btn-block btn-primary' value='create' id='createBtn'></form>
+				<form class="updateBtn">
+				<input type="submit" class='btn btn-block btn-primary' value='update' id='updateBtn'></form>
+				<form class="deleteBtn">
+				<input type="submit" class='btn btn-block btn-primary' value='delete' id='deleteBtn'></form>
+				
 			<div class="col-sm-9 col-md-12">
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs subjectTab">
@@ -44,7 +51,11 @@
 							class="glyphicon glyphicon-th-list"></span> Classroom</a></li>
 					<li><a href="#subject" data-toggle="tab" name='subject'><span
 							class="glyphicon glyphicon-th-list"></span> Subject</a></li>
+					
+					<input type='hidden' class='saveid'>
+											
 				</ul>
+
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane programlist active in" id="java" ></div>
@@ -82,7 +93,7 @@ $(document).ready(function() {
 		}
 
 		getProgramList();
-
+		
 		function getCategoryList(targetCategory) {
 			console.log("getCategoryList is called..")
 			console.log(targetCategory);
@@ -124,6 +135,8 @@ $(document).ready(function() {
 
 					});
 					$("#"+targetCategory).html(str);
+					$(".saveid").attr("value",targetCategory);
+					console.log();
 				});
 			});
 		}
@@ -131,12 +144,45 @@ $(document).ready(function() {
 		getCategoryList("student");
 		
 		$(".subjectTab li").on("click", function(event) {
+			
 			console.log(event.target.name);
 			var targetCategory = event.target.name;
 			getCategoryList(targetCategory);
 		});
-
-});
+		
+ 		$("#createBtn").on("click",function(event){
+			
+			console.log(event);
+			var domain = $(".saveid").val();
+			
+			console.log(domain);
+			
+			$(".createBtn").attr("action",domain+"create").submit();			
+			
+		}) ;
+ 		
+ 		$("#updateBtn").on("click",function(event){
+			
+			console.log(event);
+			var domain = $(".saveid").val();
+			
+			console.log(domain);
+			
+			$(".updateBtn").attr("action",domain+"update").submit();			
+			
+		}) ;
+ 		
+ 		$("#deleteBtn").on("click",function(event){
+			
+			console.log(event);
+			var domain = $(".saveid").val();
+			
+			console.log(domain);
+			
+			$(".deleteBtn").attr("action",domain+"delete").submit();			
+			
+		}) ;
+});	
 </script>
 
 </html>
