@@ -274,7 +274,7 @@ public class FaculityController {
 		logger.info("Student Modify..............");
 		logger.info("Student vo : " + vo);
 		studentService.modify(vo);
-//		rttr.addFlashAttribute("result", "success");
+		rttr.addFlashAttribute("result", "success");
 		return "redirect:list";
 	}
 	
@@ -293,39 +293,20 @@ public class FaculityController {
 	}
 	
 	@PostMapping("/teacherregister")
-	public String TeacherRegisterPOST(TeacherVO vo)throws Exception{
+	public String TeacherRegisterPOST(TeacherVO vo,RedirectAttributes rttr)throws Exception{
 		logger.info("Teacher Register.........................");
 		logger.info("Teacher vo : " + vo);
 		teacherService.register(vo);
-		return "success";
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
 	}
 	
 	@GetMapping("/teacherview")
 	public void TeacherViewGET(@RequestParam("tid") String tid, Model model) throws Exception{
 			logger.info("Teacher view...........");
 			logger.info("tid : " + tid);
-			model.addAttribute("view", teacherService.view(tid));
+			model.addAttribute("teacherVO", teacherService.view(tid));
 	}
-	
-//	@GetMapping("/teachermodify/{tid}")
-//	public ResponseEntity<TeacherVO> TeacherModifyGET(@PathVariable("tid") String tid) throws Exception{
-//		logger.info("Teacher Modify ......");
-//		
-//		ResponseEntity<TeacherVO> entity = null;
-//		try{
-//			entity = new ResponseEntity<TeacherVO>(teacherService.view(tid),HttpStatus.OK);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//			entity = new ResponseEntity<TeacherVO>(HttpStatus.BAD_REQUEST);
-//		}
-//		return entity;
-//	}
-	
-	@GetMapping("/teachermodify")
-	public void TeacherModifyGET() throws Exception{
-		logger.info("Teacher Modify Page .........");
-	}
-	
 	
 	@PostMapping("/teachermodify")
 	public String TeacherModifyPOST(TeacherVO vo) throws Exception{
@@ -334,6 +315,23 @@ public class FaculityController {
 		teacherService.modify(vo);
 		return "success";
 	}
+
+	
+	@PostMapping("/teacherremove")
+	public String TeacherRemove(String tid,RedirectAttributes rttr) throws Exception{
+		logger.info("Teacher Remove..............");
+		logger.info("Teacher tid : " + tid);
+		teacherService.remove(tid);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+	@GetMapping("/teachermodify")
+	public void TeacherModifyGET() throws Exception{
+		logger.info("Teacher Modify Page .........");
+	}
+	
+
 	
 	@GetMapping("/faculityregister")
 	public void FaculityRegisterGET() throws Exception{
@@ -341,23 +339,47 @@ public class FaculityController {
 	}
 	
 	@PostMapping("/faculityregister")
-	public String FaculityRegisterPOST(FaculityVO vo) throws Exception{
-		
-		return "success";
+	public String FaculityRegisterPOST(FaculityVO vo, RedirectAttributes rttr) throws Exception{
+		logger.info("Faculity Register.........................");
+		logger.info("Faculity vo : " + vo);
+		faculityService.register(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/classroomregister")
 	public void ClassRoomCreateGET() throws Exception{
 		logger.info("Teacher Create.....");
 	}
 	
 	@PostMapping("/classroomregister")
-	public String ClassRoomRegisterPOST(ClassroomVO vo)throws Exception{
+	public String ClassRoomRegisterPOST(ClassroomVO vo,RedirectAttributes rttr)throws Exception{
 		logger.info("ClassRoom Register.........................");
 		logger.info("ClassRoom vo : " + vo);
 		classroomService.register(vo);
-		return "success";
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
 	}
 	
+	@GetMapping("/subjectregister")
+	public void SubjectCreateGET() throws Exception{
+		logger.info("Teacher Create.....");
+	}
 	
+	@PostMapping("/subjectregister")
+	public String SubjectRegisterPOST(SubjectVO vo,RedirectAttributes rttr)throws Exception{
+		logger.info("Subject Register.........................");
+		logger.info("Subject vo : " + vo);
+		subjectService.register(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
 
 }
