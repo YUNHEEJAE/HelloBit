@@ -75,21 +75,21 @@ public class ProgramVO {
 		this.category = category;
 	}
 
-	public void setOpendate(String opendate) throws Exception {
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date tempDate = format.parse(opendate);
-		this.opendate = tempDate;
-	}
+//	public void setOpendate(String opendate) throws Exception {
+//		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//		Date tempDate = format.parse(opendate);
+//		this.opendate = tempDate;
+//	}
 
 	public Date getClosedate() {
 		return closedate;
 	}
 
-	public void setClosedate(String closedate) throws Exception {
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date tempDate = format.parse(closedate);
-		this.closedate = tempDate;
-	}
+//	public void setClosedate(String closedate) throws Exception {
+//		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//		Date tempDate = format.parse(closedate);
+//		this.closedate = tempDate;
+//	}
 
 	public Integer getMaximum() {
 		return maximum;
@@ -107,6 +107,14 @@ public class ProgramVO {
 		this.pcontent = pcontent;
 	}
 
+	
+	public void setOpendate(Date opendate) {
+		this.opendate = opendate;
+	}
+
+	public void setClosedate(Date closedate) {
+		this.closedate = closedate;
+	}
 
 	@Override
 	public String toString() {
