@@ -161,6 +161,7 @@ $(document).ready(function () {
 	}
 	
 
+	
 	function setJoinAllList() {
 		$.getJSON("../faculity/joinalllist", function(data){
 			console.log(data);

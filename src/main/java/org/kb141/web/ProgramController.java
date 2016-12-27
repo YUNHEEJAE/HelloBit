@@ -142,6 +142,7 @@ public class ProgramController {
 	}
 	
 	
+	
 	@GetMapping("/categoryList/{category}")
 	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category){
 		

@@ -184,7 +184,6 @@ $(document).ready(function () {
 	// 수정 위해 초기 값 세팅하기.
 	(function(){
 		
-		
 		console.log("this is running");
 
 		$("#category > option[value=${currdata.category}]").attr("selected", "selected");
