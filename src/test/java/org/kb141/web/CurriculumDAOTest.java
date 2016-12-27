@@ -27,7 +27,7 @@ public class CurriculumDAOTest {
 		obj.setPno(3);
 		obj.setTsno(10);
 		dao.create(obj);
-	}
+	}	
 	
 	@Test
 	public void readTest() throws Exception {
