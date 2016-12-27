@@ -110,6 +110,7 @@ public class ProgramDAOTest {
 		vo.setCategory("bigdata");
 //		service.modify(vo,);
 	/*	service.modify(vo, tsnolist);*/
+//		service.modify(vo);
 	}
 
 	@Test

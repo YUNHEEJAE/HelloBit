@@ -365,13 +365,14 @@ public class FaculityController {
 	}
 	
 	@PostMapping("/teachermodify")
-	public String TeacherModifyPOST(TeacherVO vo) throws Exception{
+	public String TeacherModifyPOST(TeacherVO vo,RedirectAttributes rttr) throws Exception{
 		logger.info("Teacher Modify........");
 		logger.info("TeacherVO : " + vo);
 		teacherService.modify(vo);
-		return "success";
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
 	}
-
+	
 	
 	@PostMapping("/teacherremove")
 	public String TeacherRemove(String tid,RedirectAttributes rttr) throws Exception{
@@ -403,6 +404,32 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/faculityview")
+	public void FaculityViewGET(@RequestParam("fid") String fid, Model model) throws Exception{
+			logger.info("Faculity view...........");
+			logger.info("fid : " + fid);
+			model.addAttribute("faculityVO", faculityService.view(fid));
+	}
+	
+	@PostMapping("/faculitymodify")
+	public String FaculityModifyPOST(FaculityVO vo,RedirectAttributes rttr) throws Exception{
+		logger.info("Faculity Modify........");
+		logger.info("Faculity : " + vo);
+		faculityService.modify(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+	
+	@PostMapping("/faculityremove")
+	public String FaculityRemove(String fid,RedirectAttributes rttr) throws Exception{
+		logger.info("Faculity Remove..............");
+		logger.info("Faculity fid : " + fid);
+		faculityService.remove(fid);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
 	
 	@GetMapping("/classroomregister")
 	public void ClassRoomCreateGET() throws Exception{
@@ -418,6 +445,31 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/classroomview")
+	public void ClassroomViewGET(@RequestParam("roomname") String roomname, Model model) throws Exception{
+			logger.info("Classroom view...........");
+			logger.info("roomname : " + roomname);
+			model.addAttribute("classroomVO", classroomService.view(roomname));
+	}
+	
+	@PostMapping("/classroommodify")
+	public String ClassroomModifyPOST(ClassroomVO vo,RedirectAttributes rttr) throws Exception{
+		logger.info("Classroom Modify........");
+		logger.info("Classroom : " + vo);
+		classroomService.modify(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+	
+	@PostMapping("/classroomremove")
+	public String ClassroomRemove(String roomname,RedirectAttributes rttr) throws Exception{
+		logger.info("Classroom Remove..............");
+		logger.info("Classroom roomname : " + roomname);
+		classroomService.remove(roomname);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
 
 	@GetMapping("/subjectregister")
 	public void SubjectCreateGET() throws Exception{
@@ -432,6 +484,33 @@ public class FaculityController {
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:list";
 	}
+	
+	@GetMapping("/subjectview")
+	public void SubjectViewGET(@RequestParam("subno") Integer subno, Model model) throws Exception{
+			logger.info("subject view...........");
+			logger.info("subject : " + subno);
+			model.addAttribute("subjectVO", subjectService.view(subno));
+	}
+	
+	@PostMapping("/subjectmodify")
+	public String SubjectModifyPOST(SubjectVO vo,RedirectAttributes rttr) throws Exception{
+		logger.info("subject Modify........");
+		logger.info("subject : " + vo);
+		subjectService.modify(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+	
+	@PostMapping("/subjectremove")
+	public String SubjectRemove(Integer subno,RedirectAttributes rttr) throws Exception{
+		logger.info("subject Remove..............");
+		logger.info("subject subno : " + subno);
+		subjectService.remove(subno);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
 
 
 }
