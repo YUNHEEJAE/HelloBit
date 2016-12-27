@@ -32,21 +32,21 @@
 				<!-- Text input-->
 			
 			<div class="form-group">
-				  <label class=" control-label" >과정명</label>  
-				  <input id="pcourse" name="tname" type="text" placeholder="강사이름" value="이종필" class="form-control">
+				  <label class=" control-label" >강사이름</label>  
+				  <input id="pcourse" name="tname" type="text" placeholder="강사이름" class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 			
 			
 				<div class="form-group">
-				  <label class=" control-label" >과정명</label>  
-				  <input id="pcourse" name="tid" type="text" placeholder="강사아이디" value="user01" class="form-control">
+				  <label class=" control-label" >강사아이디</label>  
+				  <input id="pcourse" name="tid" type="text" placeholder="강사아이디"  class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
 				<div class="form-group">
-				  <label class=" control-label" >과정 설명</label>  
-				  <input id="pcontent" name="tpw" type="text" placeholder="강사비밀번호" value="user01" class="form-control">
+				  <label class=" control-label" >강사 비밀번호</label>  
+				  <input id="pcontent" name="tpw" type="text" placeholder="강사비밀번호"  class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
@@ -75,7 +75,12 @@ $(document).ready(function () {
 		$("#inputForm").submit();		
 		
 	});
-		
+	
+	$("#btnCancel").on("click", function() {
+		event.preventDefault();
+		history.back(1);
+	});	
+	
 });
 
 
