@@ -138,8 +138,8 @@ $(document).ready(function() {
 							break;
 							
 							case 'teachersubject' : str += "<a href=teachersubjectview?tsno=" + this.tsno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
-							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tid+"</span>"
-							+ "<span class=''>"+this.subno+"</span>"
+							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
+							+ "<span class=''>"+this.subname + " " + this.subgrade+"</span>"
 							break;
 							}
 

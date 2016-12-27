@@ -177,7 +177,7 @@ public class FaculityController {
 		}
 		return entity;
 	}
-	
+	 
 	@GetMapping("/teachersubjectlist")
 	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(){
 		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
