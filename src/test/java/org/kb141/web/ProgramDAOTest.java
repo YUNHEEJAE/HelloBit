@@ -109,6 +109,7 @@ public class ProgramDAOTest {
 		vo.setPersongroupid("test_test_19");
 		vo.setCategory("bigdata");
 //		service.modify(vo,);
+	/*	service.modify(vo, tsnolist);*/
 	}
 
 	@Test

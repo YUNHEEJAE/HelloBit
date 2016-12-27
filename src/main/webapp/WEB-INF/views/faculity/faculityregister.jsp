@@ -33,19 +33,20 @@
 			
 			<div class="form-group">
 				  <label class=" control-label" >교직원이름</label>  
-				  <input id="pcourse" name="fname" type="text" placeholder="교직원이름" value="피카츄" class="form-control">
+				  <input id="pcourse" name="fname" type="text" placeholder="교직원이름" class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 			
+			
 				<div class="form-group">
 				  <label class=" control-label" >교직원아이디</label>  
-				  <input id="pcourse" name="fid" type="text" placeholder="교직원아이디" value="user001" class="form-control">
+				  <input id="pcourse" name="fid" type="text" placeholder="교직원아이디"  class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
 				<div class="form-group">
-				  <label class=" control-label" >교직원비밀번호</label>  
-				  <input id="pcontent" name="fpw" type="text" placeholder="교직원비밀번호" value="user001" class="form-control">
+				  <label class=" control-label" >교직원 비밀번호</label>  
+				  <input id="pcontent" name="fpw" type="text" placeholder="교직원비밀번호"  class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
@@ -74,7 +75,12 @@ $(document).ready(function () {
 		$("#inputForm").submit();		
 		
 	});
-		
+	
+	$("#btnCancel").on("click", function() {
+		event.preventDefault();
+		history.back(1);
+	});	
+	
 });
 
 
