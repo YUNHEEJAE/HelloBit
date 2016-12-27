@@ -1,5 +1,7 @@
 package org.kb141.web;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -91,9 +93,15 @@ public class TeacherSubjectDAOTest {
 	
 	@Test
 	public void getTeacherSubjectList()throws Exception{
-		System.out.println(teacherSubjectService.getTeacherSubjectList());
+		
+		System.out.println(teacherSubjectService.getAllTeacherSubjectList());
+		
+		}
+		
+		
+		
 	}
 	
 	
 	
-}
+

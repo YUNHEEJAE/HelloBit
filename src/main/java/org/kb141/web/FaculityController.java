@@ -1,4 +1,3 @@
-
 package org.kb141.web;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +10,6 @@ import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
-import org.kb141.domain.TeacherSubjectVO;
 import org.kb141.domain.TeacherVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
@@ -153,20 +151,17 @@ public class FaculityController {
 	}
 	
 	//교수과목 리스트
-	@GetMapping("/teachersubjectlist")
-	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
-		ResponseEntity<List<TeacherSubjectVO>> entity = null;
-		TeacherVO teacherVO = new TeacherVO();
-		SubjectVO subjectVO = new SubjectVO();
-		
-		try {
-			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<List<TeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
+//	@GetMapping("/teachersubjectlist")
+//	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
+//		ResponseEntity<List<TeacherSubjectVO>> entity = null;
+//		try {
+//			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<List<TeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+//		}
+//		return entity;
+//	}
 	
 	
 	// 학생 리스트
@@ -181,15 +176,31 @@ public class FaculityController {
 		}
 		return entity;
 	}
-	
+	 
+	@GetMapping("/teachersubjectlist")
+	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(){
+		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
+		try{
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getAllTeacherSubjectList(), HttpStatus.OK);
+		}catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 	
 	@GetMapping("/takeprogramlist")
 	public void takeprogramlist() throws Exception{
 		logger.info("takeprogramlist LIST.....");
 	}
 
-	
-	
+	@GetMapping("/statelist") 
+	public @ResponseBody List<TakeProgramVO> getStateList(TakeProgramVO vo)throws Exception{
+		logger.info("pno :"+  vo);
+		return takeprogramService.getstateList(vo);	
+	}
+
 	
 	@GetMapping("/stateList/{state}&&{pno}") 
 	public ResponseEntity<List<TakeProgramVO>> getStateList(@PathVariable("state") String state , @PathVariable("pno") Integer pno)throws Exception{
@@ -417,10 +428,6 @@ public class FaculityController {
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:list";
 	}
-	
-	
-	
-	
 	
 	
 	@GetMapping("/classroomregister")

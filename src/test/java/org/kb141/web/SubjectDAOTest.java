@@ -65,7 +65,7 @@ public class SubjectDAOTest {
 
 	@Test
 	public void viewTest()throws Exception{
-		System.out.println(subjectService.view(42));
+		System.out.println(subjectService.view(4));
 	}
 	
 	@Test
