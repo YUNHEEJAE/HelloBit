@@ -1,4 +1,3 @@
-
 package org.kb141.web;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +10,7 @@ import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
+import org.kb141.domain.TeacherSubjectVO;
 import org.kb141.domain.TeacherVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
@@ -20,6 +20,7 @@ import org.kb141.service.StudentService;
 import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
+import org.kb141.service.TeacherSubjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -30,14 +31,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/faculity")
 public class FaculityController {
 
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
   
@@ -65,6 +67,8 @@ public class FaculityController {
 	@Inject
 	private ProgramService programService;
 	
+	@Inject
+	private TeacherSubjectService teacherSubjectService; 
 	
 	@GetMapping("/noticeBoard")
 	public void getNoticeBoard(Model model) throws Exception {
@@ -73,6 +77,7 @@ public class FaculityController {
 		model.addAttribute("list", noticeService.getNoticeList());
 	}
 
+	
 //	@GetMapping(value = "/faculitylist", produces = "application/json")
 //	@ResponseBody
 //	public List<FaculityVO> faculitylist(Model model) throws Exception {
@@ -142,7 +147,19 @@ public class FaculityController {
 		}
 		return entity;
 	}
-
+	
+	//교수과목 리스트
+	@GetMapping("/teachersubjectlist")
+	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
+		ResponseEntity<List<TeacherSubjectVO>> entity = null;
+		try {
+			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<TeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
 	
 	// 학생 리스트
@@ -246,22 +263,29 @@ public class FaculityController {
 	}
 
 	
-	@GetMapping("/studentView")
+	@GetMapping("/studentview")
 	public void StudentView(Model model, String sid) throws Exception {
 		logger.info("viewwwwwwwwwwwwwwwwwwww");
 		model.addAttribute("studentVO", studentService.view(sid));
 	}
 	
-	@PostMapping("/studentModify")
-	public String StudentModify(StudentVO vo,RedirectAttributes rttr) throws Exception{
+	@PostMapping("/studentmodify")
+	public String StudentModify(StudentVO vo, RedirectAttributes rttr) throws Exception{
 		logger.info("Student Modify..............");
 		logger.info("Student vo : " + vo);
 		studentService.modify(vo);
-		rttr.addFlashAttribute("result", "success");
+//		rttr.addFlashAttribute("result", "success");
 		return "redirect:list";
 	}
 	
-
+	@PostMapping("/studentRemove")
+	public String StudentRemove(String sid,RedirectAttributes rttr) throws Exception{
+		logger.info("Student Remove..............");
+		logger.info("Student sid : " + sid);
+		studentService.remove(sid);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
 
 	@GetMapping("/teacherregister")
 	public void TeacherCreateGET() throws Exception{
@@ -276,6 +300,13 @@ public class FaculityController {
 		return "success";
 	}
 	
+	@GetMapping("/teacherview")
+	public void TeacherViewGET(@RequestParam("tid") String tid, Model model) throws Exception{
+			logger.info("Teacher view...........");
+			logger.info("tid : " + tid);
+			model.addAttribute("view", teacherService.view(tid));
+	}
+	
 //	@GetMapping("/teachermodify/{tid}")
 //	public ResponseEntity<TeacherVO> TeacherModifyGET(@PathVariable("tid") String tid) throws Exception{
 //		logger.info("Teacher Modify ......");
@@ -287,7 +318,6 @@ public class FaculityController {
 //			e.printStackTrace();
 //			entity = new ResponseEntity<TeacherVO>(HttpStatus.BAD_REQUEST);
 //		}
-//		
 //		return entity;
 //	}
 	
@@ -313,9 +343,21 @@ public class FaculityController {
 	@PostMapping("/faculityregister")
 	public String FaculityRegisterPOST(FaculityVO vo) throws Exception{
 		
-		
-		
 		return "success";
 	}
+	@GetMapping("/classroomregister")
+	public void ClassRoomCreateGET() throws Exception{
+		logger.info("Teacher Create.....");
+	}
+	
+	@PostMapping("/classroomregister")
+	public String ClassRoomRegisterPOST(ClassroomVO vo)throws Exception{
+		logger.info("ClassRoom Register.........................");
+		logger.info("ClassRoom vo : " + vo);
+		classroomService.register(vo);
+		return "success";
+	}
+	
+	
 
 }

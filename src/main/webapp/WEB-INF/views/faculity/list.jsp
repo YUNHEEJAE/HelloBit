@@ -48,7 +48,8 @@
 							class="glyphicon glyphicon-th-list"></span> Classroom</a></li>
 					<li><a href="#subject" data-toggle="tab" name='subject'><span
 							class="glyphicon glyphicon-th-list"></span> Subject</a></li>
-					
+					<li><a href="#teachersubject" data-toggle="tab" name='teachersubject'><span
+							class="glyphicon glyphicon-th-list"></span> TeacherSubject</a></li>					
 					<input type='hidden' class='saveid'>
 											
 				</ul>
@@ -74,6 +75,8 @@
 
 
 $(document).ready(function() {
+	
+		
 		function getProgramList() {
 			$.getJSON("/web/program/allList", function(data) {
 				console.log(data);
@@ -94,6 +97,11 @@ $(document).ready(function() {
 		function getCategoryList(targetCategory) {
 			console.log("getCategoryList is called..")
 			console.log(targetCategory);
+			if(targetCategory == "student"){
+				$("#createBtn").hide();
+			}else{
+				$("#createBtn").show();
+			}
 			$(".programlist").attr("id", targetCategory);
 			
 			$.getJSON("/web/faculity/"+ targetCategory +"list/" , function(data) {
@@ -105,20 +113,21 @@ $(document).ready(function() {
 							
 							switch(targetCategory){
 								
-							case 'student' : 	str += "<a href=studentView?sid=" + this.sid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'student' : 	str += "<a href=studentview?sid=" + this.sid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.sname+"</span>"
 							+ "<span class=''>"+this.semail+"</span>"
 							break;
 							
-							case 'teacher' : 	str += "<a href=teacherView?tid=" + this.tid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+
+							case 'teacher' : 	str += "<a href= teacherview?tid="+this.tid+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
 							break;
 							
-							case 'faculity' : 	str += "<a href=faculityView?fid=" + this.fid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'faculity' : 	str += "<a href=faculityview?fid=" + this.fid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.fname+"</span>"
 							break;
 							
-							case 'classroom' : 	str += "<a href=classroomView?roomname=" + this.roomname +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'classroom' : 	str += "<a href=classroomview?roomname=" + this.roomname +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.roomname+"</span>"
 							+ "<span class=''>"+this.rempty+"</span>"
 							break;
@@ -127,6 +136,11 @@ $(document).ready(function() {
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.subno+"</span>"
 							+ "<span class=''>"+this.subname+"</span>"
 							+ "<span class=''>"+this.subgrade+"</span>"
+							break;
+							
+							case 'teachersubject' : str += "<a href=teacherSubjectView?tsno=" + this.tsno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tid+"</span>"
+							+ "<span class=''>"+this.subno+"</span>"
 							break;
 							}
 
@@ -158,6 +172,7 @@ $(document).ready(function() {
 			
 		}) ;
  		
+
  		$("#updateBtn").on("click",function(event){
 			
 			console.log(event);
@@ -178,7 +193,15 @@ $(document).ready(function() {
 			
 			$(".deleteBtn").attr("action",domain+"remove").submit();			
 			
-		}) ;
+		});
+ 		
+ 		$(".programlist span").on("click", function(event){
+ 			event.preventDefault();
+ 			console.log(event);
+ 		});
+ 		
+ 		
+
 });	
 </script>
 
