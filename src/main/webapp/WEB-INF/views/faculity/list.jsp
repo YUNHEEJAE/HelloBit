@@ -134,13 +134,12 @@ $(document).ready(function() {
 							
 							case 'subject' : 	str += "<a href=view?subno=" + this.subno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.subno+"</span>"
-							+ "<span class=''>"+this.subname+"</span>"
-							+ "<span class=''>"+this.subgrade+"</span>"
+							+ "<span class=''>"+this.subname +" "+ this.subgrade+"</span>"
 							break;
 							
 							case 'teachersubject' : str += "<a href=teacherSubjectView?tsno=" + this.tsno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
-							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tid+"</span>"
-							+ "<span class=''>"+this.subno+"</span>"
+							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.subname+ " " +this.subgrade+"</span>"
+							+ "<span class=''> "+this.tname+"</span>"
 							break;
 							}
 

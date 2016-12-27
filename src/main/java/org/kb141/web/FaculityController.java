@@ -149,17 +149,17 @@ public class FaculityController {
 	}
 	
 	//교수과목 리스트
-	@GetMapping("/teachersubjectlist")
-	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
-		ResponseEntity<List<TeacherSubjectVO>> entity = null;
-		try {
-			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<List<TeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
+//	@GetMapping("/teachersubjectlist")
+//	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
+//		ResponseEntity<List<TeacherSubjectVO>> entity = null;
+//		try {
+//			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<List<TeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+//		}
+//		return entity;
+//	}
 	
 	
 	// 학생 리스트
@@ -175,6 +175,18 @@ public class FaculityController {
 		return entity;
 	}
 	
+	@GetMapping("/teachersubjectlist")
+	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(){
+		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
+		try{
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getAllTeacherSubjectList(), HttpStatus.OK);
+		}catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 	
 	@GetMapping("/takeprogramlist")
 	public void takeprogramlist() throws Exception{
@@ -187,6 +199,8 @@ public class FaculityController {
 		return takeprogramService.getstateList(vo);	
 	}
 
+	
+	
 
 //	@GetMapping("/stateList/{state}&&{pno}")
 //	public ResponseEntity<List<TakeProgramVO>> showStateList(@PathVariable("state") String state , @PathVariable("pno") Integer pno)throws Exception{
