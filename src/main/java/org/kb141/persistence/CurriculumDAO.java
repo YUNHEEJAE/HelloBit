@@ -18,4 +18,8 @@ public interface CurriculumDAO {
 	
 	public List<CurriculumVO> list(Integer pno) throws Exception;
 	
+	public void deletePnoList(Integer pno) throws Exception;
+	
+	public void reCreate(CurriculumVO vo) throws Exception;
+	
 }

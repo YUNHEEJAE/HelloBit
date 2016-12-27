@@ -49,4 +49,15 @@ public class CurriculumDAOImpl implements CurriculumDAO {
 		return sqlSession.selectList(NAME + "list", pno);
 	}
 
+	@Override
+	public void deletePnoList(Integer pno) throws Exception {
+		sqlSession.delete(NAME + "deletePnoList" , pno);
+	}
+
+	@Override
+	public void reCreate(CurriculumVO vo) throws Exception {
+		sqlSession.insert(NAME + "reCreate", vo);
+		
+	}
+
 }

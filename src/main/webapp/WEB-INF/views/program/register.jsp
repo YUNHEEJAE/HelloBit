@@ -147,6 +147,16 @@
 
 $(document).ready(function () {
 	
+	
+	function dateGenerator(datedata) {
+		var dateNum = new Date(datedata);
+		var dyear = dateNum.getFullYear();
+		var dmonth =dateNum.getMonth();
+		var ddate =  dateNum.getDate();
+		return dyear + "/" + dmonth + "/" + ddate;
+	};
+	
+	
 	function setClassroomList() {
 		$.getJSON("../faculity/classroomlist", function(data){
 			console.log(data);

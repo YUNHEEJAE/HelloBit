@@ -52,9 +52,20 @@ public class ProgramServiceImpl implements ProgramService {
 	}
 
 	@Override
-	public void modify(ProgramVO vo) {
+	public void modify(ProgramVO vo, String tsnolist) {
 		try {
 			programDAO.update(vo);
+			
+			curriculumDAO.deletePnoList(vo.getPno());
+			
+			String[] listTsno = tsnolist.split(",");
+			for(int i = 0 ; i < listTsno.length ; i ++) {
+				CurriculumVO currVO = new CurriculumVO();
+				currVO.setTsno(Integer.parseInt(listTsno[i]));
+				currVO.setPno(vo.getPno());
+				curriculumDAO.reCreate(currVO);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

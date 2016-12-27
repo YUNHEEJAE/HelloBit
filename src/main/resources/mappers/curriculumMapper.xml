@@ -28,5 +28,13 @@
 		select * from tbl_curriculum where pno = #{pno}
 	</select>
 	
+	<delete id="deletePnoList">
+		delete from tbl_curriculum where pno = #{pno}
+	</delete>
+	
+	<insert id="reCreate">
+		insert into tbl_curriculum(pno, tsno) values (#{pno} , #{tsno})
+	</insert>
+	
  
 </mapper>

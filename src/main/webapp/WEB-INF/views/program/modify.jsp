@@ -180,6 +180,13 @@ $(document).ready(function () {
 		});
 	}
 	
+	function dateGenerator(datedata) {
+		var dateNum = new Date(datedata);
+		var dyear = dateNum.getFullYear();
+		var dmonth =dateNum.getMonth();
+		var ddate =  dateNum.getDate();
+		return dyear + "/" + dmonth + "/" + ddate;
+	};
 	
 	// 수정 위해 초기 값 세팅하기.
 	(function(){
@@ -200,6 +207,8 @@ $(document).ready(function () {
 		$("#maximum").attr("value", ${currdata.maximum});
 		$("#persongroupid").attr("value", "${currdata.persongroupid}");
 		
+// 		$("#opendate").attr("value", dateGenerator(${currdata.opendate}))
+// 		$("#closedate").attr("value", dateGenerator(${currdata.closedate}))
 		
 		
 		$.getJSON("../faculity/teachersubjectlist/${param.pno}" , function (data) {
@@ -207,6 +216,7 @@ $(document).ready(function () {
 			var str = "";
 			$(data).each(function() {
 				str += "<tr><td>"+this.subname+"</td><td>"+this.subgrade+"</td><td>"+this.tname+"</td></tr>";
+				$("#inputForm").append("<input type='hidden' name='curriculums' value="+this.tsno+">");
 			});
 			
 			
@@ -225,6 +235,7 @@ $(document).ready(function () {
 	
 	$("#btnModify").on("click", function () {
 		event.preventDefault();
+		$("#pcontent").val($("#pcontent").val().replace(/\n/g, "<br>"));
 		$("#inputForm").submit();		
 		
 	});

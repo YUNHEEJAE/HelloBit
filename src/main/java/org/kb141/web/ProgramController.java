@@ -182,6 +182,17 @@ public class ProgramController {
 		
 	}
 	
+	@PostMapping("/modify")
+	public String modifyPost(ProgramVO vo, String curriculums) throws Exception {
+		logger.info("Program Modify Post Called....");
+		logger.info("VO : " + vo);
+		logger.info("Curri " + curriculums);
+		
+		service.modify(vo, curriculums);
+		
+		return "success";
+	}
+	
 
 	
 }

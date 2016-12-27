@@ -10,7 +10,7 @@ public interface ProgramService {
 
 	public ProgramVO view(Integer pno);
 
-	public void modify(ProgramVO vo);
+	public void modify(ProgramVO vo, String tsnolist);
 
 	public void remove(Integer pno);
 
