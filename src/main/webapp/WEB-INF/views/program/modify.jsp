@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
@@ -44,7 +45,7 @@
 			
 				<div class="form-group">
 				  <label class=" control-label" >과정명</label>  
-				  <input id="pcourse" name="pcourse" type="text" placeholder="과정명" value="TEST 74" class="form-control">
+				  <input id="pcourse" name="pcourse" type="text" placeholder="과정명" class="form-control">
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
@@ -53,7 +54,7 @@
 				<div class="form-group">
 				  <label class=" control-label" >과정 설명</label>  
 <%-- 				  <input id="pcontent" name="pcontent" type="text" placeholder="과정 설명" value="${currdata.pcontent}" class="form-control" style="height: 300px" wrap="virtual"> --%>
-						<textarea rows="10" name="pcontent" id="pcontent" class="form-control" value="TEST CONTENT 74 2"></textarea>		
+						<textarea rows="10" name="pcontent" id="pcontent" class="form-control"></textarea>		
 					<span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
@@ -72,7 +73,7 @@
 				<!-- Text input-->
 				<div class="form-group">
 				  <label class=" control-label" >기수</label>  
-				  <input id="torder" name="torder" type="text" placeholder="99" value="74" class="form-control" required="">
+				  <input id="torder" name="torder" type="text" placeholder="99" class="form-control" required="">
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
@@ -207,8 +208,12 @@ $(document).ready(function () {
 		$("#maximum").attr("value", ${currdata.maximum});
 		$("#persongroupid").attr("value", "${currdata.persongroupid}");
 		
-// 		$("#opendate").attr("value", dateGenerator(${currdata.opendate}))
-// 		$("#closedate").attr("value", dateGenerator(${currdata.closedate}))
+		
+		var currOpendate = "${currdata.opendate}";
+		var currClosedate = "${currdata.closedate}";
+		
+		$("#opendate").attr("value", dateGenerator(currOpendate));
+		$("#closedate").attr("value", dateGenerator(currClosedate));
 		
 		
 		$.getJSON("../faculity/teachersubjectlist/${param.pno}" , function (data) {
