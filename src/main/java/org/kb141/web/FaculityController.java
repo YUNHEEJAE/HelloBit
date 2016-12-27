@@ -156,6 +156,9 @@ public class FaculityController {
 	@GetMapping("/teachersubjectlist")
 	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
 		ResponseEntity<List<TeacherSubjectVO>> entity = null;
+		TeacherVO teacherVO = new TeacherVO();
+		SubjectVO subjectVO = new SubjectVO();
+		
 		try {
 			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
 		} catch (Exception e) {
@@ -500,6 +503,12 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/teachersubjectview")
+	public void TeacherSubjectViewGET(@RequestParam("tsno") Integer tsno, Model model) throws Exception{
+			logger.info("teachersubject view...........");
+			logger.info("teachersubject : " + tsno);
+			model.addAttribute("teachersubjectVO", teacherSubjectService.view(tsno));
+	}
 
 
 }
