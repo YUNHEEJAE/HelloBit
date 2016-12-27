@@ -157,7 +157,7 @@ $(document).ready(function() {
 			
 			console.log(domain);
 			
-			$(".createBtn").attr("action",domain+"create").submit();			
+			$(".createBtn").attr("action",domain+"register").submit();			
 			
 		}) ;
  		
@@ -168,7 +168,7 @@ $(document).ready(function() {
 			
 			console.log(domain);
 			
-			$(".updateBtn").attr("action",domain+"update").submit();			
+			$(".updateBtn").attr("action",domain+"modify").submit();			
 			
 		}) ;
  		
@@ -179,7 +179,7 @@ $(document).ready(function() {
 			
 			console.log(domain);
 			
-			$(".deleteBtn").attr("action",domain+"delete").submit();			
+			$(".deleteBtn").attr("action",domain+"remove").submit();			
 			
 		}) ;
 });	

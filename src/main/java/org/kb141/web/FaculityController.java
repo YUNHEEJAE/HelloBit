@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
-import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -28,11 +27,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.PathVariable;
->>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
+import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -166,19 +163,13 @@ public class FaculityController {
 	public void takeprogramlist() throws Exception{
 		logger.info("takeprogramlist LIST.....");
 	}
-<<<<<<< HEAD
-	// 승인 상태 리스트 가져오기
-	@GetMapping("/statelist")
-=======
 
 	@GetMapping("/statelist") 
->>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 	public @ResponseBody List<TakeProgramVO> getStateList(TakeProgramVO vo)throws Exception{
 		logger.info("pno :"+  vo);
 		return takeprogramService.getstateList(vo);	
 	}
-<<<<<<< HEAD
-	
+
 	// 수강 승인
 	@PostMapping(value="/admission")
 	public String admissionEnrolment(String[] sid , Integer pno , RedirectAttributes rttr)throws Exception{
@@ -197,7 +188,7 @@ public class FaculityController {
 			vo.setPno(pno);
 		}
 		
-		TakeProgramservice.modify(vo);
+		takeprogramService.modify(vo);
 		
 		rttr.addFlashAttribute("result" , "success");
 		
@@ -207,7 +198,7 @@ public class FaculityController {
 		
 
 	}
-=======
+
 	
 	//  모든 Join한 강사이름, 과목, 등급 리스트 
 	@GetMapping("/joinalllist")
@@ -279,8 +270,7 @@ public class FaculityController {
 	}
 	
 	
-	
->>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
+
 
 	
 }
