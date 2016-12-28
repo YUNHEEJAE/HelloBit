@@ -158,5 +158,11 @@ public class StudentController {
 		
 	}
 	
+	@GetMapping("/login")
+	public void login() throws Exception {
+		logger.info("LOGIN CALLED...");
+		
+	}
+	
 	
 }

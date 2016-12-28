@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,5 +37,35 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@GetMapping("/student")
+	public void doForStudent() {
+		logger.info("Student");
+	}
+	
+	@GetMapping("/teacher")
+	public void doForTeacher() {
+		logger.info("Teacher");
+	}
+	
+	@GetMapping("/faculity")
+	public void doForFaculity() {
+		logger.info("Faculity");
+	}
+	
+	@GetMapping("/myLogout")
+	public void logout() {
+		logger.info("logout get");
+	}
+	
+	@PostMapping("/myLogout")
+	public void logoutPost() {
+		logger.info("logout post");
+	}
+	
+	
+	
+	
+	 
 	
 }

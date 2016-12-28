@@ -25,6 +25,8 @@ public interface TakeProgramDAO {		//HJ, IH
 	
 	public List<TakeProgramVO> stateList(TakeProgramVO vo) throws Exception;
 	
+	// PersonId 생성.
+	public void updatePersonId(TakeProgramVO vo) throws Exception;
 	
 }
 
