@@ -52,6 +52,7 @@ public class StudentController {
 	public String registerPOST(StudentVO vo,  String filename , RedirectAttributes rttr) throws Exception{
 		logger.info("register POST....");
 		logger.info("VO : " + vo);
+		logger.info("filename : " + filename);
 		studentService.register(vo , filename);
 		rttr.addFlashAttribute("result","success");
 		

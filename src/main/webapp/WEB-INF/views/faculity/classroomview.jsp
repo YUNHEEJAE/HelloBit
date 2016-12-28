@@ -36,35 +36,23 @@
 
 
 					<div class="form-group">
-						<label class=" control-label">학생 아이디</label> <input id="pcourse" name="sid" type="text" placeholder="학생아이디"
-							value="${studentVO.sid}" class="form-control"
+						<label class=" control-label">교실명</label> <input id="pcourse" name="roomname" type="text" placeholder="교실명"
+							value="${classroomVO.roomname}" class="form-control"
 							readonly="readonly"> <span class="help-block">It
 							identify how many days it takes for deliver</span>
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">학생 이름</label> <input id="pcourse"
-							name="sname" type="text" placeholder="학생이름"
-							value="${studentVO.sname}" class="form-control" readonly="">
+						<label class=" control-label">사용 유무</label> <input id="pcourse"
+							name="rempty" type="text" placeholder="사용유무"
+							value="${classroomVO.rempty}" class="form-control" readonly="">
 						<span class="help-block">It identify how many days it takes
 							for deliver</span>
 					</div>
 
-					<div class="form-group">
-						<label class=" control-label">학생 비밀번호</label> <input
-							id="pcontent" name="spw" type="text" placeholder="학생비밀번호"
-							value="${studentVO.spw}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
-					</div>
 
-					<div class="form-group">
-						<label class=" control-label">학생 이메일</label> <input id="pcontent"
-							name="semail" type="text" placeholder="학생이메일"
-							value="${studentVO.semail}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
-					</div>
+
+		
 
 					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
@@ -99,13 +87,13 @@
 		});
 
 		$("#btnSuccess").on("click", function() {
-			$("#inputForm").attr("action", "studentmodify").submit();
+			$("#inputForm").attr("action", "classroommodify").submit();
 		});
 
 		$("#btnRemove").on("click", function() {
 			if (confirm("정말삭제하시겠습니까?") == true) {
 
-				$("#inputForm").attr("action", "studentRemove").submit();
+				$("#inputForm").attr("action", "classroomremove").submit();
 			} else {
 				return;
 			}

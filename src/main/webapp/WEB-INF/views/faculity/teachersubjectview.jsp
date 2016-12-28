@@ -36,27 +36,23 @@
 
 
 					<div class="form-group">
-						<label class=" control-label">교사 아이디</label> <input id="pcourse" name="tid" type="text" placeholder="교사아이디"
-							value="${teacherVO.tid}" class="form-control"
-							readonly="readonly">
+						<label class=" control-label">강사 이름</label> <input id="pcourse" name="tsno" type="text" placeholder="강사이름"
+							value="${teachersubjectVO.tname}" class="form-control"
+							readonly="readonly"> 
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">교사 이름</label> <input id="pcourse"
-							name="tname" type="text" placeholder="교사이름"
-							value="${teacherVO.tname}" class="form-control" readonly="">
+						<label class=" control-label">과목 이름</label> <input id="pcourse"
+							name="tid" type="text" placeholder="과목이름"
+							value="${teachersubjectVO.subname}" class="form-control" readonly="">
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">교사 비밀번호</label> <input
-							id="pcontent" name="tpw" type="text" placeholder="교사비밀번호"
-							value="${teacherVO.tpw}" class="form-control" readonly="">
+						<label class=" control-label">과목 등급</label> <input
+							id="pcontent" name="subno" type="text" placeholder="과목등급"
+							value="${teachersubjectVO.subgrade}" class="form-control" readonly="">
 					</div>
 
-		
-
-					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
-					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
 					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
 					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
 				</form>
@@ -75,26 +71,15 @@
 
 <script>
 	$(document).ready(function() {
-		$("#btnSuccess").hide();
-		
-		
-		$("#btnModify").on("click", function() {
-			console.log("변경잼");
-			$("#btnSuccess").show();
-			$("#btnModify").hide();
-			$("#btnRemove").hide();
-			$("#inputForm div input").attr("readonly", false).submit();
-			$("#pcourse").attr("readonly", true).submit();
-		});
 
-		$("#btnSuccess").on("click", function() {
-			$("#inputForm").attr("action", "teachermodify").submit();
-		});
+		
+
+
 
 		$("#btnRemove").on("click", function() {
 			if (confirm("정말삭제하시겠습니까?") == true) {
 
-				$("#inputForm").attr("action", "teacherremove").submit();
+				$("#inputForm").attr("action", "subjectremove").submit();
 			} else {
 				return;
 			}

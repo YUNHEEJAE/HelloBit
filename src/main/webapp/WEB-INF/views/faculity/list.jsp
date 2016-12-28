@@ -117,7 +117,6 @@ $(document).ready(function() {
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.sname+"</span>"
 							+ "<span class=''>"+this.semail+"</span>"
 							break;
-							
 
 							case 'teacher' : 	str += "<a href= teacherview?tid="+this.tid+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
@@ -132,15 +131,14 @@ $(document).ready(function() {
 							+ "<span class=''>"+this.rempty+"</span>"
 							break;
 							
-							case 'subject' : 	str += "<a href=view?subno=" + this.subno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'subject' : 	str += "<a href=subjectview?subno=" + this.subno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.subno+"</span>"
-							+ "<span class=''>"+this.subname+"</span>"
-							+ "<span class=''>"+this.subgrade+"</span>"
+							+ "<span class=''>"+this.subname +" "+ this.subgrade+"</span>"
 							break;
 							
-							case 'teachersubject' : str += "<a href=teacherSubjectView?tsno=" + this.tsno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
-							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tid+"</span>"
-							+ "<span class=''>"+this.subno+"</span>"
+							case 'teachersubject' : str += "<a href=teachersubjectview?tsno=" + this.tsno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
+							+ "<span class=''>"+this.subname + " " + this.subgrade+"</span>"
 							break;
 							}
 

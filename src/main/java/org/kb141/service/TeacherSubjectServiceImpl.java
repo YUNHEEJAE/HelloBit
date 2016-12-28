@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.TeacherSubjectVO;
+import org.kb141.persistence.ProgramDAO;
 import org.kb141.persistence.TeacherSubjectDAO;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 	
 	@Inject
 	private TeacherSubjectDAO TeacherSubjectDAO;
+	
+	@Inject
+	private ProgramDAO programDAO;
 	
 	@Override
 	public void register(TeacherSubjectVO vo) {
@@ -73,6 +78,32 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 		}
 		
 		return result;	
+	}
+
+	@Override
+	public List<JoinTeacherSubjectVO> getAllTeacherSubjectList() {
+		List<JoinTeacherSubjectVO> result = null;
+		try {
+			result = programDAO.joinAllList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public JoinTeacherSubjectVO getTeacherSubject(Integer tsno) {
+
+		JoinTeacherSubjectVO vo = null;
+		
+		try {
+			vo = TeacherSubjectDAO.getTeacherSubject(tsno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return vo;
 	}
 
 }

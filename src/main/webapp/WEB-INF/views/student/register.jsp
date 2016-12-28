@@ -147,7 +147,7 @@
 			
 			
 				$.ajax({
-					url : "http://192.168.0.18:8081/image/registerImage",
+					url : "http://localhost:8081/web/image/registerImage",
 					data :formdata,
 					type:"post",
 					contentType:false,

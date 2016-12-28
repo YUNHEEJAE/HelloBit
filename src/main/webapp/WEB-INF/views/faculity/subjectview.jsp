@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,35 +36,29 @@
 
 
 					<div class="form-group">
-						<label class=" control-label">학생 아이디</label> <input id="pcourse" name="sid" type="text" placeholder="학생아이디"
-							value="${studentVO.sid}" class="form-control"
+						<label class=" control-label">번호</label> <input id="pcourse" name="subno" type="text" placeholder="번호"
+							value="${subjectVO.subno}" class="form-control"
 							readonly="readonly"> <span class="help-block">It
 							identify how many days it takes for deliver</span>
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">학생 이름</label> <input id="pcourse"
-							name="sname" type="text" placeholder="학생이름"
-							value="${studentVO.sname}" class="form-control" readonly="">
+						<label class=" control-label">과목명</label> <input id="pcourse"
+							name="subname" type="text" placeholder="과목명"
+							value="${subjectVO.subname}" class="form-control" readonly="">
 						<span class="help-block">It identify how many days it takes
 							for deliver</span>
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">학생 비밀번호</label> <input
-							id="pcontent" name="spw" type="text" placeholder="학생비밀번호"
-							value="${studentVO.spw}" class="form-control" readonly="">
+						<label class=" control-label">등급</label> <input
+							id="pcontent" name="subgrade" type="text" placeholder="등급"
+							value="${faculityVO.subgrade}" class="form-control" readonly="">
 						<span class="help-block">It identify how many days it takes
 							for deliver</span>
 					</div>
 
-					<div class="form-group">
-						<label class=" control-label">학생 이메일</label> <input id="pcontent"
-							name="semail" type="text" placeholder="학생이메일"
-							value="${studentVO.semail}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
-					</div>
+		
 
 					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
@@ -99,13 +93,13 @@
 		});
 
 		$("#btnSuccess").on("click", function() {
-			$("#inputForm").attr("action", "studentmodify").submit();
+			$("#inputForm").attr("action", "subjectmodify").submit();
 		});
 
 		$("#btnRemove").on("click", function() {
 			if (confirm("정말삭제하시겠습니까?") == true) {
 
-				$("#inputForm").attr("action", "studentRemove").submit();
+				$("#inputForm").attr("action", "subjectremove").submit();
 			} else {
 				return;
 			}
@@ -119,4 +113,13 @@
 	});
 </script>
 
+
+
+<%@include file="footer.jsp"%>
+
+
+
+
+
 </html>
+

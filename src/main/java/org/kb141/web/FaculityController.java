@@ -153,18 +153,17 @@ public class FaculityController {
 	}
 	
 	//교수과목 리스트
-	@GetMapping("/teachersubjectlist")
-	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
-		ResponseEntity<List<TeacherSubjectVO>> entity = null;
-		try {
-			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<List<TeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-	
+//	@GetMapping("/teachersubjectlist")
+//	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
+//		ResponseEntity<List<TeacherSubjectVO>> entity = null;
+//		try {
+//			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<List<TeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+//		}
+//		return entity;
+//	}
 	
 	// 학생 리스트
 	@GetMapping("/studentlist")
@@ -178,30 +177,46 @@ public class FaculityController {
 		}
 		return entity;
 	}
-	
+	 
+	@GetMapping("/teachersubjectlist")
+	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(){
+		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
+		try{
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getAllTeacherSubjectList(), HttpStatus.OK);
+		}catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 	
 	@GetMapping("/takeprogramlist")
 	public void takeprogramlist() throws Exception{
 		logger.info("takeprogramlist LIST.....");
 	}
 
+	@GetMapping("/statelist") 
+	public @ResponseBody List<TakeProgramVO> getStateList(TakeProgramVO vo)throws Exception{
+		logger.info("pno :"+  vo);
+		return takeprogramService.getstateList(vo);	
+	}
+
 	
-	
-	
-	@GetMapping("/stateList/{state}&&{pno}") 
-	public ResponseEntity<List<TakeProgramVO>> getStateList(@PathVariable("state") String state , @PathVariable("pno") Integer pno)throws Exception{
+	@GetMapping("/stateList/{pno}&&{state}") 
+	public ResponseEntity<List<TakeProgramVO>> getStateList(@PathVariable("pno") Integer pno, @PathVariable("state") String state)throws Exception{
 		logger.info("state List called..........................");
 		TakeProgramVO vo = new TakeProgramVO();
+		logger.info("============" + state + pno + "=============");
+		vo.setPno(pno);
 		if(state.equals("true")){
 			vo.setState(true);
 		}
 		else{
 			vo.setState(false);
 		}
-		vo.setPno(pno);
-		
+
 		ResponseEntity<List<TakeProgramVO>> entity = null;
-		
 		try{
 			entity = new ResponseEntity<List<TakeProgramVO>>(takeprogramService.getstateList(vo) , HttpStatus.OK);
 		}catch (Exception e) {
@@ -211,27 +226,6 @@ public class FaculityController {
 		}
 			return entity;
 		
-	}
-	
-
-	@GetMapping("/trueList/{state}&&{pno}")
-	public ResponseEntity<List<TakeProgramVO>> showStateList(@PathVariable("state") String state , @PathVariable("pno") Integer pno)throws Exception{
-		logger.info("result :" + state + pno);
-		TakeProgramVO vo = new TakeProgramVO();
-		if(state.equals("true")){
-			vo.setState(true);
-		}
-		vo.setPno(pno);
-		logger.info("vo :" + vo);
-		ResponseEntity<List<TakeProgramVO>> entity = null;
-		try{
-			entity = new ResponseEntity<List<TakeProgramVO>>(takeprogramService.getstateList(vo) , HttpStatus.OK);
-		}catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<List<TakeProgramVO>>(HttpStatus.BAD_REQUEST);
-		}
-		
-		return entity;
 	}
 
 	// 수강 승인
@@ -350,13 +344,14 @@ public class FaculityController {
 	}
 	
 	@PostMapping("/teachermodify")
-	public String TeacherModifyPOST(TeacherVO vo) throws Exception{
+	public String TeacherModifyPOST(TeacherVO vo,RedirectAttributes rttr) throws Exception{
 		logger.info("Teacher Modify........");
 		logger.info("TeacherVO : " + vo);
 		teacherService.modify(vo);
-		return "success";
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
 	}
-
+	
 	
 	@PostMapping("/teacherremove")
 	public String TeacherRemove(String tid,RedirectAttributes rttr) throws Exception{
@@ -388,11 +383,31 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/faculityview")
+	public void FaculityViewGET(@RequestParam("fid") String fid, Model model) throws Exception{
+			logger.info("Faculity view...........");
+			logger.info("fid : " + fid);
+			model.addAttribute("faculityVO", faculityService.view(fid));
+	}
+	
+	@PostMapping("/faculitymodify")
+	public String FaculityModifyPOST(FaculityVO vo,RedirectAttributes rttr) throws Exception{
+		logger.info("Faculity Modify........");
+		logger.info("Faculity : " + vo);
+		faculityService.modify(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
 	
 	
-	
-	
-	
+	@PostMapping("/faculityremove")
+	public String FaculityRemove(String fid,RedirectAttributes rttr) throws Exception{
+		logger.info("Faculity Remove..............");
+		logger.info("Faculity fid : " + fid);
+		faculityService.remove(fid);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
 	
 	
 	@GetMapping("/classroomregister")
@@ -409,6 +424,31 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/classroomview")
+	public void ClassroomViewGET(@RequestParam("roomname") String roomname, Model model) throws Exception{
+			logger.info("Classroom view...........");
+			logger.info("roomname : " + roomname);
+			model.addAttribute("classroomVO", classroomService.view(roomname));
+	}
+	
+	@PostMapping("/classroommodify")
+	public String ClassroomModifyPOST(ClassroomVO vo,RedirectAttributes rttr) throws Exception{
+		logger.info("Classroom Modify........");
+		logger.info("Classroom : " + vo);
+		classroomService.modify(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+	
+	@PostMapping("/classroomremove")
+	public String ClassroomRemove(String roomname,RedirectAttributes rttr) throws Exception{
+		logger.info("Classroom Remove..............");
+		logger.info("Classroom roomname : " + roomname);
+		classroomService.remove(roomname);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
 
 	@GetMapping("/subjectregister")
 	public void SubjectCreateGET() throws Exception{
@@ -423,8 +463,60 @@ public class FaculityController {
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:list";
 	}
-
 	
-
+	@GetMapping("/subjectview")
+	public void SubjectViewGET(@RequestParam("subno") Integer subno, Model model) throws Exception{
+			logger.info("subject view...........");
+			logger.info("subject : " + subno);
+			model.addAttribute("subjectVO", subjectService.view(subno));
+	}
+	
+	@PostMapping("/subjectmodify")
+	public String SubjectModifyPOST(SubjectVO vo,RedirectAttributes rttr) throws Exception{
+		logger.info("subject Modify........");
+		logger.info("subject : " + vo);
+		subjectService.modify(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+	
+	@PostMapping("/subjectremove")
+	public String SubjectRemove(Integer subno,RedirectAttributes rttr) throws Exception{
+		logger.info("subject Remove..............");
+		logger.info("subject subno : " + subno);
+		subjectService.remove(subno);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+	@GetMapping("/teachersubjectregister")
+	public void TeachersubjectCreateGET(Model model) throws Exception{
+		logger.info("TeacherSubject Create.....");
+		model.addAttribute("teacherVO", teacherService.getTeacherList());
+		model.addAttribute("subjectVO", subjectService.getSubjectList());
+	}
+	
+	@PostMapping("/teachersubjectregister")
+	public String TeachersubjectRegisterPOST(String tid,String subno,TeacherSubjectVO vo,RedirectAttributes rttr)throws Exception{
+		logger.info("TeacherSubject Register.........................");
+		logger.info("TeacherVO vo : " + tid);
+		logger.info("SubjectVO vo : " + subno);
+		vo.setTid(tid);
+		vo.setSubno(Integer.decode(subno));
+		logger.info("TeacherSubjectVO vo : " + vo);
+		
+		teacherSubjectService.register(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
+	@GetMapping("/teachersubjectview")
+	public void TeacherSubjectViewGET(@RequestParam("tsno") Integer tsno, Model model) throws Exception{
+			logger.info("teachersubject view...........");
+			logger.info("teachersubject : " + tsno);
+			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
+	}
+	
 
 }
