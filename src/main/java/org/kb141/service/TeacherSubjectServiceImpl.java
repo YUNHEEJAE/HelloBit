@@ -92,4 +92,18 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 		return result;
 	}
 
+	@Override
+	public JoinTeacherSubjectVO getTeacherSubject(Integer tsno) {
+
+		JoinTeacherSubjectVO vo = null;
+		
+		try {
+			vo = TeacherSubjectDAO.getTeacherSubject(tsno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return vo;
+	}
+
 }

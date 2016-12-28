@@ -9,8 +9,11 @@
 		insert into tbl_program (pcourse, roomname, torder,
 		opendate, closedate,
 		maximum, persongroupid, category, pcontent)
-		values (#{pcourse}, #{roomname} ,
-		#{torder}, #{opendate},#{closedate},#{maximum}, #{persongroupid}, #{category}, #{pcontent})
+		values
+		(#{pcourse}, #{roomname} ,
+		#{torder},
+		#{opendate},#{closedate},#{maximum}, #{persongroupid}, #{category},
+		#{pcontent})
 	</insert>
 
 	<select id="read" resultType="ProgramVO">
@@ -23,9 +26,13 @@
 	<update id="update" parameterType="ProgramVO">
 
 		update tbl_program set
-		pcourse = #{pcourse}, roomname = #{roomname}, torder=#{torder},
-		opendate = #{opendate}, closedate =#{closedate},
-		maximum=#{maximum}, persongroupid=#{persongroupid}, category=#{category}, pcontent=#{pcontent}
+		pcourse
+		= #{pcourse}, roomname = #{roomname}, torder=#{torder},
+		opendate =
+		#{opendate}, closedate =#{closedate},
+		maximum=#{maximum},
+		persongroupid=#{persongroupid}, category=#{category},
+		pcontent=#{pcontent}
 		where pno=#{pno}
 
 	</update>
@@ -38,31 +45,36 @@
 
 	<select id="allList" resultType="ProgramVO">
 
-		select * from tbl_program 
+		select * from tbl_program
 
 	</select>
-	
+
 	<select id="categoryList" resultType="ProgramVO">
-		select * from tbL_program where category = #{category}
+		select * from tbL_program
+		where category = #{category}
 	</select>
-	
+
 	<select id="joinTeacherSubjectList" resultType="JoinTeacherSubjectVO">
-	
-select tsno, subname, subgrade, tname from (select * from tbl_teacher_subject
-where tsno in (select tsno from tbl_curriculum where pno = #{pno}) ) t, tbl_subject s, tbl_teacher a
-where t.subno = s.subno and t.tid = a.tid order by subname asc, subgrade desc
-	
+
+		select tsno, subname, subgrade, tname from (select * from
+		tbl_teacher_subject
+		where tsno in (select tsno from tbl_curriculum where pno = #{pno}) ) t,
+		tbl_subject s, tbl_teacher a
+		where t.subno = s.subno and t.tid = a.tid order by subname asc, subgrade
+		desc
+
 	</select>
-	
+
 	<select id="joinAllTeacherSubjectList" resultType="JoinTeacherSubjectVO">
-	
-select tsno, subname, subgrade, tname from (select * from tbl_teacher_subject
-where tsno in (select tsno from tbl_curriculum ) ) t, tbl_subject s, tbl_teacher a
-where t.subno = s.subno and t.tid = a.tid order by subname asc, subgrade desc
-	
+
+		select p.subname, p.subgrade, t.tname from tbl_teacher t,(
+		select s.subname, s.subgrade, ts.tid from tbl_subject s, (
+		select subno, tid from tbl_teacher_subject)ts where ts.subno = s.subno) p
+		where t.tid = p.tid
+
 	</select>
-	
-	
+
+
 
 
 </mapper>

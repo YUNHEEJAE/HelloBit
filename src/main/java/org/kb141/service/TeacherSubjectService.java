@@ -19,4 +19,6 @@ public interface TeacherSubjectService {	//HJ
 	
 	public List<JoinTeacherSubjectVO> getAllTeacherSubjectList();
 
+	public JoinTeacherSubjectVO getTeacherSubject(Integer tsno);
+	
 }

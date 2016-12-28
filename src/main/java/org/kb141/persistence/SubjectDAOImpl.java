@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kb141.domain.SubjectVO;
+import org.kb141.domain.TeacherSubjectVO;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -43,5 +44,7 @@ public class SubjectDAOImpl implements SubjectDAO {
 	public List<SubjectVO> allList() throws Exception {
 		return sqlSession.selectList(NAME+"allList");
 	}
+
+
 
 }

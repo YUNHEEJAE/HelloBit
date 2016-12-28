@@ -44,6 +44,11 @@ public class TeacherSubjectDAOImpl implements TeacherSubjectDAO {
 		return sqlsession.selectList(NAME+"allList");
 	}
 
+	@Override
+	public JoinTeacherSubjectVO getTeacherSubject(Integer tsno) throws Exception {
+		return sqlsession.selectOne(NAME+"joinGetTeacherSubject", tsno);
+	}
+
 	
 
 }

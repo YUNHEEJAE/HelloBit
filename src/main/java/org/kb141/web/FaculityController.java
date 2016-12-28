@@ -1,4 +1,3 @@
-
 package org.kb141.web;
 import java.util.Arrays;
 import java.util.List;
@@ -163,7 +162,6 @@ public class FaculityController {
 //		}
 //		return entity;
 //	}
-	
 	
 	// 학생 리스트
 	@GetMapping("/studentlist")
@@ -511,6 +509,12 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/teachersubjectview")
+	public void TeacherSubjectViewGET(@RequestParam("tsno") Integer tsno, Model model) throws Exception{
+			logger.info("teachersubject view...........");
+			logger.info("teachersubject : " + tsno);
+			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
+	}
 
 
 }
