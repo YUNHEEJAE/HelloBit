@@ -489,15 +489,12 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
-<<<<<<< HEAD
 	@GetMapping("/teachersubjectview")
 	public void TeacherSubjectViewGET(@RequestParam("tsno") Integer tsno, Model model) throws Exception{
 			logger.info("teachersubject view...........");
 			logger.info("teachersubject : " + tsno);
 			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
 	}
-=======
->>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 
 
 }
