@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.kb141.domain.SubjectVO;
 import org.kb141.persistence.SubjectDAO;
+import org.kb141.persistence.TeacherSubjectDAO;
 import org.springframework.stereotype.Service;
 //copyright by zetsubou
 @Service
@@ -14,6 +15,9 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Inject
 	private SubjectDAO subjectDao;
+	
+	@Inject
+	private TeacherSubjectDAO teachersubjectDAO;
 	
 	@Override
 	public void register(SubjectVO vo) {
@@ -49,6 +53,7 @@ public class SubjectServiceImpl implements SubjectService {
 	public void remove(Integer subno) {
 			try{
 				subjectDao.delete(subno);
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}
