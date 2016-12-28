@@ -117,7 +117,6 @@ $(document).ready(function() {
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.sname+"</span>"
 							+ "<span class=''>"+this.semail+"</span>"
 							break;
-							
 
 							case 'teacher' : 	str += "<a href= teacherview?tid="+this.tid+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"

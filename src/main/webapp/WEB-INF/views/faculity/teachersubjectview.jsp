@@ -36,31 +36,22 @@
 
 
 					<div class="form-group">
-						<label class=" control-label">번호</label> <input id="pcourse" name="tsno" type="text" placeholder="번호"
-							value="${teachersubjectVO.tsno}" class="form-control"
-							readonly="readonly"> <span class="help-block">It
-							identify how many days it takes for deliver</span>
+						<label class=" control-label">강사 이름</label> <input id="pcourse" name="tsno" type="text" placeholder="강사이름"
+							value="${teachersubjectVO.tname}" class="form-control"
+							readonly="readonly"> 
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">교수아이디</label> <input id="pcourse"
-							name="tid" type="text" placeholder="교수아이디"
-							value="${teachersubjectVO.tid}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+						<label class=" control-label">과목 이름</label> <input id="pcourse"
+							name="tid" type="text" placeholder="과목이름"
+							value="${teachersubjectVO.subname}" class="form-control" readonly="">
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">과목번호</label> <input
-							id="pcontent" name="subno" type="text" placeholder="과목번호"
-							value="${teachersubjectVO.subno}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+						<label class=" control-label">과목 등급</label> <input
+							id="pcontent" name="subno" type="text" placeholder="과목등급"
+							value="${teachersubjectVO.subgrade}" class="form-control" readonly="">
 					</div>
-
-		
-
-
 
 					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
 					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>

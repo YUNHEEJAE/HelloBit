@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.TeacherSubjectVO;
 import org.kb141.persistence.TeacherSubjectDAO;
 import org.kb141.service.TeacherSubjectService;
@@ -57,11 +58,12 @@ public class TeacherSubjectDAOTest {
 		System.out.println(dao.allList());
 	}
 	
-	
-	
-	
-	
-	
+	@Test
+	public void getTeacherSubject() throws Exception{
+		
+		System.out.println(dao.getTeacherSubject(1));
+		
+	}
 	// ============================ service =======================
 	
 	@Test
@@ -93,12 +95,17 @@ public class TeacherSubjectDAOTest {
 	
 	@Test
 	public void getTeacherSubjectList()throws Exception{
-		
 		System.out.println(teacherSubjectService.getAllTeacherSubjectList());
-		
 		}
 		
-		
+	@Test
+	public void getTeacherSubjectService() throws Exception{
+		List<JoinTeacherSubjectVO> list = null;
+		list = teacherSubjectService.getAllTeacherSubjectList();
+		System.out.println(list.size());
+		System.out.println(teacherSubjectService.getTeacherSubject(1));
+	}
+	
 		
 	}
 	

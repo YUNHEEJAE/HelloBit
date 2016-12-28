@@ -1,3 +1,4 @@
+
 package org.kb141.web;
 import java.util.Arrays;
 import java.util.List;
@@ -164,7 +165,6 @@ public class FaculityController {
 //		return entity;
 //	}
 	
-	
 	// 학생 리스트
 	@GetMapping("/studentlist")
 	public ResponseEntity<List<StudentVO>> StudentList() {
@@ -203,20 +203,20 @@ public class FaculityController {
 	}
 
 	
-	@GetMapping("/stateList/{state}&&{pno}") 
-	public ResponseEntity<List<TakeProgramVO>> getStateList(@PathVariable("state") String state , @PathVariable("pno") Integer pno)throws Exception{
+	@GetMapping("/stateList/{pno}&&{state}") 
+	public ResponseEntity<List<TakeProgramVO>> getStateList(@PathVariable("pno") Integer pno, @PathVariable("state") String state)throws Exception{
 		logger.info("state List called..........................");
 		TakeProgramVO vo = new TakeProgramVO();
+		logger.info("============" + state + pno + "=============");
+		vo.setPno(pno);
 		if(state.equals("true")){
 			vo.setState(true);
 		}
 		else{
 			vo.setState(false);
 		}
-		vo.setPno(pno);
-		
+
 		ResponseEntity<List<TakeProgramVO>> entity = null;
-		
 		try{
 			entity = new ResponseEntity<List<TakeProgramVO>>(takeprogramService.getstateList(vo) , HttpStatus.OK);
 		}catch (Exception e) {
@@ -226,27 +226,6 @@ public class FaculityController {
 		}
 			return entity;
 		
-	}
-	
-
-	@GetMapping("/trueList/{state}&&{pno}")
-	public ResponseEntity<List<TakeProgramVO>> showStateList(@PathVariable("state") String state , @PathVariable("pno") Integer pno)throws Exception{
-		logger.info("result :" + state + pno);
-		TakeProgramVO vo = new TakeProgramVO();
-		if(state.equals("true")){
-			vo.setState(true);
-		}
-		vo.setPno(pno);
-		logger.info("vo :" + vo);
-		ResponseEntity<List<TakeProgramVO>> entity = null;
-		try{
-			entity = new ResponseEntity<List<TakeProgramVO>>(takeprogramService.getstateList(vo) , HttpStatus.OK);
-		}catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<List<TakeProgramVO>>(HttpStatus.BAD_REQUEST);
-		}
-		
-		return entity;
 	}
 
 	// 수강 승인
@@ -536,7 +515,7 @@ public class FaculityController {
 	public void TeacherSubjectViewGET(@RequestParam("tsno") Integer tsno, Model model) throws Exception{
 			logger.info("teachersubject view...........");
 			logger.info("teachersubject : " + tsno);
-			model.addAttribute("teachersubjectVO", teacherSubjectService.view(tsno));
+			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
 	}
 	
 

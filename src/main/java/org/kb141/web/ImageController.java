@@ -38,11 +38,11 @@ public class ImageController {
 		
 		String uploadName =  sid + "_0.jpg";
 		logger.info(uploadName);
-		ImageIO.write(origin, "jpg", 
-				new FileOutputStream("/Users/juyoungjung/upload/"+uploadName));
-			// 윈도우 저장 버전 
 //		ImageIO.write(origin, "jpg", 
-//				new FileOutputStream("C://zzz/upload"+file.getOriginalFilename())); 
+//				new FileOutputStream("/Users/juyoungjung/upload/"+uploadName));
+			// 윈도우 저장 버전 
+		ImageIO.write(origin, "jpg", 
+				new FileOutputStream("C://zzz//upload//"+file.getOriginalFilename())); 
 //		
 
 		return uploadName;

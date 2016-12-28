@@ -21,13 +21,14 @@ public class ProgramDAOTest {
 	private ProgramService service;
 
 	@Test
+
 	public void createTest() throws Exception {
 		ProgramVO vo = new ProgramVO();
 		vo.setPcourse("Test");
 		vo.setRoomname("402");
 		vo.setTorder("3");
-		vo.setOpendate("2016-12-22");
-		vo.setClosedate("2016-12-23");
+//		vo.setOpendate("2016-12-22");
+//		vo.setClosedate("2016-12-23");
 		vo.setMaximum(30);
 		vo.setPersongroupid("test_test_18");
 		System.out.println(vo);
@@ -49,8 +50,8 @@ public class ProgramDAOTest {
 		vo.setPcourse("서인효바보");
 		vo.setRoomname("503");
 		vo.setTorder("80");
-		vo.setOpendate("2016-12-22");
-		vo.setClosedate("2016-12-23");
+//		vo.setOpendate("2016-12-22");
+//		vo.setClosedate("2016-12-23");
 		vo.setMaximum(5);
 		vo.setPno(12);
 
@@ -81,8 +82,8 @@ public class ProgramDAOTest {
 		vo.setPcourse("TEST");
 		vo.setRoomname("639");
 		vo.setTorder("3");
-		vo.setOpendate("2016-12-22");
-		vo.setClosedate("2016-12-23");
+//		vo.setOpendate("2016-12-22");
+//		vo.setClosedate("2016-12-23");
 		vo.setMaximum(30);
 		vo.setPersongroupid("test_test_18");
 		vo.setCategory("beginner");
@@ -102,14 +103,16 @@ public class ProgramDAOTest {
 		vo.setPcourse("빅데이터 바보");
 		vo.setRoomname("703");
 		vo.setTorder("80");
-		vo.setOpendate("2016-12-22");
-		vo.setClosedate("2016-12-23");
+//		vo.setOpendate("2016-12-22");
+//		vo.setClosedate("2016-12-23");
 		vo.setMaximum(5);
 		vo.setPno(21);
 		vo.setPersongroupid("test_test_19");
 		vo.setCategory("bigdata");
+
 //		service.modify(vo,);
 	/*	service.modify(vo, tsnolist);*/
+
 //		service.modify(vo);
 	}
 

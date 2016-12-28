@@ -1,5 +1,6 @@
 package org.kb141.web;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,14 +15,16 @@ import org.kb141.service.ClassroomService;
 import org.kb141.service.CurriculumService;
 import org.kb141.service.ProgramService;
 import org.kb141.service.TakeProgramService;
-import org.kb141.service.TeacherSubjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -161,7 +164,13 @@ public class ProgramController {
 		logger.info("Program Register Called....");
 		model.addAttribute("classroomList", classroomservice.getClassroomList());
 		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
-		
+	}
+	
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 	
 	@PostMapping("/register")
@@ -169,6 +178,10 @@ public class ProgramController {
 		logger.info("Program Register Post Called....");
 		logger.info("VO : " + vo);
 		logger.info("Curri " + curriculums);
+		
+	
+		
+		
 		service.register(vo, curriculums);
 		return "success";
 	}
