@@ -106,6 +106,8 @@ $(document).ready(function() {
 					$(data).each(function() { // foreach 개념으로 길이만큼 돈다.
 						
 						var openDateNum = new Date(this.opendate);
+						console.log("DEBUG: " + this.opendate);
+						console.log("DEBUG: " + openDateNum);
 						var openyear = openDateNum.getFullYear();
 						var openmonth =openDateNum.getMonth();
 						var opendate =  openDateNum.getDate();
