@@ -11,8 +11,8 @@
 							username-parameter="login_id"
 							password-parameter="login_pw"
 							login-processing-url="/loginProcess"
-							default-target-url="/login_success"
-							authentication-failure-url="/login"
+							default-target-url="/forStudent"
+							authentication-failure-url="/student/login"
 							always-use-default-target="true"
 							/>						
 	<security:session-management>
@@ -21,23 +21,32 @@
 
 	<security:logout delete-cookies="JSESSIONID" invalidate-session="true" logout-url="/myLogout"/>
 
-	<security:intercept-url pattern="/student" access="ROLE_STUDENT"/>
-	<security:intercept-url pattern="/teacher" access="ROLE_TEACHER"/>
-	<security:intercept-url pattern="/faculity" access="ROLE_FACULITY"/>
-
+	<security:intercept-url pattern="/forStudent" access="ROLE_STUDENT"/>
+	<security:intercept-url pattern="/forTeacher" access="ROLE_TEACHER"/>
+	<security:intercept-url pattern="/forFaculity" access="ROLE_FACULITY"/>
+	
+	<security:csrf disabled="true"/>
+	
 </security:http>
+
+
+<!-- <bean id="kb141AuthService" class="org.kb141.auth.KB141AuthService"></bean> -->
+
 
 <security:authentication-manager>
 	<security:authentication-provider>
-		<security:user-service>
 
-			<security:user name="student" password="student" authorities="ROLE_STUDENT"/>
+<!-- 			<security:user-service> -->
+<!-- 				<security:user name="student" password="student" authorities="ROLE_STUDENT" /> -->
+<!-- 				<security:user name="teacher" password="teacher" authorities="ROLE_TEACHER" /> -->
+<!-- 				<security:user name="admin" password="admin" authorities="ROLE_FACULITY" /> -->
+<!-- 			</security:user-service> -->
 
-			<security:user name="teacher" password="teacher" authorities="ROLE_TEACHER"/>
-
-			<security:user name="faculity" password="faculity" authorities="ROLE_FACULITY"/>
-					
-		</security:user-service>	
+		<security:jdbc-user-service data-source-ref="dataSource"
+			users-by-username-query="select sid username, spw password, true enable from tbl_student where sid = ?"
+			authorities-by-username-query="select sid username, 'ROLE_STUDENT' authority from tbl_student where sid = ?"
+		/>
+		
 	</security:authentication-provider>
 </security:authentication-manager>
 

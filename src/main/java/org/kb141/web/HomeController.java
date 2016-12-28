@@ -38,17 +38,17 @@ public class HomeController {
 		return "home";
 	}
 	
-	@GetMapping("/student")
+	@GetMapping("/forStudent")
 	public void doForStudent() {
 		logger.info("Student");
 	}
 	
-	@GetMapping("/teacher")
+	@GetMapping("/forTeacher")
 	public void doForTeacher() {
 		logger.info("Teacher");
 	}
 	
-	@GetMapping("/faculity")
+	@GetMapping("/forFaculity")
 	public void doForFaculity() {
 		logger.info("Faculity");
 	}
@@ -64,8 +64,14 @@ public class HomeController {
 	}
 	
 	
+	@GetMapping("/forAll")
+	public void doForAll() {
+		logger.info("ALL");
+	}
 	
-	
-	 
+	@PostMapping("/forAll2")
+	public void doForAll2() {
+		logger.info("ALL2");
+	}
 	
 }

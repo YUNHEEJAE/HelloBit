@@ -31,7 +31,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your LESSON</p>
 
-    <form action="loginProcess" method="post">
+    <form action="../loginProcess" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="ID" name="login_id">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -40,7 +40,6 @@
         <input type="password" class="form-control" placeholder="Password" name="login_pw">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
       <div class="row">
       		
       		<!-- REMEMBER ME -->

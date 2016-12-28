@@ -123,8 +123,8 @@
 				
 				<div class="form-group">
 				  <label class=" control-label" for="persongroupid" >Person Group ID</label>  
-				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" readonly="readonly" class="form-control" value="remember_04163" required="">
-				   <span class="help-block">자동으로 생성됩니다.</span>  
+				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" class="form-control" value="remember_04163" required="">
+				   <span class="help-block">자동으로 생성됩니다. 나중에 할게요</span>  
 				</div>
 				
 				</form>
