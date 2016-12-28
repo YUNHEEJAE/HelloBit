@@ -64,4 +64,10 @@ public class TakeProgramDAOImpl implements TakeProgramDAO {
 		return sqlsession.selectList(NAME + "stateList",vo);
 	}
 
+	@Override
+	public void updatePersonId(TakeProgramVO vo) throws Exception {
+		sqlsession.update(NAME + "updatePersonId", vo);
+		
+	}
+
 }

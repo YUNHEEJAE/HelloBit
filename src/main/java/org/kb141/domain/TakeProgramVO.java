@@ -8,6 +8,8 @@ public class TakeProgramVO {
 	private Integer pno;
 	private Boolean state;
 	private Date tregdate;
+	private String personid;
+	
 	public String getSid() {
 		return sid;
 	}
@@ -33,10 +35,20 @@ public class TakeProgramVO {
 		this.tregdate = tregdate;
 	}
 	
+	
+	public String getPersonid() {
+		return personid;
+	}
+	public void setPersonid(String personid) {
+		this.personid = personid;
+	}
+	
 	@Override
 	public String toString() {
-		return "TakeProgramVO [sid=" + sid + ", pno=" + pno + ", state=" + state + ", tregdate=" + tregdate + "]";
+		return "TakeProgramVO [sid=" + sid + ", pno=" + pno + ", state=" + state + ", tregdate=" + tregdate
+				+ ", personid=" + personid + "]";
 	}
+	
 	
 	
 

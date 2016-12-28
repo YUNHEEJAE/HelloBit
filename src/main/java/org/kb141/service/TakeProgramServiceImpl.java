@@ -120,4 +120,16 @@ public class TakeProgramServiceImpl implements TakeProgramService{
 		}
 		return list;
 	}
+
+
+	@Override
+	public void updatePersonId(TakeProgramVO vo) {
+		try {
+			takeprogramDAO.updatePersonId(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }
