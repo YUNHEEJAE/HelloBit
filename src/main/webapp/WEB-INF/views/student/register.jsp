@@ -47,11 +47,11 @@
 
 <div class="register-box">
    <div class="register-logo">
-     <a href="../../index2.html"><b>Admin</b>LTE</a>
+     <a href="../../index2.html"><b>회원가입</b>하기</a>
    </div>
 
    <div class="register-box-body">
-     <p class="login-box-msg">Register a new membership</p>
+     <p class="login-box-msg">Register a new Student</p>
 
      <form  method="post" id="regForm" action="register">
        <div class="form-group has-feedback">
