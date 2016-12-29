@@ -361,7 +361,7 @@ public class FaculityController {
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:list";
 	}
-	
+	  
 	@GetMapping("/teachermodify")
 	public void TeacherModifyGET() throws Exception{
 		logger.info("Teacher Modify Page .........");

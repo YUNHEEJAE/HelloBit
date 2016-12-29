@@ -55,7 +55,13 @@ public class TeacherController {
 		model.addAttribute("tsList", tsService.getTeacherSubjectList());
 		model.addAttribute("sList", subjectService.getSubjectList());
 	}
+	
+	@GetMapping("/main")
+	public void getMainList() throws Exception {
+		logger.info("getMainList LIST.....");
 
+	}
 
+	
 	
 }
