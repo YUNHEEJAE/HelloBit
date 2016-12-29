@@ -192,7 +192,7 @@
 <!-- Morris.js charts -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-	
+
 <!-- <script src="../resources/plugins/morris/morris.min.js"></script> -->
 <!-- Sparkline -->
 <script src="../resources/plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -222,5 +222,27 @@
 <!-- <script src="../resources/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
+
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
+	charset="utf-8"></script>
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("1tao50bmdj28Y9tpRgWt",
+			"http://localhost:8081/web/student/list");
+	alert(naver_id_login.oauthParams.access_token);
+	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+	// 네이버 사용자 프로필 조회
+	naver_id_login.get_naver_userprofile("naverSignInCallback()");
+	function naverSignInCallback() {
+		// naver_id_login.getProfileData('프로필항목명');
+		// 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+		alert(naver_id_login.getProfileData('email'));
+		alert(naver_id_login.getProfileData('nickname'));
+		alert(naver_id_login.getProfileData('age'));
+	}
+
+	
+</script>
+
 </body>
 </html>
