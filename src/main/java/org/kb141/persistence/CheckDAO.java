@@ -6,6 +6,7 @@ import org.kb141.domain.CheckVO;
 /**
  * CheckDAO 클래스 입니다.
  * @author camellia
+ * 실험중입니다
  *
  */
 public interface CheckDAO {
