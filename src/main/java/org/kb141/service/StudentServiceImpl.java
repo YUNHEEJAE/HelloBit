@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.kb141.domain.ImageVO;
+import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.persistence.ImageDAO;
 import org.kb141.persistence.StudentDAO;
@@ -94,6 +95,19 @@ public class StudentServiceImpl implements StudentService {
 		
 		return result;	
 	}
+
+	@Override
+	public ProgramVO getViewProgram(String sid) {
+			ProgramVO result = null;
+		try {
+			result = studentDAO.getViewProgram(sid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
 
 	
 }

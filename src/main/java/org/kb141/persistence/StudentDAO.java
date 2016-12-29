@@ -2,6 +2,7 @@ package org.kb141.persistence;
 
 import java.util.List;
 
+import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 
 public interface StudentDAO {
@@ -16,6 +17,6 @@ public interface StudentDAO {
 	
 	public List<StudentVO> allList() throws Exception;
 
-	
+	public ProgramVO getViewProgram(String sid) throws Exception;
 	
 }
