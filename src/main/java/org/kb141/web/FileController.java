@@ -29,13 +29,14 @@ public class FileController {
 	public void getFile(String file)throws Exception{
 		logger.info("file called.....");
 		logger.info("file : " + file );	
-	
+		
 		String imgData = file.split(",")[1];
-
 		byte[] image = DatatypeConverter.parseBase64Binary(imgData);
 		
 		BufferedImage bimg = ImageIO.read(new ByteArrayInputStream(image));
+		
 		File outputFile = new File("test123.png");
+		
 		ImageIO.write(bimg, "png", new FileOutputStream("/Users/juyoungjung/"+outputFile));
 
 	}
