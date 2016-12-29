@@ -5,7 +5,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-
 <security:http auto-config="true" use-expressions="false">
 	<security:form-login login-page="/login"
 							username-parameter="login_id"
