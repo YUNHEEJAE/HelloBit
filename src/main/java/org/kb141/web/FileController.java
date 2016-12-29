@@ -4,6 +4,7 @@ package org.kb141.web;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import javax.imageio.ImageIO;
@@ -25,8 +26,8 @@ public class FileController {
 	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 	
 	
-	@PostMapping("/getFile")
-	public void getFile(String file)throws Exception{
+	@PostMapping(value = "/getFile" , produces="application/text;charset=utf8")
+	public String getFile(String file)throws Exception{
 		logger.info("file called.....");
 		logger.info("file : " + file );	
 		
@@ -38,6 +39,11 @@ public class FileController {
 		File outputFile = new File("test123.png");
 		
 		ImageIO.write(bimg, "png", new FileOutputStream("/Users/juyoungjung/"+outputFile));
+		
+		BufferedImage onimg = ImageIO.read(new FileInputStream("/Users/juyoungjung/"+outputFile));
+		
+
+		return "2016-12-29 15:00 정주영 출근";
 
 	}
 }

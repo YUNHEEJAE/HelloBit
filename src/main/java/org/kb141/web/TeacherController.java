@@ -3,7 +3,9 @@ package org.kb141.web;
 import javax.inject.Inject;
 
 import org.kb141.domain.TeacherVO;
+import org.kb141.service.CheckService;
 import org.kb141.service.SubjectService;
+import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
 import org.slf4j.Logger;
@@ -32,7 +34,12 @@ public class TeacherController {
 
 	@Inject
 	private TeacherSubjectService tsService;
-
+	
+	@Inject
+	private TakeProgramService takeprogramService;
+	
+	@Inject
+	private CheckService checkService;
 	private static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
 
 	// 리스트 먼저 뽑아보자.
@@ -57,9 +64,14 @@ public class TeacherController {
 	}
 	
 	@GetMapping("/main")
-	public void getMainList() throws Exception {
+	public void getMainList(Model model,Integer pno) throws Exception {
 		logger.info("getMainList LIST.....");
-
+		int check = checkService.getcheckMember(pno);
+		int total = takeprogramService.getstateTotal(pno);
+		int absent = total - check; 
+		model.addAttribute("total", total);
+		model.addAttribute("check", check);
+		model.addAttribute("absent", absent);
 	}
 
 	
