@@ -14,5 +14,9 @@
 	<select id="checkList" resultType="CheckVO">
 		select * from tbl_check order by checktime desc
 	</select>
-
+	
+	<select id="checkMember" resultType="Integer">
+		select count(*) from tbl_check where pno = #{pno} and checktime >= now()
+	</select>
+	
 </mapper>

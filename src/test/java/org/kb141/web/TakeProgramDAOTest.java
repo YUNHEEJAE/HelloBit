@@ -77,6 +77,7 @@ public class TakeProgramDAOTest {
 		System.out.println(dao.stateList(vo));
 	}
 	
+
 	
 	// ================ service ================
 	
@@ -140,7 +141,7 @@ public class TakeProgramDAOTest {
 	
 	@Test
 	public void getStateTotalTest()throws Exception{
-		System.out.println(service.getstateTotal(0));
+		System.out.println(service.getstateTotal(1));
 	}
 	
 	
@@ -148,8 +149,8 @@ public class TakeProgramDAOTest {
 	public void getStateListTest()throws Exception{
 		TakeProgramVO vo = new TakeProgramVO();
 		vo.setPno(1);
-		vo.setState(false);
-		System.out.println(service.getstateList(vo));
+		vo.setState(true);
+		System.out.println(service.getstateList(vo).size());
 	}
 	
 	@Test

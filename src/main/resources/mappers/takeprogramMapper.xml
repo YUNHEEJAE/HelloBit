@@ -44,10 +44,9 @@
 	
 	
 	<select id="stateList" resultType="TakeProgramVO">
-	
-	select * from tbl_take_program where pno = #{pno} and state = #{state};
-	
+	select * from tbl_take_program where pno = #{pno} and state = #{state}
 	</select>
+	
 	
 	
 	<update id="updatePersonId" parameterType="TakeProgramVO">

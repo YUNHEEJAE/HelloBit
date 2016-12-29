@@ -9,4 +9,6 @@ public interface CheckService {
 	public void create(CheckVO vo);
 	
 	public List<CheckVO> checkList();
+	
+	public Integer getcheckMember(Integer pno);
 }

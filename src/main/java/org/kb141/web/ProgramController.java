@@ -180,7 +180,7 @@ public class ProgramController {
 		logger.info("Curri " + curriculums);
 		
 	
-		
+		  
 		
 		service.register(vo, curriculums);
 		return "success";
