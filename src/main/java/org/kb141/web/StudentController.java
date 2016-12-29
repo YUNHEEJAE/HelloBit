@@ -168,4 +168,10 @@ public class StudentController {
 	}
 	
 	
+	
+	@GetMapping("/chartTest")
+	public void chartTest() throws Exception{
+		logger.info("CHART CALLED.....");
+	}
+	
 }

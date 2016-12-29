@@ -222,7 +222,66 @@
 <!-- <script src="../resources/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
-	
+<script src="../resources/plugins/chartjs/Chart.min.js"></script>
+<script src="../resources/plugins/util/utils.js"></script>
+<script>
+	//canvas를 2d용으로 사용하겠다.
+		var day = ["Mon","Tue", "Wed", "Thu","Fri"];
+		var barChart = null;
+		var barChartData = {
+			labels : ["Mon","Tue","Wed","Thu","Fri"],
+			datasets : [
+				{
+					//색 채우기
+					fillColor : "rgba(215, 40, 40, 0.9)",
+					//차트 테두리 색
+					strokeColor : "rgba(220,220,220,0.8)",
+					//커서 올렸을 때 색깔
+					highlightFill: "rgba(215, 40, 40, 0.9)",
+					//커서 올렸을 때 테두리 색깔
+					highlightStroke: "rgba(220,220,220,1)",
+					//값
+					data : [20,20,20,20,20]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,0.8)",
+					highlightFill : "rgba(151,187,205,0.75)",
+					highlightStroke : "rgba(151,187,205,1)",
+					data : [20,20,20,20,20]
+				}
+			]
+		};
 
+		$(function() {
+			var ctx = document.getElementById("barChart").getContext("2d");
+			barChart = new Chart(ctx).Bar(barChartData, {
+				//차트 x축 시작 값을 0으로 할래?
+				scaleBeginAtZero : true,
+				//차트 눈금 표시 할래?
+				scaleShowGridLines : true,
+				//눈금 색깔 뭐로 할래?
+				scaleGridLineColor : "rgba(0,0,0,1)",
+				// 눈금 선 굵기
+				scaleGridLineWidth : 1,
+				//막대 테두리 보여줄거야?
+				barShowStroke : false,
+				//막대 너비
+				barStrokeWidth : 0.1,
+				//x축 간격
+				barValueSpacing : 1,
+				//막대들 간의 간격
+				barDatasetSpacing : 5,
+				onAnimationProgress: function() {
+					console.log("onAnimationProgress");
+				},
+				onAnimationComplete: function() {
+					console.log("onAnimationComplete");
+				}
+			});
+		});
+	
+	
+</script>
 </body>
 </html>
