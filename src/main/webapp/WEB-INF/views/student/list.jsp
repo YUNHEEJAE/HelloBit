@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="header.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,23 +12,20 @@
 	<h1>HERE IS STUDENT LIST</h1>
 	<div class="row">
 		<c:forEach items="${list}" var="StudentVO">
-			<p>${StudentVO.sname}  ${StudentVO.sid}  ${StudentVO.spw}</p>
+			<p>${StudentVO.sname}${StudentVO.sid} ${StudentVO.spw}</p>
 		</c:forEach>
 	</div>
-	
-	
+
+
 	<script>
-	
 		var result = '${result}';
-	
-		if(result == "success"){
+
+		if (result == "success") {
 			alert("가입완료!");
-			
+
 		}
-	
-	
-	
 	</script>
-	
+
 </body>
+<%@include file="footer.jsp"%>
 </html>

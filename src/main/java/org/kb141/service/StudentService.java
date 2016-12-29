@@ -2,6 +2,7 @@ package org.kb141.service;
 
 import java.util.List;
 
+import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 
 public interface StudentService {
@@ -16,5 +17,5 @@ public interface StudentService {
 	
 	public List<StudentVO> getStudentList();
 
-	
+	public ProgramVO getViewProgram(String sid);
 }
