@@ -223,7 +223,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
 	
-</script>
 
 </body>
 </html>
