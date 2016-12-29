@@ -5,40 +5,59 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-
 <security:http auto-config="true" use-expressions="false">
-	<security:form-login login-page="/student/login"
+	<security:form-login login-page="/login"
 							username-parameter="login_id"
 							password-parameter="login_pw"
 							login-processing-url="/loginProcess"
-							default-target-url="/login_success"
-							authentication-failure-url="/login"
-							always-use-default-target="true"
-							/>						
+							
+							always-use-default-target="false"
+							default-target-url="/"		
+							
+							authentication-success-handler-ref="loginSuccessHandler"
+							authentication-failure-handler-ref="loginFailureHandler"
+							/>				
+
 	<security:session-management>
 		<security:concurrency-control max-sessions="1" expired-url="/login_duplicate"/>
 	</security:session-management>
 
-	<security:logout delete-cookies="JSESSIONID" invalidate-session="true" logout-url="/myLogout"/>
+	<security:logout delete-cookies="JSESSIONID,LOGIN_ID" invalidate-session="true" logout-url="/myLogout" logout-success-url="/login?logout"/>
 
-	<security:intercept-url pattern="/student" access="ROLE_STUDENT"/>
-	<security:intercept-url pattern="/teacher" access="ROLE_TEACHER"/>
-	<security:intercept-url pattern="/faculity" access="ROLE_FACULITY"/>
-
+	<security:intercept-url pattern="/forStudent" access="ROLE_STUDENT"/>
+	<security:intercept-url pattern="/forTeacher" access="ROLE_TEACHER"/>
+	<security:intercept-url pattern="/forFaculity" access="ROLE_FACULITY"/>
+	
+	<security:csrf disabled="true"/>
+	
 </security:http>
 
+<!-- 		<bean id="kb141AuthService" class="org.kb141.auth.KB141AuthService"></bean> -->
+			<bean id="loginSuccessHandler" class="org.kb141.auth.LoginSuccessHandler"></bean>
+			<bean id="loginFailureHandler" class="org.kb141.auth.LoginFailureHandler"></bean>
+
 <security:authentication-manager>
+
 	<security:authentication-provider>
-		<security:user-service>
+	
+		<security:jdbc-user-service data-source-ref="dataSource"
+			users-by-username-query="select t.*,  true enable from (
+								select sid username, spw password from tbl_student
+							union select tid username, tpw password from tbl_teacher
+							union select fid userid, fpw userpw from tbl_faculity) t where username = ?"
+			authorities-by-username-query="select * from (
+								select sid username, 'ROLE_STUDENT' authority from tbl_student
+							union select tid username, 'ROLE_TEACHER' authority from tbl_teacher
+							union select fid username, 'ROLE_FACULITY' authority from tbl_faculity) t where username = ?"
+		/>
+				
+<!-- 	</security:authentication-provider> -->
+<!-- 		<security:authentication-provider user-service-ref="kb141AuthService"> -->
 
-			<security:user name="student" password="student" authorities="ROLE_STUDENT"/>
-
-			<security:user name="teacher" password="teacher" authorities="ROLE_TEACHER"/>
-
-			<security:user name="faculity" password="faculity" authorities="ROLE_FACULITY"/>
-					
-		</security:user-service>	
 	</security:authentication-provider>
+
 </security:authentication-manager>
+
+<!-- <bean id="kb141AuthService" class="org.kb141.auth.KB141AuthService"></bean> -->
 
 </beans>

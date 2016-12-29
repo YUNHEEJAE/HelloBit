@@ -120,7 +120,7 @@
 <script src="/resources/dist/js/demo.js"></script>
 <script>
 
-
+	
 	
 	$('#regBtn').on("click" , function(event){
 
@@ -139,30 +139,28 @@
 		
 			var formdata = new FormData();
 			
-			
 			formdata.append("sid" , userid);
 			formdata.append("file" , image); 
 			
 			console.log(formdata);
-			
-			
-				$.ajax({
-					url : "http://localhost:8081/web/image/registerImage",
-					data :formdata,
-					type:"post",
-					contentType:false,
-					processData : false,
-					success: function(result){
-						console.log(result);
-						
-						$('#hiddenFile').attr("value" , result);
-						
-						 $('#regForm').submit();   
-						
-					}
+
+			$.ajax({
+				url : "http://localhost:8081/web/image/registerImage?${_csrf.parameterName}=${_csrf.token}",
+				data :formdata,
+				type:"post",
+				contentType:false,
+				processData : false,
+				success: function(result){
+					console.log(result);
 					
-						
-				}); 
+					$('#hiddenFile').attr("value" , result);
+					
+					$('#regForm').submit();   
+					
+				}
+				
+					
+			}); 
 				
 				
 			

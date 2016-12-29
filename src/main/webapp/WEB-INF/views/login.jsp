@@ -31,7 +31,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your LESSON</p>
 
-    <form action="../loginProcess" method="post">
+    <form action="loginProcess" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="ID" name="login_id">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
