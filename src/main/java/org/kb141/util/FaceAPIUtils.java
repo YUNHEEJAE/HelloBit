@@ -24,6 +24,7 @@ import org.json.simple.parser.JSONParser;
  *
  */
 
+
 public class FaceAPIUtils {
 /*
  * 	1. 프로그램 등록 할 때 PersonGroupId 생성됨 (CreatePersonGroup.java)
