@@ -285,7 +285,7 @@ $(document).ready(function() {
 													}); // end a click
 						});  // end docs
 					});  // end getJson
-			});
+				});
 			}// end category list
 
 		getCategoryList("java");
