@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.kb141.domain.TeacherVO;
 import org.kb141.persistence.TeacherDAO;
+import org.kb141.persistence.TeacherSubjectDAO;
 import org.springframework.stereotype.Service;
 
 
@@ -16,7 +17,8 @@ public class TeacherServiceImpl implements TeacherService {
 	@Inject
 	private TeacherDAO TeacherDAO;
 	
-	
+	@Inject
+	private TeacherSubjectDAO teachersubjectDAO;
 	
 	@Override
 	public void register(TeacherVO vo) {

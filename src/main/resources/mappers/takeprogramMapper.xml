@@ -49,5 +49,11 @@
 	
 	</select>
 	
+	
+	<update id="updatePersonId" parameterType="TakeProgramVO">
+		update tbl_take_program set personid = #{personid} where sid = #{sid}
+	</update>
+	
+	
 </mapper>
 

@@ -47,11 +47,11 @@
 
 <div class="register-box">
    <div class="register-logo">
-     <a href="../../index2.html"><b>Admin</b>LTE</a>
+     <a href="../../index2.html"><b>회원가입</b>하기</a>
    </div>
 
    <div class="register-box-body">
-     <p class="login-box-msg">Register a new membership</p>
+     <p class="login-box-msg">Register a new Student</p>
 
      <form  method="post" id="regForm" action="register">
        <div class="form-group has-feedback">
@@ -120,7 +120,7 @@
 <script src="/resources/dist/js/demo.js"></script>
 <script>
 
-
+	
 	
 	$('#regBtn').on("click" , function(event){
 
@@ -139,30 +139,28 @@
 		
 			var formdata = new FormData();
 			
-			
 			formdata.append("sid" , userid);
 			formdata.append("file" , image); 
 			
 			console.log(formdata);
-			
-			
-				$.ajax({
-					url : "http://localhost:8081/web/image/registerImage",
-					data :formdata,
-					type:"post",
-					contentType:false,
-					processData : false,
-					success: function(result){
-						console.log(result);
-						
-						$('#hiddenFile').attr("value" , result);
-						
-						 $('#regForm').submit();   
-						
-					}
+
+			$.ajax({
+				url : "http://localhost:8081/web/image/registerImage?${_csrf.parameterName}=${_csrf.token}",
+				data :formdata,
+				type:"post",
+				contentType:false,
+				processData : false,
+				success: function(result){
+					console.log(result);
 					
-						
-				}); 
+					$('#hiddenFile').attr("value" , result);
+					
+					$('#regForm').submit();   
+					
+				}
+				
+					
+			}); 
 				
 				
 			

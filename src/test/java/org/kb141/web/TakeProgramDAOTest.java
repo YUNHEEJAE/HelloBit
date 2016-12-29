@@ -152,5 +152,14 @@ public class TakeProgramDAOTest {
 		System.out.println(service.getstateList(vo));
 	}
 	
+	@Test
+	public void updatePersonId() throws Exception {
+		
+		TakeProgramVO vo = new TakeProgramVO();
+		vo.setSid("sih");
+		vo.setPersonid("hiyo-thisis-personid-to-senyo");
+		service.updatePersonId(vo);
+		
+	}
 	
 }

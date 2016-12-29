@@ -11,6 +11,7 @@ import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
+import org.kb141.domain.TeacherSubjectVO;
 import org.kb141.domain.TeacherVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
@@ -489,12 +490,33 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
+	@GetMapping("/teachersubjectregister")
+	public void TeachersubjectCreateGET(Model model) throws Exception{
+		logger.info("TeacherSubject Create.....");
+		model.addAttribute("teacherVO", teacherService.getTeacherList());
+		model.addAttribute("subjectVO", subjectService.getSubjectList());
+	}
+	
+	@PostMapping("/teachersubjectregister")
+	public String TeachersubjectRegisterPOST(String tid,String subno,TeacherSubjectVO vo,RedirectAttributes rttr)throws Exception{
+		logger.info("TeacherSubject Register.........................");
+		logger.info("TeacherVO vo : " + tid);
+		logger.info("SubjectVO vo : " + subno);
+		vo.setTid(tid);
+		vo.setSubno(Integer.decode(subno));
+		logger.info("TeacherSubjectVO vo : " + vo);
+		
+		teacherSubjectService.register(vo);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:list";
+	}
+	
 	@GetMapping("/teachersubjectview")
 	public void TeacherSubjectViewGET(@RequestParam("tsno") Integer tsno, Model model) throws Exception{
 			logger.info("teachersubject view...........");
 			logger.info("teachersubject : " + tsno);
 			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
 	}
-
+	
 
 }

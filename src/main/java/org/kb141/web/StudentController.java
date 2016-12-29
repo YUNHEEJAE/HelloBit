@@ -11,6 +11,7 @@ import org.kb141.service.StudentService;
 import org.kb141.service.TakeProgramService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.web.servlet.result.FlashAttributeResultMatchers;
 import org.springframework.ui.Model;
@@ -50,6 +51,7 @@ public class StudentController {
 
 	@PostMapping("/register")
 	public String registerPOST(StudentVO vo,  String filename , RedirectAttributes rttr) throws Exception{
+		
 		logger.info("register POST....");
 		logger.info("VO : " + vo);
 		logger.info("filename : " + filename);
@@ -156,6 +158,12 @@ public class StudentController {
 		logger.info("list" + list);
 		
 		return list;
+		
+	}
+	
+	@GetMapping("/login")
+	public void login() throws Exception {
+		logger.info("LOGIN CALLED...");
 		
 	}
 	
