@@ -41,6 +41,7 @@
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
+      
       		
       		<!-- REMEMBER ME -->
         <div class="col-xs-8">
@@ -85,6 +86,9 @@
   </div>
 
 </body>
+
+
+
 
 <%@include file="footer.jsp"%>
 
