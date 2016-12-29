@@ -25,5 +25,5 @@ public interface CheckDAO {
 	 */
 	public List<CheckVO> checkList() throws Exception;
 	
-	
+	public Integer checkList(Integer pno) throws Exception;
 }

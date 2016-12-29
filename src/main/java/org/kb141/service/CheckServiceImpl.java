@@ -34,5 +34,17 @@ public class CheckServiceImpl implements CheckService {
 		
 		return result;
 	}
-
+	
+	@Override
+	public Integer getcheckMember(Integer pno) {
+		Integer checkList = 0;
+		
+		try {
+			checkList = checkDAO.checkList(pno);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return checkList;
+	}
 }

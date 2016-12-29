@@ -25,4 +25,8 @@ public class CheckDAOImpl implements CheckDAO {
 		return sqlSession.selectList(NAME + "checkList");
 	}
 
+	@Override
+	public Integer checkList(Integer pno) throws Exception {
+		return sqlSession.selectOne(NAME + "checkMember", pno);
+	}
 }

@@ -38,6 +38,12 @@ public class CheckDAOTest {
 		System.out.println(dao.checkList());
 	}
 
+	@Test
+	public void checkMemberTest() throws Exception{
+		System.out.println(dao.checkList(1));
+	}
+	
+	
 	// =======================SERVICE=========================
 
 	@Test
@@ -57,5 +63,11 @@ public class CheckDAOTest {
 	public void serviceCheckListTest() throws Exception {
 		System.out.println(service.checkList());
 	}
+	
+	@Test
+	public void getcheckMemberTest() throws Exception{
+		System.out.println(service.getcheckMember(1));
+	}
+	
 
 }
