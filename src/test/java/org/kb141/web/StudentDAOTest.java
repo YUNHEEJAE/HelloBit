@@ -61,6 +61,13 @@ public class StudentDAOTest {
 		
 	}
 	
+	@Test
+	public void getViewProgramTest() throws Exception{
+		System.out.println(dao.getViewProgram("yhj"));
+	}
+	
+	
+	
 	// =============== SERVICE ==================
 	
 	
@@ -111,6 +118,11 @@ public class StudentDAOTest {
 	@Test
 	public void getStudentListTest() throws Exception {
 		System.out.println(service.getStudentList());
+	}
+	
+	@Test
+	public void getViewProgramServiceTest() throws Exception{
+		System.out.println(service.getViewProgram("yhj"));
 	}
 	
 	

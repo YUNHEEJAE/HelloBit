@@ -84,10 +84,11 @@ public class StudentController {
 
 	}
 
-	@GetMapping("/view")
+	@GetMapping("/main")
 	public void view(@RequestParam("sid") String sid, Model model) throws Exception {
 		logger.info("STUDENT VIEW.....");
 		model.addAttribute(studentService.view(sid));
+		model.addAttribute("programVO", studentService.getViewProgram(sid));
 	}
 	
 	@PostMapping("/enrolment")

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.springframework.stereotype.Repository;
 
@@ -42,6 +43,11 @@ public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public List<StudentVO> allList() throws Exception {
 		return sqlSession.selectList(NAME + "allList");
+	}
+
+	@Override
+	public ProgramVO getViewProgram(String sid) throws Exception {
+		return sqlSession.selectOne(NAME + "getViewProgram", sid);
 	}
 
 }

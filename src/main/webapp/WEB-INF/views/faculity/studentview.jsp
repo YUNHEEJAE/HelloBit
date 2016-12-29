@@ -36,10 +36,11 @@
 
 
 					<div class="form-group">
-						<label class=" control-label">학생 아이디</label> <input id="pcourse" name="sid" type="text" placeholder="학생아이디"
-							value="${studentVO.sid}" class="form-control"
-							readonly="readonly"> <span class="help-block">It
-							identify how many days it takes for deliver</span>
+						<label class=" control-label">학생 아이디</label> <input id="pcourse"
+							name="sid" type="text" placeholder="학생아이디"
+							value="${studentVO.sid}" class="form-control" readonly="readonly">
+						<span class="help-block">It identify how many days it takes
+							for deliver</span>
 					</div>
 
 					<div class="form-group">
@@ -51,8 +52,8 @@
 					</div>
 
 					<div class="form-group">
-						<label class=" control-label">학생 비밀번호</label> <input
-							id="pcontent" name="spw" type="text" placeholder="학생비밀번호"
+						<label class=" control-label">학생 비밀번호</label> <input id="pcontent"
+							name="spw" type="text" placeholder="학생비밀번호"
 							value="${studentVO.spw}" class="form-control" readonly="">
 						<span class="help-block">It identify how many days it takes
 							for deliver</span>
@@ -87,8 +88,7 @@
 <script>
 	$(document).ready(function() {
 		$("#btnSuccess").hide();
-		
-		
+
 		$("#btnModify").on("click", function() {
 			console.log("변경잼");
 			$("#btnSuccess").show();
