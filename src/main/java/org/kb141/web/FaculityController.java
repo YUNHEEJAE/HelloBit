@@ -361,18 +361,17 @@ public class FaculityController {
 		rttr.addFlashAttribute("result", "success");
 		return "redirect:list";
 	}
-	
+	  
 	@GetMapping("/teachermodify")
 	public void TeacherModifyGET() throws Exception{
 		logger.info("Teacher Modify Page .........");
 	}
 	
 
-	
 	@GetMapping("/faculityregister")
 	public void FaculityRegisterGET() throws Exception{
 		logger.info("Faculity Register.........");
-	}
+	}   
 	
 	@PostMapping("/faculityregister")
 	public String FaculityRegisterPOST(FaculityVO vo, RedirectAttributes rttr) throws Exception{
@@ -490,6 +489,14 @@ public class FaculityController {
 		return "redirect:list";
 	}
 	
+	
+	
+	@GetMapping("/pictureRegister")
+	public void picturePage()throws Exception{
+		logger.info("picture called.............");
+	}
+	
+
 	@GetMapping("/teachersubjectregister")
 	public void TeachersubjectCreateGET(Model model) throws Exception{
 		logger.info("TeacherSubject Create.....");
@@ -517,6 +524,6 @@ public class FaculityController {
 			logger.info("teachersubject : " + tsno);
 			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
 	}
-	
+
 
 }

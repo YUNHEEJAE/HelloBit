@@ -19,7 +19,7 @@
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
-					<div class="col-xs-8">
+					<div class="col-xs-8"> 
 						<div class="checkbox icheck">
 							<label class="">
 								<div class="icheckbox_square-blue" aria-checked="false"

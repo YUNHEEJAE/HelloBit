@@ -105,6 +105,11 @@ public class StudentController {
 		
 	}
 	
+	@GetMapping("/chartjs")
+	public void chartjs() throws Exception {
+		
+	}
+	
 	@GetMapping(value="/myprogram",produces="application/json")
 	@ResponseBody
 	public TakeProgramVO myprogram(String sid) throws Exception{
