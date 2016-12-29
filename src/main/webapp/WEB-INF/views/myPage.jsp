@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h2>For ALL 2</h2>
+	<h2>LOGIN SUCCESS</h2>
 
 </body>
 </html>

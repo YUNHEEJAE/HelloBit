@@ -4,8 +4,12 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,24 +42,36 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("/login")
+	public void login() {
+		logger.info("LOGIN");
+	}
+	
 	@GetMapping("/forStudent")
+	@Secured({"ROLE_STUDENT"})
 	public void doForStudent() {
 		logger.info("Student");
 	}
 	
+	@Secured({"ROLE_TEACHER"})
 	@GetMapping("/forTeacher")
 	public void doForTeacher() {
 		logger.info("Teacher");
 	}
+
 	
+	@Secured({"ROLE_FACULITY"})
 	@GetMapping("/forFaculity")
 	public void doForFaculity() {
 		logger.info("Faculity");
 	}
 	
 	@GetMapping("/myLogout")
-	public void logout() {
+	public void logout(HttpServletResponse response) {
 		logger.info("logout get");
+		Cookie cookie = new Cookie("LOGIN", "SuperSenyo");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
 	}
 	
 	@PostMapping("/myLogout")
@@ -72,6 +88,17 @@ public class HomeController {
 	@PostMapping("/forAll2")
 	public void doForAll2() {
 		logger.info("ALL2");
+	}
+	
+	@GetMapping("/myPage")
+	public String myPage(HttpServletResponse response){
+		logger.info("LOGIN SUCCESS");
+		Cookie cookie = new Cookie("LOGIN", "SuperSenyo");
+		cookie.setMaxAge(24*60*60);
+		
+		response.addCookie(cookie);
+		
+		return "redirect:forStudent";
 	}
 	
 }
