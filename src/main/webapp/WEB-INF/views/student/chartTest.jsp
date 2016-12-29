@@ -125,7 +125,6 @@
 					<!-- /.box-body -->
 				</div>
 				<!-- /.box -->
-
 			</div>
 			<!-- /.col (RIGHT) -->
 		</div>
