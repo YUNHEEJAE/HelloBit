@@ -16,6 +16,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.stereotype.Repository;
 
 /**
  * 
@@ -24,7 +25,7 @@ import org.json.simple.parser.JSONParser;
  *
  */
 
-
+@Repository
 public class FaceAPIUtils {
 /*
  * 	1. 프로그램 등록 할 때 PersonGroupId 생성됨 (CreatePersonGroup.java)
@@ -295,7 +296,7 @@ public class FaceAPIUtils {
         
 	}
 	
-	public List<String> detectAndIdentifyFace(String imgURL, String faceIds, String personGroupId) {
+	public List<String> detectAndIdentifyFace(String imgURL, String personGroupId) {
 		
 		return identifyFace(detectFace(imgURL), personGroupId);
 		
