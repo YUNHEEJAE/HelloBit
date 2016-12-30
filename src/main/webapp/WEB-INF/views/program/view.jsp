@@ -141,7 +141,7 @@
           <form action="../student/enrolment" method="post" id="enrolform">
           <button type="button" class="btn btn-success pull-right" id="enrolBtn"><i class="glyphicon glyphicon-ok"></i> 수강 신청
           </button>
-          <input type="hidden" value="hhkb" name="sid">
+          <input type="hidden" value="jy12345" name="sid">
           <input type="hidden" value="${view.pno}" name="pno">
           </form>
           <a href ="http://localhost:8081/web/program/list"><button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">

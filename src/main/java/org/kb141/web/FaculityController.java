@@ -243,18 +243,20 @@ public class FaculityController {
 	@PostMapping(value="/admission")
 	public String admissionEnrolment(String[] sid , Integer pno , String groupid,RedirectAttributes rttr)throws Exception{
 		
-		logger.info("admission called..........................................................................");
-		logger.info("sid" + Arrays.toString(sid));
+		logger.debug("admission called..........................................................................");
+		logger.debug("sid" + Arrays.toString(sid));
 		logger.info("pno : " + pno);
 		logger.info("groupid" + groupid);
 		TakeProgramVO vo = new TakeProgramVO();
+	
 		
 		for(int i = 0 ; i < sid.length ; i ++){
 			vo.setState(true);
 			vo.setSid(sid[i]);
 			vo.setPno(pno);
-			System.out.println(faceAPI.createPersonId(sid[i], groupid));
-			vo.setPersonid(faceAPI.createPersonId(sid[i], groupid));
+			String api = faceAPI.createPersonId(sid[i], groupid);
+			vo.setPersonid(api);
+			System.out.println(vo);
 			takeprogramService.modify(vo);
 		}
 		

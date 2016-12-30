@@ -120,7 +120,7 @@ public class StudentController {
 	
 		rttr.addFlashAttribute("result" , "success");
 		
-//		takeprogramService.join(vo);
+		takeprogramService.join(vo);
 		return "redirect:../program/list";
 	
 		

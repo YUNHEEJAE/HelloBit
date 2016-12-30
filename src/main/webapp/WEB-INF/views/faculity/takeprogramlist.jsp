@@ -174,127 +174,192 @@ $(document).ready(function() {
 							+ " </span>";
 					});
 					$("#"+targetCategory).html(str);
-
-
+					
+					
 					$("a").on("click" , function(event){	
-							console.log(event.currentTarget.attributes.value.value);
+						console.log(event.currentTarget.attributes.value.value);
 
-							$('.state').css('visibility' , 'visible');
-							$('#trueBtn').css('visibility' , 'visible');
+						$('.state').css('visibility' , 'visible');
+						$('#trueBtn').css('visibility' , 'visible');
 
-										var groupid = event.currentTarget.attributes.value.value;
-										var hash = event.currentTarget.hash;	
-										var hashPno =	hash.split("#");	
-										var pno = hashPno[1];	
-										
+								var groupid = event.currentTarget.attributes.value.value;
+								var hash = event.currentTarget.hash;	
+								var hashPno =	hash.split("#");	
+								var pno = hashPno[1];
+								var obj = {"pno" : pno}; 
+									console.log(pno);
+									getFalseList(obj);  
+									trueButton(pno , groupid);	
+										$('#falseList').on('click' , function(){
+													console.log(pno);
+														
+													console.log(event.target.name);
+													console.log($('#trueBtn')[0]);
+													var btn = $('#trueBtn');
+													btn.html('승인');
+													console.log("groupid : " + groupid);	
+													getFalseList(pno);
+														// 승인 버튼 
+													trueButton(pno , groupid);
+												});
 								
-										var obj = {"pno" : pno}; 
-										console.log(pno);
-										getFalseList(obj);  
-									
-											$('#falseList').on('click' , function(){
-												console.log(pno);
+										$('#falseList').on('click' , function(event){
+											console.log("groupid : " + groupid);	
+											event.preventDefault();
+											console.log(event);
+											$('#falseList >  a').attr("href" , pno);
+											var btn = $('#trueBtn');
+											btn.html('승인');
 												
+											getFalseList(obj);
+											
+											trueButton(pno , groupid);
+				
+													// 취소 버튼 
+											$("#successList").on("click" , function(event){
+												console.log("groupid : " + groupid);	
+												event.preventDefault();
+												var btn = $('#trueBtn');
+												btn.html('취소');
+												
+												getTrueList(obj);
+														
+													$('#trueBtn').on('click' , function(event){	
+														event.preventDefault();
+														var result = $('.check:checked');												
+														console.log(result[0].attributes.value.value);
+														var sid = new Array();
+														 $('#cancel').append("<input type='hidden' name='pno' value='"+pno+"'>") 
+														for(var  i = 0 ; i < result.length ; i++){
+															sid[i] = result[i].attributes.value.value;
+															$('#cancel').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
+															
+														}
+														 $('#cancel').submit(); 
+														 });
+												}); // end a click
+										});  // end docs
+					
+									}); // end 
+															
+					
+					
+					
+					
+				});  
+				
+			});
+		}
+		getCategoryList("java");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+/* 
+				$("takeprogramlist").on("click" , function(event){	
+					console.log(event.currentTarget.attributes.value.value);
+
+					$('.state').css('visibility' , 'visible');
+					$('#trueBtn').css('visibility' , 'visible');
+
+							var groupid = event.currentTarget.attributes.value.value;
+							var hash = event.currentTarget.hash;	
+							var hashPno =	hash.split("#");	
+							var pno = hashPno[1];
+							var obj = {"pno" : pno}; 
+								console.log(pno);
+								getFalseList(obj);  
+								trueButton(pno , groupid);	
+									$('#falseList').on('click' , function(){
+												console.log(pno);
+													
 												console.log(event.target.name);
 												console.log($('#trueBtn')[0]);
 												var btn = $('#trueBtn');
 												btn.html('승인');
 												console.log("groupid : " + groupid);	
-													getFalseList(pno);
-												// 승인 버튼 
-													$('#trueBtn').on('click' , function(event){			
-														var result = $('.check:checked');												
-														console.log(result[0].attributes.value.value);
-														console.log("groupid : " + groupid);
-														var sid = new Array();
-														 $('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>") 
-														 $('#admission').append("<input type='hidden' name='groupid' value='"+groupid+"'>")
-														for(var  i = 0 ; i < result.length ; i++){
-															sid[i] = result[i].attributes.value.value;
-															$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
-		
-																
-															}
-															 $('#admission').submit(); 
-														});
+												getFalseList(pno);
+													// 승인 버튼 
+												trueButton(pno , groupid);
 											});
-
-								$('#trueBtn').on('click' , function(event){		
-									event.preventDefault();
-									console.log(event);
-									var result = $('.check:checked');												
-									console.log(result[0].attributes.value.value);
-									var sid = new Array();
-												
-									$('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>") 
-									$('#admission').append("<input type='hidden' name='groupid' value='"+groupid+"'>")
-										for(var  i = 0 ; i < result.length ; i++){
-											sid[i] = result[i].attributes.value.value;
-											$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");			
-										}
-										$('#admission').submit(); 
-								}); // end truebtn
-															
-												$('#falseList').on('click' , function(event){
-													console.log("groupid : " + groupid);	
-													event.preventDefault();
-													console.log(event);
-													$('#falseList >  a').attr("href" , pno);
-													var btn = $('#trueBtn');
-													btn.html('승인');
-														
-													getFalseList(obj);
-														// 승인 버튼 
-														$('#trueBtn').on('click' , function(event){	
-															event.preventDefault();
-															console.log(event);
-															var result = $('.check:checked');												
-															console.log(result[0].attributes.value.value);
-															var sid = new Array();
-															
-															$('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>")
-															$('#admission').append("<input type='hidden' name='groupid' value='"+groupid+"'>")
-															for(var  i = 0 ; i < result.length ; i++){
-																sid[i] = result[i].attributes.value.value;
-																$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");			
-															}
-															 $('#admission').submit(); 
-														}); // end truebtn
+							
+									$('#falseList').on('click' , function(event){
+										console.log("groupid : " + groupid);	
+										event.preventDefault();
+										console.log(event);
+										$('#falseList >  a').attr("href" , pno);
+										var btn = $('#trueBtn');
+										btn.html('승인');
+											
+										getFalseList(obj);
+										
+										trueButton(pno , groupid);
+			
+												// 취소 버튼 
+										$("#successList").on("click" , function(event){
+											console.log("groupid : " + groupid);	
+											event.preventDefault();
+											var btn = $('#trueBtn');
+											btn.html('취소');
+											
+											getTrueList(obj);
 													
-												});
-
-															// 취소 버튼 
-													$("#successList").on("click" , function(event){
-														console.log("groupid : " + groupid);	
-														event.preventDefault();
-														var btn = $('#trueBtn');
-														btn.html('취소');
+												$('#trueBtn').on('click' , function(event){	
+													event.preventDefault();
+													var result = $('.check:checked');												
+													console.log(result[0].attributes.value.value);
+													var sid = new Array();
+													 $('#cancel').append("<input type='hidden' name='pno' value='"+pno+"'>") 
+													for(var  i = 0 ; i < result.length ; i++){
+														sid[i] = result[i].attributes.value.value;
+														$('#cancel').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
 														
-														getTrueList(obj);
-																
-															$('#trueBtn').on('click' , function(event){	
-																event.preventDefault();
-																var result = $('.check:checked');												
-																console.log(result[0].attributes.value.value);
-																var sid = new Array();
-																 $('#cancel').append("<input type='hidden' name='pno' value='"+pno+"'>") 
-																for(var  i = 0 ; i < result.length ; i++){
-																	sid[i] = result[i].attributes.value.value;
-																	$('#cancel').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
-																	
-																}
-																 $('#cancel').submit(); 
-																 });
+													}
+													 $('#cancel').submit(); 
+													 });
+											}); // end a click
+									});  // end docs
+				
+								}); // end 
+															
+										
+					// end getJson
+				
+			// end category list */
 
-												 		
-													}); // end a click
-						});  // end docs
-					});  // end getJson
-				});
-			}// end category list
-
-		getCategoryList("java");
 		
+		
+			
+		function trueButton(pno , groupid){
+			
+			$('#trueBtn').on('click' , function(event){		
+				event.preventDefault();
+				console.log(event);
+				var result = $('.check:checked');												
+				console.log(result[0].attributes.value.value);
+				var sid = new Array();
+							
+				$('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>") 
+				$('#admission').append("<input type='hidden' name='groupid' value='"+groupid+"'>")
+					for(var  i = 0 ; i < result.length ; i++){
+						sid[i] = result[i].attributes.value.value;
+						$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");			
+					}
+					$('#admission').submit(); 
+				});
+			}
+		
+		
+			
+			
+			
 		$(".subjectTab li").on("click", function(event) {
 			event.preventDefault();
 			console.log(event.target.name);
@@ -303,10 +368,10 @@ $(document).ready(function() {
 		});
 
 	
-		$(".list-group-item takeprogramlist").on("click", function(event){
+	/* 	$(".list-group-item takeprogramlist").on("click", function(event){
 				event.preventDefault();
 				console.log(event);
-		});
+		}); */
 
 		
 });
