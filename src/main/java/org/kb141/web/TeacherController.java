@@ -65,13 +65,18 @@ public class TeacherController {
 	
 	@GetMapping("/main")
 	public void getMainList(Model model,Integer pno) throws Exception {
-		logger.info("getMainList LIST.....");
-		int check = checkService.getcheckMember(pno);
+		logger.debug("getMainList LIST.....");
+		int check = checkService.getcheckDate(pno);
 		int total = takeprogramService.getstateTotal(pno);
+		int late = checkService.getcheckLate(pno);
 		int absent = total - check; 
+		logger.debug(""+absent);
+	
 		model.addAttribute("total", total);
 		model.addAttribute("check", check);
 		model.addAttribute("absent", absent);
+		model.addAttribute("late", late);
+		model.addAttribute("currdate", checkService);
 	}
 
 	

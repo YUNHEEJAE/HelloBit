@@ -9,6 +9,7 @@ import org.kb141.domain.CheckVO;
  * 실험중입니다
  *
  */
+import org.kb141.domain.WeekDataVO;
 public interface CheckDAO {
 
 	/**
@@ -26,5 +27,13 @@ public interface CheckDAO {
 	 */
 	public List<CheckVO> checkList() throws Exception;
 	
-	public Integer checkList(Integer pno) throws Exception;
+	public Integer checkMember(Integer pno) throws Exception;
+	
+	public Integer checkDate(Integer pno) throws Exception;
+	
+	public Integer checkLate(Integer pno) throws Exception;
+	
+	public WeekDataVO checkWeek(Integer pno) throws Exception;
+	
+	
 }

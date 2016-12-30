@@ -4,19 +4,48 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.kb141.mapper.CheckMapper">
+	
 	<insert id="create" parameterType="CheckVO">
 		insert into tbl_check (sid,
 		pno, emotion)
 		values (#{sid}, #{pno}, #{emotion})
 	</insert>
 
-
 	<select id="checkList" resultType="CheckVO">
-		select * from tbl_check order by checktime desc
+		select * from tbl_check order
+		by checktime desc
 	</select>
-	
+
+	<select id="checkDate" resultType="Integer">
+ 	<![CDATA[
+			select count(*) from tbl_check where pno = #{pno} and checktime >= curdate()
+		]]>
+	</select>
+
 	<select id="checkMember" resultType="Integer">
-		select count(*) from tbl_check where pno = #{pno} and checktime >= now()
+		select count(*) from tbl_take_program where pno = #{pno} and state = true
+	</select>
+
+	<select id="checkWeek" resultType="WeekDataVO">
+		select 
+			sum(if(week_result = 'mo',1,0)) mon, sum(if(week_result = 'tu',1,0)) tue, 
+			sum(if(week_result = 'we',1,0)) wed, sum(if(week_result = 'th',1,0)) thu, 
+		    sum(if(week_result = 'fr',1,0)) fri
+		from
+		(select * ,
+			case
+		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 4 )) then 'fr'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 3 )) then 'th'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 2 )) then 'we'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 1 )) then 'tu'
+		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 0 )) then 'mo'
+			end as week_result
+		from tbl_check where pno = #{pno}) t
 	</select>
 	
+		<select id="checkLate" resultType="Integer">
+			<![CDATA[
+			select count(*) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=1 and checktime > curdate())ch where  ch.latetime >= "09:10:00"
+				]]>
+		</select>
 </mapper>

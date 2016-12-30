@@ -3,6 +3,7 @@ package org.kb141.service;
 import java.util.List;
 
 import org.kb141.domain.CheckVO;
+import org.kb141.domain.WeekDataVO;
 
 public interface CheckService {
 
@@ -11,4 +12,12 @@ public interface CheckService {
 	public List<CheckVO> checkList();
 	
 	public Integer getcheckMember(Integer pno);
+	
+	public Integer getcheckDate(Integer pno);
+	
+	public Integer getcheckLate(Integer pno);
+	
+	public WeekDataVO getcheckWeek(Integer pno);
+	
+	
 }
