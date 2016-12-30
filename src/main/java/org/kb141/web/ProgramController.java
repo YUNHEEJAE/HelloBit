@@ -1,6 +1,5 @@
 package org.kb141.web;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +14,7 @@ import org.kb141.service.ClassroomService;
 import org.kb141.service.CurriculumService;
 import org.kb141.service.ProgramService;
 import org.kb141.service.TakeProgramService;
+import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -45,6 +45,9 @@ public class ProgramController {
 	
 	@Inject
 	ClassroomService classroomservice;
+	
+	@Inject
+	private FaceAPIUtils faceAPI;
 	
 	@GetMapping("/classroom")
 	public void programpage(ClassroomVO vo, Model model){
@@ -179,8 +182,11 @@ public class ProgramController {
 		logger.info("VO : " + vo);
 		logger.info("Curri " + curriculums);
 		
-	
-		  
+		String pcourse = vo.getPcourse();
+		
+		String personGroupId = vo.getPersongroupid(); 
+		
+		faceAPI.createPersonGroupId(pcourse, personGroupId);
 		
 		service.register(vo, curriculums);
 		return "success";

@@ -34,7 +34,6 @@ public class StudentServiceImpl implements StudentService {
 		ImageVO ivo = new ImageVO();
 		
 		ivo.setSid(sid);
-		ivo.setFilename(fileName);
 		
 		try {
 			studentDAO.create(vo);

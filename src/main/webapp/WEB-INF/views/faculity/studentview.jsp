@@ -32,9 +32,7 @@
 			<div class="col-md-12">
 				<form method="post" id="inputForm">
 					<!-- Text input-->
-
-
-
+					
 					<div class="form-group">
 						<label class=" control-label">학생 아이디</label> <input id="pcourse"
 							name="sid" type="text" placeholder="학생아이디"
@@ -71,6 +69,7 @@
 					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
 					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
 					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
+					<button type="button" class="btn btn-warning" id="btnPicture">pictureRegister</button>
 				</form>
 
 			</div>
@@ -82,8 +81,6 @@
 </body>
 
 <%@include file="footer.jsp"%>
-
-
 
 <script>
 	$(document).ready(function() {
@@ -114,6 +111,10 @@
 		$("#btnCancel").on("click", function() {
 			event.preventDefault();
 			history.back(1);
+		});
+		$("#btnPicture").on("click" , function(){
+			 $("#inputForm").attr("action" , "pictureRegister").attr("method" , "get");
+			 $("#inputForm").submit();
 		});
 
 	});
