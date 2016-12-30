@@ -95,9 +95,6 @@ public class StudentController {
 	@GetMapping("/main")
 	public void view(HttpServletRequest request,  Model model) throws Exception {
 		logger.info("STUDENT VIEW.....");
-<<<<<<< HEAD
-		model.addAttribute("studentVO", studentService.view(sid));
-=======
 		
 		String sid = null;
 	
@@ -109,8 +106,7 @@ public class StudentController {
 		}
 		System.out.println(sid);
 		
-		model.addAttribute(studentService.view(sid));
->>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
+		model.addAttribute("studentVO", studentService.view(sid));
 		model.addAttribute("programVO", studentService.getViewProgram(sid));
 		
 	}
