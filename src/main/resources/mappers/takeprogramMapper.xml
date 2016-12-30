@@ -33,7 +33,7 @@
 	
 	
 	<update id="admission">
-		update tbl_take_program set state = true where sid = #{sid}
+		update tbl_take_program set state = true  where sid = #{sid}
 	</update>
 	
 	<select id="stateCount" resultType="Integer">
