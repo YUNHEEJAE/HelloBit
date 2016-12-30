@@ -1,5 +1,8 @@
 package org.kb141.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -70,4 +73,15 @@ public class CheckDAOTest {
 	}
 	
 
+	@Test
+	public void getTime() throws Exception{
+		Date date = new Date();
+		String s = date.toString();
+		System.out.println(s);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println(sdf.format(date));
+	}
+	
+	
+	
 }

@@ -19,4 +19,8 @@
 		select count(*) from tbl_check where pno = #{pno} and checktime >= now()
 	</select>
 	
+	<select id="lateMember" resultType="CheckVO">
+		select * from tbl_check where checktime > #{latetime};
+	</select>
+	
 </mapper>

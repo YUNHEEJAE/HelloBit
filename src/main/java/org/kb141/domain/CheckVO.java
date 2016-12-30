@@ -11,6 +11,7 @@ public class CheckVO {
 	private Date checktime;
 	private String emotion;
 	
+	
 	public Integer getCno() {
 		return cno;
 	}
