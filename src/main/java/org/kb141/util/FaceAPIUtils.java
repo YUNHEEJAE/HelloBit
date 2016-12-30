@@ -102,7 +102,7 @@ public class FaceAPIUtils {
 				String data = EntityUtils.toString(entity);
 				JSONParser parser = new JSONParser();
 				JSONObject obj = (JSONObject) parser.parse(data);
-				personId = (String) obj.get("personid");
+				personId = (String) obj.get("personId");
             }
             
         }

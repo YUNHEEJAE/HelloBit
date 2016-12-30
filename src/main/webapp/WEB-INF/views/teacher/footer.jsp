@@ -222,5 +222,25 @@
 <!-- <script src="../resources/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
+<script>
+$(document).ready(function() {
+	(function() {
+		$.getJSON("/web/teacher/myProgram/${cookie.LOGIN_ID.value}", function (data) {
+			console.log(data);
+			var str = "";
+			
+			$(data).each(function() {
+				str += "<li><a href='#' id='pno_"+this.pno+"'><i class='fa fa-circle-o'>" +
+						"</i> "+this.pcourse+"</a></li>";
+			});
+			
+			$("#treeTeacher > ul").html(str);
+		});
+		
+	})();
+	
+});
+</script>
+
 </body>
 </html>

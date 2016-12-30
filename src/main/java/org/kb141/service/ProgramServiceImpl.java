@@ -102,6 +102,18 @@ public class ProgramServiceImpl implements ProgramService {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<ProgramVO> getTeacherList(String tid) {
+		List<ProgramVO> result = null;
+		try {
+			result = programDAO.teacherList(tid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	
+	}
 
 	@Override
 	public List<JoinTeacherSubjectVO> getTeacherSubjectList(Integer pno) {
@@ -124,5 +136,5 @@ public class ProgramServiceImpl implements ProgramService {
 		}
 		return result;
 	}
-
+	
 }
