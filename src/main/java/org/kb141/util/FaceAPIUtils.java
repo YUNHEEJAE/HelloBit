@@ -40,10 +40,10 @@ public class FaceAPIUtils {
 	// PARAM : 강좌명, personGroupId,
 	// RETURN : 없음
 	
-	private HttpClient httpclient = HttpClients.createDefault();
+//	private HttpClient httpclient = HttpClients.createDefault();
 	
 	public void createPersonGroupId(String pcourse, String personGroupId) {
-//		HttpClient httpclient = HttpClients.createDefault();
+		HttpClient httpclient = HttpClients.createDefault();
 
 		try {
 			URIBuilder builder = new URIBuilder("https://api.projectoxford.ai/face/v1.0/persongroups/" + personGroupId);
@@ -77,7 +77,7 @@ public class FaceAPIUtils {
 	// RETURN : personId
 	public String createPersonId(String sid, String personGroupId) {
 		
-//		HttpClient httpclient = HttpClients.createDefault();
+		HttpClient httpclient = HttpClients.createDefault();
 
 		String personId = null;
 		
@@ -102,7 +102,9 @@ public class FaceAPIUtils {
 				String data = EntityUtils.toString(entity);
 				JSONParser parser = new JSONParser();
 				JSONObject obj = (JSONObject) parser.parse(data);
-				personId = (String) obj.get("personid");
+				
+				personId = (String) obj.get("personId");
+			
             }
             
         }
@@ -114,7 +116,7 @@ public class FaceAPIUtils {
 	
 	// RETURN : persistedFaceId
 	public String addPersonFace(String imgURL, String personId, String personGroupId) {
-//		HttpClient httpclient = HttpClients.createDefault();
+		HttpClient httpclient = HttpClients.createDefault();
 		
 		String persistedFaceId = null;
 
@@ -152,7 +154,7 @@ public class FaceAPIUtils {
 	
 	// RETURN : 없어야 정상
 	public void trainPersonGroup(String personGroupId) {
-//		HttpClient httpclient = HttpClients.createDefault();
+		HttpClient httpclient = HttpClients.createDefault();
 
         try
         {
@@ -187,7 +189,7 @@ public class FaceAPIUtils {
 	
 	// RETURN : 'faceId','faceId','faceId', 
 	public String detectFace(String imgURL) {
-//		HttpClient httpclient = HttpClients.createDefault();
+		HttpClient httpclient = HttpClients.createDefault();
 		
 		String str = "";
 
@@ -238,7 +240,7 @@ public class FaceAPIUtils {
 	
 	
 	public List<String> identifyFace(String faceIds, String personGroupId) {
-//		HttpClient httpclient = HttpClients.createDefault();
+		HttpClient httpclient = HttpClients.createDefault();
 
 		List<String> result = new ArrayList<String>();
 		
@@ -304,7 +306,7 @@ public class FaceAPIUtils {
 	
 	public List<String> emotionAPI(String imgURL){
 		
-//		HttpClient httpclient = HttpClients.createDefault();
+		HttpClient httpclient = HttpClients.createDefault();
 
 		List<String> result = new ArrayList<String>();
 		
