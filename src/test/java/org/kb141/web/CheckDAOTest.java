@@ -54,6 +54,15 @@ public class CheckDAOTest {
 		System.out.println(dao.checkLate(1));
 	}
 	
+	@Test
+	public void checkLaterMan() throws Exception{
+		System.out.println(dao.checkLaterMan(1));
+	}
+	
+	@Test
+	public void checkLaterCnt() throws Exception{
+		System.out.println(dao.checkLaterCnt(1));
+	}
 	// =======================SERVICE=========================
 
 	@Test
@@ -92,5 +101,15 @@ public class CheckDAOTest {
 	@Test
 	public void getcheckLate() throws Exception{
 		System.out.println(service.getcheckLate(1));
+	}
+	
+	@Test
+	public void getcheckLaterManTest() throws Exception{
+		System.out.println(service.getcheckLaterMan(1));
+	}
+	
+	@Test
+	public void getcheckLateCntTest() throws Exception{
+		System.out.println(service.getcheckLaterCnt(1));
 	}
 }

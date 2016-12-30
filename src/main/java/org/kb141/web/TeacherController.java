@@ -71,12 +71,15 @@ public class TeacherController {
 		int late = checkService.getcheckLate(pno);
 		int absent = total - check; 
 		logger.debug(""+absent);
-	
+		
+		
+		
 		model.addAttribute("total", total);
 		model.addAttribute("check", check);
 		model.addAttribute("absent", absent);
 		model.addAttribute("late", late);
-		model.addAttribute("currdate", checkService);
+		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
+		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
 	}
 
 	

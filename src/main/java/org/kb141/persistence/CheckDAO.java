@@ -35,5 +35,7 @@ public interface CheckDAO {
 	
 	public WeekDataVO checkWeek(Integer pno) throws Exception;
 	
-	
+	public List<String> checkLaterMan(Integer pno) throws Exception;
+
+	public List<Integer> checkLaterCnt(Integer pno) throws Exception;
 }

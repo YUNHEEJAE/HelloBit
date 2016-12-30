@@ -46,6 +46,17 @@ public class CheckDAOImpl implements CheckDAO {
 		return sqlSession.selectOne(NAME + "checkWeek" ,pno);
 	}
 
+	@Override
+	public List<String> checkLaterMan(Integer pno) throws Exception {
+		
+		return sqlSession.selectList(NAME+"checkLaterMan", pno);
+	}
+
+	@Override
+	public List<Integer> checkLaterCnt(Integer pno) throws Exception {
+		return sqlSession.selectList(NAME+"checkLaterCnt", pno);
+	}
+
 	
 	
 
