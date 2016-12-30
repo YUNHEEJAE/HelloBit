@@ -48,6 +48,11 @@ public class ProgramDAOImpl implements ProgramDAO {
 	}
 	
 	@Override
+	public List<ProgramVO> teacherList(String tid) throws Exception {
+		return sqlSession.selectList(NAME + "teacherList", tid);
+	}
+	
+	@Override
 	public List<JoinTeacherSubjectVO> joinList(Integer pno) throws Exception {
 		return sqlSession.selectList(NAME + "joinTeacherSubjectList" , pno);
 	}
@@ -56,5 +61,7 @@ public class ProgramDAOImpl implements ProgramDAO {
 	public List<JoinTeacherSubjectVO> joinAllList() throws Exception {
 		return sqlSession.selectList(NAME + "joinAllTeacherSubjectList");
 	}
+
+	
 
 }

@@ -142,5 +142,10 @@ public class ProgramDAOTest {
 		System.out.println(service.getAllTeacherSubjectList());
 	}
 	
+	@Test
+	public void teacherList() throws Exception {
+		System.out.println(service.getTeacherList("kang"));
+	}
+	
 
 }

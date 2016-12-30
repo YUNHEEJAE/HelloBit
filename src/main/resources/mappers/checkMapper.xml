@@ -48,4 +48,19 @@
 			select count(*) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=1 and checktime > curdate())ch where  ch.latetime >= "09:10:00"
 				]]>
 		</select>
+		
+		
+		<select id="checkLaterMan" resultType="String">
+				<![CDATA[
+					select sid from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
+				]]>
+		</select>
+		
+		<select id="checkLaterCnt" resultType="Integer">
+				<![CDATA[
+					select count(sid) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
+				]]>
+		</select>
+	
+		
 </mapper>

@@ -86,9 +86,32 @@ public class CheckServiceImpl implements CheckService {
 		}
 		return checkLate;
 	}
+
+	@Override
+	public List<String> getcheckLaterMan(Integer pno) {
+		List<String> result = null;
+		try {
+			result =  checkDAO.checkLaterMan(pno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<Integer> getcheckLaterCnt(Integer pno) {
+		List<Integer> result = null;
+		try {
+			result =  checkDAO.checkLaterCnt(pno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
-	
-	
+		
 
 
 

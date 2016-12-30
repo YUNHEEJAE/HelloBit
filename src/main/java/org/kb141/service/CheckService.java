@@ -19,5 +19,7 @@ public interface CheckService {
 	
 	public WeekDataVO getcheckWeek(Integer pno);
 	
-	
+	public List<String> getcheckLaterMan(Integer pno);
+
+	public List<Integer> getcheckLaterCnt(Integer pno);
 }
