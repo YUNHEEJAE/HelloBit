@@ -4,11 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd">
 
-	<bean id="echoHandler" class="org.kb141.handler.EchoHandler"></bean>
+
+
+	 <bean id="echoHandler" class="org.kb141.handler.EchoHandler"></bean> 
+
 
 	<websocket:handlers>
 		<websocket:mapping handler="echoHandler" path="/echo-ws" />
 		<websocket:sockjs />
 	</websocket:handlers>
-   
+    
 </beans>

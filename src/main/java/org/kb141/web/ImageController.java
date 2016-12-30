@@ -54,8 +54,8 @@ public class ImageController {
 			// 윈도우 저장 버전 
 		ImageIO.write(origin, "jpg", 
 				new FileOutputStream("C://zzz//upload//"+file.getOriginalFilename())); 
-//		
 
+		
 		return uploadName;
 
 	}

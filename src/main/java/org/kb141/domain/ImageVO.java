@@ -5,8 +5,7 @@ public class ImageVO {
 	
 	private Integer ino;
 	private String sid;
-	private String filename;
-	
+	private String persistedfaceid;
 	public Integer getIno() {
 		return ino;
 	}
@@ -19,17 +18,18 @@ public class ImageVO {
 	public void setSid(String sid) {
 		this.sid = sid;
 	}
-	public String getFilename() {
-		return filename;
+	public String getPersistedfaceid() {
+		return persistedfaceid;
 	}
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setPersistedfaceid(String persistedfaceid) {
+		this.persistedfaceid = persistedfaceid;
 	}
-	
 	@Override
 	public String toString() {
-		return "ImageVO [ino=" + ino + ", sid=" + sid + ", filename=" + filename + "]";
+		return "ImageVO [ino=" + ino + ", sid=" + sid + ", persistedfaceid=" + persistedfaceid + "]";
 	}
+	
+
 	
 	
 

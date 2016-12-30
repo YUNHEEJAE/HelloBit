@@ -11,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.mysql.cj.api.Session;
+
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 
 	@Override
@@ -30,8 +32,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		Cookie cookie = new Cookie("LOGIN_ID", roleID);
 		cookie.setPath("/");
 		
-		
 		response.addCookie(cookie);
-		response.sendRedirect("/web/" + rolePath + "/list");
+		response.sendRedirect("/web/" + rolePath + "/main");
 	}
 }

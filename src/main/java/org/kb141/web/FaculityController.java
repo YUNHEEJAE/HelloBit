@@ -7,7 +7,9 @@ import javax.inject.Inject;
 
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
+import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
+import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -15,6 +17,7 @@ import org.kb141.domain.TeacherSubjectVO;
 import org.kb141.domain.TeacherVO;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
+import org.kb141.service.ImageService;
 import org.kb141.service.NoticeService;
 import org.kb141.service.ProgramService;
 import org.kb141.service.StudentService;
@@ -22,6 +25,7 @@ import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
+import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -70,6 +74,15 @@ public class FaculityController {
 	
 	@Inject
 	private TeacherSubjectService teacherSubjectService; 
+	
+	@Inject
+	private ImageService imageService;
+	
+	@Inject
+	private FaceAPIUtils faceAPI;
+	
+
+	
 	
 	
 	@GetMapping("/noticeBoard")
@@ -228,16 +241,20 @@ public class FaculityController {
 
 	// 수강 승인
 	@PostMapping(value="/admission")
-	public String admissionEnrolment(String[] sid , Integer pno , RedirectAttributes rttr)throws Exception{
+	public String admissionEnrolment(String[] sid , Integer pno , String groupid,RedirectAttributes rttr)throws Exception{
 		
-		logger.info("admission called....");
+		logger.info("admission called..........................................................................");
 		logger.info("sid" + Arrays.toString(sid));
 		logger.info("pno : " + pno);
+		logger.info("groupid" + groupid);
 		TakeProgramVO vo = new TakeProgramVO();
+		
 		for(int i = 0 ; i < sid.length ; i ++){
 			vo.setState(true);
 			vo.setSid(sid[i]);
 			vo.setPno(pno);
+			System.out.println(faceAPI.createPersonId(sid[i], groupid));
+			vo.setPersonid(faceAPI.createPersonId(sid[i], groupid));
 			takeprogramService.modify(vo);
 		}
 		
@@ -260,6 +277,7 @@ public class FaculityController {
 			vo.setState(false);
 			vo.setPno(pno);
 			vo.setSid(sid[i]);
+		
 			takeprogramService.modify(vo);
 			
 		}
@@ -490,11 +508,30 @@ public class FaculityController {
 	
 	
 	@GetMapping("/pictureRegister")
-	public void picturePage()throws Exception{
+	public void picturePage(String sid , Model model)throws Exception{
 		logger.info("picture called.............");
+		model.addAttribute("sid" , sid);
+		
 	}
 	
-
+	
+	@PostMapping("/pictureRegister")
+	public void pictureRegister(String[] url ,String sid)throws Exception{
+		logger.info("pictureReg called......");	
+		logger.info("sid : " + sid);
+		logger.info("url :" + Arrays.toString(url));
+		ImageVO vo = new ImageVO();
+		
+		TakeProgramVO tvo = takeprogramService.view(sid);
+		ProgramVO pvo = programService.view(tvo.getPno());
+		
+		for(int i = 0 ; i < url.length ; i ++){
+			vo.setSid(sid);
+			vo.setPersistedfaceid(faceAPI.addPersonFace(url[i], tvo.getPersonid(), pvo.getPersongroupid()));
+			imageService.register(vo);
+		}
+	}
+	
 	@GetMapping("/teachersubjectregister")
 	public void TeachersubjectCreateGET(Model model) throws Exception{
 		logger.info("TeacherSubject Create.....");

@@ -10,7 +10,10 @@ public class CheckVO {
 	private Integer pno;
 	private Date checktime;
 	private String emotion;
+
 	
+	
+
 	public Integer getCno() {
 		return cno;
 	}
@@ -41,12 +44,14 @@ public class CheckVO {
 	public void setEmotion(String emotion) {
 		this.emotion = emotion;
 	}
-	
 	@Override
 	public String toString() {
 		return "CheckVO [cno=" + cno + ", sid=" + sid + ", pno=" + pno + ", checktime=" + checktime + ", emotion="
 				+ emotion + "]";
 	}
+
+	
+
 	
 	
 	

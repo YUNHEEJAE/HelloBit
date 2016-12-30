@@ -24,14 +24,15 @@ public class ImageDAOTest {
 	public void createTest() throws Exception {
 		ImageVO vo = new ImageVO();
 		vo.setSid("sih");
-		vo.setFilename("sih_0");
+		vo.setPersistedfaceid("sih_0");
 		dao.create(vo);
+		
 	}
 
 	@Test
 	public void updateTest() throws Exception {
 		ImageVO vo = new ImageVO();
-		vo.setFilename("sih_1");
+		vo.setPersistedfaceid("sih_1");
 		vo.setIno(2);
 		dao.update(vo);
 	}
@@ -52,14 +53,14 @@ public class ImageDAOTest {
 	public void registerTest() throws Exception {
 		ImageVO vo = new ImageVO();
 		vo.setSid("sih");
-		vo.setFilename("sih_1");
+		vo.setPersistedfaceid("sih_1");
 		service.register(vo);
 	}
 
 	@Test
 	public void modifyTest() throws Exception {
 		ImageVO vo = new ImageVO();
-		vo.setFilename("sih_2");
+		vo.setPersistedfaceid("sih_2");
 		vo.setIno(3);
 		service.modify(vo);
 	}
