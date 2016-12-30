@@ -29,7 +29,7 @@ import org.springframework.stereotype.Repository;
 public class FaceAPIUtils {
 /*
  * 	1. 프로그램 등록 할 때 PersonGroupId 생성됨 (CreatePersonGroup.java)
-	2. 수강신청 완료되면 PersonId 생성됨 (CreatePerson.java)
+	2. 수강신청 완료되면 PersonId 생성됨 (CreatePerson.java)  - personid 용도 
 	3. 인증용 사진 등록- faceId생성됨 (AddPersonFace.java)
 	4. 카메라 앞을 지나갈 때 얼굴이 인식되고 사진이 찍히면
 	   DetectFace.java에서 faceId가 리턴됨

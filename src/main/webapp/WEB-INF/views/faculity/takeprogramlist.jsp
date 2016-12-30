@@ -165,7 +165,7 @@ $(document).ready(function() {
 						var closedate =  closeDateNum.getDate();
 						var closeDate = closeyear + "/" + closemonth + "/" + closedate;
 
-						str += "<a href='#" + this.pno +"' class='list-group-item takeprogramlist'> <span class='glyphicon glyphicon-star-empty'></span>"
+						str += "<a href='#" + this.pno +"' class='list-group-item takeprogramlist' value='"+this.persongroupid+"'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.category+"</span>"
 							+ "<span class=''>"+this.pcourse+"</span>"
 							+ "<span class='text-muted' style='font-size: 11px;'>--" +openDate+"</span>"
@@ -177,21 +177,20 @@ $(document).ready(function() {
 
 
 					$("a").on("click" , function(event){	
-							console.log(event);
+							console.log(event.currentTarget.attributes.value.value);
 
-										
 							$('.state').css('visibility' , 'visible');
 							$('#trueBtn').css('visibility' , 'visible');
 
-
+										var groupid = event.currentTarget.attributes.value.value;
 										var hash = event.currentTarget.hash;	
 										var hashPno =	hash.split("#");	
 										var pno = hashPno[1];	
 										
 								
 										var obj = {"pno" : pno}; 
-										
-										getFalseList(obj);
+										console.log(pno);
+										getFalseList(obj);  
 									
 											$('#falseList').on('click' , function(){
 												console.log(pno);
@@ -200,22 +199,24 @@ $(document).ready(function() {
 												console.log($('#trueBtn')[0]);
 												var btn = $('#trueBtn');
 												btn.html('승인');
-												
+												console.log("groupid : " + groupid);	
 													getFalseList(pno);
 												// 승인 버튼 
-											$('#trueBtn').on('click' , function(event){			
-												var result = $('.check:checked');												
-												console.log(result[0].attributes.value.value);
-												var sid = new Array();
-												 $('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>") 
-												for(var  i = 0 ; i < result.length ; i++){
-													sid[i] = result[i].attributes.value.value;
-													$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
-
-														
-													}
-													 $('#admission').submit(); 
-												});
+													$('#trueBtn').on('click' , function(event){			
+														var result = $('.check:checked');												
+														console.log(result[0].attributes.value.value);
+														console.log("groupid : " + groupid);
+														var sid = new Array();
+														 $('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>") 
+														 $('#admission').append("<input type='hidden' name='groupid' value='"+groupid+"'>")
+														for(var  i = 0 ; i < result.length ; i++){
+															sid[i] = result[i].attributes.value.value;
+															$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
+		
+																
+															}
+															 $('#admission').submit(); 
+														});
 											});
 
 								$('#trueBtn').on('click' , function(event){		
@@ -224,8 +225,9 @@ $(document).ready(function() {
 									var result = $('.check:checked');												
 									console.log(result[0].attributes.value.value);
 									var sid = new Array();
-																			
+												
 									$('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>") 
+									$('#admission').append("<input type='hidden' name='groupid' value='"+groupid+"'>")
 										for(var  i = 0 ; i < result.length ; i++){
 											sid[i] = result[i].attributes.value.value;
 											$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");			
@@ -234,6 +236,7 @@ $(document).ready(function() {
 								}); // end truebtn
 															
 												$('#falseList').on('click' , function(event){
+													console.log("groupid : " + groupid);	
 													event.preventDefault();
 													console.log(event);
 													$('#falseList >  a').attr("href" , pno);
@@ -249,7 +252,8 @@ $(document).ready(function() {
 															console.log(result[0].attributes.value.value);
 															var sid = new Array();
 															
-															$('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>") 
+															$('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>")
+															$('#admission').append("<input type='hidden' name='groupid' value='"+groupid+"'>")
 															for(var  i = 0 ; i < result.length ; i++){
 																sid[i] = result[i].attributes.value.value;
 																$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");			
@@ -261,6 +265,7 @@ $(document).ready(function() {
 
 															// 취소 버튼 
 													$("#successList").on("click" , function(event){
+														console.log("groupid : " + groupid);	
 														event.preventDefault();
 														var btn = $('#trueBtn');
 														btn.html('취소');

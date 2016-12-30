@@ -15,7 +15,7 @@
 	</select>
 
 	<update id="update" parameterType="TakeProgramVO">
-		update tbl_take_program set pno = #{pno}, state = #{state}, tregdate = current_timestamp where sid = #{sid}
+		update tbl_take_program set pno = #{pno}, state = #{state}, personid = #{personid} , tregdate = current_timestamp where sid = #{sid}
 	</update>
 
 	<delete id="delete" parameterType="String">

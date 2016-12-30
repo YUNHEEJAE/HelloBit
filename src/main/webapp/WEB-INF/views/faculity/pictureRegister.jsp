@@ -127,7 +127,13 @@ img{
        
             <div class="box-footer">
                 <button class="btn btn-default"> 메인 화면</button>
-                <button class="btn btn-info pull-right" id="SignIn">등 록</button>
+                
+                <form action="pictureRegister" method="post" id="regImg">
+                		<input type="hidden" name="sid" value="${sid}">
+                		
+                </form>
+                
+                <button class="btn btn-info pull-right" id="regBtn">등 록</button>
               </div>
               
           </div>
@@ -208,7 +214,7 @@ img{
 
                 video.addEventListener('canplay', function(ev){
                     if (!streaming) {
-                        height = video.videoHeight / (video.videoWidth/width);
+                        height = (video.videoHeight) / (video.videoWidth/width);
 
                         // Firefox currently has a bug where the height can't be read from
                         // the video, so we will make assumptions if this happens.
@@ -228,13 +234,18 @@ img{
                 startbutton.addEventListener('click', function(ev){
 
                     console.log(timer);
-                    takepicture(timer);
+                    var imgdata = takepicture(timer);
                     timer +=1;
                     if(timer >= 4){
                         timer = 1;
                     }
                     console.log(timer);
+	                	$("#regBtn").click(function (event) {
+							$('#regImg').submit();
+	    			
+	    				});
                     ev.preventDefault();
+                    
                 }, false);
 
                 clearphoto();
@@ -268,11 +279,25 @@ img{
                     	else if(timer==3){
                     		photoThree.setAttribute('src' , data);
                     	}
-                    		
-                    
+                    	
+                    	var obj = {"data" : data};
+                    	console.log(data);
+                    	$.ajax({
+        					url :"http://localhost:8080/web/file/registerImage",
+        					type:"post",
+        					data : obj,
+        					dataType: "text",
+        					success:function(data){
+        						console.log(data);
+        					$('#regImg').append("<input type='hidden' name='url' value='"+data+"'>");
+		        				
+        					}
+        	
+        				});
+
                     	uploadFile(data);
                     	
-                    	
+                    	return data;
                 } else {
                     clearphoto();
                 }
@@ -292,7 +317,7 @@ img{
         });
          
          
-         function uploadFile(data) {
+     		function uploadFile(data) {
         	    var xhr = new XMLHttpRequest();
                 xhr.open('GET', data, true);
                 xhr.responseType = 'blob';
@@ -317,28 +342,11 @@ img{
                             });
                         }
                 }; // onload end..
-                xhr.send();
+                xhr.send(); 
         	 
-		}
+        } 
         
         
-
-/* 
-			$("#SignIn").click(function (event) {
-				
-				var sid = $("#sid").val();
-				var spw = $("#spw").val();
-				var obj = {"sid" : sid , "spw" : spw};
-				
-				$.ajax({
-					url :"/student/loginCheck",
-					data : obj,
-					dataType: 
-	
-				});
-
-			});
-		 */
 	
 	});
 

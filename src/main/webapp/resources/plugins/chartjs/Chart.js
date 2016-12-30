@@ -160,7 +160,7 @@
 			tooltipCornerRadius: 6,
 
 			// Number - Pixel offset from point x to tooltip edge
-			tooltipXOffset: 10,
+			tooltipXOffset: 5,
 
 			// String - Template string for single tooltips
 			tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
@@ -1577,7 +1577,7 @@
 			for (var i=0; i<=this.steps; i++){
 				this.yLabels.push(template(this.templateString,{value:(this.min + (i * this.stepValue)).toFixed(stepDecimalPlaces)}));
 			}
-			this.yLabelWidth = (this.display && this.showLabels) ? longestText(this.ctx,this.font,this.yLabels) + 10 : 0;
+			this.yLabelWidth = (this.display && this.showLabels) ? longestText(this.ctx,this.font,this.yLabels) + 5 : 0;
 		},
 		addXLabel : function(label){
 			this.xLabels.push(label);
