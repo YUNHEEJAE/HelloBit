@@ -235,6 +235,7 @@
 				right:'month,agendaWeek'
 			},
 			
+			
 		})
 		$('#my-prev-button').click(function() {
 			$('#calendar').fullCalendar('prev');
