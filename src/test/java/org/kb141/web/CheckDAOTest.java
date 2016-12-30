@@ -43,10 +43,29 @@ public class CheckDAOTest {
 
 	@Test
 	public void checkMemberTest() throws Exception{
-		System.out.println(dao.checkList(1));
+		System.out.println(dao.checkMember(1));
 	}
 	
+	@Test
+	public void checkDateTest() throws Exception{
+		
+		System.out.println(dao.checkDate(1));
+	}
 	
+	@Test
+	public void checkLateTest() throws Exception{
+		System.out.println(dao.checkLate(1));
+	}
+	
+	@Test
+	public void checkLaterMan() throws Exception{
+		System.out.println(dao.checkLaterMan(1));
+	}
+	
+	@Test
+	public void checkLaterCnt() throws Exception{
+		System.out.println(dao.checkLaterCnt(1));
+	}
 	// =======================SERVICE=========================
 
 	@Test
@@ -84,4 +103,28 @@ public class CheckDAOTest {
 	
 	
 	
+	@Test
+	public void getcheckDateTest() throws Exception{
+		System.out.println(service.getcheckDate(1));
+	}
+	
+	@Test
+	public void getcheckWeek() throws Exception {
+		System.out.println(service.getcheckWeek(1));
+	}
+	
+	@Test
+	public void getcheckLate() throws Exception{
+		System.out.println(service.getcheckLate(1));
+	}
+	
+	@Test
+	public void getcheckLaterManTest() throws Exception{
+		System.out.println(service.getcheckLaterMan(1));
+	}
+	
+	@Test
+	public void getcheckLateCntTest() throws Exception{
+		System.out.println(service.getcheckLaterCnt(1));
+	}
 }

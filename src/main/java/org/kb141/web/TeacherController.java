@@ -1,9 +1,12 @@
 package org.kb141.web;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
-import org.kb141.domain.TeacherVO;
+import org.kb141.domain.ProgramVO;
 import org.kb141.service.CheckService;
+import org.kb141.service.ProgramService;
 import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
@@ -13,8 +16,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * TBL_TEACHER TBL_SUBJECT TBL_TEACHER_SUBJECT
@@ -37,6 +41,9 @@ public class TeacherController {
 	
 	@Inject
 	private TakeProgramService takeprogramService;
+	
+	@Inject
+	private ProgramService programService;
 	
 	@Inject
 	private CheckService checkService;
@@ -65,15 +72,28 @@ public class TeacherController {
 	
 	@GetMapping("/main")
 	public void getMainList(Model model,Integer pno) throws Exception {
-		logger.info("getMainList LIST.....");
-		int check = checkService.getcheckMember(pno);
+		logger.debug("getMainList LIST.....");
+		int check = checkService.getcheckDate(pno);
 		int total = takeprogramService.getstateTotal(pno);
+		int late = checkService.getcheckLate(pno);
 		int absent = total - check; 
+		logger.debug(""+absent);
+		
+		
+		
 		model.addAttribute("total", total);
 		model.addAttribute("check", check);
 		model.addAttribute("absent", absent);
+		model.addAttribute("late", late);
+		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
+		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
 	}
-
+	
+	@ResponseBody
+	@GetMapping("/myProgram/{tid}")
+	public List<ProgramVO> getMyProgramList(@PathVariable("tid") String tid) throws Exception {
+		return programService.getTeacherList(tid);
+	}
 	
 	
 }

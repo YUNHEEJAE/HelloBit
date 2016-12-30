@@ -1,8 +1,9 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/YUNHEEJAE/HelloBit.git
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/faculity/header.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/footer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/student/footer.jsp=UTF-8
-<<<<<<< HEAD
-encoding//src/main/webapp/WEB-INF/views/teacher/header.jsp=UTF-8
-=======
 encoding//src/main/webapp/WEB-INF/views/student/list.jsp=UTF-8
->>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
+encoding//src/main/webapp/WEB-INF/views/teacher/header.jsp=UTF-8

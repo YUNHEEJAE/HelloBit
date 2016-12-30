@@ -41,9 +41,11 @@
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet"
 	href="../resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
-
-
+<link rel="stylesheet"
+	href="../resources/plugins/fullcalendar/fullcalendar.min.css">
+<link rel="stylesheet"
+	href="../resources/plugins/fullcalendar/fullcalendar.print.css"
+	media="print">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

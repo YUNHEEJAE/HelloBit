@@ -87,9 +87,6 @@
          </div>
          <!-- /.col -->
        </div>
-
-
-
    </div>
    <!-- /.form-box -->
  </div>
@@ -119,29 +116,55 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/resources/dist/js/demo.js"></script>
 <script>
+$(document).ready(function(){
 
-	
-	
+	var config = {
+            apiKey: "AIzaSyD8Qs39vkxQw8pdWiXlkcMug3PL1YJeS0Q",
+            authDomain: "hhkbex.firebaseapp.com",
+            databaseURL: "https://hhkbex.firebaseio.com",
+            storageBucket: "hhkbex.appspot.com",
+            messagingSenderId: "1050382686499"
+        };
+        firebase.initializeApp(config);
+
+        // Get a reference to the storage service, which is used to create references in your storage bucket
+        var storage = firebase.storage();
+// Create a storage reference from our storage service
+        var storageRef = storage.ref();
+        var uid = "jk3a0123@gmail.com";
+        var upw = "wjdwndud08";
+     
+        firebase.auth().signInWithEmailAndPassword(uid , upw).catch(function (error) {
+            // Handle Errors here.
+            console.log('error sign');
+            var errorCode = error.code;
+            var errorMessage = error.message;
+        }); // end login
+
 	$('#regBtn').on("click" , function(event){
 
 			event.preventDefault();
-		
-			console.log(event);
-		
 			var userid = $('#userid').val();
-			console.log(userid);
-			
 			var image = $('#file')[0].files[0];
-
-			console.log(image);
-			
 			$('#hiddenid').attr("value" , userid);
-		
 			var formdata = new FormData();
 			
 			formdata.append("sid" , userid);
-			formdata.append("file" , image); 
 			
+			// upload firebase img
+            var upload = storageRef.child("member/" + userid+"_0.jpg");
+            var uploadTask = upload.put(image);
+            uploadTask.on('state_changed', function(snapshot){
+                // Observe state change events such as progress, pause, and resume
+                // See below for more detail
+            }, function(error) {
+                // Handle unsuccessful uploads
+            }, function() {
+                // Handle successful uploads on complete
+                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                var downloadURL = uploadTask.snapshot.downloadURL;
+            });
+
 			console.log(formdata);
 
 			$.ajax({
@@ -157,16 +180,14 @@
 					
 					$('#regForm').submit();   
 					
-				}
-				
-					
-			}); 
-				
-				
-			
-	});
 	
+				}
 
+			}); 
+
+	});
+
+});
 
 </script>
 

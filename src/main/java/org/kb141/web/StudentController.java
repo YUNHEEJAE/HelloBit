@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.TakeProgramVO;
@@ -11,9 +13,7 @@ import org.kb141.service.StudentService;
 import org.kb141.service.TakeProgramService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.web.servlet.result.FlashAttributeResultMatchers;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,13 +83,34 @@ public class StudentController {
 		model.addAttribute("list", studentService.getStudentList());
 
 	}
-
+	
+//	@GetMapping("/main")
+//	public void view(@RequestParam("sid") String sid,  Model model) throws Exception {
+//		logger.info("STUDENT VIEW.....");
+//		model.addAttribute(studentService.view(sid));
+//		model.addAttribute("programVO", studentService.getViewProgram(sid));
+//	}
+	
+	// parameter 받지 말고.
 	@GetMapping("/main")
-	public void view(@RequestParam("sid") String sid, Model model) throws Exception {
+	public void view(HttpServletRequest request,  Model model) throws Exception {
 		logger.info("STUDENT VIEW.....");
-		model.addAttribute(studentService.view(sid));
+		
+		String sid = null;
+	
+		Cookie[] cookies = request.getCookies();
+			for (int i = 0; i < cookies.length; i++) {
+			if(cookies[i].getName().equals("LOGIN_ID")){
+				sid = cookies[i].getValue();
+			}
+		}
+		System.out.println(sid);
+		
+		model.addAttribute("studentVO", studentService.view(sid));
 		model.addAttribute("programVO", studentService.getViewProgram(sid));
+		
 	}
+	
 	
 	@PostMapping("/enrolment")
 	public String enrolment(TakeProgramVO vo , RedirectAttributes rttr) throws Exception{
@@ -105,8 +126,8 @@ public class StudentController {
 		
 	}
 	
-	@GetMapping("/chartjs")
-	public void chartjs() throws Exception {
+	@GetMapping("/chartjsSenyo")
+	public void chartjsSenyo() throws Exception {
 		
 	}
 	
@@ -172,5 +193,11 @@ public class StudentController {
 		
 	}
 	
+	
+	
+	@GetMapping("/chartTest")
+	public void chartTest() throws Exception{
+		logger.info("CHART CALLED.....");
+	}
 	
 }
