@@ -29,6 +29,9 @@ public interface TakeProgramDAO {		//HJ, IH
 	// PersonId 생성.
 	public void updatePersonId(TakeProgramVO vo) throws Exception;
 	
+	//personId 에 대한 이름 가져오기 
+	public String readSname(String personId) throws Exception;
+	
 }
 
   

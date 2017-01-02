@@ -1,16 +1,25 @@
 package org.kb141.web;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
+import javax.xml.bind.DatatypeConverter;
 
 import org.kb141.domain.CheckVO;
+import org.kb141.domain.TakeProgramVO;
 import org.kb141.domain.WeekDataVO;
 import org.kb141.service.CheckService;
+import org.kb141.service.TakeProgramService;
+import org.kb141.util.ByteConverter;
+import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/check")
 public class CheckController {
@@ -26,6 +36,12 @@ public class CheckController {
 
 	@Inject
 	private CheckService service;
+	
+	@Inject
+	private FaceAPIUtils faceAPI;
+	
+	@Inject
+	private TakeProgramService takeprogramService;
 
 	// 내가 만들건 Create야
 //	@PostMapping("/register")
@@ -72,7 +88,38 @@ public class CheckController {
 		return service.getcheckWeek(pno);
 	}
 	
+	@ResponseBody
+	@PostMapping(value = "/frontAuth" , produces="text/html")
+	public String frontAuth(String blob)throws Exception{
+		//ResponseEntity<String>
+		ByteConverter bc = new ByteConverter();
+		logger.info("blob : " + blob);
+		
+		byte[] image = bc.ByteConvert(blob);
 
-	
+//		List<String> faceIds = faceAPI.detectAndIdentifyFace(image, "java_beginner_34");
+		
+		String sname = null;
+//		
+//		ResponseEntity<String> entity = null;
+//		try {
+//			if(faceIds.size() != 0){
+//					for (int i = 0 ; i < faceIds.size() ; i ++){
+//						sname = takeprogramService.viewSname(faceIds.get(i));
+//					}
+//						logger.info("faceID :" + sname);
+//						entity = new ResponseEntity<String>(sname, HttpStatus.OK);
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//			}
+//			return entity;
+		
+		sname = takeprogramService.viewSname("47579260-7ff0-4329-afbb-4c594223cb12");
+		
+		return sname;
+		
+	}
 
 }
