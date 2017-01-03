@@ -5,32 +5,42 @@
 
 <mapper namespace="org.kb141.mapper.StudentMapper">
 	<insert id="create" parameterType="StudentVO">
-		insert into tbl_student (sname, sid, spw, semail)
-		values (#{sname}, #{sid}, #{spw}, #{semail})			
-	</insert> 
+		insert into tbl_student
+		(sname, sid, spw, semail)
+		values (#{sname}, #{sid}, #{spw}, #{semail})
+	</insert>
 
-	
+
 	<select id="read" resultType="StudentVO">
-		select * from tbl_student where sid = #{sid}
+		select * from tbl_student where sid
+		= #{sid}
 	</select>
 
 	<update id="update" parameterType="StudentVO">
-		update tbl_student set sname = #{sname}, spw = #{spw}, semail = #{semail} where sid = #{sid}
+		update tbl_student set sname =
+		#{sname}, spw = #{spw}, semail = #{semail} where sid = #{sid}
 	</update>
-	
+
 	<delete id="delete">
 		delete from tbl_student where sid = #{sid}
 	</delete>
-	
-	
+
+
 	<select id="allList" resultType="StudentVO">
-		select * from tbl_student order by sname
+		select * from tbl_student order
+		by sname
 	</select>
 
 	<select id="getViewProgram" resultType="ProgramVO">
-		select p.pcourse, p.roomname, p.torder, p.opendate, p.closedate, p.category from tbl_program p,(
-		select pno from tbl_take_program where sid = 'yhj')t where t.pno = p.pno
-	
+		select p.pcourse,
+		p.roomname, p.torder, p.opendate, p.closedate, p.category from
+		tbl_program p,(
+		select pno from tbl_take_program where sid = 'yhj')t
+		where t.pno = p.pno
+
 	</select>
+
+
+
 
 </mapper>

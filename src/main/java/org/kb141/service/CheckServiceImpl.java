@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.WeekDataVO;
 import org.kb141.persistence.CheckDAO;
@@ -28,18 +29,18 @@ public class CheckServiceImpl implements CheckService {
 	public List<CheckVO> checkList() {
 		List<CheckVO> result = null;
 		try {
-			result =  checkDAO.checkList();
+			result = checkDAO.checkList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
 	@Override
 	public Integer getcheckMember(Integer pno) {
 		Integer checkMember = 0;
-		
+
 		try {
 			checkMember = checkDAO.checkMember(pno);
 		} catch (Exception e) {
@@ -52,7 +53,7 @@ public class CheckServiceImpl implements CheckService {
 	@Override
 	public Integer getcheckDate(Integer pno) {
 		Integer checkDate = null;
-		
+
 		try {
 			checkDate = checkDAO.checkDate(pno);
 		} catch (Exception e) {
@@ -77,7 +78,7 @@ public class CheckServiceImpl implements CheckService {
 	@Override
 	public Integer getcheckLate(Integer pno) {
 		Integer checkLate = null;
-		
+
 		try {
 			checkLate = checkDAO.checkLate(pno);
 		} catch (Exception e) {
@@ -91,11 +92,11 @@ public class CheckServiceImpl implements CheckService {
 	public List<String> getcheckLaterMan(Integer pno) {
 		List<String> result = null;
 		try {
-			result =  checkDAO.checkLaterMan(pno);
+			result = checkDAO.checkLaterMan(pno);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
@@ -103,16 +104,25 @@ public class CheckServiceImpl implements CheckService {
 	public List<Integer> getcheckLaterCnt(Integer pno) {
 		List<Integer> result = null;
 		try {
-			result =  checkDAO.checkLaterCnt(pno);
+			result = checkDAO.checkLaterCnt(pno);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
-	
-		
 
+	@Override
+	public List<CheckTimeVO> checkStudent(String sid) {
 
+		List<CheckTimeVO> result = null;
+		try {
+			result = checkDAO.checkStudent(sid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 }

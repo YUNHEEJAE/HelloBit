@@ -7,8 +7,10 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.kb141.domain.CheckVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.TakeProgramVO;
+import org.kb141.service.CheckService;
 import org.kb141.service.StudentService;
 import org.kb141.service.TakeProgramService;
 import org.slf4j.Logger;
@@ -18,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,6 +42,9 @@ public class StudentController {
 	
 	@Inject
 	private TakeProgramService takeprogramService;
+	
+	@Inject
+	private CheckService checkService;
 	
 	@GetMapping("/register")
 	public void registerGET(StudentVO vo, Model model) throws Exception{
@@ -106,10 +110,12 @@ public class StudentController {
 		}
 		System.out.println(sid);
 		
+		
 		model.addAttribute("studentVO", studentService.view(sid));
 		model.addAttribute("programVO", studentService.getViewProgram(sid));
-		
+		model.addAttribute("checkVO", checkService.checkStudent(sid));
 	}
+	
 	
 	
 	@PostMapping("/enrolment")

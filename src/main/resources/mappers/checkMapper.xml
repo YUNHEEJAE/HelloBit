@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.kb141.mapper.CheckMapper">
-	
+
 	<insert id="create" parameterType="CheckVO">
 		insert into tbl_check (sid,
 		pno, emotion)
@@ -23,44 +23,66 @@
 	</select>
 
 	<select id="checkMember" resultType="Integer">
-		select count(*) from tbl_take_program where pno = #{pno} and state = true
+		select count(*) from
+		tbl_take_program where pno = #{pno} and state = true
 	</select>
 
 	<select id="checkWeek" resultType="WeekDataVO">
-		select 
-			sum(if(week_result = 'mo',1,0)) mon, sum(if(week_result = 'tu',1,0)) tue, 
-			sum(if(week_result = 'we',1,0)) wed, sum(if(week_result = 'th',1,0)) thu, 
-		    sum(if(week_result = 'fr',1,0)) fri
+		select
+		sum(if(week_result =
+		'mo',1,0)) mon, sum(if(week_result = 'tu',1,0)) tue,
+		sum(if(week_result = 'we',1,0)) wed, sum(if(week_result = 'th',1,0))
+		thu,
+		sum(if(week_result = 'fr',1,0)) fri
 		from
 		(select * ,
-			case
-		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 4 )) then 'fr'
-			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 3 )) then 'th'
-			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 2 )) then 'we'
-			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 1 )) then 'tu'
-		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 0 )) then 'mo'
-			end as week_result
+		case
+		when
+		checktime >= (select ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 4 ))
+		then 'fr'
+		when checktime >= (select ADDDATE( CURDATE(), -
+		WEEKDAY(CURDATE()) + 3 ))
+		then 'th'
+		when checktime >= (select ADDDATE(
+		CURDATE(), - WEEKDAY(CURDATE()) + 2 ))
+		then 'we'
+		when checktime >=
+		(select ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 1 ))
+		then 'tu'
+		when
+		checktime >= (select ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 0 ))
+		then 'mo'
+		end as week_result
 		from tbl_check where pno = #{pno}) t
 	</select>
-	
-		<select id="checkLate" resultType="Integer">
+
+	<select id="checkLate" resultType="Integer">
 			<![CDATA[
 			select count(*) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=1 and checktime > curdate())ch where  ch.latetime >= "09:10:00"
 				]]>
-		</select>
-		
-		
-		<select id="checkLaterMan" resultType="String">
+	</select>
+
+
+	<select id="checkLaterMan" resultType="String">
 				<![CDATA[
 					select sid from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
 				]]>
-		</select>
-		
-		<select id="checkLaterCnt" resultType="Integer">
+	</select>
+
+	<select id="checkLaterCnt" resultType="Integer">
 				<![CDATA[
 					select count(sid) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
 				]]>
-		</select>
-	
-		
+	</select>
+
+	<select id="checkStudent" resultType="CheckTimeVO">
+			<![CDATA[
+			select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime,
+case when time(checktime)<='09:00' then 'blue'
+else 'red' end as states
+from tbl_check where sid=#{sid} group by date(checktime)
+]]>
+	</select>
+
+
 </mapper>

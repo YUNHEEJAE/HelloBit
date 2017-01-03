@@ -2,6 +2,7 @@ package org.kb141.service;
 
 import java.util.List;
 
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.WeekDataVO;
 
@@ -22,4 +23,7 @@ public interface CheckService {
 	public List<String> getcheckLaterMan(Integer pno);
 
 	public List<Integer> getcheckLaterCnt(Integer pno);
-}
+	
+	public List<CheckTimeVO> checkStudent(String sid);
+	
+ }

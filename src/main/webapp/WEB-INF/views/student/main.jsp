@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
@@ -19,7 +20,7 @@
 		<!-- Main content -->
 		<section class="content">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div class="box box-primary">
 						<div class="box-body no-padding">
 							<div id="studentMypage" class="fc fc-ltr fc-unthemed">
@@ -29,7 +30,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<div class="box box-primary">
 						<div class="box-body no-padding">
 

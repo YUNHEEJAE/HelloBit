@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.WeekDataVO;
 import org.springframework.stereotype.Repository;
@@ -55,6 +56,11 @@ public class CheckDAOImpl implements CheckDAO {
 	@Override
 	public List<Integer> checkLaterCnt(Integer pno) throws Exception {
 		return sqlSession.selectList(NAME+"checkLaterCnt", pno);
+	}
+
+	@Override
+	public List<CheckTimeVO> checkStudent(String sid) throws Exception {
+		return sqlSession.selectList(NAME+"checkStudent", sid);
 	}
 
 	

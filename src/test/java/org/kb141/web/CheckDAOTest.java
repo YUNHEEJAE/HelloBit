@@ -39,30 +39,36 @@ public class CheckDAOTest {
 	}
 
 	@Test
-	public void checkMemberTest() throws Exception{
+	public void checkMemberTest() throws Exception {
 		System.out.println(dao.checkMember(1));
 	}
-	
+
 	@Test
-	public void checkDateTest() throws Exception{
-		
+	public void checkDateTest() throws Exception {
+
 		System.out.println(dao.checkDate(1));
 	}
-	
+
 	@Test
-	public void checkLateTest() throws Exception{
+	public void checkLateTest() throws Exception {
 		System.out.println(dao.checkLate(1));
 	}
-	
+
 	@Test
-	public void checkLaterMan() throws Exception{
+	public void checkLaterMan() throws Exception {
 		System.out.println(dao.checkLaterMan(1));
 	}
-	
+
 	@Test
-	public void checkLaterCnt() throws Exception{
+	public void checkLaterCnt() throws Exception {
 		System.out.println(dao.checkLaterCnt(1));
 	}
+
+	@Test
+	public void checkStudentTest() throws Exception {
+		System.out.println(dao.checkStudent("lsy"));
+	}
+
 	// =======================SERVICE=========================
 
 	@Test
@@ -82,34 +88,40 @@ public class CheckDAOTest {
 	public void serviceCheckListTest() throws Exception {
 		System.out.println(service.checkList());
 	}
-	
+
 	@Test
-	public void getcheckMemberTest() throws Exception{
+	public void getcheckMemberTest() throws Exception {
 		System.out.println(service.getcheckMember(1));
 	}
-	
+
 	@Test
-	public void getcheckDateTest() throws Exception{
+	public void getcheckDateTest() throws Exception {
 		System.out.println(service.getcheckDate(1));
 	}
-	
+
 	@Test
 	public void getcheckWeek() throws Exception {
 		System.out.println(service.getcheckWeek(1));
 	}
-	
+
 	@Test
-	public void getcheckLate() throws Exception{
+	public void getcheckLate() throws Exception {
 		System.out.println(service.getcheckLate(1));
 	}
-	
+
 	@Test
-	public void getcheckLaterManTest() throws Exception{
+	public void getcheckLaterManTest() throws Exception {
 		System.out.println(service.getcheckLaterMan(1));
 	}
-	
+
 	@Test
-	public void getcheckLateCntTest() throws Exception{
+	public void getcheckLateCntTest() throws Exception {
 		System.out.println(service.getcheckLaterCnt(1));
 	}
+
+	@Test
+	public void checkStudentServiceTest() throws Exception {
+		System.out.println(service.checkStudent("lsy"));
+	}
+
 }
