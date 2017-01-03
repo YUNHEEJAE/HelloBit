@@ -132,6 +132,18 @@ public class TakeProgramServiceImpl implements TakeProgramService{
 		}
 		
 	}
+	
+	@Override
+	public String viewSname(String personId) {
+		String sname = null;
+		try {
+			sname = takeprogramDAO.readSname(personId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sname;
+	}
 
 
 

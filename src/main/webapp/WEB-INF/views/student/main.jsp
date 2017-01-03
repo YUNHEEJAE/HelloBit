@@ -16,19 +16,20 @@
 				<li class="active">ChartJS</li>
 			</ol>
 		</section>
-
 		<!-- Main content -->
 		<section class="content">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="box box-primary">
 						<div class="box-body no-padding">
-
-							<div id="studentMypage" class="fc fc-ltr fc-unthemed"></div>
+							<div id="studentMypage" class="fc fc-ltr fc-unthemed">
+								<p>${studentVO.sname }</p>
+								<p></p>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-8">
 					<div class="box box-primary">
 						<div class="box-body no-padding">
 

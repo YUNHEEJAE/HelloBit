@@ -224,7 +224,6 @@
 <script src="../resources/dist/js/demo.js"></script>
 <script src="../resources/plugins/chartjs/Chart.min.js"></script>
 <script src="../resources/plugins/util/utils.js"></script>
-<<<<<<< HEAD
 <script src="../resources/plugins/fullcalendar/fullcalendar.min.js"></script>
 
 <script>
@@ -236,6 +235,7 @@
 				right:'month,agendaWeek'
 			},
 			
+			
 		})
 		$('#my-prev-button').click(function() {
 			$('#calendar').fullCalendar('prev');
@@ -245,7 +245,5 @@
 		});
 	});
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/YUNHEEJAE/HelloBit.git
 </body>
 </html>
