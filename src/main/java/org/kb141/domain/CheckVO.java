@@ -10,10 +10,7 @@ public class CheckVO {
 	private Integer pno;
 	private Date checktime;
 	private String emotion;
-
 	
-	
-
 	public Integer getCno() {
 		return cno;
 	}
@@ -50,9 +47,5 @@ public class CheckVO {
 				+ emotion + "]";
 	}
 
-	
-
-	
-	
 	
 }

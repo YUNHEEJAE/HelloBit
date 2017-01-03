@@ -55,6 +55,11 @@
 		end as week_result
 		from tbl_check where pno = #{pno}) t
 	</select>
+	
+	<select id="lateMember" resultType="CheckVO">
+		select * from tbl_check where checktime > #{latetime}
+	</select>
+	
 
 	<select id="checkLate" resultType="Integer">
 			<![CDATA[

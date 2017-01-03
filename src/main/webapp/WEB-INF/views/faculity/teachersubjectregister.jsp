@@ -75,7 +75,6 @@
 $(document).ready(function () {
 	
 	$("#btnRegister").on("click", function () {
-		event.preventDefault();
 		var selecttid = $('#teacher option').val();  
 		console.log(selecttid);
 		//var selectsubno = 
@@ -85,9 +84,10 @@ $(document).ready(function () {
 		
 	});
 	
-	
+	$("#btnCancel").on("click", function() {
+		history.back(1);
+	});	
 
-	
 });
 
 

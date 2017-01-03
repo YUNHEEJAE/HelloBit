@@ -18,4 +18,7 @@ public interface StudentService {
 	public List<StudentVO> getStudentList();
 
 	public ProgramVO getViewProgram(String sid);
+	
+	//sname 가져오기 
+	public StudentVO viewSname(String personId) ;
 }
