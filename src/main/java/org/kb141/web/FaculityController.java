@@ -25,6 +25,7 @@ import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
+import org.kb141.util.ByteConverter;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,7 +82,10 @@ public class FaculityController {
 	@Inject
 	private FaceAPIUtils faceAPI;
 	
-
+	@GetMapping("/main")
+	public void faculityMain() throws Exception{
+		logger.info("FACULITY MAIN");
+	}
 	
 	
 	
@@ -519,17 +523,22 @@ public class FaculityController {
 	
 	@PostMapping("/pictureRegister")
 	public void pictureRegister(String[] url ,String sid)throws Exception{
+		
+		
 		logger.info("pictureReg called......");	
 		logger.info("sid : " + sid);
 		logger.info("url :" + Arrays.toString(url));
 		ImageVO vo = new ImageVO();
-		
+		ByteConverter bc = new ByteConverter();
 		TakeProgramVO tvo = takeprogramService.view(sid);
 		ProgramVO pvo = programService.view(tvo.getPno());
+		String personId = tvo.getPersonid();
+		String personGroupId = pvo.getPersongroupid();
 		
 		for(int i = 0 ; i < url.length ; i ++){
 			vo.setSid(sid);
-			vo.setPersistedfaceid(faceAPI.addPersonFace(url[i], tvo.getPersonid(), pvo.getPersongroupid()));
+			vo.setPersistedfaceid(faceAPI.addPersonFace(bc.ByteConvert(url[i]), personId, personGroupId));
+			faceAPI.trainPersonGroup(personGroupId);
 			imageService.register(vo);
 		}
 	}

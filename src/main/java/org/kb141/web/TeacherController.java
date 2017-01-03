@@ -1,8 +1,12 @@
 package org.kb141.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import org.kb141.domain.ProgramVO;
 import org.kb141.service.CheckService;
@@ -13,6 +17,7 @@ import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,7 +76,28 @@ public class TeacherController {
 	}
 	
 	@GetMapping("/main")
-	public void getMainList(Model model,Integer pno) throws Exception {
+	public void getMainList(Model model,Integer pno, HttpServletRequest request) throws AccessDeniedException, UnsupportedEncodingException {
+		
+		Cookie[] cookies = request.getCookies();
+		
+		for (Cookie cookie : cookies) {
+			if(cookie.getName().equals("MY_PROGRAM")){
+				String myProgramsComma = URLDecoder.decode(cookie.getValue(),"UTF-8");
+				String[] myPrograms = myProgramsComma.split(",");
+				boolean flag = true;
+				for (String string : myPrograms) {
+					if(pno == Integer.parseInt(string)){
+						flag = false;
+					}
+				}
+				if(flag){
+					throw new AccessDeniedException("HAS NO COOKIES");
+				}
+					
+			}
+		}
+		
+		
 		logger.debug("getMainList LIST.....");
 		int check = checkService.getcheckDate(pno);
 		int total = takeprogramService.getstateTotal(pno);
@@ -87,6 +113,7 @@ public class TeacherController {
 		model.addAttribute("late", late);
 		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
 		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
+		model.addAttribute("AttendanceCnt",checkService.getcheckAttendanceCnt(pno));
 	}
 	
 	@ResponseBody

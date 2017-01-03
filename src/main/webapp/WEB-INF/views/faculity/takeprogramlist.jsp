@@ -56,7 +56,7 @@
 					<div class="col-sm-9 col-md-12">
 
 
-						<ul class="nav nav-tabs subjectTab">
+						<ul class="nav nav-tabs selectstate">
 							<li class="active" id='falseList'><a href="#false" data-toggle="tab" ><span class="glyphicon glyphicon-th-list"></span> 수강 신청 리스트 </a></li>
 							<li id="successList"><a href="#true" data-toggle="tab" ><span class="glyphicon glyphicon-th-list"></span> 수강 신청 완료 리스트</a></li>
 
@@ -90,6 +90,10 @@
 
 
 $(document).ready(function() {
+	
+	$("#faculity_2").attr("class", "active");	
+	$("#faculity_takeprogramlist").attr("class", "active");	
+	
 	
 		var result = '${result}';
 
@@ -176,9 +180,9 @@ $(document).ready(function() {
 					$("#"+targetCategory).html(str);
 					
 					
-					$("a").on("click" , function(event){	
+					$(".programlist > .takeprogramlist").on("click" , function(event){	
+						console.log(event);
 						console.log(event.currentTarget.attributes.value.value);
-
 						$('.state').css('visibility' , 'visible');
 						$('#trueBtn').css('visibility' , 'visible');
 
@@ -251,17 +255,7 @@ $(document).ready(function() {
 			});
 		}
 		getCategoryList("java");
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 /* 
 				$("takeprogramlist").on("click" , function(event){	
 					console.log(event.currentTarget.attributes.value.value);
@@ -355,11 +349,7 @@ $(document).ready(function() {
 					$('#admission').submit(); 
 				});
 			}
-		
-		
-			
-			
-			
+	
 		$(".subjectTab li").on("click", function(event) {
 			event.preventDefault();
 			console.log(event.target.name);

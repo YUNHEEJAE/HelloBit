@@ -41,4 +41,8 @@ public interface CheckDAO {
 	public List<Integer> checkLaterCnt(Integer pno) throws Exception;
 	
 	public List<CheckTimeVO> checkStudent(String sid) throws Exception;
+	
+	public Integer checkAttendanceCnt(Integer pno) throws Exception;
+	
+	
 }

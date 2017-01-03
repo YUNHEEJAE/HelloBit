@@ -69,6 +69,11 @@ public class CheckDAOTest {
 		System.out.println(dao.checkStudent("lsy"));
 	}
 
+	
+	@Test
+	public void checkAttendanceCntTest() throws Exception{
+		System.out.println(dao.checkAttendanceCnt(1));
+	}
 	// =======================SERVICE=========================
 
 	@Test
@@ -124,4 +129,9 @@ public class CheckDAOTest {
 		System.out.println(service.checkStudent("lsy"));
 	}
 
+	
+	@Test
+	public void getcheckAttendanceCntTest() throws Exception{
+		System.out.println(service.getcheckAttendanceCnt(1));
+	}
 }

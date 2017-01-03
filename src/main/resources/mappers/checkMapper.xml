@@ -71,7 +71,13 @@
 
 	<select id="checkLaterCnt" resultType="Integer">
 				<![CDATA[
-					select count(sid) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
+					select count(distinct(date_format(checktime, "%y-%c-%d")))cnt from tbl_check where pno = #{pno} and date_format(checktime, "%H:%i:%S") >= '09:10:00' group by sid order by cnt desc
+				]]>
+		</select>
+		
+				<select id="checkAttendanceCnt" resultType="Integer">
+				<![CDATA[
+					select count(distinct(date_format(checktime, "%y-%c-%d"))) from tbl_check where pno = #{pno}
 				]]>
 	</select>
 
