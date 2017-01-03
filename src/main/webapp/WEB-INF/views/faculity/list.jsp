@@ -76,7 +76,10 @@
 
 $(document).ready(function() {
 	
-		
+		$("#faculity_2").attr("class", "active");	
+		$("#faculity_list").attr("class", "active");	
+	
+	
 		function getProgramList() {
 			$.getJSON("/web/program/allList", function(data) {
 				console.log(data);

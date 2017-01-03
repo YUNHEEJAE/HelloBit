@@ -152,12 +152,8 @@
                   <th style="width: 40px"><small>순위</small></th>
                   <th>이름</th>
                   <th>지각률</th>
-                  <th style="width: 30px">횟수</th>
+                  <th style="width: 30px">%</th>
                 </tr>
-                
-                
-                
-                
                 
                 
                 
@@ -167,10 +163,10 @@
                   <td>${laterMan[0]} </td>
                   <td>
                     <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-danger" style="width:${lateCnt[0]/AttendanceCnt*100}%"></div>
+                      <div class="progress-bar progress-bar-danger" style="width: ${lateCnt[0]}%"></div>
                     </div>
                   </td>
-                  <td><span class="badge bg-red">${lateCnt[0]} 번</span></td>
+                  <td><span class="badge bg-red">${lateCnt[0]}  %</span></td>
                 </tr>
                 
                 
@@ -181,10 +177,10 @@
                   <td>${laterMan[1]} </td>
                   <td>
                     <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-yellow " style="width:${lateCnt[1]/AttendanceCnt*100}%"></div>
+                      <div class="progress-bar progress-bar-yellow " style="width: ${lateCnt[1]}%"></div>
                     </div>
                   </td>
-                  <td><span class="badge bg-yellow">${lateCnt[1]} 번</span></td>
+                  <td><span class="badge bg-yellow">${lateCnt[1]}%</span></td>
                 </tr>
                 
                 
@@ -194,12 +190,11 @@
                   <td>${laterMan[2]} </td>
                   <td>
                     <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-primary" style="width:${lateCnt[2]/AttendanceCnt*100}%"></div>
+                      <div class="progress-bar progress-bar-primary" style="width: ${lateCnt[2]}%"></div>
                     </div>
                   </td>
-                  <td><span class="badge bg-light-blue">${lateCnt[2]} 번</span></td>
+                  <td><span class="badge bg-light-blue">${lateCnt[2]}%</span></td>
                 </tr>
-                
                 
                 
                 <tr>
@@ -207,10 +202,10 @@
                   <td>${laterMan[3]} </td>
                   <td>
                     <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-success" style="width:${lateCnt[3]/AttendanceCnt*100}%"></div>
+                      <div class="progress-bar progress-bar-success" style="width: ${lateCnt[3]}%"></div>
                     </div>
                   </td>
-                  <td><span class="badge bg-green">${lateCnt[3]} 번</span></td>
+                  <td><span class="badge bg-green">${lateCnt[3]}%</span></td>
                 </tr>
                 
 

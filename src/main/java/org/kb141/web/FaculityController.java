@@ -82,7 +82,10 @@ public class FaculityController {
 	@Inject
 	private FaceAPIUtils faceAPI;
 	
-
+	@GetMapping("/main")
+	public void faculityMain() throws Exception{
+		logger.info("FACULITY MAIN");
+	}
 	
 	
 	

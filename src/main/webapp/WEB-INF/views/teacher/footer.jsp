@@ -229,8 +229,9 @@ $(document).ready(function() {
 			console.log(data);
 			var str = "";
 			
+			
 			$(data).each(function() {
-				str += "<li><a href='#' id='pno_"+this.pno+"'><i class='fa fa-circle-o'>" +
+				str += "<li><a href='main?pno="+this.pno+"' id='pno_"+this.pno+"'><i class='fa fa-circle-o'>" +
 						"</i> "+this.pcourse+"</a></li>";
 			});
 			

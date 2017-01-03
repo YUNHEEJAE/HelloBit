@@ -2,6 +2,7 @@ package org.kb141.persistence;
 
 import java.util.List;
 
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 /**
  * CheckDAO 클래스 입니다.
@@ -38,4 +39,10 @@ public interface CheckDAO {
 	public List<String> checkLaterMan(Integer pno) throws Exception;
 
 	public List<Integer> checkLaterCnt(Integer pno) throws Exception;
+	
+	public List<CheckTimeVO> checkStudent(String sid) throws Exception;
+	
+	public Integer checkAttendanceCnt(Integer pno) throws Exception;
+	
+	
 }

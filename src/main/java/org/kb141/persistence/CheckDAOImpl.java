@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.WeekDataVO;
 import org.springframework.stereotype.Repository;
@@ -33,32 +34,38 @@ public class CheckDAOImpl implements CheckDAO {
 
 	@Override
 	public Integer checkDate(Integer pno) throws Exception {
-		return sqlSession.selectOne(NAME + "checkDate" ,pno);
+		return sqlSession.selectOne(NAME + "checkDate", pno);
 	}
-	
+
 	@Override
 	public Integer checkLate(Integer pno) throws Exception {
 		return sqlSession.selectOne(NAME + "checkLate", pno);
 	}
-	
+
 	@Override
 	public WeekDataVO checkWeek(Integer pno) throws Exception {
-		return sqlSession.selectOne(NAME + "checkWeek" ,pno);
+		return sqlSession.selectOne(NAME + "checkWeek", pno);
 	}
 
 	@Override
 	public List<String> checkLaterMan(Integer pno) throws Exception {
-		
-		return sqlSession.selectList(NAME+"checkLaterMan", pno);
+
+		return sqlSession.selectList(NAME + "checkLaterMan", pno);
 	}
 
 	@Override
 	public List<Integer> checkLaterCnt(Integer pno) throws Exception {
-		return sqlSession.selectList(NAME+"checkLaterCnt", pno);
+		return sqlSession.selectList(NAME + "checkLaterCnt", pno);
 	}
 
-	
-	
+	@Override
+	public List<CheckTimeVO> checkStudent(String sid) throws Exception {
+		return sqlSession.selectList(NAME + "checkStudent", sid);
+	}
 
+	@Override
+	public Integer checkAttendanceCnt(Integer pno) throws Exception {
+		return sqlSession.selectOne(NAME + "checkAttendanceCnt", pno);
+	}
 
 }

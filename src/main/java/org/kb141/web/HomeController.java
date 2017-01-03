@@ -66,19 +66,6 @@ public class HomeController {
 		logger.info("Faculity");
 	}
 	
-	@GetMapping("/myLogout")
-	public void logout(HttpServletResponse response) {
-		logger.info("logout get");
-		Cookie cookie = new Cookie("LOGIN", "SuperSenyo");
-		cookie.setMaxAge(0);
-		response.addCookie(cookie);
-	}
-	
-	@PostMapping("/myLogout")
-	public void logoutPost() {
-		logger.info("logout post");
-	}
-	
 	
 	@GetMapping("/forAll")
 	public void doForAll() {
@@ -100,5 +87,11 @@ public class HomeController {
 		
 		return "redirect:forStudent";
 	}
+	
+	@GetMapping("/denied")
+	public void denied() {
+		logger.info("DENIED PAGE");
+	}
+	
 	
 }

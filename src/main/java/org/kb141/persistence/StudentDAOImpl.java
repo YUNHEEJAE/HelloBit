@@ -14,10 +14,9 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Inject
 	private SqlSession sqlSession;
-	
+
 	private final String NAME = "org.kb141.mapper.StudentMapper.";
-	
-	
+
 	@Override
 	public void create(StudentVO vo) throws Exception {
 		sqlSession.insert(NAME + "create", vo);
@@ -49,5 +48,6 @@ public class StudentDAOImpl implements StudentDAO {
 	public ProgramVO getViewProgram(String sid) throws Exception {
 		return sqlSession.selectOne(NAME + "getViewProgram", sid);
 	}
+
 
 }
