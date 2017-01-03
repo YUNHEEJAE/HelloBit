@@ -136,7 +136,7 @@ $(document).ready(function(){
         var upw = "wjdwndud08";
      
         firebase.auth().signInWithEmailAndPassword(uid , upw).catch(function (error) {
-            // Handle Errors here.
+           
             console.log('error sign');
             var errorCode = error.code;
             var errorMessage = error.message;

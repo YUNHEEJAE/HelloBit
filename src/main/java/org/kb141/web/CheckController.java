@@ -116,7 +116,7 @@ public class CheckController {
 //			}
 //			return entity;
 		
-		sname = takeprogramService.viewSname("47579260-7ff0-4329-afbb-4c594223cb12");
+//		sname = takeprogramService.viewSname("47579260-7ff0-4329-afbb-4c594223cb12");
 		
 		return sname;
 		
