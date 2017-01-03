@@ -90,7 +90,7 @@ public class StudentController {
 //		model.addAttribute(studentService.view(sid));
 //		model.addAttribute("programVO", studentService.getViewProgram(sid));
 //	}
-	
+//	
 	// parameter 받지 말고.
 	@GetMapping("/main")
 	public void view(HttpServletRequest request,  Model model) throws Exception {

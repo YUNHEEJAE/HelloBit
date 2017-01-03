@@ -91,6 +91,10 @@
 
 $(document).ready(function() {
 	
+	$("#faculity_2").attr("class", "active");	
+	$("#faculity_takeprogramlist").attr("class", "active");	
+	
+	
 		var result = '${result}';
 
 			if(result =="success"){alert("변경 완료");}
