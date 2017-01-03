@@ -7,7 +7,6 @@
 		href="http://almsaeedstudio.com">Almsaeed Studio</a>.
 	</strong> All rights reserved.
 </footer>
-
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
 	<!-- Create the tabs -->
@@ -228,8 +227,6 @@ $(document).ready(function() {
 		$.getJSON("/web/program/allList", function (data) {
 			console.log(data);
 			var str = "";
-			
-			
 			$(data).each(function() {
 				str += "<li><a href='../faculity/main?pno="+this.pno+"' id='pno_"+this.pno+"'><i class='fa fa-circle-o'>" +
 						"</i> "+this.pcourse+"</a></li>";
@@ -237,9 +234,7 @@ $(document).ready(function() {
 			
 			$("#treeTeacher > ul").html(str);
 		});
-		
 	})();
-	
 });
 </script>
 
