@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 2 | Dashboard</title>
@@ -147,10 +148,7 @@ $(document).ready(function(){
 			var userid = $('#userid').val();
 			var image = $('#file')[0].files[0];
 			$('#hiddenid').attr("value" , userid);
-			var formdata = new FormData();
-			
-			formdata.append("sid" , userid);
-			
+
 			// upload firebase img
             var upload = storageRef.child("member/" + userid+"_0.jpg");
             var uploadTask = upload.put(image);
@@ -165,9 +163,9 @@ $(document).ready(function(){
                 var downloadURL = uploadTask.snapshot.downloadURL;
             });
 
-			console.log(formdata);
-
-			$.ajax({
+			$('#regForm').submit(); 
+			
+			/* $.ajax({
 				url : "http://localhost:8081/web/image/registerImage?${_csrf.parameterName}=${_csrf.token}",
 				data :formdata,
 				type:"post",
@@ -176,15 +174,15 @@ $(document).ready(function(){
 				success: function(result){
 					console.log(result);
 					
-					$('#hiddenFile').attr("value" , result);
+					$('#hiddenFile').attr("value" , result); */
 					
-					$('#regForm').submit();   
 					
-	
+					
+	/* 
 				}
 
 			}); 
-
+ */
 	});
 
 });

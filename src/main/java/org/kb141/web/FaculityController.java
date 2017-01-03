@@ -25,6 +25,7 @@ import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
+import org.kb141.util.ByteConverter;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -246,18 +247,20 @@ public class FaculityController {
 	@PostMapping(value="/admission")
 	public String admissionEnrolment(String[] sid , Integer pno , String groupid,RedirectAttributes rttr)throws Exception{
 		
-		logger.info("admission called..........................................................................");
-		logger.info("sid" + Arrays.toString(sid));
+		logger.debug("admission called..........................................................................");
+		logger.debug("sid" + Arrays.toString(sid));
 		logger.info("pno : " + pno);
 		logger.info("groupid" + groupid);
 		TakeProgramVO vo = new TakeProgramVO();
+	
 		
 		for(int i = 0 ; i < sid.length ; i ++){
 			vo.setState(true);
 			vo.setSid(sid[i]);
 			vo.setPno(pno);
-			System.out.println(faceAPI.createPersonId(sid[i], groupid));
-			vo.setPersonid(faceAPI.createPersonId(sid[i], groupid));
+			String api = faceAPI.createPersonId(sid[i], groupid);
+			vo.setPersonid(api);
+			System.out.println(vo);
 			takeprogramService.modify(vo);
 		}
 		
@@ -520,17 +523,22 @@ public class FaculityController {
 	
 	@PostMapping("/pictureRegister")
 	public void pictureRegister(String[] url ,String sid)throws Exception{
+		
+		
 		logger.info("pictureReg called......");	
 		logger.info("sid : " + sid);
 		logger.info("url :" + Arrays.toString(url));
 		ImageVO vo = new ImageVO();
-		
+		ByteConverter bc = new ByteConverter();
 		TakeProgramVO tvo = takeprogramService.view(sid);
 		ProgramVO pvo = programService.view(tvo.getPno());
+		String personId = tvo.getPersonid();
+		String personGroupId = pvo.getPersongroupid();
 		
 		for(int i = 0 ; i < url.length ; i ++){
 			vo.setSid(sid);
-			vo.setPersistedfaceid(faceAPI.addPersonFace(url[i], tvo.getPersonid(), pvo.getPersongroupid()));
+			vo.setPersistedfaceid(faceAPI.addPersonFace(bc.ByteConvert(url[i]), personId, personGroupId));
+			faceAPI.trainPersonGroup(personGroupId);
 			imageService.register(vo);
 		}
 	}

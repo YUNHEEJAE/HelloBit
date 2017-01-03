@@ -63,6 +63,11 @@ public class CheckDAOTest {
 	public void checkLaterCnt() throws Exception{
 		System.out.println(dao.checkLaterCnt(1));
 	}
+	
+	@Test
+	public void checkAttendanceCntTest() throws Exception{
+		System.out.println(dao.checkAttendanceCnt(1));
+	}
 	// =======================SERVICE=========================
 
 	@Test
@@ -111,5 +116,10 @@ public class CheckDAOTest {
 	@Test
 	public void getcheckLateCntTest() throws Exception{
 		System.out.println(service.getcheckLaterCnt(1));
+	}
+	
+	@Test
+	public void getcheckAttendanceCntTest() throws Exception{
+		System.out.println(service.getcheckAttendanceCnt(1));
 	}
 }

@@ -33,7 +33,7 @@
 	
 	
 	<update id="admission">
-		update tbl_take_program set state = true where sid = #{sid}
+		update tbl_take_program set state = true  where sid = #{sid}
 	</update>
 	
 	<select id="stateCount" resultType="Integer">
@@ -52,6 +52,11 @@
 	<update id="updatePersonId" parameterType="TakeProgramVO">
 		update tbl_take_program set personid = #{personid} where sid = #{sid}
 	</update>
+	
+	<select id="getSname" resultType="String">
+		select sname from tbl_student where sid = (select sid from tbl_take_program where personid = #{personid})
+	</select>
+	
 	
 	
 </mapper>

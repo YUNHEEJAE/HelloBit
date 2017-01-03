@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import javax.xml.bind.DatatypeConverter;
 
 import org.kb141.util.FaceAPIUtils;
-import org.kb141.util.ImageToUrlConverter;
+import org.kb141.util.ByteConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -34,15 +34,15 @@ public class FileController {
 	private FaceAPIUtils faceAPI;
 	
 	@Inject
-	private ImageToUrlConverter converter;
+	private ByteConverter bc;
 	
 	@PostMapping(value = "/getFile" , produces="application/text;charset=utf8")
 	public String getFile(String file)throws Exception{
 		logger.info("file called.....");
 		logger.info("file : " + file );	
 		
-		String imgUrl = converter.ImageConverter(file);
-		List<String> result = faceAPI.detectAndIdentifyFace(imgUrl, "java_beginner_34");
+		byte[] imgData = bc.ByteConvert(file);
+		List<String> result = faceAPI.detectAndIdentifyFace(imgData, "java_beginner_34");
 		logger.info("result  = " + result);  
 		
 		return "2016-12-29 15:00 정주영 출근"; 
@@ -52,8 +52,9 @@ public class FileController {
 	@PostMapping(value = "/registerImage" , produces ="text/html")
 	public String getImage(String data)throws Exception{
 		logger.info("regimg called........");
-		String imgUrl = converter.ImageConverter(data);		
-		return imgUrl;
+		byte[] imgData = bc.ByteConvert(data);	
+		logger.info("imgData" + imgData);
+		return null;
 	}
 	
 }

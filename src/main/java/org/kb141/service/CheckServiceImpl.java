@@ -110,6 +110,19 @@ public class CheckServiceImpl implements CheckService {
 		
 		return result;
 	}
+
+	@Override
+	public Integer getcheckAttendanceCnt(Integer pno) {
+			Integer getcheckAttendanceCnt = null;
+		
+		try {
+			getcheckAttendanceCnt = checkDAO.checkAttendanceCnt(pno);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return getcheckAttendanceCnt;
+	}
 	
 		
 

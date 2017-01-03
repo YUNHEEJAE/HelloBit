@@ -70,6 +70,12 @@ public class TakeProgramDAOImpl implements TakeProgramDAO {
 		
 	}
 
+	@Override
+	public String readSname(String personId) throws Exception {		
+		return sqlsession.selectOne(NAME + "getSname" , personId);
+		
+	}
+
 
 
 }

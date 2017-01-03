@@ -38,4 +38,8 @@ public interface CheckDAO {
 	public List<String> checkLaterMan(Integer pno) throws Exception;
 
 	public List<Integer> checkLaterCnt(Integer pno) throws Exception;
+	
+	public Integer checkAttendanceCnt(Integer pno) throws Exception;
+	
+	
 }

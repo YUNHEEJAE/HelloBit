@@ -113,6 +113,7 @@ public class TeacherController {
 		model.addAttribute("late", late);
 		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
 		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
+		model.addAttribute("AttendanceCnt",checkService.getcheckAttendanceCnt(pno));
 	}
 	
 	@ResponseBody

@@ -11,6 +11,7 @@ import org.kb141.domain.StudentVO;
 import org.kb141.domain.TakeProgramVO;
 import org.kb141.service.StudentService;
 import org.kb141.service.TakeProgramService;
+import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -41,6 +42,9 @@ public class StudentController {
 	
 	@Inject
 	private TakeProgramService takeprogramService;
+	
+	@Inject
+	private FaceAPIUtils faceAPI;
 	
 	@GetMapping("/register")
 	public void registerGET(StudentVO vo, Model model) throws Exception{
@@ -106,7 +110,7 @@ public class StudentController {
 		}
 		System.out.println(sid);
 		
-		model.addAttribute(studentService.view(sid));
+		model.addAttribute("studentVO", studentService.view(sid));
 		model.addAttribute("programVO", studentService.getViewProgram(sid));
 		
 	}
@@ -120,7 +124,7 @@ public class StudentController {
 	
 		rttr.addFlashAttribute("result" , "success");
 		
-//		takeprogramService.join(vo);
+		takeprogramService.join(vo);
 		return "redirect:../program/list";
 	
 		
@@ -199,5 +203,7 @@ public class StudentController {
 	public void chartTest() throws Exception{
 		logger.info("CHART CALLED.....");
 	}
+	
+
 	
 }

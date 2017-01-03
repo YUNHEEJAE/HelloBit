@@ -132,7 +132,6 @@ img{
                 		<input type="hidden" name="sid" value="${sid}">
                 		
                 </form>
-                
                 <button class="btn btn-info pull-right" id="regBtn">등 록</button>
               </div>
               
@@ -315,8 +314,7 @@ img{
                 console.log("no user");
             }
         });
-         
-         
+
      		function uploadFile(data) {
         	    var xhr = new XMLHttpRequest();
                 xhr.open('GET', data, true);

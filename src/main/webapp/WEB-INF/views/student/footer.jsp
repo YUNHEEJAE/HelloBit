@@ -224,5 +224,26 @@
 <script src="../resources/dist/js/demo.js"></script>
 <script src="../resources/plugins/chartjs/Chart.min.js"></script>
 <script src="../resources/plugins/util/utils.js"></script>
+<script src="../resources/plugins/fullcalendar/fullcalendar.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+			header:{
+				left:'prev,next today',
+				center:'title',
+				right:'month,agendaWeek'
+			},
+			
+			
+		})
+		$('#my-prev-button').click(function() {
+			$('#calendar').fullCalendar('prev');
+		});
+		$('#my-next-button').click(function() {
+			$('#calendar').fullCalendar('next');
+		});
+	});
+</script>
 </body>
 </html>
