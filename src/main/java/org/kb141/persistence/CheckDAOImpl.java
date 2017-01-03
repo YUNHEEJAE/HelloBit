@@ -57,6 +57,12 @@ public class CheckDAOImpl implements CheckDAO {
 		return sqlSession.selectList(NAME+"checkLaterCnt", pno);
 	}
 
+	@Override
+	public Integer checkAttendanceCnt(Integer pno) throws Exception {
+		
+		return sqlSession.selectOne(NAME + "checkAttendanceCnt", pno);
+	}
+
 	
 	
 

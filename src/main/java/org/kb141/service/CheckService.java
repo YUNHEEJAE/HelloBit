@@ -22,4 +22,6 @@ public interface CheckService {
 	public List<String> getcheckLaterMan(Integer pno);
 
 	public List<Integer> getcheckLaterCnt(Integer pno);
+	
+	public Integer getcheckAttendanceCnt(Integer pno);
 }
