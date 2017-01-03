@@ -69,6 +69,7 @@
 	</select>
 
 
+
 	<select id="checkLaterMan" resultType="String">
 		<![CDATA[
 			select sid from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
