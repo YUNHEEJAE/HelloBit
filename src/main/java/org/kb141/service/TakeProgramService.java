@@ -34,8 +34,7 @@ public interface TakeProgramService {
 	// 수강 신청 OK 됐을 때, personid 만들어서 줄거에요. 까먹지 말자.
 	public void updatePersonId(TakeProgramVO vo);
 	
-	//sname 가져오기 
-	public String viewSname(String personId) ;
+
 	
 	
 

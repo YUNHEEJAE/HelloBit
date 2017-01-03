@@ -19,4 +19,7 @@ public interface StudentDAO {
 
 	public ProgramVO getViewProgram(String sid) throws Exception;
 	
+	//personId 에 대한 이름 가져오기 
+	public StudentVO readSname(String personId) throws Exception;
+	
 }
