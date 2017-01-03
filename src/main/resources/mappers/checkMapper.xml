@@ -60,7 +60,6 @@
 		select * from tbl_check where checktime > #{latetime}
 	</select>
 	
-		<select id="checkLate" resultType="Integer">
 
 	<select id="checkLate" resultType="Integer">
 			<![CDATA[
