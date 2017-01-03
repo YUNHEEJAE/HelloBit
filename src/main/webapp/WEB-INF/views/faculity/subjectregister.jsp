@@ -68,13 +68,11 @@
 $(document).ready(function () {
 	
 	$("#btnRegister").on("click", function () {
-		event.preventDefault();
 		$("#inputForm").submit();		
 		
 	});
 	
 	$("#btnCancel").on("click", function() {
-		event.preventDefault();
 		history.back(1);
 	});	
 	
