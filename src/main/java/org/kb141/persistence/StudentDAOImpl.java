@@ -48,6 +48,11 @@ public class StudentDAOImpl implements StudentDAO {
 	public ProgramVO getViewProgram(String sid) throws Exception {
 		return sqlSession.selectOne(NAME + "getViewProgram", sid);
 	}
+	
+	@Override
+	public StudentVO readSname(String personId) throws Exception {		
+		return sqlSession.selectOne(NAME + "getSname" , personId);	
+	}
 
 
 }
