@@ -228,21 +228,52 @@
 
 <script>
 	$(document).ready(function() {
+		
+		var red = "rgb(255,0,0)";
+		var blue = "rgb(58,135,173)";
+		
+		<c:forEach items="${checkVO}" var="checkVO">
+		 { start : '<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${checkVO.checktime}"/>'
+			 ,color : ${checkVO.states} }
+		</c:forEach>
+		
 		$('#calendar').fullCalendar({
-			header:{
-				left:'prev,next today',
-				center:'title',
-				right:'month,agendaWeek'
+			header : {
+				left : 'prev,next today',
+				center : 'title',
+				right : 'month,agendaWeek'
 			},
-			
-			
-		})
+
+		});
+
 		$('#my-prev-button').click(function() {
 			$('#calendar').fullCalendar('prev');
 		});
 		$('#my-next-button').click(function() {
 			$('#calendar').fullCalendar('next');
 		});
+
+		$('#calendar').fullCalendar('addEventSource', [ {
+			
+			start : '2017-01-02',
+			color:blue
+		}, {
+			start : '2017-01-03',
+			color: red
+		} ]);
+		
+		
+		
+		
+		function getFormatDate(date){
+			var stringDate = new Date(date);
+			var year = stringDate.getFullYear();
+			var month= (1+stringDate.getMonth());
+			month = month >=10?month:'0' + month;
+			var day = stringDate.getDate();
+			day=day>=10?day:'0'+day;
+			return year+"-"+month+"-"+day;
+		}
 	});
 </script>
 </body>

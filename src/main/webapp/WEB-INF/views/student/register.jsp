@@ -140,7 +140,7 @@ $(document).ready(function(){
             console.log('error sign');
             var errorCode = error.code;
             var errorMessage = error.message;
-        }); // end login
+        }); // end login  
 
 	$('#regBtn').on("click" , function(event){
 
