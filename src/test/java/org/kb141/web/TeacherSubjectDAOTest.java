@@ -95,15 +95,12 @@ public class TeacherSubjectDAOTest {
 	
 	@Test
 	public void getTeacherSubjectList()throws Exception{
-		System.out.println(teacherSubjectService.getAllTeacherSubjectList());
+		System.out.println(teacherSubjectService.getJoinAllList());
 		}
 		
 	@Test
 	public void getTeacherSubjectService() throws Exception{
-		List<JoinTeacherSubjectVO> list = null;
-		list = teacherSubjectService.getAllTeacherSubjectList();
-		System.out.println(list.size());
-		System.out.println(teacherSubjectService.getTeacherSubject(1));
+		System.out.println(teacherSubjectService.getTeacherSubject(37));
 	}
 	
 		

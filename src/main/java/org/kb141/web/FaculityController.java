@@ -167,9 +167,9 @@ public class FaculityController {
 		return entity;
 	}
 	
-	//교수과목 리스트
+//	//교수과목 리스트
 //	@GetMapping("/teachersubjectlist")
-//	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
+//	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList2() {
 //		ResponseEntity<List<TeacherSubjectVO>> entity = null;
 //		try {
 //			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
@@ -193,18 +193,18 @@ public class FaculityController {
 		return entity;
 	}
 	 
-	@GetMapping("/teachersubjectlist")
-	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(){
-		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
-		try{
-			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getAllTeacherSubjectList(), HttpStatus.OK);
-		}catch(Exception e){
-			e.printStackTrace();
-			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
-		}
-		
-		return entity;
-	}
+//	@GetMapping("/teachersubjectlist/{pno}")
+//	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(@PathVariable("pno") Integer pno){
+//		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
+//		try{
+//			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getJoinList(pno), HttpStatus.OK);
+//		}catch(Exception e){
+//			e.printStackTrace();
+//			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+//		}
+//		
+//		return entity;
+//	}
 	
 	@GetMapping("/takeprogramlist")
 	public void takeprogramlist() throws Exception{
@@ -297,7 +297,7 @@ public class FaculityController {
 	public ResponseEntity<List<JoinTeacherSubjectVO>> joinALlList() {
 		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(programService.getAllTeacherSubjectList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getJoinAllList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
@@ -310,7 +310,7 @@ public class FaculityController {
 	public ResponseEntity<List<JoinTeacherSubjectVO>> teacherSubjectList(@PathVariable("pno") Integer pno) {
 		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(programService.getTeacherSubjectList(pno), HttpStatus.OK);
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getJoinList(pno), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);

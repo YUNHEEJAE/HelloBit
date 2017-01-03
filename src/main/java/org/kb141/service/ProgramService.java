@@ -20,7 +20,4 @@ public interface ProgramService {
 	
 	public List<ProgramVO> getTeacherList(String tid);
 	
-	public List<JoinTeacherSubjectVO> getTeacherSubjectList(Integer pno);
-	
-	public List<JoinTeacherSubjectVO> getAllTeacherSubjectList();
 }

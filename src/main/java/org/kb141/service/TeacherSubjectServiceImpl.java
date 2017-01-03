@@ -15,15 +15,12 @@ import org.springframework.stereotype.Service;
 public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 	
 	@Inject
-	private TeacherSubjectDAO TeacherSubjectDAO;
-	
-	@Inject
-	private ProgramDAO programDAO;
+	private TeacherSubjectDAO teacherSubjectDAO;
 	
 	@Override
 	public void register(TeacherSubjectVO vo) {
 		try {
-			TeacherSubjectDAO.create(vo);
+			teacherSubjectDAO.create(vo);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -35,7 +32,7 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 		TeacherSubjectVO result = null;
 		
 		try {
-			result = TeacherSubjectDAO.read(tsno);
+			result = teacherSubjectDAO.read(tsno);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -48,7 +45,7 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 	@Override
 	public void modify(TeacherSubjectVO vo) {
 		try {
-			TeacherSubjectDAO.update(vo);
+			teacherSubjectDAO.update(vo);
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -59,7 +56,7 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 	public void remove(Integer tsno) {
 		
 		try {
-			TeacherSubjectDAO.delete(tsno);
+			teacherSubjectDAO.delete(tsno);
 			
 		} catch (Exception e){
 			e.printStackTrace();
@@ -72,7 +69,7 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 		List<TeacherSubjectVO> result = null;
 		
 		try {
-			result = TeacherSubjectDAO.allList();
+			result = teacherSubjectDAO.allList();
 		} catch (Exception e){
 			e.printStackTrace();
 		}
@@ -81,10 +78,24 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 	}
 
 	@Override
-	public List<JoinTeacherSubjectVO> getAllTeacherSubjectList() {
+	public JoinTeacherSubjectVO getTeacherSubject(Integer tsno) {
+
+		JoinTeacherSubjectVO vo = null;
+		
+		try {
+			vo = teacherSubjectDAO.getTeacherSubject(tsno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return vo;
+	}
+	
+	@Override
+	public List<JoinTeacherSubjectVO> getJoinAllList() {
 		List<JoinTeacherSubjectVO> result = null;
 		try {
-			result = programDAO.joinAllList();
+			result = teacherSubjectDAO.joinAllList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -93,17 +104,15 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 	}
 
 	@Override
-	public JoinTeacherSubjectVO getTeacherSubject(Integer tsno) {
-
-		JoinTeacherSubjectVO vo = null;
-		
+	public List<JoinTeacherSubjectVO> getJoinList(Integer pno) {
+		List<JoinTeacherSubjectVO> result = null;
 		try {
-			vo = TeacherSubjectDAO.getTeacherSubject(tsno);
+			result = teacherSubjectDAO.joinList(pno);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return vo;
+		return result;
 	}
 
 }

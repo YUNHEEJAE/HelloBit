@@ -21,10 +21,4 @@ public interface ProgramDAO {
 	
 	public List<ProgramVO> teacherList(String tid) throws Exception;
 	
-	public List<JoinTeacherSubjectVO> joinList(Integer pno)throws Exception;
-
-	public List<JoinTeacherSubjectVO> joinAllList()throws Exception;
-	
-	
-	
 }
