@@ -60,25 +60,5 @@
 		select tsno from tbl_teacher_subject where tid = #{tid}))
 	</select>
 
-	<select id="joinTeacherSubjectList" resultType="JoinTeacherSubjectVO">
-
-		select tsno, subname, subgrade, tname from (select * from
-		tbl_teacher_subject
-		where tsno in (select tsno from tbl_curriculum where pno = #{pno}) ) t,	tbl_subject s, tbl_teacher a
-		where t.subno = s.subno and t.tid = a.tid order by subname asc, subgrade desc
-
-	</select>
-	
-	<select id="joinAllTeacherSubjectList" resultType="JoinTeacherSubjectVO">
-
-		select p.subname, p.subgrade, t.tname, p.tsno from tbl_teacher t,(
-		select s.subname, s.subgrade, ts.tid, ts.tsno from tbl_subject s, (
-		select subno, tid, tsno from tbl_teacher_subject)ts where ts.subno = s.subno) p
-		where t.tid = p.tid
-
-	</select>
-
-
-
 
 </mapper>

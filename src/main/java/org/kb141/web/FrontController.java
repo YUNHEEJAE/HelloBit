@@ -4,14 +4,18 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.http.HttpStatus;
+import org.kb141.domain.CheckVO;
 import org.kb141.domain.ProgramVO;
+import org.kb141.domain.StudentVO;
+import org.kb141.service.CheckService;
 import org.kb141.service.ProgramService;
+import org.kb141.service.StudentService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.util.ByteConverter;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,65 +41,71 @@ public class FrontController {
 	
 	@Inject
 	private ProgramService programService;
+	
+	@Inject
+	private CheckService checkService;
+	
+	@Inject
+	private StudentService studentService;
 
 	
-	@GetMapping("/frontend")
-	public ResponseEntity<List<ProgramVO>> gotofrontend() throws Exception{
+	@GetMapping("/authpage/programlist")
+	public ResponseEntity<List<ProgramVO>> gotofrontend(){
 		logger.info("frontend  start .....................");
-//		
-//		ResponseEntity<String> entity = null;
-//		try {
-//				entity = new ResponseEntity<List<ProgramVO>>(programService., HttpStatus.OK);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				entity = new ResponseEntity<List<ProgramVO>>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//			}
-//			return entity;
-//		
-//		
+
+		ResponseEntity<List<ProgramVO>> entity = null;
+		try {
+				entity = new ResponseEntity<List<ProgramVO>>(programService.getProgramList(), HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<List<ProgramVO>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+	}
+	
+	@GetMapping("/authpage/checklist")
+	public ResponseEntity<List<CheckVO>> checkList(){
 		
-		
-		
-		
-		return null;
+		ResponseEntity<List<CheckVO>> entity = null;
+		try {
+			entity = new ResponseEntity<List<CheckVO>>(checkService.checkList() , HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<CheckVO>>(HttpStatus.BAD_REQUEST);
+		}	
+		return entity;
 	}
 	
 	
-	
-	
-	
+
 	@ResponseBody
 	@PostMapping(value = "/frontAuth" , produces="text/html")
-	public String frontAuth(String blob)throws Exception{
-		//ResponseEntity<String>
+	public StudentVO frontAuth(String blob , String groupId)throws Exception{
 		ByteConverter bc = new ByteConverter();
-		logger.info("blob : " + blob);
-		
+		logger.info("groupId :" + groupId);
 		byte[] image = bc.ByteConvert(blob);
+		StudentVO vo = new StudentVO();
 
-//		List<String> faceIds = faceAPI.detectAndIdentifyFace(image, "java_beginner_34");
+		List<String> faceIds = faceAPI.detectAndIdentifyFace(image, groupId);
+		logger.info("faceId : " + faceIds);
+			if(faceIds.size() != 0){
+				vo = (studentService.viewSname(faceIds.get(0)));				
+			}	
+		return vo;
+	}
+	
+	@ResponseBody
+	@PostMapping(value ="/emotion")
+	public void getEmotion(String emotion)throws Exception{
 		
-		String sname = null;
-//		
-//		ResponseEntity<String> entity = null;
-//		try {
-//			if(faceIds.size() != 0){
-//					for (int i = 0 ; i < faceIds.size() ; i ++){
-//						sname = takeprogramService.viewSname(faceIds.get(i));
-//					}
-//						logger.info("faceID :" + sname);
-//						entity = new ResponseEntity<String>(sname, HttpStatus.OK);
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//			}
-//			return entity;
-		
-		sname = takeprogramService.viewSname("47579260-7ff0-4329-afbb-4c594223cb12");
-		
-		return sname;
+		logger.info("emotion called..................");	
 		
 	}
+	
+	
+	
+	
+	
+	
 	
 }

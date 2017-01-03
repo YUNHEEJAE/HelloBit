@@ -19,4 +19,9 @@ public interface TeacherSubjectDAO {
 	public List<TeacherSubjectVO> allList() throws Exception;
 
 	public JoinTeacherSubjectVO getTeacherSubject(Integer tsno) throws Exception;
+	
+	public List<JoinTeacherSubjectVO> joinAllList()throws Exception; 
+	
+	public List<JoinTeacherSubjectVO> joinList(Integer pno)throws Exception;
+	
 }

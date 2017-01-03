@@ -11,6 +11,22 @@ div {
 	display: block;
 }
 
+.profileStudent {
+	padding-bottom: 10px
+}
+
+#profileImg {
+	margin: 0px auto 15px auto;
+	align: center;
+	border-radius: 7px;
+	/* 	height: 200px; */
+	width: 200px;
+	border: 1px;
+	border-width: 2px;
+	border-style: dotted;
+	border-color: #E3E3E3;
+}
+
 .threadTable {
 	clear: both;
 	border-spacing: 0;
@@ -21,12 +37,32 @@ div {
 	cursor: pointer;
 }
 
+.row-eq-height {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.checkedBox {
+	height: 100%;
+}
+
+.checkedBoxOuter {
+	padding-bottom: 20px;
+}
+ 
+.checkedBoxBody{
+	line-height: 180px;
+}
+
+
 body, ul, ol, li, blockquote, form, p, dl, dt, dd, input, h1, h2, h3, h4,
 	h5, h6 {
 	margin: 0;
 	padding: 0;
 }
-
+ 
 ul, menu, dir {
 	display: block;
 	list-style-type: disc;
@@ -73,7 +109,6 @@ li {
 	width: 50px;
 	text-align: center;
 	color: #999;
-	
 }
 
 .threadTable .pcourse {
@@ -88,7 +123,7 @@ li {
 .threadTable .opendate {
 	text-align: center;
 	color: #666;
-	right:250px;
+	right: 250px;
 }
 
 .threadTable .closedate {

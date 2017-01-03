@@ -117,7 +117,7 @@ public class StudentController {
 		
 		model.addAttribute("studentVO", studentService.view(sid));
 		model.addAttribute("programVO", studentService.getViewProgram(sid));
-		model.addAttribute("checkVO", checkService.checkStudent(sid));
+		model.addAttribute("checkTimeVO", checkService.checkStudent(sid));
 	}
 	
 	

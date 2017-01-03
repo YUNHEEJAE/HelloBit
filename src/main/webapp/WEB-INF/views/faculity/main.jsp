@@ -264,12 +264,13 @@
 
 <!-- page script -->
 <script>
+$(document).ready(function() {
 
+	$("#faculity_1").attr("class", "active");
+	$("#pno_37").attr("class", "active");
+	
 	$(function() {
-	  
-		
 		    // This will get the first returned node in the jQuery collection.
-			
 		   	var areaChartData = null;
 		    
 		    $.getJSON("/web/check/checkWeek/1", function(data) {
@@ -322,7 +323,6 @@
 		          //Number - Spacing between data sets within X values
 		          barDatasetSpacing: 1,
 		          //String - A legend template
-		           <%-- legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>", --%>
 		          //Boolean - whether to make the chart responsive
 		          responsive: true,
 		          maintainAspectRatio: true
@@ -331,14 +331,9 @@
 		        barChartOptions.datasetFill = false;
 		        barChart.Bar(barChartData, barChartOptions);
 		    	
-		    	
 		    });
-		    
-		    
-		    
+	});
     
- 
-	
 });
 </script>
 	

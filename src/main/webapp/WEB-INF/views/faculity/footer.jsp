@@ -223,24 +223,22 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
 <script>
-$(document).ready(function() {
-	(function() {
-		$.getJSON("/web/program/allList", function (data) {
-			console.log(data);
-			var str = "";
-			
-			
-			$(data).each(function() {
-				str += "<li><a href='../faculity/main?pno="+this.pno+"' id='pno_"+this.pno+"'><i class='fa fa-circle-o'>" +
-						"</i> "+this.pcourse+"</a></li>";
+	$(document).ready( function() {
+		(function() {
+			$.getJSON("/web/program/allList", function(data) {
+				console.log(data);
+				var str = "";
+
+
+				$(data).each(function() {
+					str += "<li class='' id='pno_" + this.pno + "'><a href='../faculity/main?pno=" + this.pno + "' ><i class='fa fa-circle-o'></i> " + this.category.toUpperCase() + " - " + this.torder+ "</a></li>";
+				});
+				
+				$("#faculity_1 > ul").html(str);
 			});
-			
-			$("#treeTeacher > ul").html(str);
-		});
-		
-	})();
-	
-});
+		})();
+
+	});
 </script>
 
 </body>

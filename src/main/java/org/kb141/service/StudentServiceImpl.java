@@ -105,6 +105,17 @@ public class StudentServiceImpl implements StudentService {
 		}
 		return result;
 	}
+
+	@Override
+	public StudentVO viewSname(String personId) {
+		StudentVO vo = new StudentVO();
+		try {
+			vo = studentDAO.readSname(personId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
 	
 	
 

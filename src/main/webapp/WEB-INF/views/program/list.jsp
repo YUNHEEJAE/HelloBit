@@ -31,6 +31,10 @@
 		<section class="content">
 		<hr />
 		<div class="row">
+			<form class="createBtn" action="register">
+				<input type="submit" class='btn btn-block btn-primary' value='create' id='createBtn'>
+			</form>
+		
 			<div class="col-sm-9 col-md-12">
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs subjectTab">
@@ -66,6 +70,9 @@
 
 
 $(document).ready(function() {
+	
+	$("#faculity_2").attr("class", "active");	
+	$("#program_list").attr("class", "active");
 	
 	var result = '${result}';
 	

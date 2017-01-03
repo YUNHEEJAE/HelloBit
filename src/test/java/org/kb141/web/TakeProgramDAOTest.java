@@ -77,10 +77,6 @@ public class TakeProgramDAOTest {
 		System.out.println(dao.stateList(vo));
 	}
 	
-	@Test
-	public void getSnameTest()throws Exception{
-		System.out.println(dao.readSname("47579260-7ff0-4329-afbb-4c594223cb12"));
-	}
 	
 
 	
@@ -168,10 +164,7 @@ public class TakeProgramDAOTest {
 		
 	}
 	
-	@Test
-	public void viewSnameTest()throws Exception{
-		System.out.println(service.viewSname("47579260-7ff0-4329-afbb-4c594223cb12"));
-	}
+
 	
 	
 }

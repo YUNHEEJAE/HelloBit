@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <footer class="main-footer">
 	<div class="pull-right hidden-xs">
 		<b>Version</b> 2.3.7
@@ -232,18 +233,13 @@
 		var red = "rgb(255,0,0)";
 		var blue = "rgb(58,135,173)";
 		
-		<c:forEach items="${checkVO}" var="checkVO">
-		 { start : '<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${checkVO.checktime}"/>'
-			 ,color : ${checkVO.states} }
-		</c:forEach>
-		
 		$('#calendar').fullCalendar({
 			header : {
-				left : 'prev,next today',
+				left :'prev,next',
 				center : 'title',
-				right : 'month,agendaWeek'
+				right : 'today'
+// 				right : 'month,agendaWeek'
 			},
-
 		});
 
 		$('#my-prev-button').click(function() {
@@ -253,15 +249,13 @@
 			$('#calendar').fullCalendar('next');
 		});
 
-		$('#calendar').fullCalendar('addEventSource', [ {
-			
-			start : '2017-01-02',
-			color:blue
-		}, {
-			start : '2017-01-03',
-			color: red
-		} ]);
-		
+		$('#calendar').fullCalendar('addEventSource', [ 
+			<c:forEach items="${checkTimeVO}" var="checkTimeVO">
+			 { start : '<fmt:formatDate pattern="yyyy-MM-dd" value="${checkTimeVO.firsttime}"/>',
+				 color : ${checkTimeVO.states},
+				 title : '${checkTimeVO.states=='red'?'지각':'정상'}'
+			 },
+			</c:forEach> ]);
 		
 		
 		
