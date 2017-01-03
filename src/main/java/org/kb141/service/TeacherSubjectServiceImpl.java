@@ -88,7 +88,6 @@ public class TeacherSubjectServiceImpl implements TeacherSubjectService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 

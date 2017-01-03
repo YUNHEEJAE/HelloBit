@@ -69,8 +69,12 @@
 					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
 					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
 					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
-					<button type="button" class="btn btn-warning" id="btnPicture">pictureRegister</button>
 				</form>
+			
+				<form method="get" action="pictureRegister" id="pictureform">
+				<input type="hidden" value ="${studentVO.sid}" name="sid">
+				</form>			
+				<button type="button" class="btn btn-warning" id="btnPicture">pictureRegister</button>
 
 			</div>
 		</div>
@@ -112,9 +116,9 @@
 			event.preventDefault();
 			history.back(1);
 		});
+		
 		$("#btnPicture").on("click" , function(){
-			 $("#inputForm").attr("action" , "pictureRegister").attr("method" , "get");
-			 $("#inputForm").submit();
+			 $("#pictureform").submit();
 		});
 
 	});

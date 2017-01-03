@@ -134,7 +134,7 @@ public class FaceAPIUtils {
         {
             URIBuilder builder = new URIBuilder("https://api.projectoxford.ai/face/v1.0/persongroups/"+personGroupId+"/persons/"+personId+"/persistedFaces");
 
-            builder.setParameter("userData", "test1");
+//            builder.setParameter("userData", "test1");
 
             URI uri = builder.build();
             HttpPost request = new HttpPost(uri);

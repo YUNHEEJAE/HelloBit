@@ -76,6 +76,14 @@
 
 $(document).ready(function() {
 	
+		var result = {result};
+		
+		if(result == "success"){
+			alert("인증 사진 등록 완료")
+		}
+	
+	
+	
 		$("#faculity_2").attr("class", "active");	
 		$("#faculity_list").attr("class", "active");	
 	
@@ -125,24 +133,25 @@ $(document).ready(function() {
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
 							break;
 							
-							case 'faculity' : 	str += "<a href=faculityview?fid=" + this.fid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'faculity' : 	str += "<a href=faculityview?fid="+this.fid+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.fname+"</span>"
 							break;
 							
-							case 'classroom' : 	str += "<a href=classroomview?roomname=" + this.roomname +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'classroom' : 	str += "<a href=classroomview?roomname="+this.roomname+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.roomname+"</span>"
 							+ "<span class=''>"+this.rempty+"</span>"
 							break;
 							
-							case 'subject' : 	str += "<a href=subjectview?subno=" + this.subno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'subject' : 	str += "<a href=subjectview?subno=" +this.subno+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.subno+"</span>"
-							+ "<span class=''>"+this.subname +" "+ this.subgrade+"</span>"
+							+ "<span class=''>"+this.subname+" "+this.subgrade+"</span>"
 							break;
 							
-							case 'teachersubject' : str += "<a href=teachersubjectview?tsno=" + this.tsno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'teachersubject' : str += "<a href=teachersubjectview?tsno="+this.tsno+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
-							+ "<span class=''>"+this.subname + " " + this.subgrade+"</span>"
+							+ "<span class=''>"+this.subname+" " +this.subgrade+"</span>"
 							break;
+							
 							}
 
 					});
@@ -183,7 +192,7 @@ $(document).ready(function() {
 			
 			$(".updateBtn").attr("action",domain+"modify").submit();			
 			
-		}) ;
+		});
  		
  		$("#deleteBtn").on("click",function(event){
 			

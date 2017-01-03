@@ -39,9 +39,6 @@ public class ProgramDAOTest {
 	@Test
 	public void readTest() throws Exception {
 		System.out.println(dao.read(15));
-		
-		
-		
 	}
 
 	@Test
@@ -73,6 +70,10 @@ public class ProgramDAOTest {
 		System.out.println(dao.joinList(15));
 	}
 	
+	@Test
+	public void joinAllListTest() throws Exception{
+		System.out.println(dao.joinAllList());
+	}
 	
 
 	// =========================SERVICE=========================

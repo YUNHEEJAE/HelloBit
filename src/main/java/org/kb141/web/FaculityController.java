@@ -202,7 +202,7 @@ public class FaculityController {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
 		}
-		
+		logger.info("JoinTeacherSubjectVOList : " + entity);
 		return entity;
 	}
 	
@@ -516,31 +516,41 @@ public class FaculityController {
 	@GetMapping("/pictureRegister")
 	public void picturePage(String sid , Model model)throws Exception{
 		logger.info("picture called.............");
+		logger.info("sid : " + sid);
 		model.addAttribute("sid" , sid);
 		
 	}
 	
 	
 	@PostMapping("/pictureRegister")
-	public void pictureRegister(String[] url ,String sid)throws Exception{
+	public String pictureRegister(String[] persistedId , String sid , RedirectAttributes rttr)throws Exception{
 		
-		
+	
 		logger.info("pictureReg called......");	
-		logger.info("sid : " + sid);
-		logger.info("url :" + Arrays.toString(url));
-		ImageVO vo = new ImageVO();
-		ByteConverter bc = new ByteConverter();
-		TakeProgramVO tvo = takeprogramService.view(sid);
-		ProgramVO pvo = programService.view(tvo.getPno());
-		String personId = tvo.getPersonid();
-		String personGroupId = pvo.getPersongroupid();
 		
-		for(int i = 0 ; i < url.length ; i ++){
+
+		logger.info("persistedId :" + persistedId);
+		
+		logger.info("sid : " + sid);
+		ImageVO vo = new ImageVO();
+		
+		for(int i = 0 ; i < persistedId.length ; i ++){
+			
 			vo.setSid(sid);
-			vo.setPersistedfaceid(faceAPI.addPersonFace(bc.ByteConvert(url[i]), personId, personGroupId));
-			faceAPI.trainPersonGroup(personGroupId);
+			vo.setPersistedfaceid(persistedId[i]);
+			logger.info("vo :" + vo );
 			imageService.register(vo);
+			logger.info("========================");
 		}
+		
+		
+//		rttr.addFlashAttribute("result" , "success");
+		
+//		return "redirect:list";
+		
+		return null;
+		
+		
 	}
 	
 	@GetMapping("/teachersubjectregister")

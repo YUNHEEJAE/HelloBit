@@ -97,7 +97,7 @@ public class TakeProgramDAOTest {
 	@Test
 	public void viewTest()throws Exception{
 		
-		System.out.println(service.view("23"));
+		System.out.println(service.view("29"));
 		
 	}
 	

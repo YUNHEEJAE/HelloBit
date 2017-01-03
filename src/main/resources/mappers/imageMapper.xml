@@ -6,16 +6,16 @@
 <mapper namespace="org.kb141.mapper.ImageMapper">
 
 	<insert id="create">
-		insert into tbl_image (sid, filename)
-		values(#{sid},#{filename})
+		insert into tbl_image (sid, persistedfaceid)
+		values(#{sid},#{persistedfaceid})
 	</insert>
 
 
 
 	<update id="update" parameterType="ImageVO">
 
-		update tbl_image set filename
-		= #{filename} where ino=#{ino}
+		update tbl_image set persistedfaceid
+		= #{persistedfaceid} where ino=#{ino}
 
 	</update>
 
