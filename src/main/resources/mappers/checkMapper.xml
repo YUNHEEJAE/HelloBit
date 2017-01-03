@@ -17,7 +17,7 @@
 	</select>
 
 	<select id="checkDate" resultType="Integer">
- 	<![CDATA[
+ 		<![CDATA[
 			select count(*) from tbl_check where pno = #{pno} and checktime >= curdate()
 		]]>
 	</select>
@@ -55,44 +55,45 @@
 		end as week_result
 		from tbl_check where pno = #{pno}) t
 	</select>
-	
+
 	<select id="lateMember" resultType="CheckVO">
-		select * from tbl_check where checktime > #{latetime}
+		select * from tbl_check where
+		checktime > #{latetime}
 	</select>
-	
+
 
 	<select id="checkLate" resultType="Integer">
-			<![CDATA[
-			select count(*) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=1 and checktime > curdate())ch where  ch.latetime >= "09:10:00"
-				]]>
+		<![CDATA[
+		select count(*) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=1 and checktime > curdate())ch where  ch.latetime >= "09:10:00"
+		]]>
 	</select>
 
 
 	<select id="checkLaterMan" resultType="String">
-				<![CDATA[
-					select sid from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
-				]]>
+		<![CDATA[
+			select sid from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
+		]]>
 	</select>
 
 	<select id="checkLaterCnt" resultType="Integer">
-				<![CDATA[
-					select count(distinct(date_format(checktime, "%y-%c-%d")))cnt from tbl_check where pno = #{pno} and date_format(checktime, "%H:%i:%S") >= '09:10:00' group by sid order by cnt desc
-				]]>
-		</select>
-		
-				<select id="checkAttendanceCnt" resultType="Integer">
-				<![CDATA[
-					select count(distinct(date_format(checktime, "%y-%c-%d"))) from tbl_check where pno = #{pno}
-				]]>
+		<![CDATA[
+			select count(distinct(date_format(checktime, "%y-%c-%d")))cnt from tbl_check where pno = #{pno} and date_format(checktime, "%H:%i:%S") >= '09:10:00' group by sid order by cnt desc
+		]]>
+	</select>
+
+	<select id="checkAttendanceCnt" resultType="Integer">
+		<![CDATA[
+			select count(distinct(date_format(checktime, "%y-%c-%d"))) from tbl_check where pno = #{pno}
+		]]>
 	</select>
 
 	<select id="checkStudent" resultType="CheckTimeVO">
-			<![CDATA[
+		<![CDATA[
 			select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime,
-case when time(checktime)<='09:00' then 'blue'
-else 'red' end as states
-from tbl_check where sid=#{sid} group by date(checktime)
-]]>
+			case when time(checktime)<='09:00' then 'blue'
+			else 'red' end as states
+			from tbl_check where sid=#{sid} group by date(checktime)
+		]]>
 	</select>
 
 

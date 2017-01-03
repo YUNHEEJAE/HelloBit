@@ -1,9 +1,12 @@
 
 package org.kb141.web;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
@@ -15,6 +18,7 @@ import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
 import org.kb141.domain.TeacherSubjectVO;
 import org.kb141.domain.TeacherVO;
+import org.kb141.service.CheckService;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
 import org.kb141.service.ImageService;
@@ -31,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,11 +85,56 @@ public class FaculityController {
 	private ImageService imageService;
 	
 	@Inject
+	private CheckService checkService;
+	
+	@Inject
 	private FaceAPIUtils faceAPI;
 	
 	@GetMapping("/main")
-	public void faculityMain() throws Exception{
+	public void faculityMain(Integer pno, HttpServletRequest request, Model model) throws Exception{
 		logger.info("FACULITY MAIN");
+		
+		Cookie[] cookies = request.getCookies();
+		
+		for (Cookie cookie : cookies) {
+			if(cookie.getName().equals("MY_PROGRAM")){
+				String myProgramsComma = URLDecoder.decode(cookie.getValue(),"UTF-8");
+				String[] myPrograms = myProgramsComma.split(",");
+				boolean flag = true;
+				for (String string : myPrograms) {
+					if(pno == Integer.parseInt(string)){
+						flag = false;
+					}
+				}
+				if(flag){
+					throw new AccessDeniedException("HAS NO Program");
+				}
+					
+			}
+		}
+		
+		// 여기다가 뭐 뭐 넘겨줘야 하지. 희재꺼랑 똑같이 해야지
+//		model.addAttribute(arg0)
+		
+		int check = checkService.getcheckDate(pno);
+		int total = takeprogramService.getstateTotal(pno);
+		int late = checkService.getcheckLate(pno);
+		int absent = total - check; 
+		logger.debug(""+absent);
+		
+		
+		
+		model.addAttribute("total", total);
+		model.addAttribute("check", check);
+		model.addAttribute("absent", absent);
+		model.addAttribute("late", late);
+		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
+		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
+		model.addAttribute("AttendanceCnt",checkService.getcheckAttendanceCnt(pno));
+
+		
+		
+		
 	}
 	
 	

@@ -91,7 +91,7 @@ public class TeacherController {
 					}
 				}
 				if(flag){
-					throw new AccessDeniedException("HAS NO COOKIES");
+					throw new AccessDeniedException("HAS NO Authority");
 				}
 					
 			}
