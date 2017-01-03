@@ -60,7 +60,30 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 				
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("CANNOT MAKE COOKIES");
+				System.out.println("CANNOT MAKE COOKIES at Teacher");
+			}
+			
+		} else if (rolePath.equals("faculity")){
+			try {
+				List<ProgramVO> myProgram = programDAO.allList();
+				String myProgramCookieList = "";
+				
+				for(int i = 0 ; i < myProgram.size() ; i++){
+					myProgramCookieList += myProgram.get(i).getPno() + ",";
+				}
+				
+				System.out.println(myProgramCookieList);
+				
+				Cookie programCookie = new Cookie("MY_PROGRAM", URLEncoder.encode(myProgramCookieList, "UTF-8"));
+				programCookie.setPath("/");
+				response.addCookie(programCookie);
+				
+				response.sendRedirect("/web/faculity/main?pno=" + myProgram.get(0).getPno());
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("CANNOT MAKE COOKIES at faculity");
 			}
 			
 		} else {
