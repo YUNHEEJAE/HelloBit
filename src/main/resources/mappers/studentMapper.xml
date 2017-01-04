@@ -39,7 +39,12 @@
 		where t.pno = p.pno
 	</select>
 
-	
+
+	<select id="getSname" resultType="StudentVO">
+		select * from tbl_student where sid = (select sid from tbl_take_program where personid = #{personid})
+	</select>
+
+
 
 
 </mapper>
