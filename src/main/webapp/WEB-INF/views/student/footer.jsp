@@ -254,7 +254,8 @@
 				 color : ${checkTimeVO.states},
 				 title : '${checkTimeVO.states=='red'?'지각':'정상'}'
 			 }, 
-			</c:forEach> ]);
+			</c:forEach> 
+			]);
 		
 		
 		
