@@ -232,7 +232,7 @@ $(document).ready(function() {
 			
 			$(data).each(function() {
 				str += "<li><a href='main?pno="+this.pno+"' id='pno_"+this.pno+"'><i class='fa fa-circle-o'>" +
-						"</i> "+this.pcourse+"</a></li>";
+						"</i> "+ this.category.toUpperCase() + " - " + this.torder+ "</a></li>";
 			});
 			
 			$("#treeTeacher > ul").html(str);

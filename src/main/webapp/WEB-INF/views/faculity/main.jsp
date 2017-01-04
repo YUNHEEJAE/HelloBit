@@ -157,66 +157,66 @@
 						<tr>
 							<th style="width: 40px"><small>순위</small></th>
 							<th>이름</th>
-							<th>지각률</th>
-							<th style="width: 30px">%</th>
+							<th>지각률 %</th>
+							<th style="width: 40px"><small>횟수</small></th>
 						</tr>
-
-
-
-
+						
+						
+						<c:forEach items="${lateManList }" var="checkLateManVO" varStatus="i">
+						
 						<tr>
-							<td>1.</td>
-							<td>${laterMan[0]}</td>
+							<td>${i.count }.</td>
+							<td>${checkLateManVO.sid}</td>
 							<td>
-								<div class="progress progress-xs progress-striped active">
-									<div class="progress-bar progress-bar-danger"
-										style="width: ${lateCnt[0]}%"></div>
+								<div class="progress progress-xs progress-striped">
+									<div class="progress-bar progress-bar-${i.count == 1 ? 'danger' : 'warning' }"
+										style="width: ${checkLateManVO.delaycnt / attendanceCnt * 100}%"></div>
 								</div>
 							</td>
-							<td><span class="badge bg-red">${lateCnt[0]} %</span></td>
+							<td><span class="badge bg-${i.count == 1 ? 'red' : 'yellow' }">${checkLateManVO.delaycnt}</span></td>
 						</tr>
 
+						</c:forEach>
+
+
+<!-- 						<tr> -->
+<!-- 							<td>2.</td> -->
+<%-- 							<td>${laterMan[1]}</td> --%>
+<!-- 							<td> -->
+<!-- 								<div class="progress progress-xs progress-striped active"> -->
+<!-- 									<div class="progress-bar progress-bar-yellow " -->
+<%-- 										style="width: ${lateCnt[1]}%"></div> --%>
+<!-- 								</div> -->
+<!-- 							</td> -->
+<%-- 							<td><span class="badge bg-yellow">${lateCnt[1]}%</span></td> --%>
+<!-- 						</tr> -->
 
 
 
-						<tr>
-							<td>2.</td>
-							<td>${laterMan[1]}</td>
-							<td>
-								<div class="progress progress-xs progress-striped active">
-									<div class="progress-bar progress-bar-yellow "
-										style="width: ${lateCnt[1]}%"></div>
-								</div>
-							</td>
-							<td><span class="badge bg-yellow">${lateCnt[1]}%</span></td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td>3.</td> -->
+<%-- 							<td>${laterMan[2]}</td> --%>
+<!-- 							<td> -->
+<!-- 								<div class="progress progress-xs progress-striped active"> -->
+<!-- 									<div class="progress-bar progress-bar-primary" -->
+<%-- 										style="width: ${lateCnt[2]}%"></div> --%>
+<!-- 								</div> -->
+<!-- 							</td> -->
+<%-- 							<td><span class="badge bg-light-blue">${lateCnt[2]}%</span></td> --%>
+<!-- 						</tr> -->
 
 
-
-						<tr>
-							<td>3.</td>
-							<td>${laterMan[2]}</td>
-							<td>
-								<div class="progress progress-xs progress-striped active">
-									<div class="progress-bar progress-bar-primary"
-										style="width: ${lateCnt[2]}%"></div>
-								</div>
-							</td>
-							<td><span class="badge bg-light-blue">${lateCnt[2]}%</span></td>
-						</tr>
-
-
-						<tr>
-							<td>4.</td>
-							<td>${laterMan[3]}</td>
-							<td>
-								<div class="progress progress-xs progress-striped active">
-									<div class="progress-bar progress-bar-success"
-										style="width: ${lateCnt[3]}%"></div>
-								</div>
-							</td>
-							<td><span class="badge bg-green">${lateCnt[3]}%</span></td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td>4.</td> -->
+<%-- 							<td>${laterMan[3]}</td> --%>
+<!-- 							<td> -->
+<!-- 								<div class="progress progress-xs progress-striped active"> -->
+<!-- 									<div class="progress-bar progress-bar-success" -->
+<%-- 										style="width: ${lateCnt[3]}%"></div> --%>
+<!-- 								</div> -->
+<!-- 							</td> -->
+<%-- 							<td><span class="badge bg-green">${lateCnt[3]}%</span></td> --%>
+<!-- 						</tr> -->
 
 
 
@@ -253,7 +253,7 @@
 					// This will get the first returned node in the jQuery collection.
 					var areaChartData = null;
 
-					$.getJSON("/web/check/checkWeek/1", function(data) {
+					$.getJSON("/web/check/checkWeek/${param.pno}", function(data) {
 						console.log(data);
 
 						areaChartData = {

@@ -62,7 +62,7 @@ public class CheckDAOTest {
 
 	@Test
 	public void checkLaterMan() throws Exception {
-		System.out.println(dao.checkLaterMan(1));
+		System.out.println(dao.checkLateMan(1));
 	}
 
 	@Test
@@ -124,8 +124,8 @@ public class CheckDAOTest {
 	}
 
 	@Test
-	public void getcheckWeek() throws Exception {
-		System.out.println(service.getcheckWeek(1));
+	public void getCheckWeekTest() throws Exception {
+		System.out.println(service.getCheckWeek(37));
 	}
 
 	@Test
@@ -134,8 +134,8 @@ public class CheckDAOTest {
 	}
 
 	@Test
-	public void getcheckLaterManTest() throws Exception {
-		System.out.println(service.getcheckLaterMan(1));
+	public void getcheckLateManTest() throws Exception {
+		System.out.println(service.getcheckLateMan(37));
 	}
 
 	@Test
@@ -151,7 +151,7 @@ public class CheckDAOTest {
 	
 	@Test
 	public void getcheckAttendanceCntTest() throws Exception{
-		System.out.println(service.getcheckAttendanceCnt(1));
+		System.out.println(service.getAttendanceCnt(1));
 	}
 	
 	@Test

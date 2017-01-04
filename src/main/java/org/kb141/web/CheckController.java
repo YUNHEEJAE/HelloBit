@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.kb141.domain.CheckVO;
-import org.kb141.domain.WeekDataVO;
+import org.kb141.domain.CheckWeekVO;
 import org.kb141.service.CheckService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.util.ByteConverter;
@@ -77,10 +77,10 @@ public class CheckController {
 	
 	@ResponseBody
 	@GetMapping("/checkWeek/{pno}")
-	public WeekDataVO checkWeek(@PathVariable("pno") Integer pno) throws Exception {
+	public CheckWeekVO checkWeek(@PathVariable("pno") Integer pno) throws Exception {
 		logger.info("Weeklist Start...");
 		
-		return service.getcheckWeek(pno);
+		return service.getCheckWeek(pno);
 	}
 
 
