@@ -1,10 +1,10 @@
 
 <footer class="main-footer">
 	<div class="pull-right hidden-xs">
-		<b>Version</b> 2.3.7
+		<b>Version</b>0.9
 	</div>
-	<strong>Copyright &copy; 2014-2016 <a
-		href="http://almsaeedstudio.com">Almsaeed Studio</a>.
+	<strong>Copyright &copy; 2016-2017 <a
+		href="https://github.com/YUNHEEJAE/HelloBit" target="_blank">Team KB141</a>.
 	</strong> All rights reserved.
 </footer>
 

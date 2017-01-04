@@ -28,7 +28,7 @@
 		<section class="content">
 		<hr />
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-6 col-md-offset-3">
 				<form method="post" id="inputForm">
 					<!-- Text input-->
 					
@@ -57,14 +57,14 @@
 						<label class=" control-label">학생 이메일</label> <input id="pcontent"
 							name="semail" type="text" placeholder="학생이메일"
 							value="${studentVO.semail}" class="form-control" readonly="">
-				
 					</div>
-
-					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
-					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
-					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
-					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
-					<button type="button" class="btn btn-warning" id="btnPicture">pictureRegister</button>
+					<div class="pull-right">
+						<button type="button" class="btn btn-success" id="btnSuccess">수정 완료</button>
+						<button type="button" class="btn btn-success" id="btnModify">수정</button>
+						<button type="button" class="btn btn-danger" id="btnRemove">삭제</button>
+						<button type="button" class="btn btn-warning" id="btnCancel">취소</button>
+						<button type="button" class="btn btn-info" id="btnPicture">사진 등록</button>
+					</div>
 				</form>
 				
 				

@@ -287,22 +287,24 @@ public class FaculityController {
 		TakeProgramVO vo = new TakeProgramVO();
 		logger.info("============" + state + pno + "=============");
 		vo.setPno(pno);
-		if(state.equals("true")){
-			vo.setState(true);
-		}
-		else{
-			vo.setState(false);
-		}
+//		if(state.equals("true")){
+//			vo.setState(true);
+//		}
+//		else{
+//			vo.setState(false);
+//		}
+		
+		vo.setState(state.equals("true") ? true : false);
 
 		ResponseEntity<List<TakeProgramVO>> entity = null;
-		try{
+		try {
 			entity = new ResponseEntity<List<TakeProgramVO>>(takeprogramService.getstateList(vo) , HttpStatus.OK);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<TakeProgramVO>>(HttpStatus.BAD_REQUEST);
-			
 		}
-			return entity;
+		
+		return entity;
 		
 	}
 
@@ -382,10 +384,23 @@ public class FaculityController {
 		return entity;
 	}
 	@GetMapping("/studentregister")
-	public String StudentCreateGET() throws Exception{
+	public void studentRegister() throws Exception{
 		logger.info("Student Create.....");
-		return "redirect:register";
 	}
+	
+	@PostMapping("/studentregister")
+	public String studentRegisterPOST(StudentVO vo,  String filename , RedirectAttributes rttr) throws Exception{
+		
+		logger.info("register POST....");
+		logger.info("VO : " + vo);
+		logger.info("filename : " + filename);
+		studentService.register(vo , filename);
+		rttr.addFlashAttribute("result","success");
+		
+		return "redirect:list";
+
+	}
+	
 	
 	@GetMapping("/studentview")
 	public void StudentView(Model model, String sid) throws Exception {

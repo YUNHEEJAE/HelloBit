@@ -27,7 +27,7 @@
         <section class="content">
         <hr />
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-md-offset-3">
                 <form method="post" id="inputForm">
                     <!-- Text input-->
 
@@ -54,11 +54,12 @@
                     </div>
 
         
-
-                    <button type="button" class="btn btn-success" id="btnSuccess">success</button>
-                    <button type="button" class="btn btn-success" id="btnModify">Modify</button>
-                    <button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
-                    <button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
+					<div class="pull-right">
+	                    <button type="button" class="btn btn-success" id="btnSuccess">수정 완료</button>
+	                    <button type="button" class="btn btn-success" id="btnModify">수정</button>
+	                    <button type="button" class="btn btn-danger" id="btnRemove">삭제</button>
+	                    <button type="button" class="btn btn-warning" id="btnCancel">취소</button>
+                	</div>
                 </form>
 
             </div>
