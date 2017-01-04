@@ -23,7 +23,6 @@
 				<h2 class="page-header">
 					<i class="glyphicon glyphicon-blackboard"></i> ${view.pcourse} <small
 						class="pull-right glyphicon glyphicon-tag"><b>${view.category}</b></small>
-
 				</h2>
 			</div>
 			<!-- /.col -->
