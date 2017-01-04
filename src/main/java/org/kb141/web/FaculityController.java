@@ -186,6 +186,7 @@ public class FaculityController {
 //		return list;
 //
 //	}
+	
 
 	@GetMapping("/list")
 	public void list() throws Exception{
