@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>teacher view here</title>
 </head>
-
 
 
 <body>
@@ -16,12 +15,11 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			Teacher View <small>교사 관리 페이지 입니다. </small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
+			<li><a href="list"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">teacher</li>
 		</ol>
 		</section>
 
@@ -29,7 +27,7 @@
 		<section class="content">
 		<hr />
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<form method="post" id="inputForm">
 					<!-- Text input-->
 

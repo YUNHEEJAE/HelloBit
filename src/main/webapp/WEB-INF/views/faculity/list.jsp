@@ -17,12 +17,11 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program List <small>Blank example to the boxed layout</small>
+			Faculity List <small> 학생 / 교직원 / 교실 관리 페이지 입니다.</small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
+			<li><a href="list"><i class="fa fa-dashboard active"></i> Home</a></li>
+		
 		</ol>
 		</section>
 
@@ -30,16 +29,16 @@
 		<section class="content">
 		<hr />
 		<div class="row">
+		
 				<form class="createBtn">
 				<input type="submit" class='btn btn-block btn-primary' value='create' id='createBtn'></form>
-
+				
 				
 			<div class="col-sm-9 col-md-12">
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs subjectTab">
-					<li class="active"><a href="#student" data-toggle="tab"
-						name='student'> <span class="glyphicon glyphicon-th-list"></span> Student
-					</a></li>
+					<li class="active"><a href="#student" data-toggle="tab" name='student'>
+					<span class="glyphicon glyphicon-th-list"></span> Student</a></li>
 					<li><a href="#teacher" data-toggle="tab" name='teacher'><span
 							class="glyphicon glyphicon-th-list"></span> Teacher</a></li>
 					<li><a href="#faculity" data-toggle="tab" name='faculity'><span
@@ -77,7 +76,7 @@
 $(document).ready(function() {
 	
 		var result = {result};
-		
+	
 		if(result == "success"){
 			alert("인증 사진 등록 완료")
 		}
@@ -108,11 +107,7 @@ $(document).ready(function() {
 		function getCategoryList(targetCategory) {
 			console.log("getCategoryList is called..")
 			console.log(targetCategory);
-			if(targetCategory == "student"){
-				$("#createBtn").hide();
-			}else{
-				$("#createBtn").show();
-			}
+			
 			$(".programlist").attr("id", targetCategory);
 			
 			$.getJSON("/web/faculity/"+ targetCategory +"list/" , function(data) {
@@ -178,7 +173,7 @@ $(document).ready(function() {
 			
 			console.log(domain);
 			
-			$(".createBtn").attr("action",domain+"register").submit();			
+			//$(".createBtn").attr("action",domain+"register").submit();			
 			
 		}) ;
  		

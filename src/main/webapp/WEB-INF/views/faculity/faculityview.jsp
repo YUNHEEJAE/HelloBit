@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>faculity view here</title>
 </head>
-
 
 
 <body>
@@ -16,12 +15,11 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			Faculity View <small> 교직원 관리 페이지 입니다. </small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
+			<li><a href="list"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">faculity</li>
 		</ol>
 		</section>
 
@@ -29,7 +27,7 @@
 		<section class="content">
 		<hr />
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<form method="post" id="inputForm">
 					<!-- Text input-->
 
@@ -38,24 +36,21 @@
 					<div class="form-group">
 						<label class=" control-label">교직원아이디</label> <input id="pcourse" name="fid" type="text" placeholder="교직원아이디"
 							value="${faculityVO.fid}" class="form-control"
-							readonly="readonly"> <span class="help-block">It
-							identify how many days it takes for deliver</span>
+							readonly="readonly">
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label">교직원 이름</label> <input id="pcourse"
 							name="fname" type="text" placeholder="교직원이름"
 							value="${faculityVO.fname}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+				
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label">교직원 비밀번호</label> <input
 							id="pcontent" name="fpw" type="text" placeholder="교직원비밀번호"
 							value="${faculityVO.fpw}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+		
 					</div>
 
 		

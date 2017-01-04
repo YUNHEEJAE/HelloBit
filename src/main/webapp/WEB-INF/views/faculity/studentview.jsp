@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>student view</title>
 </head>
 
 
@@ -16,12 +16,11 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			Student View <small>학생 관리 페이지 입니다.</small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
+			<li><a href="list"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">student</li>
 		</ol>
 		</section>
 
@@ -29,7 +28,7 @@
 		<section class="content">
 		<hr />
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<form method="post" id="inputForm">
 					<!-- Text input-->
 					
@@ -37,46 +36,45 @@
 						<label class=" control-label">학생 아이디</label> <input id="pcourse"
 							name="sid" type="text" placeholder="학생아이디"
 							value="${studentVO.sid}" class="form-control" readonly="readonly">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+					
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label">학생 이름</label> <input id="pcourse"
 							name="sname" type="text" placeholder="학생이름"
 							value="${studentVO.sname}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+			
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label">학생 비밀번호</label> <input id="pcontent"
 							name="spw" type="text" placeholder="학생비밀번호"
 							value="${studentVO.spw}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+						
 					</div>
 
 					<div class="form-group">
 						<label class=" control-label">학생 이메일</label> <input id="pcontent"
 							name="semail" type="text" placeholder="학생이메일"
 							value="${studentVO.semail}" class="form-control" readonly="">
-						<span class="help-block">It identify how many days it takes
-							for deliver</span>
+				
 					</div>
 
 					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
 					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
 					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
 					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
+					<button type="button" class="btn btn-warning" id="btnPicture">pictureRegister</button>
 				</form>
-			
+				
+				
+
 				<form method="get" action="pictureRegister" id="pictureform">
 				<input type="hidden" value ="${studentVO.sid}" name="sid">
 				</form>			
-				<button type="button" class="btn btn-warning" id="btnPicture">pictureRegister</button>
-
 			</div>
+
+				
 		</div>
 		</section>
 	</div>

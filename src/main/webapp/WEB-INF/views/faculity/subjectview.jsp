@@ -10,18 +10,16 @@
 </head>
 
 
-
 <body>
     <div class="content-wrapper" style="min-height: 976px;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>
-            Program Register <small>Blank example to the boxed layout</small>
+            Subject View <small>과목별 내용을 보는 중 입니다.</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Layout</a></li>
-            <li class="active">Boxed</li>
+            <li><a href="list"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Subject</li>
         </ol>
         </section>
 
@@ -29,7 +27,7 @@
         <section class="content">
         <hr />
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <form method="post" id="inputForm">
                     <!-- Text input-->
 
@@ -38,24 +36,21 @@
                     <div class="form-group">
                         <label class=" control-label">번호</label> <input id="pcourse" name="subno" type="text" placeholder="번호"
                             value="${subjectVO.subno}" class="form-control"
-                            readonly="readonly"> <span class="help-block">It
-                            identify how many days it takes for deliver</span>
+                            readonly="readonly">
                     </div>
 
                     <div class="form-group">
                         <label class=" control-label">과목명</label> <input id="pcourse"
                             name="subname" type="text" placeholder="과목명"
                             value="${subjectVO.subname}" class="form-control" readonly="">
-                        <span class="help-block">It identify how many days it takes
-                            for deliver</span>
+                       
                     </div>
 
                     <div class="form-group">
                         <label class=" control-label">등급</label> <input
                             id="pcontent" name="subgrade" type="text" placeholder="등급"
-                            value="${faculityVO.subgrade}" class="form-control" readonly="">
-                        <span class="help-block">It identify how many days it takes
-                            for deliver</span>
+                            value="${subjectVO.subgrade}" class="form-control" readonly="">
+                       
                     </div>
 
         

@@ -379,7 +379,11 @@ public class FaculityController {
 		}
 		return entity;
 	}
-	
+	@GetMapping("/studentregister")
+	public String StudentCreateGET() throws Exception{
+		logger.info("Student Create.....");
+		return "redirect:register";
+	}
 	
 	@GetMapping("/studentview")
 	public void StudentView(Model model, String sid) throws Exception {
