@@ -85,6 +85,9 @@ public class FaculityController {
 	private CheckService checkService;
 	
 	@Inject
+	private ProgramService programService;
+	
+	@Inject
 	private FaceAPIUtils faceAPI;
 	
 	@GetMapping("/main")
@@ -124,6 +127,7 @@ public class FaculityController {
 		
 		int total = takeprogramService.getstateTotal(pno);
 		
+		model.addAttribute("program", programService.view(pno));
 		model.addAttribute("attendanceCnt",checkService.getAttendanceCnt(pno));
 		model.addAttribute("check", result.size());
 		model.addAttribute("late", jigak.size());
@@ -133,8 +137,6 @@ public class FaculityController {
 		model.addAttribute("week", checkService.getCheckWeek(pno));
 		
 	}
-	
-	
 	
 	@GetMapping("/noticeBoard")
 	public void getNoticeBoard(Model model) throws Exception {

@@ -23,18 +23,12 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			${program.pcourse} <small>${program.torder }기 - ${program.roomname }호</small>
 		</h1>
-		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
-		</ol>
 		</section>
 
 		<!-- Main content -->
 		<section class="content">
-		<hr />
 		<div class="row">
 
 
@@ -54,8 +48,6 @@
 			<!-- /.col -->
 
 
-
-
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-red"><i
@@ -71,8 +63,8 @@
 			</div>
 			<!-- /.col -->
 
-			<!-- fix for small devices only -->
-			<div class="clearfix visible-sm-block"></div>
+ 			<!-- fix for small devices only --> 
+<!-- 			<div class="clearfix visible-sm-block"></div> -->
 
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
@@ -88,7 +80,6 @@
 				<!-- /.info-box -->
 			</div>
 			<!-- /.col -->
-
 
 
 			<div class="col-md-3 col-sm-6 col-xs-12">
@@ -107,11 +98,10 @@
 			<!-- /.col -->
 
 		</div>
-
-		</section>
 		<br>
-		<div class="col-md-6">
 
+
+		<div class="col-md-6">
 			<!-- BAR CHART -->
 			<div class="box box-success">
 				<div class="box-header with-border">
@@ -152,74 +142,30 @@
 				<div class="box-body">
 					<table class="table table-bordered">
 
-
-
 						<tr>
 							<th style="width: 40px"><small>순위</small></th>
 							<th>이름</th>
 							<th>지각률 %</th>
 							<th style="width: 40px"><small>횟수</small></th>
 						</tr>
-						
-						
-						<c:forEach items="${lateManList }" var="checkLateManVO" varStatus="i">
-						
-						<tr>
-							<td>${i.count }.</td>
-							<td>${checkLateManVO.sid}</td>
-							<td>
-								<div class="progress progress-xs progress-striped">
-									<div class="progress-bar progress-bar-${i.count == 1 ? 'danger' : 'warning' }"
-										style="width: ${checkLateManVO.delaycnt / attendanceCnt * 100}%"></div>
-								</div>
-							</td>
-							<td><span class="badge bg-${i.count == 1 ? 'red' : 'yellow' }">${checkLateManVO.delaycnt}</span></td>
-						</tr>
 
+						<c:forEach items="${lateManList }" var="checkLateManVO"
+							varStatus="i">
+
+							<tr>
+								<td>${i.count }.</td>
+								<td>${checkLateManVO.sid}</td>
+								<td>
+									<div class="progress progress-xs progress-striped">
+										<div
+											class="progress-bar progress-bar-${i.count == 1 ? 'danger' : 'warning' }"
+											style="width: ${checkLateManVO.delaycnt / attendanceCnt * 100}%"></div>
+									</div>
+								</td>
+								<td><span
+									class="badge bg-${i.count == 1 ? 'red' : 'yellow' }">${checkLateManVO.delaycnt}</span></td>
+							</tr>
 						</c:forEach>
-
-
-<!-- 						<tr> -->
-<!-- 							<td>2.</td> -->
-<%-- 							<td>${laterMan[1]}</td> --%>
-<!-- 							<td> -->
-<!-- 								<div class="progress progress-xs progress-striped active"> -->
-<!-- 									<div class="progress-bar progress-bar-yellow " -->
-<%-- 										style="width: ${lateCnt[1]}%"></div> --%>
-<!-- 								</div> -->
-<!-- 							</td> -->
-<%-- 							<td><span class="badge bg-yellow">${lateCnt[1]}%</span></td> --%>
-<!-- 						</tr> -->
-
-
-
-<!-- 						<tr> -->
-<!-- 							<td>3.</td> -->
-<%-- 							<td>${laterMan[2]}</td> --%>
-<!-- 							<td> -->
-<!-- 								<div class="progress progress-xs progress-striped active"> -->
-<!-- 									<div class="progress-bar progress-bar-primary" -->
-<%-- 										style="width: ${lateCnt[2]}%"></div> --%>
-<!-- 								</div> -->
-<!-- 							</td> -->
-<%-- 							<td><span class="badge bg-light-blue">${lateCnt[2]}%</span></td> --%>
-<!-- 						</tr> -->
-
-
-<!-- 						<tr> -->
-<!-- 							<td>4.</td> -->
-<%-- 							<td>${laterMan[3]}</td> --%>
-<!-- 							<td> -->
-<!-- 								<div class="progress progress-xs progress-striped active"> -->
-<!-- 									<div class="progress-bar progress-bar-success" -->
-<%-- 										style="width: ${lateCnt[3]}%"></div> --%>
-<!-- 								</div> -->
-<!-- 							</td> -->
-<%-- 							<td><span class="badge bg-green">${lateCnt[3]}%</span></td> --%>
-<!-- 						</tr> -->
-
-
-
 					</table>
 				</div>
 				<!-- /.box-body -->
@@ -227,8 +173,10 @@
 			</div>
 
 		</div>
-		</div>
-		
+
+		</section>
+	</div>
+
 </body>
 
 <%@include file="footer.jsp"%>
@@ -253,7 +201,8 @@
 					// This will get the first returned node in the jQuery collection.
 					var areaChartData = null;
 
-					$.getJSON("/web/check/checkWeek/${param.pno}", function(data) {
+					$.getJSON("/web/check/checkWeek/${param.pno}", function(
+							data) {
 						console.log(data);
 
 						areaChartData = {
