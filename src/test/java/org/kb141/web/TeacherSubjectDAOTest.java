@@ -61,7 +61,7 @@ public class TeacherSubjectDAOTest {
 	@Test
 	public void getTeacherSubject() throws Exception{
 		
-		System.out.println(dao.getTeacherSubject(1));
+		System.out.println(dao.getTeacherSubject(30));
 		
 	}
 	// ============================ service =======================

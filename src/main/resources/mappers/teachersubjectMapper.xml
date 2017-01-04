@@ -37,7 +37,7 @@
 		select s.subname, s.subgrade, ts.tid, tsno from tbl_subject s, (
 		select subno, tid, tsno from tbl_teacher_subject where tsno in (
 		select tsno from tbl_curriculum where pno = #{pno}))ts where ts.subno = s.subno) p
-		where t.tid = p.tid
+		where t.tid = p.tid	
 	</select>
 
 

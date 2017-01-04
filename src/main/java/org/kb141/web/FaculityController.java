@@ -317,6 +317,7 @@ public class FaculityController {
 			vo.setSid(sid[i]);
 			vo.setPno(pno);
 			String api = faceAPI.createPersonId(sid[i], groupid);
+			logger.info("api : " + api);
 			vo.setPersonid(api);
 			System.out.println(vo);
 			takeprogramService.modify(vo);
@@ -600,15 +601,11 @@ public class FaculityController {
 			imageService.register(vo);
 			logger.info("========================");
 		}
-		
-		
 //		rttr.addFlashAttribute("result" , "success");
 		
 //		return "redirect:list";
 		
 		return null;
-		
-		
 	}
 	
 	@GetMapping("/teachersubjectregister")

@@ -38,6 +38,7 @@ public class FrontController {
 	@Inject
 	private ProgramService programService;
 	
+	@Inject
 	private CheckService checkService;
 	
 	@Inject
@@ -59,12 +60,13 @@ public class FrontController {
 
 	}
 	
+	@ResponseBody
 	@GetMapping("/authpage/checklist")
-	public ResponseEntity<List<CheckVO>> checkList(){
+	public ResponseEntity<List<CheckVO>>checkList(){
 		
 		ResponseEntity<List<CheckVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<CheckVO>>(checkService.checkList() , HttpStatus.OK);
+			entity = new ResponseEntity<List<CheckVO>>(checkService.checkList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<CheckVO>>(HttpStatus.BAD_REQUEST);
