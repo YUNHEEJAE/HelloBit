@@ -80,6 +80,13 @@ public class CheckDAOTest {
 	public void checkAttendanceCntTest() throws Exception{
 		System.out.println(dao.checkAttendanceCnt(1));
 	}
+	
+	@Test
+	public void checkPeriodMonthNameTest() throws Exception{
+		System.out.println(dao.checkPeriodMonthName("sih"));
+	}
+	
+	
 	// =======================SERVICE=========================
 
 	@Test

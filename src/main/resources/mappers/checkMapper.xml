@@ -96,6 +96,27 @@ from (select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime
 		    where time(t.checktime)>'09:10' and t.sid = s.sid group by t.sid order by delaycnt desc
 		]]>
 	</select>
+	
+	
+	
+	
+	<select id="checkPeriodMonthName" resultType="CheckPeriodMonthNameVO">
+	select date_format(opendate,'%b') as 'first',
+	date_format(date_add(opendate, interval +1 month),'%b') as 'second',
+	date_format(date_add(opendate, interval +2 month),'%b') as 'third' ,
+	date_format(date_add(opendate, interval +3 month),'%b') as 'fourth' ,
+	date_format(date_add(opendate, interval +4 month),'%b') as 'fifth' ,
+	date_format(date_add(opendate, interval +5 month),'%b') as 'sixth' ,
+	date_format(closedate,'%b') as 'seventh'
+	from tbl_program where pno =(select pno from tbl_take_program where
+	sid=#{sid})
+	</select>
+	
+	
+	
+	
+	
+	
 
 
 </mapper>
