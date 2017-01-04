@@ -92,7 +92,7 @@
 	<select id="checkLateMan" resultType="CheckLateManVO">
 		<![CDATA[
 			select sname, count(*) delaycnt
-			from (select * from tbl_check where pno = #{pno} group by date(checktime), sid ) t join tbl_student s
+			from (select cno, sid, pno, min(checktime) checktime from tbl_check where pno = #{pno} group by date(checktime), sid ) t join tbl_student s
 		    where time(t.checktime)>'09:10' and t.sid = s.sid group by t.sid order by delaycnt desc
 		]]>
 	</select>
