@@ -62,7 +62,7 @@
 			select count(distinct(date_format(checktime, "%y-%c-%d")))cnt from tbl_check where pno = #{pno} and date_format(checktime, "%H:%i:%S") >= '09:10:00' group by sid order by cnt desc
 		]]>
 	</select>
-
+ 
 	<select id="checkAttendanceCnt" resultType="Integer">
 		<![CDATA[
 			select count(distinct(date_format(checktime, "%y-%c-%d"))) datecnt from tbl_check where pno = #{pno}
