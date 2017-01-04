@@ -66,7 +66,7 @@
   <div class="lockscreen-footer text-center">
 <!--     Copyright &copy; 2016-2017 <b><a href="#" class="text-black">Almsaeed Studio</a></b><br> -->
 <!--     All rights reserved -->
-    Copyright &copy; 2016-2017 <b><a href="#" class="text-black">Team KB141</a></b><br>
+    Copyright &copy; 2016-2017 <b><a href="https://github.com/YUNHEEJAE/HelloBit" class="text-black">Team KB141</a></b><br>
     All rights reserved
   </div>
 </div>

@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>teachersubject view here</title>
 </head>
-
 
 
 <body>
@@ -16,12 +15,11 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			과목 관리 페이지 .<small>TeacherSubject View</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
+			<li class="active">TeacherSubject</li>
 		</ol>
 		</section>
 
@@ -29,11 +27,9 @@
 		<section class="content">
 		<hr />
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6 col-md-offset-3">
 				<form method="post" id="inputForm">
 					<!-- Text input-->
-
-
 
 					<div class="form-group">
 						<label class=" control-label">강사 이름</label> <input id="pcourse" name="tsno" type="text" placeholder="강사이름"
@@ -52,9 +48,11 @@
 							id="pcontent" name="subno" type="text" placeholder="과목등급"
 							value="${teachersubjectVO.subgrade}" class="form-control" readonly="">
 					</div>
-
-					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
-					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
+					
+					<div class="pull-right">
+						<button type="button" class="btn btn-danger" id="btnRemove">삭제</button>
+						<button type="button" class="btn btn-warning" id="btnCancel">취소</button>
+					</div>
 				</form>
 
 			</div>

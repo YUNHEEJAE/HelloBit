@@ -2,6 +2,8 @@ package org.kb141.persistence;
 
 import java.util.List;
 
+import org.kb141.domain.CheckLateManVO;
+import org.kb141.domain.CheckPeriodMonthNameVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 /**
@@ -10,7 +12,7 @@ import org.kb141.domain.CheckVO;
  * 실험중입니다
  *
  */
-import org.kb141.domain.WeekDataVO;
+import org.kb141.domain.CheckWeekVO;
 public interface CheckDAO {
 
 	/**
@@ -34,9 +36,9 @@ public interface CheckDAO {
 	
 	public Integer checkLate(Integer pno) throws Exception;
 	
-	public WeekDataVO checkWeek(Integer pno) throws Exception;
+	public CheckWeekVO checkWeek(Integer pno) throws Exception;
 	
-	public List<String> checkLaterMan(Integer pno) throws Exception;
+	public List<CheckLateManVO> checkLateMan(Integer pno) throws Exception;
 
 	public List<Integer> checkLaterCnt(Integer pno) throws Exception;
 	
@@ -47,5 +49,9 @@ public interface CheckDAO {
 	
 	// 오늘 데이터 가져오기. by Senyo
 	public List<CheckTimeVO> todayCheck(Integer pno) throws Exception;
+	
+	public CheckPeriodMonthNameVO checkPeriodMonthName(String sid) throws Exception;
+	
+	
 	
 }

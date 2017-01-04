@@ -85,6 +85,9 @@ public class FaculityController {
 	private CheckService checkService;
 	
 	@Inject
+	private ProgramService programService;
+	
+	@Inject
 	private FaceAPIUtils faceAPI;
 	
 	@GetMapping("/main")
@@ -110,22 +113,9 @@ public class FaculityController {
 			}
 		}
 		
-		// 여기다가 뭐 뭐 넘겨줘야 하지. 희재꺼랑 똑같이 해야지
-		// 이제 아니야
-//		model.addAttribute(arg0)
-		
-//		int check = checkService.getcheckDate(pno);
-		int total = takeprogramService.getstateTotal(pno);
-//		int late = checkService.getcheckLate(pno);
-//		int absent = total - check; 
-//		logger.debug(""+absent);
-
 		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
-		
 		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
 		List<CheckTimeVO> jigak = new ArrayList<CheckTimeVO>();
-		
-		System.out.println(result);
 		
 		for (CheckTimeVO checkTimeVO : result) {
 			if(checkTimeVO.getStates().equals("blue") ){
@@ -135,32 +125,18 @@ public class FaculityController {
 			}
 		}
 		
-		System.out.println("CHULSEOK : " + chulseok);
-		System.out.println("CHULSEOK size : " + chulseok.size());
-		System.out.println("JIGAK : " + jigak);
-		System.out.println("JIGAK : size " + jigak.size());
+		int total = takeprogramService.getstateTotal(pno);
 		
-		
-//		model.addAttribute("check", check);
-//		model.addAttribute("absent", absent);
-//		model.addAttribute("late", late);
-//		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
-//		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
-		
-		model.addAttribute("AttendanceCnt",checkService.getcheckAttendanceCnt(pno));
-
+		model.addAttribute("program", programService.view(pno));
+		model.addAttribute("attendanceCnt",checkService.getAttendanceCnt(pno));
 		model.addAttribute("check", result.size());
 		model.addAttribute("late", jigak.size());
 		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("total", total);
-		
-		
-		
-		
+		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
+		model.addAttribute("week", checkService.getCheckWeek(pno));
 		
 	}
-	
-	
 	
 	@GetMapping("/noticeBoard")
 	public void getNoticeBoard(Model model) throws Exception {
@@ -311,22 +287,24 @@ public class FaculityController {
 		TakeProgramVO vo = new TakeProgramVO();
 		logger.info("============" + state + pno + "=============");
 		vo.setPno(pno);
-		if(state.equals("true")){
-			vo.setState(true);
-		}
-		else{
-			vo.setState(false);
-		}
+//		if(state.equals("true")){
+//			vo.setState(true);
+//		}
+//		else{
+//			vo.setState(false);
+//		}
+		
+		vo.setState(state.equals("true") ? true : false);
 
 		ResponseEntity<List<TakeProgramVO>> entity = null;
-		try{
+		try {
 			entity = new ResponseEntity<List<TakeProgramVO>>(takeprogramService.getstateList(vo) , HttpStatus.OK);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<TakeProgramVO>>(HttpStatus.BAD_REQUEST);
-			
 		}
-			return entity;
+		
+		return entity;
 		
 	}
 
@@ -405,7 +383,24 @@ public class FaculityController {
 		}
 		return entity;
 	}
+	@GetMapping("/studentregister")
+	public void studentRegister() throws Exception{
+		logger.info("Student Create.....");
+	}
+	
+	@PostMapping("/studentregister")
+	public String studentRegisterPOST(StudentVO vo,  String filename , RedirectAttributes rttr) throws Exception{
+		
+		logger.info("register POST....");
+		logger.info("VO : " + vo);
+		logger.info("filename : " + filename);
+		studentService.register(vo , filename);
+		rttr.addFlashAttribute("result","success");
+		
+		return "redirect:list";
 
+	}
+	
 	
 	@GetMapping("/studentview")
 	public void StudentView(Model model, String sid) throws Exception {

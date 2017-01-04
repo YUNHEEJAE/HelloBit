@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>teacher view here</title>
 </head>
-
 
 
 <body>
@@ -16,12 +15,11 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			Teacher View <small>교사 관리 페이지 입니다. </small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
+			<li><a href="list"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">teacher</li>
 		</ol>
 		</section>
 
@@ -29,7 +27,7 @@
 		<section class="content">
 		<hr />
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6 col-md-offset-3">
 				<form method="post" id="inputForm">
 					<!-- Text input-->
 
@@ -52,13 +50,13 @@
 							id="pcontent" name="tpw" type="text" placeholder="교사비밀번호"
 							value="${teacherVO.tpw}" class="form-control" readonly="">
 					</div>
-
 		
-
-					<button type="button" class="btn btn-success" id="btnSuccess">success</button>
-					<button type="button" class="btn btn-success" id="btnModify">Modify</button>
-					<button type="button" class="btn btn-danger" id="btnRemove">Remove</button>
-					<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
+					<div class="pull-right">
+						<button type="button" class="btn btn-success" id="btnSuccess">수정 완료</button>
+						<button type="button" class="btn btn-success" id="btnModify">수정</button>
+						<button type="button" class="btn btn-danger" id="btnRemove">삭제</button>
+						<button type="button" class="btn btn-warning" id="btnCancel">취소</button>
+					</div>
 				</form>
 
 			</div>
