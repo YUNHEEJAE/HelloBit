@@ -6,9 +6,8 @@
 <mapper namespace="org.kb141.mapper.CheckMapper">
 
 	<insert id="create" parameterType="CheckVO">
-		insert into tbl_check (sid,
-		pno, emotion)
-		values (#{sid}, #{pno}, #{emotion})
+		insert into tbl_check (sid,	pno, emotion, checktime)
+		values (#{sid}, #{pno}, #{emotion}, #{checktime})
 	</insert>
 
 	<select id="checkList" resultType="CheckVO">
