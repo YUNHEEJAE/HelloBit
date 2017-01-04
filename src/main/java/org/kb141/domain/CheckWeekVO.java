@@ -1,6 +1,6 @@
 package org.kb141.domain;
 
-public class WeekDataVO {
+public class CheckWeekVO {
 
 	private Integer mon, tue, wed, thu, fri;
 

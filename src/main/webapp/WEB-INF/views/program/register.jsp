@@ -14,18 +14,17 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			강의 등록 <small>새 강의를 엽니다.</small>
 		</h1>
-		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
-		</ol>
+<!-- 		<ol class="breadcrumb"> -->
+<!-- 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li> -->
+<!-- 			<li><a href="#">Layout</a></li> -->
+<!-- 			<li class="active">Boxed</li> -->
+<!-- 		</ol> -->
 		</section>
 
 		<!-- Main content -->
 		<section class="content">
-		<hr />
 		<div class="row">
 			<div class="col-md-12"> 
 				<form method="post" id="inputForm">
@@ -39,21 +38,18 @@
 				      <option value="bigdata">Big Data 입문</option>
 				      <option value="embedded">IoT / Embedded</option>
 				    </select>
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
+					<span class="help-block">강의의 종류를 선택하세요</span>  
 				</div>
 			
 				<div class="form-group">
 				  <label class=" control-label" >과정명</label>  
-				  <input id="pcourse" name="pcourse" type="text" placeholder="과정명" value="TEST 74 2" class="form-control">
-					<span class="help-block">It identify how many days it takes for deliver</span>  
+				  <input id="pcourse" name="pcourse" type="text" placeholder="과정명"  class="form-control">
+					<span class="help-block">강의의 정식 명칭을 입력하세요</span>  
 				</div>
 				
 				<div class="form-group">
 				  <label class=" control-label" >과정 설명</label>  
-<!-- 				  <input id="pcontent" name="pcontent" type="text" placeholder="과정 설명" value="TEST CONTENT 74" class="form-control"> -->
-					<textarea rows="10" name="pcontent" id="pcontent" class="form-control" value="TEST CONTENT 74 2"></textarea>				  
-				  
-					<span class="help-block">It identify how many days it takes for deliver</span>  
+					<textarea rows="10" name="pcontent" id="pcontent" class="form-control"></textarea>				  
 				</div>
 				
 				
@@ -62,14 +58,12 @@
 				  <label class=" control-label" >교실명</label>  
 				  <select id="roomname" name="roomname" class="form-control">
 				    </select>
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				
 				<!-- Text input-->
 				<div class="form-group">
 				  <label class=" control-label" >기수</label>  
-				  <input id="torder" name="torder" type="text" placeholder="99" value="74" class="form-control" required="">
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				  <input id="torder" name="torder" type="text" placeholder="00" class="form-control" required="">
 				</div>
 				
 				
@@ -87,7 +81,7 @@
 					   		<button type="button" class="btn btn-warning" id="delCurriculum">삭제</button>
 				    	</div>
 					</div>
-				    <span class="help-block">It identify how many days it takes for deliver</span>
+				    <span class="help-block">강의의 상세 과정 및 강사를 선택하세요. 추가 버튼을 눌러야 등록됩니다. 여러개 등록 가능합니다.</span>
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -103,33 +97,39 @@
 				
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class=" control-label">열리는 시간</label>  
-				  <input id="opendate" name="opendate" type="text" placeholder="2011-01-01" value="2014-04-16" class="form-control" required="">
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				  <label class=" control-label">개강 일자</label>  
+				  <input id="opendate" name="opendate" type="text" placeholder="2011-01-01" class="form-control" required="">
 				</div>
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class=" control-label" >닫히는 시간</label>  
-				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01" value="2014-04-16" class="form-control" required="">
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				  <label class=" control-label" >종강 일자</label>  
+				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01"  class="form-control" required="">
 				</div>
+				
 				
 				<div class="form-group">
 				  <label class=" control-label" >정원</label>  
-				  <input id="maximum" name="maximum" type="text" placeholder="30" class="form-control" value="30" required="">
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				  <input id="maximum" name="maximum" type="text" placeholder="00" value="30"  class="form-control" required="">
 				</div>
 				
 				
 				<div class="form-group">
-				  <label class=" control-label" for="persongroupid" >Person Group ID</label>  
-				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" class="form-control" value="remember_04163" required="">
-				   <span class="help-block">자동으로 생성됩니다. 나중에 할게요</span>  
+					<label class=" control-label" for="persongroupid" >Person Group ID</label>  
+					<div>
+					<div class="col-md-11">
+						<input id="persongroupid" name="persongroupid" placeholder="person_group_id" class="form-control"   required="">
+					</div>
+					
+					<div class="col-md-1">
+				   		<button type="button" class="btn btn-info" id="getPersonGroupId">생성</button>
+			    	</div>
+					</div>
+				   <span class="help-block">버튼을 누르면 카테고리와 기수에 따라 자동으로 생성됩니다.</span>  
 				</div>
 				
 				</form>
 				<button type="button" class="btn btn-success" id="btnRegister">Register</button>
-				<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
+				<a href="list"><button type="button" class="btn btn-warning" id="btnCancel" >Cancel</button></a>
 				
 				
 			</div>
@@ -147,6 +147,8 @@
 
 $(document).ready(function () {
 	
+	$("#faculity_2").attr("class", "active");	
+	$("#program_list").attr("class", "active");
 	
 	function dateGenerator(datedata) {
 		var dateNum = new Date(datedata);
@@ -163,7 +165,7 @@ $(document).ready(function () {
 			
 			var str = "";
 			$(data).each(function() {
-				str += "<option value=" + this.roomname + "> " +this.roomname + " " + this.rempty + "</option>"	
+				str += "<option value=" + this.roomname + "> " +this.roomname + "호 " + ((this.rempty == true) ? "비어있음" : "  사용 중") + "</option>"	
 			});
 			
 			$("#roomname").html(str);
@@ -214,6 +216,15 @@ $(document).ready(function () {
 		$("#addedCurriculum > tr:last").remove();
 		$("#inputForm > input:last").remove();
 	});
+	
+	$("#getPersonGroupId").on("click", function () {
+		event.preventDefault();
+		var makeId = $("#category").val() + "_" + $("#torder").val();
+		
+		$("#persongroupid").val(makeId);
+		
+	});
+	
 	
 });
 

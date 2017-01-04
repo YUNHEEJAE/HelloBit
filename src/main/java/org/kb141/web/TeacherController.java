@@ -2,12 +2,14 @@ package org.kb141.web;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ProgramVO;
 import org.kb141.service.CheckService;
 import org.kb141.service.ProgramService;
@@ -91,29 +93,33 @@ public class TeacherController {
 					}
 				}
 				if(flag){
-					throw new AccessDeniedException("HAS NO COOKIES");
+					throw new AccessDeniedException("HAS NO Authority");
 				}
 					
 			}
 		}
 		
+		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
+		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
+		List<CheckTimeVO> jigak = new ArrayList<CheckTimeVO>();
 		
-		logger.debug("getMainList LIST.....");
-		int check = checkService.getcheckDate(pno);
+		for (CheckTimeVO checkTimeVO : result) {
+			if(checkTimeVO.getStates().equals("blue") ){
+				chulseok.add(checkTimeVO);
+			} else {
+				jigak.add(checkTimeVO);
+			}
+		}
+		
 		int total = takeprogramService.getstateTotal(pno);
-		int late = checkService.getcheckLate(pno);
-		int absent = total - check; 
-		logger.debug(""+absent);
 		
-		
-		
+		model.addAttribute("attendanceCnt",checkService.getAttendanceCnt(pno));
+		model.addAttribute("check", result.size());
+		model.addAttribute("late", jigak.size());
+		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("total", total);
-		model.addAttribute("check", check);
-		model.addAttribute("absent", absent);
-		model.addAttribute("late", late);
-		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
-		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
-		model.addAttribute("AttendanceCnt",checkService.getcheckAttendanceCnt(pno));
+		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
+		model.addAttribute("week", checkService.getCheckWeek(pno));
 	}
 	
 	@ResponseBody

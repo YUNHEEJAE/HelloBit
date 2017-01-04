@@ -1,12 +1,15 @@
 package org.kb141.web;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.persistence.CheckDAO;
 import org.kb141.service.CheckService;
@@ -59,7 +62,7 @@ public class CheckDAOTest {
 
 	@Test
 	public void checkLaterMan() throws Exception {
-		System.out.println(dao.checkLaterMan(1));
+		System.out.println(dao.checkLateMan(1));
 	}
 
 	@Test
@@ -121,8 +124,8 @@ public class CheckDAOTest {
 	}
 
 	@Test
-	public void getcheckWeek() throws Exception {
-		System.out.println(service.getcheckWeek(1));
+	public void getCheckWeekTest() throws Exception {
+		System.out.println(service.getCheckWeek(37));
 	}
 
 	@Test
@@ -131,8 +134,8 @@ public class CheckDAOTest {
 	}
 
 	@Test
-	public void getcheckLaterManTest() throws Exception {
-		System.out.println(service.getcheckLaterMan(1));
+	public void getcheckLateManTest() throws Exception {
+		System.out.println(service.getcheckLateMan(37));
 	}
 
 	@Test
@@ -148,6 +151,30 @@ public class CheckDAOTest {
 	
 	@Test
 	public void getcheckAttendanceCntTest() throws Exception{
-		System.out.println(service.getcheckAttendanceCnt(1));
+		System.out.println(service.getAttendanceCnt(1));
 	}
+	
+	@Test
+	public void getTodayCheck() throws Exception {
+		List<CheckTimeVO> result = service.getTodayCheck(37);
+		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
+		List<CheckTimeVO> jigak = new ArrayList<CheckTimeVO>();
+		
+		System.out.println(result);
+		
+		for (CheckTimeVO checkTimeVO : result) {
+			if(checkTimeVO.getStates().equals("blue") ){
+				chulseok.add(checkTimeVO);
+			} else {
+				jigak.add(checkTimeVO);
+			}
+		}
+		
+		System.out.println("CHULSEOK : " + chulseok);
+		System.out.println("CHULSEOK size : " + chulseok.size());
+		System.out.println("JIGAK : " + jigak);
+		System.out.println("JIGAK : size " + jigak.size());
+		
+	}
+	
 }

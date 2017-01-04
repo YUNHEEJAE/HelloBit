@@ -14,6 +14,7 @@ import org.kb141.service.ClassroomService;
 import org.kb141.service.CurriculumService;
 import org.kb141.service.ProgramService;
 import org.kb141.service.TakeProgramService;
+import org.kb141.service.TeacherSubjectService;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,15 +45,33 @@ public class ProgramController {
 	private static final Logger logger = LoggerFactory.getLogger(ProgramController.class);
 	
 	@Inject
-	ClassroomService classroomservice;
+	private ClassroomService classroomservice;
+	
+	@Inject
+	private CurriculumService curriculumService;
+	
+	@Inject
+	private TakeProgramService takeprogramService;
+
+	@Inject
+	private ProgramService programService;
+	
+	@Inject
+	private TeacherSubjectService teacherSubjectService;
 	
 	@Inject
 	private FaceAPIUtils faceAPI;
+	
+
+	@Inject
+	private ProgramService service;
 	
 	@GetMapping("/classroom")
 	public void programpage(ClassroomVO vo, Model model){
 		logger.info("program GET .....");
 	}
+	
+	
 	
 	@ResponseBody
 	@GetMapping(value="/classroomlist",  produces="application/json")
@@ -68,10 +87,7 @@ public class ProgramController {
 		return list;
 	}
 	
-	
-	
-	@Inject
-	private CurriculumService curriculumService;
+
 	
 	@ResponseBody
 	@GetMapping(value="/allcurriculumlist", produces="application/json")
@@ -97,10 +113,7 @@ public class ProgramController {
 		return "success";
 	}
 	
-	
 
-	@Inject
-	private ProgramService service;
 
 	
 	@GetMapping("/list")
@@ -113,7 +126,7 @@ public class ProgramController {
 	public ResponseEntity<List<ProgramVO>> allList() {
 		ResponseEntity<List<ProgramVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<ProgramVO>>(service.getProgramList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<ProgramVO>>(programService.getProgramList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<ProgramVO>>(HttpStatus.BAD_REQUEST);
@@ -122,31 +135,16 @@ public class ProgramController {
 		return entity;
 	}
 
-	
 
-	@Inject
-	private TakeProgramService takeprogramService;
-	
-	
-
-
-	
 	@GetMapping("/view")
 	public void viewProgram(Integer pno , Model model)throws Exception{
-		
 		logger.info("view called .............");
-		
 
-		model.addAttribute("view" , service.view(pno));
-
-		model.addAttribute("joinList", service.getTeacherSubjectList(pno));
-		
+		model.addAttribute("view" , programService.view(pno));
+		model.addAttribute("joinList", teacherSubjectService.getJoinList(pno));
 		model.addAttribute("stateCount" , takeprogramService.getstateTotal(pno));
 		
-		       
-	
 	}
-	
 	
 	
 	@GetMapping("/categoryList/{category}")
@@ -154,7 +152,7 @@ public class ProgramController {
 		
 		ResponseEntity<List<ProgramVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<ProgramVO>>(service.getCategoryList(category), HttpStatus.OK);
+			entity = new ResponseEntity<List<ProgramVO>>(programService.getCategoryList(category), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<ProgramVO>>(HttpStatus.BAD_REQUEST);
@@ -166,7 +164,7 @@ public class ProgramController {
 	public void register(Model model) throws Exception {
 		logger.info("Program Register Called....");
 		model.addAttribute("classroomList", classroomservice.getClassroomList());
-		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
+		model.addAttribute("joinAllList", teacherSubjectService.getJoinAllList());
 	}
 	
 	
@@ -188,17 +186,16 @@ public class ProgramController {
 		
 		faceAPI.createPersonGroupId(pcourse, personGroupId);
 		
-		service.register(vo, curriculums);
-		return "success";
+		programService.register(vo, curriculums);
+		return "redirect:list";
 	}
 	
 	@GetMapping("/modify")
 	public void modify(Integer pno, Model model) throws Exception {
 		logger.info("PNO : " + pno);
-//		model.addAttribute("classroomList", classroomservice.getClassroomList());
-//		model.addAttribute("joinAllList", service.getAllTeacherSubjectList());
-		model.addAttribute("currdata", service.view(pno));
-		
+		model.addAttribute("classroomList", classroomservice.getClassroomList());
+		model.addAttribute("joinAllList", teacherSubjectService.getJoinAllList());
+		model.addAttribute("currdata", programService.view(pno));
 	}
 	
 	@PostMapping("/modify")
@@ -207,9 +204,9 @@ public class ProgramController {
 		logger.info("VO : " + vo);
 		logger.info("Curri " + curriculums);
 		
-		service.modify(vo, curriculums);
+		programService.modify(vo, curriculums);
 		
-		return "success";
+		return "redirect:view?pno=" + vo.getPno();
 	}
 	
 

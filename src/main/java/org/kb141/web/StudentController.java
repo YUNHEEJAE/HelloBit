@@ -127,11 +127,13 @@ public class StudentController {
 	
 		logger.info("수강신청 !!");
 		logger.info("VO : " + vo);
-	
+		
 		rttr.addFlashAttribute("result" , "success");
 		
 		takeprogramService.join(vo);
+		
 		return "redirect:../program/list";
+
 	
 		
 	}

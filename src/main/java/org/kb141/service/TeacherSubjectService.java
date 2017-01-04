@@ -17,8 +17,10 @@ public interface TeacherSubjectService {	//HJ
 	
 	public List<TeacherSubjectVO> getTeacherSubjectList();
 	
-	public List<JoinTeacherSubjectVO> getAllTeacherSubjectList();
-
 	public JoinTeacherSubjectVO getTeacherSubject(Integer tsno);
+
+	public List<JoinTeacherSubjectVO> getJoinAllList();
+
+	public List<JoinTeacherSubjectVO> getJoinList(Integer pno);
 	
 }

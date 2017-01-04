@@ -1,20 +1,25 @@
 
 package org.kb141.web;
+import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
-import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
 import org.kb141.domain.TeacherSubjectVO;
 import org.kb141.domain.TeacherVO;
+import org.kb141.service.CheckService;
 import org.kb141.service.ClassroomService;
 import org.kb141.service.FaculityService;
 import org.kb141.service.ImageService;
@@ -25,12 +30,12 @@ import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
-import org.kb141.util.ByteConverter;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,20 +76,62 @@ public class FaculityController {
 	private TakeProgramService takeprogramService;
 	
 	@Inject
-	private ProgramService programService;
-	
-	@Inject
 	private TeacherSubjectService teacherSubjectService; 
 	
 	@Inject
 	private ImageService imageService;
 	
 	@Inject
+	private CheckService checkService;
+	
+	@Inject
 	private FaceAPIUtils faceAPI;
 	
 	@GetMapping("/main")
-	public void faculityMain() throws Exception{
+	public void faculityMain(Integer pno, HttpServletRequest request, Model model) throws Exception{
 		logger.info("FACULITY MAIN");
+		
+		Cookie[] cookies = request.getCookies();
+		
+		for (Cookie cookie : cookies) {
+			if(cookie.getName().equals("MY_PROGRAM")){
+				String myProgramsComma = URLDecoder.decode(cookie.getValue(),"UTF-8");
+				String[] myPrograms = myProgramsComma.split(",");
+				boolean flag = true;
+				for (String string : myPrograms) {
+					if(pno == Integer.parseInt(string)){
+						flag = false;
+					}
+				}
+				if(flag){
+					throw new AccessDeniedException("HAS NO Program");
+				}
+					
+			}
+		}
+		
+		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
+		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
+		List<CheckTimeVO> jigak = new ArrayList<CheckTimeVO>();
+		
+		for (CheckTimeVO checkTimeVO : result) {
+			if(checkTimeVO.getStates().equals("blue") ){
+				chulseok.add(checkTimeVO);
+			} else {
+				jigak.add(checkTimeVO);
+			}
+		}
+		
+		int total = takeprogramService.getstateTotal(pno);
+		
+		model.addAttribute("attendanceCnt",checkService.getAttendanceCnt(pno));
+		model.addAttribute("check", result.size());
+		model.addAttribute("late", jigak.size());
+		model.addAttribute("absent", total - chulseok.size());
+		model.addAttribute("total", total);
+		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
+		model.addAttribute("week", checkService.getCheckWeek(pno));
+		
 	}
 	
 	
@@ -108,6 +155,7 @@ public class FaculityController {
 //		return list;
 //
 //	}
+	
 
 	@GetMapping("/list")
 	public void list() throws Exception{
@@ -167,9 +215,9 @@ public class FaculityController {
 		return entity;
 	}
 	
-	//교수과목 리스트
+//	//교수과목 리스트
 //	@GetMapping("/teachersubjectlist")
-//	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList() {
+//	public ResponseEntity<List<TeacherSubjectVO>> TeacherSubjectList2() {
 //		ResponseEntity<List<TeacherSubjectVO>> entity = null;
 //		try {
 //			entity = new ResponseEntity<List<TeacherSubjectVO>>(teacherSubjectService.getTeacherSubjectList(), HttpStatus.OK);
@@ -197,14 +245,27 @@ public class FaculityController {
 	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(){
 		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
 		try{
-			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getAllTeacherSubjectList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getJoinAllList(), HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
 			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
 		}
-		
+		logger.info("JoinTeacherSubjectVOList : " + entity);
 		return entity;
 	}
+	
+//	@GetMapping("/teachersubjectlist/{pno}")
+//	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(@PathVariable("pno") Integer pno){
+//		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
+//		try{
+//			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getJoinList(pno), HttpStatus.OK);
+//		}catch(Exception e){
+//			e.printStackTrace();
+//			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+//		}
+//		
+//		return entity;
+//	}
 	
 	@GetMapping("/takeprogramlist")
 	public void takeprogramlist() throws Exception{
@@ -259,6 +320,7 @@ public class FaculityController {
 			vo.setSid(sid[i]);
 			vo.setPno(pno);
 			String api = faceAPI.createPersonId(sid[i], groupid);
+			logger.info("api : " + api);
 			vo.setPersonid(api);
 			System.out.println(vo);
 			takeprogramService.modify(vo);
@@ -297,7 +359,7 @@ public class FaculityController {
 	public ResponseEntity<List<JoinTeacherSubjectVO>> joinALlList() {
 		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(programService.getAllTeacherSubjectList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getJoinAllList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
@@ -310,14 +372,14 @@ public class FaculityController {
 	public ResponseEntity<List<JoinTeacherSubjectVO>> teacherSubjectList(@PathVariable("pno") Integer pno) {
 		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(programService.getTeacherSubjectList(pno), HttpStatus.OK);
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getJoinList(pno), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
-
+	
 	
 	@GetMapping("/studentview")
 	public void StudentView(Model model, String sid) throws Exception {
@@ -516,31 +578,37 @@ public class FaculityController {
 	@GetMapping("/pictureRegister")
 	public void picturePage(String sid , Model model)throws Exception{
 		logger.info("picture called.............");
+		logger.info("sid : " + sid);
 		model.addAttribute("sid" , sid);
 		
 	}
 	
 	
 	@PostMapping("/pictureRegister")
-	public void pictureRegister(String[] url ,String sid)throws Exception{
+	public String pictureRegister(String[] persistedId , String sid , RedirectAttributes rttr)throws Exception{
 		
-		
+	
 		logger.info("pictureReg called......");	
-		logger.info("sid : " + sid);
-		logger.info("url :" + Arrays.toString(url));
-		ImageVO vo = new ImageVO();
-		ByteConverter bc = new ByteConverter();
-		TakeProgramVO tvo = takeprogramService.view(sid);
-		ProgramVO pvo = programService.view(tvo.getPno());
-		String personId = tvo.getPersonid();
-		String personGroupId = pvo.getPersongroupid();
 		
-		for(int i = 0 ; i < url.length ; i ++){
+
+		logger.info("persistedId :" + persistedId);
+		
+		logger.info("sid : " + sid);
+		ImageVO vo = new ImageVO();
+		
+		for(int i = 0 ; i < persistedId.length ; i ++){
+			
 			vo.setSid(sid);
-			vo.setPersistedfaceid(faceAPI.addPersonFace(bc.ByteConvert(url[i]), personId, personGroupId));
-			faceAPI.trainPersonGroup(personGroupId);
+			vo.setPersistedfaceid(persistedId[i]);
+			logger.info("vo :" + vo );
 			imageService.register(vo);
+			logger.info("========================");
 		}
+//		rttr.addFlashAttribute("result" , "success");
+		
+//		return "redirect:list";
+		
+		return null;
 	}
 	
 	@GetMapping("/teachersubjectregister")

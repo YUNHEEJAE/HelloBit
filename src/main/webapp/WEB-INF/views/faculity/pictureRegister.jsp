@@ -7,6 +7,108 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
+#loading {
+    background: #f4f4f2 url("img/page-bg.png") repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.bokeh {
+    border: 0.01em solid rgba(150, 150, 150, 0.1);
+    border-radius: 50%;
+    font-size: 100px;
+    height: 1em;
+    list-style: outside none none;
+    margin: 0 auto;
+    position: relative;
+    top: 35%;
+    width: 1em;
+    z-index: 2147483647;
+}
+.bokeh li {
+    border-radius: 50%;
+    height: 0.2em;
+    position: absolute;
+    width: 0.2em;
+}
+.bokeh li:nth-child(1) {
+    animation: 1.13s linear 0s normal none infinite running rota, 3.67s ease-in-out 0s alternate none infinite running opa;
+    background: #00c176 none repeat scroll 0 0;
+    left: 50%;
+    margin: 0 0 0 -0.1em;
+    top: 0;
+    transform-origin: 50% 250% 0;
+}
+.bokeh li:nth-child(2) {
+    animation: 1.86s linear 0s normal none infinite running rota, 4.29s ease-in-out 0s alternate none infinite running opa;
+    background: #ff003c none repeat scroll 0 0;
+    margin: -0.1em 0 0;
+    right: 0;
+    top: 50%;
+    transform-origin: -150% 50% 0;
+}
+.bokeh li:nth-child(3) {
+    animation: 1.45s linear 0s normal none infinite running rota, 5.12s ease-in-out 0s alternate none infinite running opa;
+    background: #fabe28 none repeat scroll 0 0;
+    bottom: 0;
+    left: 50%;
+    margin: 0 0 0 -0.1em;
+    transform-origin: 50% -150% 0;
+}
+.bokeh li:nth-child(4) {
+    animation: 1.72s linear 0s normal none infinite running rota, 5.25s ease-in-out 0s alternate none infinite running opa;
+    background: #88c100 none repeat scroll 0 0;
+    margin: -0.1em 0 0;
+    top: 50%;
+    transform-origin: 250% 50% 0;
+}
+@keyframes opa {
+12% {
+    opacity: 0.8;
+}
+19.5% {
+    opacity: 0.88;
+}
+37.2% {
+    opacity: 0.64;
+}
+40.5% {
+    opacity: 0.52;
+}
+52.7% {
+    opacity: 0.69;
+}
+60.2% {
+    opacity: 0.6;
+}
+66.6% {
+    opacity: 0.52;
+}
+70% {
+    opacity: 0.63;
+}
+79.9% {
+    opacity: 0.6;
+}
+84.2% {
+    opacity: 0.75;
+}
+91% {
+    opacity: 0.87;
+}
+}
+
+@keyframes rota {
+100% {
+    transform: rotate(360deg);
+}
+}
+
+}
+
 #video {
     border: 1px solid black;
     box-shadow: 2px 2px 3px black;
@@ -73,7 +175,7 @@ img{
 
 </style>
 </head>
-<body>
+<body id = "body">
 <div class="content-wrapper" style="min-height: 976px;">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
@@ -102,7 +204,7 @@ img{
 					<div class="contentarea">
           				<div class="camera">
         					<video id="video">Video stream not available.</video>
-        					<button id="startbutton">Take photo</button>
+        					<button id="startbutton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Take photo</button>
     					</div>
     						<canvas id="canvas"></canvas>
  								<div class=row>
@@ -128,15 +230,33 @@ img{
             <div class="box-footer">
                 <button class="btn btn-default"> 메인 화면</button>
                 
-                <form action="pictureRegister" method="post" id="regImg">
-                		<input type="hidden" name="sid" value="${sid}">
-                		
+                <form action="pictureRegister" method="post" id="regform">
+                		<input type="hidden" name="sid" value="${sid}" id="userid">
+          
                 </form>
                 <button class="btn btn-info pull-right" id="regBtn">등 록</button>
               </div>
               
           </div>
-    
+          
+<div class="modal fade" id="myModal" role="dialog">
+ <div class="modal-dialog">
+	<div class="container" id="loaded">
+
+				<div class="row">
+            <div id="loading">
+                <ul class="bokeh">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+				</div>
+    </div>
+  </div>
+    <input type="hidden" id="close" data-dismiss="modal"></input>
+</div>
+
           <%@include file="footer.jsp"%>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -166,6 +286,7 @@ img{
             var errorMessage = error.message;
         }); // end login
 
+
             var width = 640;    
             var height = 0;     
             var streaming = false;
@@ -177,6 +298,7 @@ img{
             var photoThree = null;
             var startbutton = null;
             var picture = null;
+         
 
             function startup() {
                 video = document.getElementById('video');
@@ -186,6 +308,7 @@ img{
                 photoThree = document.getElementById('photoThree');
                 startbutton = document.getElementById('startbutton');
                 picture = document.getElementById('picture');
+          
 
                 navigator.getMedia = ( navigator.getUserMedia ||
                 navigator.webkitGetUserMedia ||
@@ -208,6 +331,7 @@ img{
                     },
                     function(err) {
                         console.log("An error occured! " + err);
+                        
                     }
                 );
 
@@ -239,10 +363,8 @@ img{
                         timer = 1;
                     }
                     console.log(timer);
-	                	$("#regBtn").click(function (event) {
-							$('#regImg').submit();
-	    			
-	    				});
+                    
+ 	            
                     ev.preventDefault();
                     
                 }, false);
@@ -256,11 +378,10 @@ img{
                 context.fillRect(0, 0, canvas.width, canvas.height);
 
                 var data = canvas.toDataURL('image/png');
-
-                photo.setAttribute('src', data);
             }
-			
+			 
             function takepicture(timer) {
+            	
                 var context = canvas.getContext('2d');
                 if (width && height) {
                     canvas.width = width;
@@ -271,28 +392,34 @@ img{
                     
                     	if(timer==1){
                     		photoOne.setAttribute('src' , data);
+                    	
                     	}
                     	else if(timer==2){
                     		photoTwo.setAttribute('src' , data);
+                    		
                     	}
                     	else if(timer==3){
                     		photoThree.setAttribute('src' , data);
+                    		
                     	}
+			                var sid = $('#userid').val();
+			                console.log(sid);
+                    	var obj = {"data" : data , "sid" : sid};
                     	
-                    	var obj = {"data" : data};
-                    	console.log(data);
-                    	$.ajax({
-        					url :"http://localhost:8080/web/file/registerImage",
-        					type:"post",
-        					data : obj,
-        					dataType: "text",
-        					success:function(data){
-        						console.log(data);
-        					$('#regImg').append("<input type='hidden' name='url' value='"+data+"'>");
-		        				
-        					}
-        	
-        				});
+                    	
+			                  $.ajax({
+				        					url :"http://localhost:8081/web/image/registerImage",
+				        					type:"post",
+				        					data : obj,
+				        					dataType: "text",
+				        					success:function(persistedId)	{
+				        							$('#close').trigger('click');
+				        							console.log(persistedId);
+					        						$('#regform').append("<input type='hidden' name='persistedId' value='"+persistedId+"'>");
+				        								
+				        					}
+													
+			        					});
 
                     	uploadFile(data);
                     	
@@ -340,13 +467,20 @@ img{
                             });
                         }
                 }; // onload end..
-                xhr.send(); 
-        	 
+                xhr.send(); 	 
         } 
-        
-        
-	
+     		
+     		 $("#regBtn").click(function (event) {
+						$('#regform').submit();
+				});
+     		
+     		
+     		
+
 	});
+	
+
+
 
 </script>
 </html>

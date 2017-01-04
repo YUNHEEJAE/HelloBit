@@ -9,21 +9,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-
 <body>
 	<div class="content-wrapper" style="min-height: 976px;">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			강의 수정 <small>강의를 수정합니다.</small>
 		</h1>
-		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
-		</ol>
 		</section>
-
+		
 		<!-- Main content -->
 		<section class="content">
 		<hr />
@@ -40,53 +34,40 @@
 				      <option value="bigdata">Big Data 입문</option>
 				      <option value="embedded">IoT / Embedded</option>
 				    </select>
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
+					<span class="help-block">강의의 종류를 선택하세요</span>  
+				    
 				</div>
-			
 				<div class="form-group">
 				  <label class=" control-label" >과정명</label>  
 				  <input id="pcourse" name="pcourse" type="text" placeholder="과정명" class="form-control">
-					<span class="help-block">It identify how many days it takes for deliver</span>  
+					<span class="help-block">강의의 정식 명칭을 입력하세요</span>  
 				</div>
-				
-				
-				
 				<div class="form-group">
 				  <label class=" control-label" >과정 설명</label>  
-<%-- 				  <input id="pcontent" name="pcontent" type="text" placeholder="과정 설명" value="${currdata.pcontent}" class="form-control" style="height: 300px" wrap="virtual"> --%>
-						<textarea rows="10" name="pcontent" id="pcontent" class="form-control"></textarea>		
-					<span class="help-block">It identify how many days it takes for deliver</span>  
+						<textarea rows="10" name="pcontent" id="pcontent" class="form-control"></textarea>
 				</div>
-				
-				
 				<!-- Text input-->
 				<div class="form-group">
 				  <label class=" control-label" >교실명</label>  
 				  <select id="roomname" name="roomname" class="form-control">
-<%-- 				  		<c:forEach items= "${classroomList }" var="vo" > --%>
-<%-- 				  			<option value="${vo.roomname }">${vo.roomname } ${vo.rempty}</option>					  		 --%>
-<%-- 				  		</c:forEach> --%>
+				  		<c:forEach items= "${classroomList }" var="vo" >
+				  			<option value="${vo.roomname }">${vo.roomname }호 ${vo.rempty==true ? '비어있음' : ' 사용 중'}</option>
+				</c:forEach>
 				    </select>
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
-				
 				<!-- Text input-->
 				<div class="form-group">
 				  <label class=" control-label" >기수</label>  
-				  <input id="torder" name="torder" type="text" placeholder="99" class="form-control" required="">
-				    <span class="help-block">It identify how many days it takes for deliver</span>  
+				  <input id="torder" name="torder" type="text" placeholder="00" class="form-control" required="">
 				</div>
-				
-				
-		          
 				<div class="form-group">
 				 	<label class="control-label" >상세 과정</label>  
 					<div>
 						<div class="col-md-10">
 					     	<select id="curriculum" name="curriculum" class="form-control">
-<%-- 					     		<c:forEach items= "${joinAllList }" var="vo" > --%>
-<%-- 						  			<option value="${vo.tsno }">${vo.subname } - ${vo.subgrade} - ${vo.tname}</option> --%>
-<%-- 					  			</c:forEach> --%>
+					     		<c:forEach items= "${joinAllList }" var="vo" >
+						  			<option value="${vo.tsno }">${vo.subname } - ${vo.subgrade} - ${vo.tname}</option>
+					  			</c:forEach>
 					    	</select>
 					    </div>
 					    
@@ -95,7 +76,7 @@
 					   		<button type="button" class="btn btn-warning" id="delCurriculum">삭제</button>
 				    	</div>
 					</div>
-				    <span class="help-block">It identify how many days it takes for deliver</span>
+				    <span class="help-block">강의의 상세 과정 및 강사를 선택하세요. 추가 버튼을 눌러야 등록됩니다. 여러개 등록 가능합니다.</span>
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -108,92 +89,55 @@
 							</tbody>
 						</table>
 					</div>
-				
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class=" control-label">열리는 시간</label>  
-				  <input id="opendate" name="opendate" type="text" placeholder="2011-01-01" value="2014-04-16" class="form-control" required="">
+				  <label class=" control-label">개강 일자</label>  
+				  <input id="opendate" name="opendate" type="text" placeholder="2011-01-01" class="form-control" required="">
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class=" control-label" >닫히는 시간</label>  
-				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01" value="2014-04-16" class="form-control" required="">
+				  <label class=" control-label" >종강 일자</label>  
+				  <input id="closedate" name="closedate" type="text" placeholder="2011-01-01" class="form-control" required="">
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
-				
 				<div class="form-group">
 				  <label class=" control-label" >정원</label>  
-				  <input id="maximum" name="maximum" type="text" placeholder="30" class="form-control" value="30" required="">
+				  <input id="maximum" name="maximum" type="text" placeholder="00" class="form-control" required="">
 				    <span class="help-block">It identify how many days it takes for deliver</span>  
 				</div>
-				
-				
 				<div class="form-group">
-				  <label class=" control-label" for="persongroupid" >Person Group ID</label>  
-				  <input id="persongroupid" name="persongroupid" placeholder="person_group_id" readonly="readonly" class="form-control" value="remember_0416" required="">
-				   <span class="help-block">자동으로 생성됩니다.</span>  
+					<label class=" control-label" for="persongroupid" >Person Group ID</label>  
+					<div>
+					<div class="col-md-11">
+						<input id="persongroupid" name="persongroupid" placeholder="person_group_id" class="form-control"   required="">
+					</div>
+					<div class="col-md-1">
+				   		<button type="button" class="btn btn-info" id="getPersonGroupId">생성</button>
+			    	</div>
+					</div>
+				   <span class="help-block">버튼을 누르면 카테고리와 기수에 따라 자동으로 생성됩니다.</span>  
 				</div>
-				
 				</form>
 				<button type="button" class="btn btn-success" id="btnModify">Modify</button>
-				<button type="button" class="btn btn-warning" id="btnCancel">Cancel</button>
-				
-				
+				<a href="view?pno=${param.pno}"><button type="button" class="btn btn-warning" id="btnCancel" >Cancel</button></a>
 			</div>
 		</div>
 		</section>
 	</div>
-
-
 </body>
-
 <%@include file="../faculity/footer.jsp"%>
-
-
 <script>
 
 $(document).ready(function () {
 	
-	function setClassroomList() {
-		$.getJSON("../faculity/classroomlist", function(data){
-			console.log(data);
-			
-			var str = "";
-			$(data).each(function() {
-				str += "<option value=" + this.roomname + "> " +this.roomname + " " + this.rempty + "</option>"	
-			});
-			
-			$("#roomname").html(str);
-		});
-	}
-	
-	function setJoinAllList() {
-		$.getJSON("../faculity/joinalllist", function(data){
-			console.log(data);
-			
-			var str = "";
-			$(data).each(function() {
-				str += "<option value=" + this.tsno + ">" + this.subname +" - " + this.subgrade + " - " + this.tname + "</option>";
-			});
-			
-			$("#curriculum").html(str);
-		});
-	}
-	
-	function dateGenerator(datedata) {
-		var dateNum = new Date(datedata);
-		var dyear = dateNum.getFullYear();
-		var dmonth =dateNum.getMonth();
-		var ddate =  dateNum.getDate();
-		return dyear + "/" + dmonth + "/" + ddate;
-	};
+	$("#faculity_2").attr("class", "active");	
+	$("#program_list").attr("class", "active");
 	
 	// 수정 위해 초기 값 세팅하기.
 	(function(){
 		
 		console.log("this is running");
-
 		$("#category > option[value=${currdata.category}]").attr("selected", "selected");
 		
 		$("#pcourse").attr("value", "${currdata.pcourse}");
@@ -204,16 +148,13 @@ $(document).ready(function () {
 		
 		$("#roomname > option[value=${currdata.roomname}]").attr("selected", "selected");
 		
-		$("#torder").attr("value", ${currdata.torder});
-		$("#maximum").attr("value", ${currdata.maximum});
+		$("#torder").attr("value", "${currdata.torder}");
+		$("#maximum").attr("value", "${currdata.maximum}");
 		$("#persongroupid").attr("value", "${currdata.persongroupid}");
 		
 		
-		var currOpendate = "${currdata.opendate}";
-		var currClosedate = "${currdata.closedate}";
-		
-		$("#opendate").attr("value", dateGenerator(currOpendate));
-		$("#closedate").attr("value", dateGenerator(currClosedate));
+		$("#opendate").attr("value", '<fmt:formatDate pattern="yyyy-MM-dd" value="${currdata.opendate}"/>');
+		$("#closedate").attr("value", '<fmt:formatDate pattern="yyyy-MM-dd" value="${currdata.closedate}"/>');
 		
 		
 		$.getJSON("../faculity/teachersubjectlist/${param.pno}" , function (data) {
@@ -230,13 +171,6 @@ $(document).ready(function () {
 		
 		
 	})();
-	
-	
-	
-	setClassroomList();
-	
-	setJoinAllList();
-	
 	
 	$("#btnModify").on("click", function () {
 		event.preventDefault();
@@ -260,6 +194,15 @@ $(document).ready(function () {
 		$("#addedCurriculum > tr:last").remove();
 		$("#inputForm > input:last").remove();
 	});
+	
+	$("#getPersonGroupId").on("click", function () {
+		event.preventDefault();
+		var makeId = $("#category").val() + "_" + $("#torder").val();
+		
+		$("#persongroupid").val(makeId);
+		
+	});
+	
 	
 });
 

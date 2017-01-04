@@ -39,9 +39,6 @@ public class ProgramDAOTest {
 	@Test
 	public void readTest() throws Exception {
 		System.out.println(dao.read(15));
-		
-		
-		
 	}
 
 	@Test
@@ -68,11 +65,15 @@ public class ProgramDAOTest {
 		System.out.println(dao.allList());
 	}
 	
-	@Test
-	public void joinListTest()throws Exception{
-		System.out.println(dao.joinList(15));
-	}
-	
+//	@Test
+//	public void joinListTest()throws Exception{
+//		System.out.println(dao.joinList(15));
+//	}
+//	
+//	@Test
+//	public void joinAllListTest() throws Exception{
+//		System.out.println(dao.joinAllList());
+//	}
 	
 
 	// =========================SERVICE=========================
@@ -129,17 +130,6 @@ public class ProgramDAOTest {
 	@Test
 	public void categoryListTest() throws Exception {
 		System.out.println(service.getCategoryList("java"));
-	}
-	
-	@Test
-	public void joinTeacherSubjectServiceTest()throws Exception{
-		System.out.println(service.getTeacherSubjectList(15));
-	}
-	
-	
-	@Test
-	public void joinAllTeacherSubjectServiceTest()throws Exception{
-		System.out.println(service.getAllTeacherSubjectList());
 	}
 	
 	@Test

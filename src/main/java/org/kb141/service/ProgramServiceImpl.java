@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.CurriculumVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.ProgramVO;
+import org.kb141.persistence.ClassroomDAO;
 import org.kb141.persistence.CurriculumDAO;
 import org.kb141.persistence.ProgramDAO;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class ProgramServiceImpl implements ProgramService {
 
 	@Inject
 	private ProgramDAO programDAO;
+	
+	@Inject
+	private ClassroomDAO classroomDAO;
 	
 	@Inject
 	private CurriculumDAO curriculumDAO;
@@ -33,6 +38,11 @@ public class ProgramServiceImpl implements ProgramService {
 				currVO.setTsno(Integer.parseInt(listTsno[i]));
 				curriculumDAO.create(currVO);
 			}
+			
+			ClassroomVO cvo = new ClassroomVO();
+			cvo.setRoomname(vo.getRoomname());
+			cvo.setRempty(false);
+			classroomDAO.update(cvo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,28 +123,6 @@ public class ProgramServiceImpl implements ProgramService {
 		}
 		return result;
 	
-	}
-
-	@Override
-	public List<JoinTeacherSubjectVO> getTeacherSubjectList(Integer pno) {
-		List<JoinTeacherSubjectVO> result = null;
-		try {
-			result = programDAO.joinList(pno);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	@Override
-	public List<JoinTeacherSubjectVO> getAllTeacherSubjectList() {
-		List<JoinTeacherSubjectVO> result = null;
-		try {
-			result = programDAO.joinAllList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
 	}
 	
 }

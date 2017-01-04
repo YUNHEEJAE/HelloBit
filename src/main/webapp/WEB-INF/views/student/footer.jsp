@@ -247,7 +247,7 @@
 		$('#my-next-button').click(function() {
 			$('#calendar').fullCalendar('next');
 		});
-
+ 
 		$('#calendar').fullCalendar('addEventSource', [ 
 			<c:forEach items="${checkTimeVO}" var="checkTimeVO">
 			 { start : '<fmt:formatDate pattern="yyyy-MM-dd" value="${checkTimeVO.firsttime}"/>',

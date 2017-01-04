@@ -75,7 +75,7 @@
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 					<div class="row row-eq-height">
 						<div class="col-md-6 checkedBoxOuter">
 							<div class="box box-default checkedBox">

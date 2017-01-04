@@ -4,9 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.CheckLateManVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
-import org.kb141.domain.WeekDataVO;
+import org.kb141.domain.CheckWeekVO;
 import org.kb141.persistence.CheckDAO;
 import org.springframework.stereotype.Service;
 
@@ -64,8 +65,8 @@ public class CheckServiceImpl implements CheckService {
 	}
 
 	@Override
-	public WeekDataVO getcheckWeek(Integer pno) {
-		WeekDataVO checkWeek = null;
+	public CheckWeekVO getCheckWeek(Integer pno) {
+		CheckWeekVO checkWeek = null;
 		try {
 			checkWeek = checkDAO.checkWeek(pno);
 		} catch (Exception e) {
@@ -89,10 +90,10 @@ public class CheckServiceImpl implements CheckService {
 	}
 
 	@Override
-	public List<String> getcheckLaterMan(Integer pno) {
-		List<String> result = null;
+	public List<CheckLateManVO> getcheckLateMan(Integer pno) {
+		List<CheckLateManVO> result = null;
 		try {
-			result = checkDAO.checkLaterMan(pno);
+			result = checkDAO.checkLateMan(pno);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,7 +114,7 @@ public class CheckServiceImpl implements CheckService {
 	}
 
 	@Override
-	public Integer getcheckAttendanceCnt(Integer pno) {
+	public Integer getAttendanceCnt(Integer pno) {
 		Integer getcheckAttendanceCnt = null;
 
 		try {
@@ -131,6 +132,18 @@ public class CheckServiceImpl implements CheckService {
 		List<CheckTimeVO> result = null;
 		try {
 			result = checkDAO.checkStudent(sid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<CheckTimeVO> getTodayCheck(Integer pno) {
+		List<CheckTimeVO> result = null;
+		try {
+			result = checkDAO.todayCheck(pno);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

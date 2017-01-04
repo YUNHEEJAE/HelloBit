@@ -10,7 +10,6 @@ import org.kb141.domain.StudentVO;
 import org.kb141.service.CheckService;
 import org.kb141.service.ProgramService;
 import org.kb141.service.StudentService;
-import org.kb141.service.TakeProgramService;
 import org.kb141.util.ByteConverter;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
@@ -37,9 +36,6 @@ public class FrontController {
 	private FaceAPIUtils faceAPI;
 	
 	@Inject
-	private TakeProgramService takeprogramService;
-	
-	@Inject
 	private ProgramService programService;
 	
 	@Inject
@@ -61,25 +57,26 @@ public class FrontController {
 				entity = new ResponseEntity<List<ProgramVO>>(HttpStatus.BAD_REQUEST);
 			}
 			return entity;
+
 	}
 	
+	@ResponseBody
 	@GetMapping("/authpage/checklist")
-	public ResponseEntity<List<CheckVO>> checkList(){
+	public ResponseEntity<List<CheckVO>>checkList(){
 		
 		ResponseEntity<List<CheckVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<CheckVO>>(checkService.checkList() , HttpStatus.OK);
+			entity = new ResponseEntity<List<CheckVO>>(checkService.checkList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<CheckVO>>(HttpStatus.BAD_REQUEST);
 		}	
 		return entity;
+
 	}
-	
-	
 
 	@ResponseBody
-	@PostMapping(value = "/frontAuth" , produces="text/html")
+	@PostMapping(value = "/frontAuth" , produces="application/json")
 	public StudentVO frontAuth(String blob , String groupId)throws Exception{
 		ByteConverter bc = new ByteConverter();
 		logger.info("groupId :" + groupId);
@@ -87,25 +84,23 @@ public class FrontController {
 		StudentVO vo = new StudentVO();
 
 		List<String> faceIds = faceAPI.detectAndIdentifyFace(image, groupId);
+		logger.info("----------------");
+		
 		logger.info("faceId : " + faceIds);
 			if(faceIds.size() != 0){
 				vo = (studentService.viewSname(faceIds.get(0)));				
 			}	
 		return vo;
 	}
-	
+
 	@ResponseBody
 	@PostMapping(value ="/emotion")
-	public void getEmotion(String emotion)throws Exception{
-		
+	public void getEmotion(CheckVO vo)throws Exception{		
 		logger.info("emotion called..................");	
-		
-	}
-	
-	
-	
-	
-	
+		logger.info("emotion :" + vo);	
+		checkService.create(vo);
+	}  
+
 	
 	
 }
