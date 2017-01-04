@@ -1,6 +1,7 @@
 
 package org.kb141.web;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
@@ -114,24 +116,50 @@ public class FaculityController {
 		}
 		
 		// 여기다가 뭐 뭐 넘겨줘야 하지. 희재꺼랑 똑같이 해야지
+		// 이제 아니야
 //		model.addAttribute(arg0)
 		
-		int check = checkService.getcheckDate(pno);
+//		int check = checkService.getcheckDate(pno);
 		int total = takeprogramService.getstateTotal(pno);
-		int late = checkService.getcheckLate(pno);
-		int absent = total - check; 
-		logger.debug(""+absent);
+//		int late = checkService.getcheckLate(pno);
+//		int absent = total - check; 
+//		logger.debug(""+absent);
+
+		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
+		
+		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
+		List<CheckTimeVO> jigak = new ArrayList<CheckTimeVO>();
+		
+		System.out.println(result);
+		
+		for (CheckTimeVO checkTimeVO : result) {
+			if(checkTimeVO.getStates().equals("blue") ){
+				chulseok.add(checkTimeVO);
+			} else {
+				jigak.add(checkTimeVO);
+			}
+		}
+		
+		System.out.println("CHULSEOK : " + chulseok);
+		System.out.println("CHULSEOK size : " + chulseok.size());
+		System.out.println("JIGAK : " + jigak);
+		System.out.println("JIGAK : size " + jigak.size());
 		
 		
+//		model.addAttribute("check", check);
+//		model.addAttribute("absent", absent);
+//		model.addAttribute("late", late);
+//		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
+//		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
 		
-		model.addAttribute("total", total);
-		model.addAttribute("check", check);
-		model.addAttribute("absent", absent);
-		model.addAttribute("late", late);
-		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
-		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
 		model.addAttribute("AttendanceCnt",checkService.getcheckAttendanceCnt(pno));
 
+		model.addAttribute("check", result.size());
+		model.addAttribute("late", jigak.size());
+		model.addAttribute("absent", total - chulseok.size());
+		model.addAttribute("total", total);
+		
+		
 		
 		
 		

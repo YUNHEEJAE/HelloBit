@@ -96,6 +96,18 @@
 			from tbl_check where sid=#{sid} group by date(checktime)
 		]]>
 	</select>
+	
+	<!-- by Senyo -->
+	
+	<select id="todayCheck" resultType="CheckTimeVO">
+		<![CDATA[
+			select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states from (
+			select sid, pno, min(checktime) firsttime, max(checktime) lasttime from tbl_check
+			where pno = 37 and checktime > curdate() and checktime < (curdate() + 1)
+			group by date(checktime), sid) t;
+		]]>
+	</select>
+
 
 
 </mapper>

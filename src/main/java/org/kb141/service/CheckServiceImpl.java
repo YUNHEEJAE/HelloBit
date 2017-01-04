@@ -138,4 +138,16 @@ public class CheckServiceImpl implements CheckService {
 		return result;
 	}
 
+	@Override
+	public List<CheckTimeVO> getTodayCheck(Integer pno) {
+		List<CheckTimeVO> result = null;
+		try {
+			result = checkDAO.todayCheck(pno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
 }

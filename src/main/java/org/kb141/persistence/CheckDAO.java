@@ -45,4 +45,7 @@ public interface CheckDAO {
 	public Integer checkAttendanceCnt(Integer pno) throws Exception;
 	
 	
+	// 오늘 데이터 가져오기. by Senyo
+	public List<CheckTimeVO> todayCheck(Integer pno) throws Exception;
+	
 }

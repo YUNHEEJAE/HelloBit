@@ -27,5 +27,8 @@ public interface CheckService {
 	public List<CheckTimeVO> checkStudent(String sid);
 
 	public Integer getcheckAttendanceCnt(Integer pno);
+	
+	// 오늘 데이터만 가져와서 JAVA에서 정제 해 보자
+	public List<CheckTimeVO> getTodayCheck(Integer pno);
 
 }
