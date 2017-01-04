@@ -39,6 +39,11 @@
 		select tsno from tbl_curriculum where pno = #{pno}))ts where ts.subno = s.subno) p
 		where t.tid = p.tid	
 	</select>
+	
+	<select id="joinGetTeacherSubjectByTsno" resultType="JoinTeacherSubjectVO">
+		select tsno, subname, subgrade, tname from tbl_teacher_subject ts
+		join tbl_subject s join tbl_teacher t where ts.subno = s.subno and t.tid = ts.tid and tsno = #{tsno}
+	</select>
 
 
 

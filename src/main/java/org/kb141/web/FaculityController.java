@@ -405,7 +405,7 @@ public class FaculityController {
 		}
 		return entity;
 	}
-
+	
 	
 	@GetMapping("/studentview")
 	public void StudentView(Model model, String sid) throws Exception {

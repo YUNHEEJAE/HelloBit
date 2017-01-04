@@ -100,11 +100,10 @@ public class TeacherSubjectDAOTest {
 		
 	@Test
 	public void getTeacherSubjectService() throws Exception{
-		System.out.println(teacherSubjectService.getTeacherSubject(37));
+		System.out.println(teacherSubjectService.getTeacherSubject(36));
 	}
 	
-		
-	}
+}
 	
 	
 	
