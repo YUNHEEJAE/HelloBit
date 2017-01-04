@@ -51,18 +51,27 @@ div {
 .checkedBoxOuter {
 	padding-bottom: 20px;
 }
- 
-.checkedBoxBody{
+
+.checkedBoxBody {
 	line-height: 180px;
 }
 
+.studentInfo {
+	margin-bottom: 10px;
+}
+
+
+
+.chartContent{
+	margin-top: 30px;
+}
 
 body, ul, ol, li, blockquote, form, p, dl, dt, dd, input, h1, h2, h3, h4,
 	h5, h6 {
 	margin: 0;
 	padding: 0;
 }
- 
+
 ul, menu, dir {
 	display: block;
 	list-style-type: disc;

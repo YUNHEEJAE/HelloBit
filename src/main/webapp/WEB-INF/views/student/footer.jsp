@@ -223,10 +223,9 @@
 <!-- <script src="../resources/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
+<script src="../resources/plugins/fullcalendar/fullcalendar.min.js"></script>
 <script src="../resources/plugins/chartjs/Chart.min.js"></script>
 <script src="../resources/plugins/util/utils.js"></script>
-<script src="../resources/plugins/fullcalendar/fullcalendar.min.js"></script>
-
 <script>
 	$(document).ready(function() {
 		
@@ -254,7 +253,7 @@
 			 { start : '<fmt:formatDate pattern="yyyy-MM-dd" value="${checkTimeVO.firsttime}"/>',
 				 color : ${checkTimeVO.states},
 				 title : '${checkTimeVO.states=='red'?'지각':'정상'}'
-			 },
+			 }, 
 			</c:forEach> ]);
 		
 		
@@ -268,6 +267,10 @@
 			day=day>=10?day:'0'+day;
 			return year+"-"+month+"-"+day;
 		}
+		 
+		
+		
+		
 	});
 </script>
 </body>
