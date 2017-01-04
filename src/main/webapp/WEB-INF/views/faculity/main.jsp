@@ -17,7 +17,6 @@
 <link rel="stylesheet"
 	href="../resources/dist/css/skins/_all-skins.min.css">
 </head>
-
 <body>
 	<div class="content-wrapper" style="min-height: 976px;">
 		<!-- Content Header (Page header) -->
