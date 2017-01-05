@@ -88,6 +88,7 @@
 											<p class="text-muted right" id ="handal3" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
 										</div>
 										
+										
 								<!-- <p style="color: #DD4B39; font-size: 20px; text-align: center; vertical-align: middle;">
 										피치 못할 사정이...</p> -->
 								
