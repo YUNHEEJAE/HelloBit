@@ -8,16 +8,16 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				My Page <small>Preview sample</small>
+				My Page <small>개인페이지입니다.</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li><a href="#">Charts</a></li>
-				<li class="active">ChartJS</li>
+				<li><a href="main"><i class="fa fa-dashboard"></i> Home</a></li>
+			
 			</ol>
 		</section>
 		<!-- Main content -->
 		<section class="content">
+		<input type ='hidden' id ='firesid' value = '${studentVO.sid}'>
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="row row-eq-height">
@@ -25,9 +25,8 @@
 							<div class="box box-primary ">
 								<div class="box-body box-profile" style="text-align: center;">
 									<div class="profileStudent">
-										<img id="profileImg" class="img-responsive"
-											src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg">
-
+										<img id="profileImg" class="img-responsive" src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg">
+												
 										<div class="studentInfo">
 											<h3 class="profile-username text-center">${studentVO.sname }</h3>
 											<p class="text-muted">${studentVO.semail}</p>
@@ -47,7 +46,7 @@
 								</div>
 								<div class="checkedBoxBody">
 									<div class="box-body"
-										style="color: #00A65A; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">2</div>
+										style="color: #00A65A; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">${CheckDateVO.attend}</div>
 								</div>
 							</div>
 						</div>
@@ -59,7 +58,7 @@
 								<div class="checkedBoxBody">
 									<div class="box-body"
 										style="color: #F39C12; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
-										0</div>
+										${CheckDateVO.late}</div>
 								</div>
 							</div>
 						</div>
@@ -71,7 +70,7 @@
 								<div class="checkedBoxBody">
 									<div class="box-body "
 										style="color: #DD4B39; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
-										0</div>
+										${CheckDateVO.absent}</div>
 								</div>
 							</div>
 						</div>
@@ -100,7 +99,59 @@
 	</div>
 </body>
 <%@include file="footer.jsp"%>
+  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
+			
+			var config = {
+			        apiKey: "AIzaSyD8Qs39vkxQw8pdWiXlkcMug3PL1YJeS0Q",
+			        authDomain: "hhkbex.firebaseapp.com",
+			        databaseURL: "https://hhkbex.firebaseio.com",
+			        storageBucket: "hhkbex.appspot.com",
+			        messagingSenderId: "1050382686499"
+			    };
+			    firebase.initializeApp(config);
+			
+			    
+			    // Get a reference to the storage service, which is used to create references in your storage bucket
+			    var storage = firebase.storage();
+			//Create a storage reference from our storage service
+/* 			    var storageRef = storage.ref();
+ */			    var uid = "jk3a0123@gmail.com";
+			    var upw = "wjdwndud08";
+			 	var storageRef = storage.refFromURL("gs://hhkbex.appspot.com/");
+			    firebase.auth().signInWithEmailAndPassword(uid , upw).catch(function (error) {
+			       
+			        console.log('error sign');
+			        var errorCode = error.code;
+			        var errorMessage = error.message;
+			    }); // end login  
+					var sid = $("#firesid").val();
+			 // Create a reference to the file we want to download
+			//    var starsRef = storageRef.child("member/"+sid+"_0.jpg");
+				var starsRef = storageRef.child("member/"+sid+"_0.jpg");
+			    // Get the download URL
+			    starsRef.getDownloadURL().then(function(url) {
+			    	$("#profileImg").attr("src",url);
+			   		$("#headerimg").attr("src",url);			    }).catch(function(error) {
+				switch (error.code) {
+			        case 'storage/object_not_found':
+			          // File doesn't exist
+			          break;
+
+			        case 'storage/unauthorized':
+			          // User doesn't have permission to access the object
+			          break;
+
+			        case 'storage/canceled':
+			          // User canceled the upload
+			          break;
+
+			        case 'storage/unknown':
+			          // Unknown error occurred, inspect the server response
+			          break;
+			      }
+			    });
+
 	//BAR CHART//
 	// 	var barChart = null;
 	// 	var ctx = document.getElementById("barChart").getContext("2d");
@@ -194,4 +245,6 @@
 
 		});
 	});
+	
+	
 </script>

@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 2 | Dashboard</title>
+<title>HelloBit | 학생페이지</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -57,14 +57,14 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 	<div class="wrapper">
 
 		<header class="main-header">
 			<!-- Logo -->
 			<a href="index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>Admin</b>LTE</span>
+				<span class="logo-mini"><b>Me</b>nu</span> <!-- logo for regular state and mobile devices -->
+				<span class="logo-lg"><b>Hello</b>Bit</span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">
@@ -304,9 +304,9 @@
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
 				<!-- Sidebar user panel -->
-				<div class="user-panel">
+				<div class="user-panel" style ="height:65px">
 					<div class="pull-left image">
-						<img src="../resources/dist/img/user2-160x160.jpg"
+						<img id ="headerimg" src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg"
 							class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
@@ -331,16 +331,16 @@
 				<ul class="sidebar-menu">
 					<li class="header">학생 ${cookie.LOGIN_ID.value }님 환영합니다.</li>
 					
-					<li class="active treeview" id="treeTeacher"><a href="#"> 
-					<i class="fa fa-dashboard"></i> <span> 나의 정보</span>
+					<li class="active treeview" id="treeTeacher"><a href="main"> 
+					<i class="fa fa-align-justify text-red"></i> <span> 나의 정보</span>
 					
-					<span class="pull-right-container"> 
+					 <span class="pull-right-container"> 
 					<i class="fa fa-angle-left pull-right"></i>
 					</span></a>
 						
 						<ul class="treeview-menu">
-<!-- 							<li class=""><a href="index.html"> -->
-<!-- 								<i class="fa fa-circle-o"></i> java v1</a></li> -->
+ 							<li class="active"><a href="programList"> 
+								<i class="fa fa-chevron-right"></i> 수강신청하기</a></li> 
 <!-- 							<li><a href="index2.html"> -->
 <!-- 								<i class="fa fa-circle-o"></i> python v2</a></li> -->
 						</ul>
@@ -500,7 +500,7 @@
 <!-- 					<li><a href="#"><i class="fa fa-circle-o text-yellow"></i> -->
 <!-- 							<span>Warning</span></a></li> -->
 <!-- 					<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
-					<li><a href="/web/myLogout"><i class="fa fa-circle-o text-red"></i> <span>LOG-OUT</span></a></li>
+					<li><a href="/web/myLogout"><i class="fa fa-sign-out text-red"></i> <span>LOG-OUT</span></a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->

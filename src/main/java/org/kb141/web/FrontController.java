@@ -1,5 +1,7 @@
 package org.kb141.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,11 +16,14 @@ import org.kb141.util.ByteConverter;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -93,14 +98,20 @@ public class FrontController {
 		return vo;
 	}
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+	
 	@ResponseBody
 	@PostMapping(value ="/emotion")
-	public void getEmotion(CheckVO vo)throws Exception{		
+	public void getEmotion(CheckVO vo)throws Exception{
+//		CheckVO vo = new CheckVO();
 		logger.info("emotion called..................");	
-		logger.info("emotion :" + vo);	
+		logger.info("CheckVO :" + vo);	
+		logger.info("emotion : " + vo.getEmotion());
 		checkService.create(vo);
 	}  
-
-	
 	
 }
