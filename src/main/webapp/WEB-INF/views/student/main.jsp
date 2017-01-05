@@ -101,88 +101,58 @@
 <%@include file="footer.jsp"%>
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
-			
-			var config = {
-			        apiKey: "AIzaSyD8Qs39vkxQw8pdWiXlkcMug3PL1YJeS0Q",
-			        authDomain: "hhkbex.firebaseapp.com",
-			        databaseURL: "https://hhkbex.firebaseio.com",
-			        storageBucket: "hhkbex.appspot.com",
-			        messagingSenderId: "1050382686499"
-			    };
-			    firebase.initializeApp(config);
-			
-			    
-			    // Get a reference to the storage service, which is used to create references in your storage bucket
-			    var storage = firebase.storage();
-			//Create a storage reference from our storage service
-/* 			    var storageRef = storage.ref();
- */			    var uid = "jk3a0123@gmail.com";
-			    var upw = "wjdwndud08";
-			 	var storageRef = storage.refFromURL("gs://hhkbex.appspot.com/");
-			    firebase.auth().signInWithEmailAndPassword(uid , upw).catch(function (error) {
-			       
-			        console.log('error sign');
-			        var errorCode = error.code;
-			        var errorMessage = error.message;
-			    }); // end login  
-					var sid = $("#firesid").val();
-			 // Create a reference to the file we want to download
-			//    var starsRef = storageRef.child("member/"+sid+"_0.jpg");
-				var starsRef = storageRef.child("member/"+sid+"_0.jpg");
-			    // Get the download URL
-			    starsRef.getDownloadURL().then(function(url) {
-			    	$("#profileImg").attr("src",url);
-			   		$("#headerimg").attr("src",url);			    }).catch(function(error) {
-				switch (error.code) {
-			        case 'storage/object_not_found':
-			          // File doesn't exist
-			          break;
+$(document).ready(function () {
+	
+	var config = {
+	        apiKey: "AIzaSyD8Qs39vkxQw8pdWiXlkcMug3PL1YJeS0Q",
+	        authDomain: "hhkbex.firebaseapp.com",
+	        databaseURL: "https://hhkbex.firebaseio.com",
+	        storageBucket: "hhkbex.appspot.com",
+	        messagingSenderId: "1050382686499"
+	    };
+	    firebase.initializeApp(config);
+	
+	    
+	    // Get a reference to the storage service, which is used to create references in your storage bucket
+	    var storage = firebase.storage();
+	//Create a storage reference from our storage service
+	/* 	var storageRef = storage.ref();
+	 */	var uid = "jk3a0123@gmail.com";
+	    var upw = "wjdwndud08";
+	 	var storageRef = storage.refFromURL("gs://hhkbex.appspot.com/");
+	    firebase.auth().signInWithEmailAndPassword(uid , upw).catch(function (error) {
+	       
+	        console.log('error sign');
+	        var errorCode = error.code;
+	        var errorMessage = error.message;
+	    }); // end login  
+			var sid = $("#firesid").val();
+	 // Create a reference to the file we want to download
+	//    var starsRef = storageRef.child("member/"+sid+"_0.jpg");
+		var starsRef = storageRef.child("member/"+sid+"_0.jpg");
+	    // Get the download URL
+	    starsRef.getDownloadURL().then(function(url) {
+	    	$("#profileImg").attr("src",url);
+	   		$("#headerimg").attr("src",url);	    }).catch(function(error) {
+		switch (error.code) {
+	        case 'storage/object_not_found':
+	          // File doesn't exist
+	          break;
+	
+	        case 'storage/unauthorized':
+	          // User doesn't have permission to access the object
+	          break;
+	
+	        case 'storage/canceled':
+	          // User canceled the upload
+	          break;
+	
+	        case 'storage/unknown':
+	          // Unknown error occurred, inspect the server response
+	          break;
+	      }
+	    });
 
-			        case 'storage/unauthorized':
-			          // User doesn't have permission to access the object
-			          break;
-
-			        case 'storage/canceled':
-			          // User canceled the upload
-			          break;
-
-			        case 'storage/unknown':
-			          // Unknown error occurred, inspect the server response
-			          break;
-			      }
-			    });
-
-	//BAR CHART//
-	// 	var barChart = null;
-	// 	var ctx = document.getElementById("barChart").getContext("2d");
-	// 	var barChartData = {
-	// 		type : 'bar',
-	// 		data : {
-	// 			labels : [ "1", "2", "3", "4", "5" ],
-	// 			datasets : [ {
-	// 				label : 'test',
-	// 				data : [ 40, 30, 50, 70, 20 ],
-	// 				fillColor : "rgba(215, 40, 40, 0.9)",
-	// 				strokeColor : "rgba(220,220,220,0.8)",
-	// 				highlightFill : "rgba(215, 40, 40, 0.9)",
-	// 				highlightStroke : "rgba(220,220,220,1)"
-	// 			} ]
-	// 		},
-	// 		options : {
-	// 			scales : {
-	// 				yAxes : [{
-	// 					display : true,
-	// 					ticks : {
-	// 						beginAtZero : true,
-	// 						steps : 10,
-	// 						stepValue : 5,
-	// 						max : 100
-	// 					}
-	// 				}]
-	// 			}
-	// 		}
-	// 	}
-	// 	varChart = new Chart(ctx, barChartData);
 
 	var barChart = null;
 	var barChartData = {
@@ -245,6 +215,6 @@
 
 		});
 	});
-	
+});		
 	
 </script>

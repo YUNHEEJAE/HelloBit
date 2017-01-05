@@ -34,6 +34,8 @@ import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
+import org.kb141.util.CookieChecker;
+import org.kb141.util.EmotionUtils;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,28 +96,17 @@ public class FaculityController {
 	@Inject
 	private FaceAPIUtils faceAPI;
 	
+	@Inject
+	private EmotionUtils emotionUtils;
+	
+	@Inject
+	private CookieChecker cookieChecker;
+	
 	@GetMapping("/main")
 	public void faculityMain(Integer pno, HttpServletRequest request, Model model) throws Exception{
 		logger.info("FACULITY MAIN");
 		
-		Cookie[] cookies = request.getCookies();
-		
-		for (Cookie cookie : cookies) {
-			if(cookie.getName().equals("MY_PROGRAM")){
-				String myProgramsComma = URLDecoder.decode(cookie.getValue(),"UTF-8");
-				String[] myPrograms = myProgramsComma.split(",");
-				boolean flag = true;
-				for (String string : myPrograms) {
-					if(pno == Integer.parseInt(string)){
-						flag = false;
-					}
-				}
-				if(flag){
-					throw new AccessDeniedException("HAS NO Program");
-				}
-					
-			}
-		}
+		cookieChecker.cookieChecker(request.getCookies(), pno);;
 		
 		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
 		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
@@ -129,33 +120,6 @@ public class FaculityController {
 			}
 		}
 		
-		Map<String, Integer> emotionMap = new HashMap<String, Integer>();
-		String[] keys = { "happiness", "neutral", "sadness", "anger", "fear","surprise"};
-		JSONParser parser = new JSONParser();
-
-		for (String key : keys) {
-			emotionMap.put(key, 0);
-		}
-		
-		for (CheckTimeVO checkTimeVO : result) {
-			JSONObject obj = (JSONObject) parser.parse("{" + checkTimeVO.getEmotion() + "}");
-			long highScore = -1;
-			long currScore;
-			String state = null;
-			for (String key : keys) {
-				currScore = (Long) obj.get(key);
-				if(highScore < currScore) {
-					highScore = currScore;
-					state = key;
-				}
-			}
-			emotionMap.put(state, emotionMap.get(state) + 1);		
-		}
-		
-		System.out.println(emotionMap);
-		
-		logger.info("RESULT LIST : " + result);
-	
 		int total = takeprogramService.getstateTotal(pno);
 		
 		model.addAttribute("program", programService.view(pno));
@@ -163,11 +127,11 @@ public class FaculityController {
 		model.addAttribute("result", result );
 		model.addAttribute("check", result.size() );
 		model.addAttribute("late", jigak.size());
-		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("total", total);
+		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
 		model.addAttribute("week", checkService.getCheckWeek(pno));
-		model.addAttribute("emotionList", emotionMap);
+		model.addAttribute("emotionList", emotionUtils.emotionCounter(result));
 		
 	}
 	

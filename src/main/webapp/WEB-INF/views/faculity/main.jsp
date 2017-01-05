@@ -34,7 +34,7 @@
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-aqua"><i
-						class="ion ion-ios-gear-outline"></i></span>
+						class="ion ion-happy"></i></span>
 
 					<div class="info-box-content">
 						<span class="info-box-text">출석한 인원</span> <span
@@ -50,7 +50,7 @@
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-red"><i
-						class="fa fa-google-plus"></i></span>
+						class="ion ion-sad"></i></span>
 
 					<div class="info-box-content">
 						<span class="info-box-text">지각한 인원</span> <span
@@ -68,7 +68,7 @@
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-green"><i
-						class="ion ion-ios-cart-outline"></i></span>
+						class="ion ion-bowtie"></i></span>
 
 					<div class="info-box-content">
 						<span class="info-box-text">결석한 인원</span> <span
@@ -84,7 +84,7 @@
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-yellow"><i
-						class="ion ion-ios-people-outline"></i></span>
+						class="ion ion-person-stalker"></i></span>
 
 					<div class="info-box-content">
 						<span class="info-box-text">총인원</span> <span
@@ -132,7 +132,9 @@
 			<!-- BAR CHART -->
 			<div class="box box-danger">
 				<div class="box-header with-border">
-					<h3 class="box-title">지각자 명단</h3>
+					<h3 class="box-title">
+					<b>지각자 명단</b>
+					</h3>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
@@ -176,7 +178,7 @@
 				 <!-- DONUT CHART -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">기분 도너츠</h3>
+              <h3 class="box-title"><b>기분 도너츠</b></h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

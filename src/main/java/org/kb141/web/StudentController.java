@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.kb141.domain.CheckVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.TakeProgramVO;
 import org.kb141.service.CheckService;
@@ -14,6 +15,7 @@ import org.kb141.service.ProgramService;
 import org.kb141.service.StudentService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherSubjectService;
+import org.kb141.util.EmotionUtils;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +58,9 @@ public class StudentController {
 	
 	@Inject
 	private FaceAPIUtils faceAPI;
+	
+	@Inject
+	private EmotionUtils emotionUtils;
 	
 	@GetMapping("/register")
 	public void registerGET(StudentVO vo, Model model) throws Exception{
@@ -126,6 +131,11 @@ public class StudentController {
 		model.addAttribute("programVO", studentService.getViewProgram(sid));
 		model.addAttribute("checkTimeVO", checkService.checkStudent(sid));
 		model.addAttribute("CheckDateVO", studentService.getcheckDateCount(sid));
+		
+		List<CheckVO> arr = checkService.getMyList(sid);
+		model.addAttribute("checkVOList", arr);
+		model.addAttribute("emotionList", emotionUtils.emotionHandler(arr));
+		
 	}
 	
 	

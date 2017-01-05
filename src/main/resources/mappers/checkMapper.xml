@@ -91,5 +91,8 @@
 		]]>
 	</select>
 	
-
+	<select id="checkMyList" resultType="CheckVO">
+		select * from tbl_check where sid = #{sid} order by checktime desc limit 5
+	</select>
+	
 </mapper>
