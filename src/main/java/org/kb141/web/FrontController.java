@@ -73,23 +73,57 @@ public class FrontController {
 
 	}
 
-	@ResponseBody
+//	@ResponseBody
+//	@PostMapping(value = "/frontAuth" , produces="application/json")
+//	public StudentVO frontAuth(String blob , String groupId)throws Exception{
+//		ByteConverter bc = new ByteConverter();
+//		logger.info("groupId :" + groupId);
+//		byte[] image = bc.ByteConvert(blob);
+//		StudentVO vo = new StudentVO();
+//
+//		List<String> faceIds = faceAPI.detectAndIdentifyFace(image, groupId);
+//		logger.info("----------------");
+//		
+//		logger.info("faceId : " + faceIds);
+//			if(faceIds.size() != 0){
+//				vo = (studentService.viewSname(faceIds.get(0)));				
+//			}	
+//		return vo;
+//	}
+	
+	
 	@PostMapping(value = "/frontAuth" , produces="application/json")
-	public StudentVO frontAuth(String blob , String groupId)throws Exception{
+	public ResponseEntity<StudentVO> frontAuths(String blob , String groupId)throws Exception{
 		ByteConverter bc = new ByteConverter();
 		logger.info("groupId :" + groupId);
 		byte[] image = bc.ByteConvert(blob);
 		StudentVO vo = new StudentVO();
-
+		ResponseEntity<StudentVO> entity = null; 
 		List<String> faceIds = faceAPI.detectAndIdentifyFace(image, groupId);
 		logger.info("----------------");
 		
 		logger.info("faceId : " + faceIds);
-			if(faceIds.size() != 0){
-				vo = (studentService.viewSname(faceIds.get(0)));				
-			}	
-		return vo;
+
+		try{
+			vo = (studentService.viewSname(faceIds.get(0)));			
+			entity = new ResponseEntity<StudentVO>(vo , HttpStatus.OK);
+			
+		}catch(NullPointerException e){
+			logger.info("null point");
+			entity = new ResponseEntity<StudentVO>(HttpStatus.BAD_REQUEST);
+		}catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<StudentVO>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+		
+	
 	}
+	
+	
+	
+	
+	
 
 	@ResponseBody
 	@PostMapping(value ="/emotion")
