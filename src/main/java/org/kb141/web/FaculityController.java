@@ -3,12 +3,16 @@ package org.kb141.web;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
@@ -125,16 +129,45 @@ public class FaculityController {
 			}
 		}
 		
+		Map<String, Integer> emotionMap = new HashMap<String, Integer>();
+		String[] keys = { "happiness", "neutral", "sadness", "anger", "fear","surprise"};
+		JSONParser parser = new JSONParser();
+
+		for (String key : keys) {
+			emotionMap.put(key, 0);
+		}
+		
+		for (CheckTimeVO checkTimeVO : result) {
+			JSONObject obj = (JSONObject) parser.parse("{" + checkTimeVO.getEmotion() + "}");
+			long highScore = -1;
+			long currScore;
+			String state = null;
+			for (String key : keys) {
+				currScore = (Long) obj.get(key);
+				if(highScore < currScore) {
+					highScore = currScore;
+					state = key;
+				}
+			}
+			emotionMap.put(state, emotionMap.get(state) + 1);		
+		}
+		
+		System.out.println(emotionMap);
+		
+		logger.info("RESULT LIST : " + result);
+	
 		int total = takeprogramService.getstateTotal(pno);
 		
 		model.addAttribute("program", programService.view(pno));
 		model.addAttribute("attendanceCnt",checkService.getAttendanceCnt(pno));
-		model.addAttribute("check", result.size());
+		model.addAttribute("result", result );
+		model.addAttribute("check", result.size() );
 		model.addAttribute("late", jigak.size());
 		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("total", total);
 		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
 		model.addAttribute("week", checkService.getCheckWeek(pno));
+		model.addAttribute("emotionList", emotionMap);
 		
 	}
 	

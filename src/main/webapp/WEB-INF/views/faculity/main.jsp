@@ -99,7 +99,7 @@
 		</div>
 		<br>
 
-
+<!-- 		<div class="row row-eq-height"> -->
 		<div class="col-md-6">
 			<!-- BAR CHART -->
 			<div class="box box-success">
@@ -127,11 +127,8 @@
 				<!-- /.box-body -->
 			</div>
 			<!-- /.box -->
-
-		</div>
-
-		<div class="col-md-6">
-
+			
+			
 			<!-- BAR CHART -->
 			<div class="box box-danger">
 				<div class="box-header with-border">
@@ -170,9 +167,35 @@
 				<!-- /.box-body -->
 
 			</div>
-
+		
 		</div>
 
+		<div class="col-md-6">
+
+			
+				 <!-- DONUT CHART -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">기분 도너츠</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="pieChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+			
+			
+			
+
+		</div>
+<!-- 		</div> -->
 		</section>
 	</div>
 
@@ -190,79 +213,121 @@
 
 <!-- page script -->
 <script>
-	$(document).ready(
-			function() {
+$(document).ready(function() {
 
-				$("#faculity_1").attr("class", "active");
-				$("#pno_37").attr("class", "active");
+	$("#faculity_1").attr("class", "active");
+	$("#pno_37").attr("class", "active");
+	
+	// This will get the first returned node in the jQuery collection.
+	var areaChartData = null;
 
-				$(function() {
-					// This will get the first returned node in the jQuery collection.
-					var areaChartData = null;
+	$.getJSON("/web/check/checkWeek/${param.pno}", function(data) {
+		console.log(data);
 
-					$.getJSON("/web/check/checkWeek/${param.pno}", function(
-							data) {
-						console.log(data);
+		areaChartData = {
+			labels : [ "Mon", "Tue", "Wed", "Thu", "Fri"],
+			datasets : [ {
+				label : "출석한 인원",
+				fillColor : "rgba(60,141,188,0.9)",
+				strokeColor : "rgba(60,141,188,0.8)",
+				pointColor : "#3b8bba",
+				pointStrokeColor : "rgba(60,141,188,1)",
+				pointHighlightFill : "#fff",
+				pointHighlightStroke : "rgba(60,141,188,1)",
+				data : [ data.mon, data.tue, data.wed,
+						data.thu, data.fri ]
+			} ]
+		};
 
-						areaChartData = {
-							labels : [ "Mon", "Tue", "Wed", "Thu", "Fri" ],
-							datasets : [ {
-								label : "출석한 인원",
-								fillColor : "rgba(60,141,188,0.9)",
-								strokeColor : "rgba(60,141,188,0.8)",
-								pointColor : "#3b8bba",
-								pointStrokeColor : "rgba(60,141,188,1)",
-								pointHighlightFill : "#fff",
-								pointHighlightStroke : "rgba(60,141,188,1)",
-								data : [ data.mon, data.tue, data.wed,
-										data.thu, data.fri, ]
-							} ]
-						};
+		//-------------
+		//- BAR CHART -
+		//-------------
+		var barChartCanvas = $("#barChart").get(0).getContext("2d");
+		var barChart = new Chart(barChartCanvas);
+		var barChartData = areaChartData;
+		barChartData.datasets[0].fillColor = "#00a65a";
+		barChartData.datasets[0].strokeColor = "#00a65a";
+		barChartData.datasets[0].pointColor = "#00a65a";
+		var barChartOptions = {
+			//Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+			scaleBeginAtZero : true,
+			//Boolean - Whether grid lines are shown across the chart
+			scaleShowGridLines : true,
+			//String - Colour of the grid lines
+			scaleGridLineColor : "rgba(0,0,0,.05)",
+			//Number - Width of the grid lines
+			scaleGridLineWidth : 1,
+			//Boolean - Whether to show horizontal lines (except X axis)
+			scaleShowHorizontalLines : true,
+			//Boolean - Whether to show vertical lines (except Y axis)
+			scaleShowVerticalLines : true,
+			//Boolean - If there is a stroke on each bar
+			barShowStroke : true,
+			//Number - Pixel width of the bar stroke
+			barStrokeWidth : 2,
+			//Number - Spacing between each of the X value sets
+			barValueSpacing : 30,
+			//Number - Spacing between data sets within X values
+			barDatasetSpacing : 1,
+			//String - A legend template
+			//Boolean - whether to make the chart responsive
+			responsive : true,
+			maintainAspectRatio : true
+		};
 
-						//-------------
-						//- BAR CHART -
-						//-------------
-						var barChartCanvas = $("#barChart").get(0).getContext(
-								"2d");
-						var barChart = new Chart(barChartCanvas);
-						var barChartData = areaChartData;
-						barChartData.datasets[0].fillColor = "#00a65a";
-						barChartData.datasets[0].strokeColor = "#00a65a";
-						barChartData.datasets[0].pointColor = "#00a65a";
-						var barChartOptions = {
-							//Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-							scaleBeginAtZero : true,
-							//Boolean - Whether grid lines are shown across the chart
-							scaleShowGridLines : true,
-							//String - Colour of the grid lines
-							scaleGridLineColor : "rgba(0,0,0,.05)",
-							//Number - Width of the grid lines
-							scaleGridLineWidth : 1,
-							//Boolean - Whether to show horizontal lines (except X axis)
-							scaleShowHorizontalLines : true,
-							//Boolean - Whether to show vertical lines (except Y axis)
-							scaleShowVerticalLines : true,
-							//Boolean - If there is a stroke on each bar
-							barShowStroke : true,
-							//Number - Pixel width of the bar stroke
-							barStrokeWidth : 2,
-							//Number - Spacing between each of the X value sets
-							barValueSpacing : 30,
-							//Number - Spacing between data sets within X values
-							barDatasetSpacing : 1,
-							//String - A legend template
-							//Boolean - whether to make the chart responsive
-							responsive : true,
-							maintainAspectRatio : true
-						};
+		barChartOptions.datasetFill = false;
+		barChart.Bar(barChartData, barChartOptions);
 
-						barChartOptions.datasetFill = false;
-						barChart.Bar(barChartData, barChartOptions);
+	});
+	
+	//-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas);
+    //  String[] keys = { "happiness", "neutral", "sadness", "anger", "fear","surprise"};
+    var pieColor = ["#f56954","#00a65a","#f39c12","#00c0ef","#3c8dbc","#d2d6de"];
+//     var pieColor = ["#00c0ef", "#d2d6de","#f39c12","#f56954","#00a65a","#3c8dbc"];
+// sad anger fear = red, surprise, 
+    var PieData = [
+		{ value: ${emotionList["anger"]}, 		color: "#f56954", highlight: "#f56954", label: "화나요" },
+		{ value: ${emotionList["happiness"]}, 	color: "#3c8dbc", highlight: "#3c8dbc", label: "행복해요" },
+		{ value: ${emotionList["neutral"]}, 	color: "#d2d6de", highlight: "#d2d6de", label: "편안해요" },
+		{ value: ${emotionList["sadness"]}, 	color: "#f39c12", highlight: "#f39c12", label: "슬퍼요" },
+		{ value: ${emotionList["surprise"]}, 	color: "#00a65a", highlight: "#00a65a", label: "놀라워요" },
+		{ value: ${emotionList["fear"]}, 		color: "#00c0ef", highlight: "#00c0ef", label: "두려워요" }
+    ];
+    var pieOptions = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true
+      //String - A legend template
+    };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions);
+	
+	
 
-					});
-				});
-
-			});
+});
 </script>
 
 

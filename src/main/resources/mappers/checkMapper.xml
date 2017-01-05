@@ -44,12 +44,6 @@
 		from tbl_check where pno = #{pno} group by date(checktime), sid) t
 	</select>
 
-	<select id="lateMember" resultType="CheckVO">
-		select * from tbl_check where
-		checktime > #{latetime}
-	</select>
-
-
 	<select id="checkLate" resultType="Integer">
 		<![CDATA[
 		select count(*) from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=1 and checktime > curdate())ch where  ch.latetime >= "09:10:00"
@@ -82,7 +76,7 @@
 	<select id="todayCheck" resultType="CheckTimeVO">
 		<![CDATA[
 			select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states from (
-			select sid, pno, min(checktime) firsttime, max(checktime) lasttime from tbl_check
+			select sid, pno, min(checktime) firsttime, max(checktime) lasttime, emotion from tbl_check
 			where pno = #{pno} and checktime > curdate() and checktime < (curdate() + 1)
 			group by date(checktime), sid) t
 		]]>
@@ -97,26 +91,5 @@
 		]]>
 	</select>
 	
-	
-	
-	
-	<select id="checkPeriodMonthName" resultType="CheckPeriodMonthNameVO">
-	select date_format(opendate,'%b') as 'first',
-	date_format(date_add(opendate, interval +1 month),'%b') as 'second',
-	date_format(date_add(opendate, interval +2 month),'%b') as 'third' ,
-	date_format(date_add(opendate, interval +3 month),'%b') as 'fourth' ,
-	date_format(date_add(opendate, interval +4 month),'%b') as 'fifth' ,
-	date_format(date_add(opendate, interval +5 month),'%b') as 'sixth' ,
-	date_format(closedate,'%b') as 'seventh'
-	from tbl_program where pno =(select pno from tbl_take_program where
-	sid=#{sid})
-	</select>
-	
-	
-	
-	
-	
-	
-
 
 </mapper>

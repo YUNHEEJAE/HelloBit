@@ -8,6 +8,8 @@ public class CheckTimeVO {
 	private Integer pno;
 	private Date firsttime, lasttime;
 	private String states;
+	private String emotion;
+	
 	public String getSid() {
 		return sid;
 	}
@@ -38,12 +40,20 @@ public class CheckTimeVO {
 	public void setStates(String states) {
 		this.states = states;
 	}
+	public String getEmotion() {
+		return emotion;
+	}
+	public void setEmotion(String emotion) {
+		this.emotion = emotion;
+	}
 	
 	@Override
 	public String toString() {
 		return "CheckTimeVO [sid=" + sid + ", pno=" + pno + ", firsttime=" + firsttime + ", lasttime=" + lasttime
-				+ ", states=" + states + "]";
+				+ ", states=" + states + ", emotion=" + emotion + "]";
 	}
+
+	
 	
 	
 }

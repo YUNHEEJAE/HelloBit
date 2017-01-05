@@ -3,7 +3,6 @@ package org.kb141.persistence;
 import java.util.List;
 
 import org.kb141.domain.CheckLateManVO;
-import org.kb141.domain.CheckPeriodMonthNameVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 /**
@@ -49,9 +48,6 @@ public interface CheckDAO {
 	
 	// 오늘 데이터 가져오기. by Senyo
 	public List<CheckTimeVO> todayCheck(Integer pno) throws Exception;
-	
-	public CheckPeriodMonthNameVO checkPeriodMonthName(String sid) throws Exception;
-	
 	
 	
 }
