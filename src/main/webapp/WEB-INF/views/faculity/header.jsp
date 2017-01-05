@@ -54,7 +54,6 @@
 
 				<span class="logo-lg"><b>HELLO</b> Bit</span>
 
-				<span class="logo-lg"><b>He</b>LTE</span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">
@@ -65,11 +64,11 @@
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
 				<!-- Sidebar user panel -->
-				<div class="user-panel">
+				<div class="user-panel" style ="height:65px" >
 					<div class="pull-left image">
-						<img src="../resources/dist/img/user2-160x160.jpg"
+						<img src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg"
 							class="img-circle" alt="User Image">
-					</div>
+					</div> 
 					<div class="pull-left info">
 						<p>${cookie.LOGIN_ID.value }</p>
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -81,7 +80,7 @@
 					<li class="header">교직원 ${cookie.LOGIN_ID.value }님 환영합니다.</li>
 			<!-- active 오또케 -->
 					<li class="treeview" id="faculity_1"><a href="#"> 
-					<i class="fa fa-dashboard"></i> <span> 강의 정보</span>
+					<i class="fa fa-align-justify text-red"></i> <span> 강의 정보</span>
 					<span class="pull-right-container"> 
 					<i class="fa fa-angle-left pull-right"></i>
 					</span></a>
@@ -90,7 +89,7 @@
 					</li>
 					<li class="treeview" id="faculity_2">
 						<a href="#">
-							<i class="fa fa-dashboard"></i>
+							<i class="fa fa-align-justify text-red"></i>
 							<span>학원 관리</span>
 							<span class="pull-right-container">
 								<i class="fa fa-angle-left pull-right"></i>
@@ -100,23 +99,23 @@
 <!-- 						active 오또오또케 -->
 							<li class=""  id="faculity_list">
 								<a href="../faculity/list">
-									<i class="fa fa-circle-o"></i>
+									<i class="fa fa-chevron-right"></i>
 									학생 교직원 교실 관리
 								</a>
 							</li>
 							<li class="" id="faculity_takeprogramlist">
 								<a href="../faculity/takeprogramlist">
-									<i class="fa fa-circle-o"></i>
+									<i class="fa fa-chevron-right"></i>
 									수강 현황 관리</a>
 							</li>
 							<li class="" id="program_list">
 								<a href="../program/list">
-									<i class="fa fa-circle-o"></i>
+									<i class="fa fa-chevron-right"></i>
 									강의 관리</a>
 						</li>
 						</ul>
 					</li>
-					<li><a href="/web/myLogout"><i class="fa fa-circle-o text-red"></i> <span>LOG-OUT</span></a></li>
+					<li><a href="/web/myLogout"><i class="fa fa-sign-out text-red"></i> <span>LOG-OUT</span></a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->

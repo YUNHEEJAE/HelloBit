@@ -148,6 +148,8 @@ $(document).ready(function(){
 			var userid = $('#userid').val();
 			var image = $('#file')[0].files[0];
 			$('#hiddenid').attr("value" , userid);
+			console.log(userid);
+			console.log(image);
 
 			// upload firebase img
             var upload = storageRef.child("member/" + userid+"_0.jpg");
@@ -160,10 +162,10 @@ $(document).ready(function(){
             }, function() {
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+			 $('#regForm').submit(); 
                 var downloadURL = uploadTask.snapshot.downloadURL;
             });
 
-			$('#regForm').submit(); 
 			
 			/* $.ajax({
 				url : "http://localhost:8081/web/image/registerImage?${_csrf.parameterName}=${_csrf.token}",

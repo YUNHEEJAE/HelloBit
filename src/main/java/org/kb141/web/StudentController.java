@@ -212,6 +212,12 @@ public class StudentController {
 		logger.info("CHART CALLED.....");
 	}
 	
+	@GetMapping("/programList")
+	public void programList(Model model) throws Exception{
+		logger.info("programList CALLED.....");
+		String sid = null;
+		model.addAttribute("studentVO", studentService.view(sid));
+	}
 
 	
 }
