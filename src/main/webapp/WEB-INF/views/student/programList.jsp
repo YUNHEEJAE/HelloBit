@@ -120,9 +120,11 @@ var config = {
     });
 
 $(document).ready(function() {
+	$(".mainPage").attr("class"," ");		
+
+	$(".programPage").attr("class","active");
 	
-	$("#faculity_2").attr("class", "active");	
-	$("#program_list").attr("class", "active");
+
 	
 	var result = '${result}';
 	

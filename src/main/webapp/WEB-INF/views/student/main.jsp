@@ -46,10 +46,16 @@
 								</div>
 								<div class="checkedBoxBody">
 									<div class="box-body"
-										style="color: #00A65A; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">${CheckDateVO.attend}</div>
+										style="color: #00A65A; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">${CheckDateVO.attend}
+										</div>
+									<div class="box-footer checkedBoxFooter"
+									style="color: #00A65A; font-weight: 50; font-size: 15x; text-align: center; vertical-align: middle;" >
+									<p>이번 주 출석</p>
+									<p>열심히 다니는군!</p></div>
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-md-3 checkedBoxOuter">
 							<div class="box box-warning checkedBox">
 								<div class="box-header with-border">
@@ -60,8 +66,13 @@
 										style="color: #F39C12; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
 										${CheckDateVO.late}</div>
 								</div>
-							</div>
+									<div class="box-footer checkedBoxFooter"
+										style="color: #F39C12; font-weight: 50; font-size: 15x; text-align: center; vertical-align: middle;" >
+										<p>이번 주 지각</p>
+										<p>일찍좀 다녀!</p></div>
+									</div>
 						</div>
+						
 						<div class="col-md-3 checkedBoxOuter">
 							<div class="box box-danger checkedBox ">
 								<div class="box-header with-border">
@@ -72,17 +83,24 @@
 										style="color: #DD4B39; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
 										${CheckDateVO.absent}</div>
 								</div>
+							<div class="box-footer checkedBoxFooter"
+								style="color: #DD4B39; font-weight: 50; font-size: 15x; text-align: center; vertical-align: middle;" >
+								<p>이번 주 결석</p>
+								<p>힘들었어....</p></div>
 							</div>
+
 						</div>
 					</div>
+					</div>
+				</div>
+					
 					<div class="row row-eq-height">
-						<div class="col-md-6 checkedBoxOuter">
+						<div class="col-md-6 col-md-offset-1 checkedBoxOuter">
 							<div class="box box-default checkedBox">
 								<div class="box-body no-padding chartContent">
 									<canvas id="barChart" width="90%" height="70%"></canvas>
 								</div>
 							</div>
-						</div>
 						<div class="col-md-6">
 							<div class="box box-default">
 								<div class="box-body no-padding" style="">
@@ -92,16 +110,17 @@
 						</div>
 						<!-- 					</div> -->
 						<!-- 				</div> -->
+						</div>
 					</div>
-				</div>
-			</div>
 		</section>
 	</div>
 </body>
 <%@include file="footer.jsp"%>
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
+			$(".programPage").attr("class"," ");		
 			
+			$(".mainPage").attr("class","active");
 			var config = {
 			        apiKey: "AIzaSyD8Qs39vkxQw8pdWiXlkcMug3PL1YJeS0Q",
 			        authDomain: "hhkbex.firebaseapp.com",

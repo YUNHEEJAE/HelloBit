@@ -127,7 +127,7 @@
 						<input type="hidden" value="${view.pno}" name="pno">
 						<%--    <input type="hidden" value="${view.persongroupid}" name="groupid"> --%>
 					</form>
-					<a href="http://localhost:8081/web/program/list"><button
+					<a href="programList"><button
 							type="button" class="btn btn-primary pull-right"
 							style="margin-right: 5px;">
 							<i class="glyphicon glyphicon-arrow-left"></i> 돌아가기
@@ -143,9 +143,12 @@
 	
 	<script>
 		$(document).ready(function() {
+			
+			$(".mainPage").attr("class"," ");		
 
-			$("#faculity_2").attr("class", "active");
-			$("#program_list").attr("class", "active");
+			$(".programPage").attr("class","active");
+			
+
 
 			$("#enrolBtn").on("click", function() {
 				$("#enrolform").submit();

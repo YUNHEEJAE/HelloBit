@@ -339,10 +339,10 @@
 					</span></a>
 						
 						<ul class="treeview-menu">
- 							<li class="active"><a href="programList"> 
-								<i class="fa fa-chevron-right"></i> 수강신청하기</a></li> 
-<!-- 							<li><a href="index2.html"> -->
-<!-- 								<i class="fa fa-circle-o"></i> python v2</a></li> -->
+ 							<li class="mainPage"><a href="main"> 
+								<i class="fa fa-chevron-right"></i> 개인 페이지</a></li> 
+ 							<li class="programPage"><a href="programList"> 
+								<i class="fa fa-chevron-right"></i> 수강 신청하기</a></li> 
 						</ul>
 					</li>
 					
