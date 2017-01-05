@@ -216,8 +216,11 @@ public class CheckDAOTest {
 		// 감정 = 제일 큰 값의 key 값 따야지.
 		// 
 		
+	}
+	@Test
+	public void getMyListTest() throws Exception {
 		
-		
+		System.out.println(service.getMyList("yhj"));		
 		
 	}
 	

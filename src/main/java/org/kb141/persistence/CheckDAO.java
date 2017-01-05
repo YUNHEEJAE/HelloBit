@@ -49,5 +49,9 @@ public interface CheckDAO {
 	// 오늘 데이터 가져오기. by Senyo
 	public List<CheckTimeVO> todayCheck(Integer pno) throws Exception;
 	
+	// 내 최근 5개 로그 데이터 가져오기 by Senyo
+	public List<CheckVO> checkMyList(String sid) throws Exception;
+	
+	
 	
 }
