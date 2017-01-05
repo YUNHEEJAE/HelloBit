@@ -3,10 +3,14 @@ package org.kb141.web;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kb141.domain.CheckTimeVO;
@@ -29,13 +33,15 @@ public class CheckDAOTest {
 	@Test
 	public void createTest() throws Exception {
 		CheckVO obj = new CheckVO();
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 		obj.setSid("ljp");
 		obj.setPno(1);
-
 		String emotion = "\"scores\"" + ": {" + "\"anger\"" + ": 0," + "\"contempt\"" + ": 0, " + "\"disgust\"" + ":0,"
 				+ "\"fear\"" + ": 0," + "\"happiness\"" + ": 0," + "\"neutral\"" + ":1," + "\"sadness\"" + ":0,"
 				+ "\"surprise\"" + ": 0}";
 		obj.setEmotion(emotion);
+		obj.setChecktime(dateFormat.parse("2017-01-04 18:34:23"));
+		System.out.println(obj);
 		dao.create(obj);
 	}
 
@@ -80,12 +86,6 @@ public class CheckDAOTest {
 	public void checkAttendanceCntTest() throws Exception{
 		System.out.println(dao.checkAttendanceCnt(1));
 	}
-	
-	@Test
-	public void checkPeriodMonthNameTest() throws Exception{
-		System.out.println(dao.checkPeriodMonthName("sih"));
-	}
-	
 	
 	// =======================SERVICE=========================
 
@@ -183,5 +183,46 @@ public class CheckDAOTest {
 		System.out.println("JIGAK : size " + jigak.size());
 		
 	}
+	
+	@Test
+	public void emotionParseTest() throws Exception {
+		List<CheckTimeVO> result = service.getTodayCheck(37);
+		Map<String, Integer> emotionMap = new HashMap<String, Integer>();
+//		String[] keys = {"contempt", "surprise", "happiness", "neutral", "sadness", "disgust", "anger", "fear"};
+		String[] keys = { "happiness", "neutral", "sadness", "anger", "fear","surprise"};
+		JSONParser parser = new JSONParser();
+
+		for (String key : keys) {
+			emotionMap.put(key, 0);
+		}
+		
+		for (CheckTimeVO checkTimeVO : result) {
+			JSONObject obj = (JSONObject) parser.parse("{" + checkTimeVO.getEmotion() + "}");
+			long highScore = -1;
+			long currScore;
+			String state = null;
+			for (String key : keys) {
+				currScore = (Long) obj.get(key);
+				if(highScore < currScore) {
+					highScore = currScore;
+					state = key;
+				}
+			}
+			emotionMap.put(state, emotionMap.get(state) + 1);		
+		}
+		
+		System.out.println(emotionMap);
+		
+		// 감정 = 제일 큰 값의 key 값 따야지.
+		// 
+		
+	}
+	@Test
+	public void getMyListTest() throws Exception {
+		
+		System.out.println(service.getMyList("yhj"));		
+		
+	}
+	
 	
 }

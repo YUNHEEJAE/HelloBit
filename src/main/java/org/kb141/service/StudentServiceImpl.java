@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.CheckDateVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
@@ -111,6 +112,17 @@ public class StudentServiceImpl implements StudentService {
 		StudentVO vo = new StudentVO();
 		try {
 			vo = studentDAO.readSname(personId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+
+	@Override
+	public CheckDateVO getcheckDateCount(String sid) {
+		CheckDateVO vo = new CheckDateVO();
+		try {
+			vo = studentDAO.checkDateCount(sid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -3,12 +3,16 @@ package org.kb141.web;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
@@ -30,6 +34,8 @@ import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
+import org.kb141.util.CookieChecker;
+import org.kb141.util.EmotionUtils;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,28 +96,17 @@ public class FaculityController {
 	@Inject
 	private FaceAPIUtils faceAPI;
 	
+	@Inject
+	private EmotionUtils emotionUtils;
+	
+	@Inject
+	private CookieChecker cookieChecker;
+	
 	@GetMapping("/main")
 	public void faculityMain(Integer pno, HttpServletRequest request, Model model) throws Exception{
 		logger.info("FACULITY MAIN");
 		
-		Cookie[] cookies = request.getCookies();
-		
-		for (Cookie cookie : cookies) {
-			if(cookie.getName().equals("MY_PROGRAM")){
-				String myProgramsComma = URLDecoder.decode(cookie.getValue(),"UTF-8");
-				String[] myPrograms = myProgramsComma.split(",");
-				boolean flag = true;
-				for (String string : myPrograms) {
-					if(pno == Integer.parseInt(string)){
-						flag = false;
-					}
-				}
-				if(flag){
-					throw new AccessDeniedException("HAS NO Program");
-				}
-					
-			}
-		}
+		cookieChecker.cookieChecker(request.getCookies(), pno);;
 		
 		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
 		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
@@ -129,12 +124,14 @@ public class FaculityController {
 		
 		model.addAttribute("program", programService.view(pno));
 		model.addAttribute("attendanceCnt",checkService.getAttendanceCnt(pno));
-		model.addAttribute("check", result.size());
+		model.addAttribute("result", result );
+		model.addAttribute("check", result.size() );
 		model.addAttribute("late", jigak.size());
-		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("total", total);
+		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
 		model.addAttribute("week", checkService.getCheckWeek(pno));
+		model.addAttribute("emotionList", emotionUtils.emotionCounter(result));
 		
 	}
 	

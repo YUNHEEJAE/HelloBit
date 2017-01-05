@@ -45,6 +45,20 @@
 	</select>
 
 
+	<select id ="checkDateCount" resultType="CheckDateVO">
+	 <![CDATA[ 
+	 select count(if(ress.states='blue',ress.states,null))attend, count(if(ress.states='red',ress.states,null))late, 
+ (select (select count(*) as totaldatecount from(
+	select count(*) from tbl_check where date_format(checktime, "%Y-%c") = date_format(curdate(), "%Y-%c") group by date(checktime))p) - (select count(*) from (
+		select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states
+			from (select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime
+			from tbl_check where sid = #{sid} group by date(checktime)) t where date_format(t.firsttime, "%Y-%c") = date_format(curdate(), "%Y-%c")) res)abs)absent from (
+			select *, case when time(tt.firsttime)<='09:00' then 'blue' else 'red' end as states
+			from (select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime
+			from tbl_check where sid = #{sid} group by date(checktime)) tt where date_format(tt.firsttime, "%Y-%c") = date_format(curdate(), "%Y-%c")) ress
+			]]>
+	</select>
+
 
 
 </mapper>

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../faculity/header.jsp"%>
+<%@include file="header.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,7 +18,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program List <small>강의 관리 페이지 입니다.</small>
+			Program List <small>강의 신청 페이지 입니다.</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="list"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -27,6 +27,7 @@
 
 		<!-- Main content -->
 		<section class="content">
+		<input type ='hidden' id ='firesid' value = '${cookie.LOGIN_ID.value }'>
 		<hr />
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -52,9 +53,9 @@
 					</div>
 				</div>
 				<div class="col-md-3 pull-right">
-					<form class="createBtn" action="register">
+				<!-- 	<form class="createBtn" action="register">
 						<input type="submit" class='btn btn-block btn-primary' value='create' id='createBtn'>
-					</form>
+					</form> -->
 				</div>
 			</div>
 		</div>
@@ -63,17 +64,67 @@
 
 </body>
 
-<%@include file="../faculity/footer.jsp"%>
-
-
-
+<%@include file="footer.jsp"%>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
+var config = {
+        apiKey: "AIzaSyD8Qs39vkxQw8pdWiXlkcMug3PL1YJeS0Q",
+        authDomain: "hhkbex.firebaseapp.com",
+        databaseURL: "https://hhkbex.firebaseio.com",
+        storageBucket: "hhkbex.appspot.com",
+        messagingSenderId: "1050382686499"
+    };
+    firebase.initializeApp(config);
 
+    
+    // Get a reference to the storage service, which is used to create references in your storage bucket
+    var storage = firebase.storage();
+//Create a storage reference from our storage service
+/* 			    var storageRef = storage.ref();
+*/			    var uid = "jk3a0123@gmail.com";
+    var upw = "wjdwndud08";
+ 	var storageRef = storage.refFromURL("gs://hhkbex.appspot.com/");
+    firebase.auth().signInWithEmailAndPassword(uid , upw).catch(function (error) {
+       
+        console.log('error sign');
+        var errorCode = error.code;
+        var errorMessage = error.message;
+    }); // end login  
+		var sid = $("#firesid").val();
+ // Create a reference to the file we want to download
+//    var starsRef = storageRef.child("member/"+sid+"_0.jpg");
+	var starsRef = storageRef.child("member/"+sid+"_0.jpg");
+    // Get the download URL
+    starsRef.getDownloadURL().then(function(url) {
+    	
+   		var headimg= $("#headerimg").attr("src",url);
+   		console.log(headimg);
+    }).catch(function(error) {
+	switch (error.code) {
+        case 'storage/object_not_found':
+          // File doesn't exist
+          break;
+
+        case 'storage/unauthorized':
+          // User doesn't have permission to access the object
+          break;
+
+        case 'storage/canceled':
+          // User canceled the upload
+          break;
+
+        case 'storage/unknown':
+          // Unknown error occurred, inspect the server response
+          break;
+      }
+    });
 
 $(document).ready(function() {
+	$(".mainPage").attr("class"," ");		
+
+	$(".programPage").attr("class","active");
 	
-	$("#faculity_2").attr("class", "active");	
-	$("#program_list").attr("class", "active");
+
 	
 	var result = '${result}';
 	
@@ -128,7 +179,7 @@ $(document).ready(function() {
 						var closeDate = closeyear + "/" + closemonth + "/" + closedate;
 						  
 						
-						str += "<a href=view?pno=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+						str += "<a href=programView?pno=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.category+"</span>"
 							+ "<span class=''>"+this.pcourse+"</span>"
 							+ "<span class='text-muted' style='font-size: 11px;'>--" +openDate+"</span>"

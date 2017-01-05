@@ -31,7 +31,7 @@
 			<div class="register-box-body">
 				<p class="login-box-msg">Register a new Student</p>
 	
-				<form method="post" id="regForm" action="register">
+				<form method="post" id="regForm" action="studentregister">
 					<div class="form-group has-feedback">
 						<input type="text" class="form-control not-null" placeholder="USER ID"
 							name="sid" id="userid" > <span
@@ -52,7 +52,7 @@
 							name="semail"> <span
 							class="glyphicon glyphicon-envelope form-control-feedback"></span>
 					</div>
-					<input type="hidden" name="filename" id="hiddenFile" class="not-null">
+					<input type="hidden" name="filename" id="hiddenFile">
 				</form>
 	
 				<div class="form-group has-feedback">
@@ -128,9 +128,10 @@ $(document).ready(function(){
 				var userid = $('#userid').val();
 				var image = $('#file')[0].files[0];
 				$('#hiddenid').attr("value" , userid);
-
+				console.log(userid);
+				console.log(image);
 				// upload firebase img
-	            var upload = storageRef.child("member/" + userid+"_0.jpg");
+	            var upload = storageRef.child("member/" +userid+"_0.jpg");
 	            var uploadTask = upload.put(image);
 	            uploadTask.on('state_changed', function(snapshot){
 	                // Observe state change events such as progress, pause, and resume
@@ -140,10 +141,10 @@ $(document).ready(function(){
 	            }, function() {
 	                // Handle successful uploads on complete
 	                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+				 $('#regForm').submit();  
 	                var downloadURL = uploadTask.snapshot.downloadURL;
 	            });
 
-				$('#regForm').submit(); 
 				
 				/* $.ajax({
 					url : "http://localhost:8081/web/image/registerImage?${_csrf.parameterName}=${_csrf.token}",

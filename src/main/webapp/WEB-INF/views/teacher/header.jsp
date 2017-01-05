@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 2 | Dashboard</title>
+<title> HelloBit | 교사페이지 </title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -51,14 +51,14 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
 	<div class="wrapper">
 
 		<header class="main-header">
 			<!-- Logo -->
-			<a href="index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>Admin</b>LTE</span>
+			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+				<span class="logo-mini"><b>Me</b>nu</span> <!-- logo for regular state and mobile devices -->
+				<span class="logo-lg"><b>Hello</b>bit</span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">
@@ -69,9 +69,9 @@
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
 				<!-- Sidebar user panel -->
-				<div class="user-panel">
+				<div class="user-panel" style ="height:65px">
 					<div class="pull-left image">
-						<img src="../resources/dist/img/user2-160x160.jpg"
+						<img src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg"
 							class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
@@ -88,7 +88,7 @@
 					
 					
 					<li class="active treeview" id="treeTeacher"><a href="#"> 
-					<i class="fa fa-dashboard"></i> <span> 강의 정보</span>
+					<i class="fa fa-align-justify text-red"></i> <span> 강의 정보</span>
 					
 					<span class="pull-right-container"> 
 					<i class="fa fa-angle-left pull-right"></i>
@@ -97,7 +97,7 @@
 						<ul class="treeview-menu">
 						</ul>
 					</li>
-					<li><a href="/web/myLogout"><i class="fa fa-circle-o text-red"></i> <span>LOG-OUT</span></a></li>
+					<li><a href="/web/myLogout"><i class="fa fa-sign-out text-red"></i> <span>LOG-OUT</span></a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->

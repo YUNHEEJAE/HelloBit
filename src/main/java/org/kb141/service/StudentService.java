@@ -2,6 +2,7 @@ package org.kb141.service;
 
 import java.util.List;
 
+import org.kb141.domain.CheckDateVO;
 import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 
@@ -21,4 +22,8 @@ public interface StudentService {
 	
 	//sname 가져오기 
 	public StudentVO viewSname(String personId) ;
+	
+	//학생별 출석, 지각, 결석  수
+	public CheckDateVO getcheckDateCount(String sid);
+	
 }
