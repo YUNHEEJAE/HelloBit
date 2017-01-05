@@ -128,8 +128,31 @@
 			</div>
 			<!-- /.box -->
 			
+				 <!-- DONUT CHART -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title"><b>기분 도너츠</b></h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="pieChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
 			
-			<!-- BAR CHART -->
+		
+		</div>
+
+		<div class="col-md-6">
+		
+			
+			<!-- Table -->
 			<div class="box box-danger">
 				<div class="box-header with-border">
 					<h3 class="box-title">
@@ -169,30 +192,8 @@
 				<!-- /.box-body -->
 
 			</div>
+			
 		
-		</div>
-
-		<div class="col-md-6">
-
-			
-				 <!-- DONUT CHART -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title"><b>기분 도너츠</b></h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <canvas id="pieChart" style="height:250px"></canvas>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-			
 			
 			
 

@@ -28,11 +28,19 @@ public class EmotionUtils {
 		
 		for (CheckTimeVO checkTimeVO : resultList) {
 			JSONObject obj = (JSONObject) parser.parse("{" + checkTimeVO.getEmotion() + "}");
-			long highScore = -1;
-			long currScore;
+			Double highScore = new Double(-1);
+			Double currScore = new Double(-1);
 			String state = null;
 			for (String key : keys) {
-				currScore = (Long) obj.get(key);
+				Object curval = obj.get(key);
+				System.out.println(curval.getClass());
+				
+				if(curval.getClass() == Double.class) {
+					currScore = (Double) obj.get(key);
+				} else if ((curval.getClass() == Long.class)) {
+					Long j = (Long) obj.get(key);
+					currScore = j.doubleValue();
+				}
 				if(highScore < currScore) {
 					highScore = currScore;
 					state = key;
@@ -50,11 +58,20 @@ public class EmotionUtils {
 		
 		for (CheckVO checkVO : resultList) {
 			JSONObject obj = (JSONObject) parser.parse("{" + checkVO.getEmotion() + "}");
-			double highScore = -1;
-			double currScore;
+			Double highScore = new Double(-1);
+			Double currScore = new Double(-1);
 			String state = null;
 			for (String key : keys) {
-				currScore = (Double) obj.get(key);
+				Object curval = obj.get(key);
+				System.out.println(curval.getClass());
+				
+				if(curval.getClass() == Double.class) {
+					currScore = (Double) obj.get(key);
+				} else if ((curval.getClass() == Long.class)) {
+					Long j = (Long) obj.get(key);
+					currScore = j.doubleValue();
+				}
+				
 				if(highScore < currScore) {
 					highScore = currScore;
 					state = key;

@@ -83,10 +83,72 @@
 						</div>
 					</div>
 					<div class="row row-eq-height">
-						<div class="col-md-6 checkedBoxOuter">
-							<div class="box box-default checkedBox">
-								<div class="box-body no-padding chartContent">
-									<canvas id="barChart" width="90%" height="70%"></canvas>
+<!-- 						<div class="col-md-6 checkedBoxOuter"> -->
+<!-- 							<div class="box box-default checkedBox"> -->
+<!-- 								<div class="box-body no-padding chartContent"> -->
+<%-- 									<canvas id="barChart" width="90%" height="70%"></canvas> --%>
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+						<div class="col-md-6">
+							<div class="box box-default">
+								<div class="box-header with-border">
+									<h3 class="box-title">Emotion</h3>
+								</div>
+								<div class="box-body" id="boxEmotion">
+										
+										<c:forEach items="${emotionList}" var="emotion" varStatus="i">
+											<c:choose>
+												<c:when test="${i.index == 0}" >
+													<div class="info-box ${emotion == 'neutral' ? 'bg-green' : 'bg-red' }">
+													<span class="info-box-icon ">
+												</c:when>
+												<c:otherwise>
+													<div class="info-box">
+													<span class="info-box-icon ${emotion == 'neutral' ? 'bg-green' : 'bg-red' }">
+												</c:otherwise>
+											</c:choose>
+											
+												<i class="ion ${emotion == 'neutral' ? 'ion-ios-moon' : 'ion-android-warning' }"></i>
+												</span>
+												<div class="info-box-content">
+													<span class="info-box-number">My Feel is ${emotion }</span>
+													<span class="text">at ${checkVOList[i.index].checktime }</span>
+												</div>
+											</div>
+										</c:forEach>
+										
+									
+<!-- 									<div class="info-box"> -->
+<!-- 										<span class="info-box-icon bg-red"> -->
+<!-- 											<i class="fa fa-star-o"></i> -->
+<!-- 										</span> -->
+<!-- 										<div class="info-box-content"> -->
+<%-- 											<span class="info-box-text">${emotionList[0] }</span> --%>
+<!-- 											<span class="info-box-number">93,139</span> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+									
+<!-- 									<div class="info-box"> -->
+<!-- 										<span class="info-box-icon bg-red"> -->
+<!-- 											<i class="fa fa-star-o"></i> -->
+<!-- 										</span> -->
+<!-- 										<div class="info-box-content"> -->
+<!-- 											<span class="info-box-text">Likes</span> -->
+<%-- 											<span class="info-box-number">${emotionList[1] }</span> --%>
+<!-- 										</div> -->
+<!-- 									</div> -->
+									
+<!-- 									<div class="info-box"> -->
+<!-- 										<span class="info-box-icon bg-red"> -->
+<!-- 											<i class="fa fa-star-o"></i> -->
+<!-- 										</span> -->
+<!-- 										<div class="info-box-content"> -->
+<!-- 											<span class="info-box-text">Likes</span> -->
+<%-- 											<span class="info-box-number">${emotionList[2] }</span> --%>
+<!-- 										</div> -->
+<!-- 									</div> -->
+								
 								</div>
 							</div>
 						</div>
@@ -109,6 +171,14 @@
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
 $(document).ready(function () {
+	
+// 	(function() {
+// 		var boxText = "";
+		
+// 		$("#boxEmotion").html();
+		
+// 	})();
+	
 	
 	var config = {
 	        apiKey: "AIzaSyD8Qs39vkxQw8pdWiXlkcMug3PL1YJeS0Q",
@@ -161,67 +231,67 @@ $(document).ready(function () {
 	    });
 
 
-	var barChart = null;
-	var barChartData = {
-		labels : [ "Mon", "Tue", "Wed", "Thu", "Fri" ],
-		datasets : [ {
-			//색 채우기
-			fillColor : "rgba(0, 166, 90, 0.8)",
-			//차트 테두리 색
-			strokeColor : "rgba(220,220,220,0.8)",
-			//커서 올렸을 때 색깔
-			highlightFill : "rgba(0, 166, 90, 1.0)",
-			//커서 올렸을 때 테두리 색깔
-			highlightStroke : "rgba(220,220,220,1)",
-			//값
-			data : [ 40, 30, 50, 70, 20 ]
-		}
+// 	var barChart = null;
+// 	var barChartData = {
+// 		labels : [ "Mon", "Tue", "Wed", "Thu", "Fri" ],
+// 		datasets : [ {
+// 			//색 채우기
+// 			fillColor : "rgba(0, 166, 90, 0.8)",
+// 			//차트 테두리 색
+// 			strokeColor : "rgba(220,220,220,0.8)",
+// 			//커서 올렸을 때 색깔
+// 			highlightFill : "rgba(0, 166, 90, 1.0)",
+// 			//커서 올렸을 때 테두리 색깔
+// 			highlightStroke : "rgba(220,220,220,1)",
+// 			//값
+// 			data : [ 40, 30, 50, 70, 20 ]
+// 		}
 
-		// 		,{
-		// 			fillColor : "rgba(151,187,205,0.5)",
-		// 			strokeColor : "rgba(151,187,205,0.8)",
-		// 			highlightFill : "rgba(151,187,205,0.75)",
-		// 			highlightStroke : "rgba(151,187,205,1)",
-		// 			data : [ 20, 20, 20, 20, 20 ]
-		// 		} 
-		]
-	};
+// 		// 		,{
+// 		// 			fillColor : "rgba(151,187,205,0.5)",
+// 		// 			strokeColor : "rgba(151,187,205,0.8)",
+// 		// 			highlightFill : "rgba(151,187,205,0.75)",
+// 		// 			highlightStroke : "rgba(151,187,205,1)",
+// 		// 			data : [ 20, 20, 20, 20, 20 ]
+// 		// 		} 
+// 		]
+// 	};
 
-	$(function() {
-		//canvas를 2d용으로 사용하겠다.
-		var ctx = document.getElementById("barChart").getContext("2d");
-		barChart = new Chart(ctx).Bar(barChartData, {
-			//차트 x축 시작 값을 0으로 할래?
-			scaleBeginAtZero : true,
-			//차트 눈금 표시 할래?
-			scaleShowGridLines : true,
-			//눈금 색깔 뭐로 할래?
-			scaleGridLineColor : "rgba(0,0,0,0.1)",
-			// 눈금 선 굵기
-			scaleGridLineWidth : 1,
-			//막대 테두리 보여줄거야?
-			barShowStroke : false,
-			//막대 너비
-			barStrokeWidth : 1,
-			//x축 간격...인데 이거 조정하면 바 너비가 바뀜
-			barValueSpacing : 20,
-			//막대들 간의 간격
-			barDatasetSpacing : 10,
-			responsive : true,
-			onAnimationProgress : function() {
-				console.log("onAnimationProgress");
-			},
-			onAnimationComplete : function() {
-				console.log("onAnimationComplete");
-			},
-			scaleOverride : true,
-			scaleSteps : 10,
-			scaleStepWidth : 10,
-			scaleStartValue : 0,
-			maintainAspectRatio : true,
+// 	$(function() {
+// 		//canvas를 2d용으로 사용하겠다.
+// 		var ctx = document.getElementById("barChart").getContext("2d");
+// 		barChart = new Chart(ctx).Bar(barChartData, {
+// 			//차트 x축 시작 값을 0으로 할래?
+// 			scaleBeginAtZero : true,
+// 			//차트 눈금 표시 할래?
+// 			scaleShowGridLines : true,
+// 			//눈금 색깔 뭐로 할래?
+// 			scaleGridLineColor : "rgba(0,0,0,0.1)",
+// 			// 눈금 선 굵기
+// 			scaleGridLineWidth : 1,
+// 			//막대 테두리 보여줄거야?
+// 			barShowStroke : false,
+// 			//막대 너비
+// 			barStrokeWidth : 1,
+// 			//x축 간격...인데 이거 조정하면 바 너비가 바뀜
+// 			barValueSpacing : 20,
+// 			//막대들 간의 간격
+// 			barDatasetSpacing : 10,
+// 			responsive : true,
+// 			onAnimationProgress : function() {
+// 				console.log("onAnimationProgress");
+// 			},
+// 			onAnimationComplete : function() {
+// 				console.log("onAnimationComplete");
+// 			},
+// 			scaleOverride : true,
+// 			scaleSteps : 10,
+// 			scaleStepWidth : 10,
+// 			scaleStartValue : 0,
+// 			maintainAspectRatio : true,
 
-		});
-	});
+// 		});
+// 	});
 });		
 	
 </script>
