@@ -50,6 +50,7 @@
 								</div>
 								<p style="color: #00A65A; font-size: 20px; text-align: center; vertical-align: middle;">
 										오예~!</p>
+								<p class="text-muted right" id ="handal" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
 							</div>
 						</div>
 						<div class="col-md-3 checkedBoxOuter">
@@ -65,6 +66,7 @@
 								</div>
 								<p style="color: #F39C12; font-size: 20px; text-align: center; vertical-align: middle;">
 										헐레벌떡!</p>
+								
 							</div>
 						</div>
 						<div class="col-md-3 checkedBoxOuter">
@@ -79,6 +81,7 @@
 								</div>
 								<p style="color: #DD4B39; font-size: 20px; text-align: center; vertical-align: middle;">
 										피치 못할 사정이...</p>
+								
 							</div>
 						</div>
 					</div>
@@ -171,7 +174,10 @@
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
 $(document).ready(function () {
-	
+	var d =new Date();
+	var curdate = (d.getMonth()+1);
+	console.log(curdate);
+	$("#handal").html(curdate+" 월 한달 간");
 // 	(function() {
 // 		var boxText = "";
 		
