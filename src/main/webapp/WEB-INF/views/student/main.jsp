@@ -51,7 +51,7 @@
 								<!-- <p style="color: #00A65A; font-size: 20px; text-align: center; vertical-align: middle;">
 										오예~!</p> -->
 										<div class="box-footer">
-								<p class="text-muted right" id ="handal" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
+											<p class="text-muted right" id ="handal" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
 										</div>
 							</div>
 						</div>
@@ -64,9 +64,11 @@
 									<div class="box-body"
 										style="color: #F39C12; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
 										${CheckDateVO.late}</div>
-										<div class="box-footer"></div>
-										
 								</div>
+										<div class="box-footer">
+											<p class="text-muted right" id ="handal2" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
+										</div>
+										
 								<!-- <p style="color: #F39C12; font-size: 20px; text-align: center; vertical-align: middle;">
 										헐레벌떡!</p> -->
 								
@@ -81,9 +83,11 @@
 									<div class="box-body "
 										style="color: #DD4B39; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
 										${CheckDateVO.absent}</div>
-										<div class="box-footer"></div>
-										
 								</div>
+										<div class="box-footer">
+											<p class="text-muted right" id ="handal3" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
+										</div>
+										
 								<!-- <p style="color: #DD4B39; font-size: 20px; text-align: center; vertical-align: middle;">
 										피치 못할 사정이...</p> -->
 								
@@ -185,6 +189,8 @@ $(document).ready(function () {
 	var lastDay =(new Date( year,month, 0) ).getDate();
 	console.log(year+','+month+','+lastDay);
 	$("#handal").html(year+"-"+month+"-1 ~ "+year+"-"+month+"-"+lastDay);
+	$("#handal2").html(year+"-"+month+"-1 ~ "+year+"-"+month+"-"+lastDay);
+	$("#handal3").html(year+"-"+month+"-1 ~ "+year+"-"+month+"-"+lastDay);
 // 	(function() {
 // 		var boxText = "";
 		
