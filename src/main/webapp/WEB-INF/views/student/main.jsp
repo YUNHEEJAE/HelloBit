@@ -25,8 +25,8 @@
 							<div class="box box-primary ">
 								<div class="box-body box-profile" style="text-align: center;">
 									<div class="profileStudent">
-										<img id="profileImg" class="img-responsive">
-
+										<img id="profileImg" class="img-responsive" src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg">
+												
 										<div class="studentInfo">
 											<h3 class="profile-username text-center">${studentVO.sname }</h3>
 											<p class="text-muted">${studentVO.semail}</p>
@@ -111,6 +111,7 @@
 			    };
 			    firebase.initializeApp(config);
 			
+			    
 			    // Get a reference to the storage service, which is used to create references in your storage bucket
 			    var storage = firebase.storage();
 			//Create a storage reference from our storage service

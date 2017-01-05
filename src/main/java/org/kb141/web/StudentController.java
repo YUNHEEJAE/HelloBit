@@ -7,12 +7,13 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.kb141.domain.CheckVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.TakeProgramVO;
 import org.kb141.service.CheckService;
+import org.kb141.service.ProgramService;
 import org.kb141.service.StudentService;
 import org.kb141.service.TakeProgramService;
+import org.kb141.service.TeacherSubjectService;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,12 @@ public class StudentController {
 	
 	@Inject
 	private CheckService checkService;
+	
+	@Inject
+	private ProgramService programService;
+	
+	@Inject
+	private TeacherSubjectService teacherSubjectService;
 	
 	@Inject
 	private FaceAPIUtils faceAPI;
@@ -133,7 +140,7 @@ public class StudentController {
 		
 		takeprogramService.join(vo);
 		
-		return "redirect:../program/list";
+		return "redirect:programList";
 
 	
 		
@@ -219,6 +226,13 @@ public class StudentController {
 		String sid = null;
 		model.addAttribute("studentVO", studentService.view(sid));
 	}
-
+	
+	@GetMapping("/programView")
+	public void programView(Model model,Integer pno) throws Exception{
+		logger.info("programView CALLED.....");
+		model.addAttribute("view" , programService.view(pno));
+		model.addAttribute("joinList", teacherSubjectService.getJoinList(pno));
+		model.addAttribute("stateCount" , takeprogramService.getstateTotal(pno));
+	}
 	
 }

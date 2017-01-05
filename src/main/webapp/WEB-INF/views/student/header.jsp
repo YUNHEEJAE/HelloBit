@@ -306,7 +306,7 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel" style ="height:65px">
 					<div class="pull-left image">
-						<img id ="headerimg" src=""
+						<img id ="headerimg" src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg"
 							class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">

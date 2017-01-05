@@ -27,6 +27,7 @@
 
 		<!-- Main content -->
 		<section class="content">
+		<input type ='hidden' id ='firesid' value = '${cookie.LOGIN_ID.value }'>
 		<hr />
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -64,9 +65,7 @@
 </body>
 
 <%@include file="footer.jsp"%>
-
-  <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
 var config = {
         apiKey: "AIzaSyD8Qs39vkxQw8pdWiXlkcMug3PL1YJeS0Q",
@@ -77,6 +76,7 @@ var config = {
     };
     firebase.initializeApp(config);
 
+    
     // Get a reference to the storage service, which is used to create references in your storage bucket
     var storage = firebase.storage();
 //Create a storage reference from our storage service
@@ -96,8 +96,9 @@ var config = {
 	var starsRef = storageRef.child("member/"+sid+"_0.jpg");
     // Get the download URL
     starsRef.getDownloadURL().then(function(url) {
-   
-   		$("#headerimg").attr("src",url);
+    	
+   		var headimg= $("#headerimg").attr("src",url);
+   		console.log(headimg);
     }).catch(function(error) {
 	switch (error.code) {
         case 'storage/object_not_found':
@@ -176,7 +177,7 @@ $(document).ready(function() {
 						var closeDate = closeyear + "/" + closemonth + "/" + closedate;
 						  
 						
-						str += "<a href=view?pno=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+						str += "<a href=programView?pno=" + this.pno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.category+"</span>"
 							+ "<span class=''>"+this.pcourse+"</span>"
 							+ "<span class='text-muted' style='font-size: 11px;'>--" +openDate+"</span>"
