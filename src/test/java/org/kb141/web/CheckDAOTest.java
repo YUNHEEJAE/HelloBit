@@ -29,13 +29,15 @@ public class CheckDAOTest {
 	@Test
 	public void createTest() throws Exception {
 		CheckVO obj = new CheckVO();
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 		obj.setSid("ljp");
 		obj.setPno(1);
-
 		String emotion = "\"scores\"" + ": {" + "\"anger\"" + ": 0," + "\"contempt\"" + ": 0, " + "\"disgust\"" + ":0,"
 				+ "\"fear\"" + ": 0," + "\"happiness\"" + ": 0," + "\"neutral\"" + ":1," + "\"sadness\"" + ":0,"
 				+ "\"surprise\"" + ": 0}";
 		obj.setEmotion(emotion);
+		obj.setChecktime(dateFormat.parse("2017-01-04 18:34:23"));
+		System.out.println(obj);
 		dao.create(obj);
 	}
 

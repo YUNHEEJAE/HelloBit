@@ -46,7 +46,7 @@
 								</div>
 								<div class="checkedBoxBody">
 									<div class="box-body"
-										style="color: #00A65A; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">2</div>
+										style="color: #00A65A; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">${CheckDateVO.attend}</div>
 								</div>
 							</div>
 						</div>
@@ -58,7 +58,7 @@
 								<div class="checkedBoxBody">
 									<div class="box-body"
 										style="color: #F39C12; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
-										0</div>
+										${CheckDateVO.late}</div>
 								</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 								<div class="checkedBoxBody">
 									<div class="box-body "
 										style="color: #DD4B39; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
-										0</div>
+										${CheckDateVO.absent}</div>
 								</div>
 							</div>
 						</div>

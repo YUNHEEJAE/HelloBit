@@ -6,9 +6,8 @@
 <mapper namespace="org.kb141.mapper.CheckMapper">
 
 	<insert id="create" parameterType="CheckVO">
-		insert into tbl_check (sid,
-		pno, emotion)
-		values (#{sid}, #{pno}, #{emotion})
+		insert into tbl_check (sid,	pno, emotion, checktime)
+		values (#{sid}, #{pno}, #{emotion}, #{checktime})
 	</insert>
 
 	<select id="checkList" resultType="CheckVO">
@@ -33,8 +32,7 @@
 			sum(if(week_result = 'we',1,0)) wed, sum(if(week_result = 'th',1,0)) thu, 
 		    sum(if(week_result = 'fr',1,0)) fri
 		from(
-		select * ,
-			case
+		select * , case
 		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 4 )) then 'fr'
 			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 3 )) then 'th'
 			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 2 )) then 'we'
@@ -97,9 +95,6 @@
 		]]>
 	</select>
 	
-	
-	
-	
 	<select id="checkPeriodMonthName" resultType="CheckPeriodMonthNameVO">
 	select date_format(opendate,'%b') as 'first',
 	date_format(date_add(opendate, interval +1 month),'%b') as 'second',
@@ -112,11 +107,4 @@
 	sid=#{sid})
 	</select>
 	
-	
-	
-	
-	
-	
-
-
 </mapper>

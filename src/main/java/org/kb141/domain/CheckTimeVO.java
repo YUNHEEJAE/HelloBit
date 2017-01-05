@@ -8,6 +8,7 @@ public class CheckTimeVO {
 	private Integer pno;
 	private Date firsttime, lasttime;
 	private String states;
+	
 	public String getSid() {
 		return sid;
 	}
