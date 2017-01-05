@@ -2,6 +2,7 @@ package org.kb141.persistence;
 
 import java.util.List;
 
+import org.kb141.domain.CheckDateVO;
 import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 
@@ -21,5 +22,8 @@ public interface StudentDAO {
 	
 	//personId 에 대한 이름 가져오기 
 	public StudentVO readSname(String personId) throws Exception;
+
+	public CheckDateVO checkDateCount(String sid) throws Exception;
+	
 	
 }

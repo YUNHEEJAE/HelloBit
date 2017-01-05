@@ -45,10 +45,29 @@
 	</select>
 
 
+	<select id ="checkDateCount" resultType="CheckDateVO">
+	 <![CDATA[ 
+	 select count(if(ress.states='blue',ress.states,null))attend, count(if(ress.states='red',ress.states,null))late, 
+ 		(select (select count(*) as totaldatecount from(
+			select count(*) from tbl_check where month(checktime) = month(curdate()) group by date(checktime))p) - (select count(*) from (
+		select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states
+			from (select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime
+			from tbl_check where sid = #{sid} group by date(checktime)) t where month(t.firsttime) = month(curdate())) res)abs)absent from (
+			select *, case when time(tt.firsttime)<='09:00' then 'blue' else 'red' end as states
+			from (select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime
+			from tbl_check where sid = #{sid} group by date(checktime)) tt where month(tt.firsttime) = month(curdate())) ress
+			]]>
+	</select>
 
 
-
-
-
+<!-- 	<select id="checkDateCount" resultType="Integer"> -->
+<!-- 	select count(if(res.states='blue',res.states,null))blue, count(if(res.states='red',res.states,null))red from ( -->
+<!-- 	<![CDATA[  -->
+<!-- 		select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states -->
+<!-- 			from (select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime -->
+<!-- 			from tbl_check where sid = 'yhj' group by date(checktime)) -->
+<!-- 			]]> -->
+<!-- 			 t where month(t.firsttime) = month(curdate())) res -->
+<!-- 	</select> -->
 
 </mapper>
