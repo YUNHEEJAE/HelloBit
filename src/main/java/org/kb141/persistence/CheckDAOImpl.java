@@ -5,9 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.kb141.domain.CheckLateManVO;
+import org.kb141.domain.CheckPeriodMonthNameVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
-import org.kb141.domain.WeekDataVO;
+import org.kb141.domain.CheckWeekVO;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -43,14 +45,14 @@ public class CheckDAOImpl implements CheckDAO {
 	}
 
 	@Override
-	public WeekDataVO checkWeek(Integer pno) throws Exception {
+	public CheckWeekVO checkWeek(Integer pno) throws Exception {
 		return sqlSession.selectOne(NAME + "checkWeek", pno);
 	}
 
 	@Override
-	public List<String> checkLaterMan(Integer pno) throws Exception {
+	public List<CheckLateManVO> checkLateMan(Integer pno) throws Exception {
 
-		return sqlSession.selectList(NAME + "checkLaterMan", pno);
+		return sqlSession.selectList(NAME + "checkLateMan", pno);
 	}
 
 	@Override
@@ -66,6 +68,16 @@ public class CheckDAOImpl implements CheckDAO {
 	@Override
 	public Integer checkAttendanceCnt(Integer pno) throws Exception {
 		return sqlSession.selectOne(NAME + "checkAttendanceCnt", pno);
+	}
+
+	@Override
+	public List<CheckTimeVO> todayCheck(Integer pno) throws Exception {
+		return sqlSession.selectList(NAME + "todayCheck", pno);
+	}
+
+	@Override
+	public CheckPeriodMonthNameVO checkPeriodMonthName(String sid) throws Exception {
+		return sqlSession.selectOne(NAME+"checkPeriodMonthName", sid);
 	}
 
 }

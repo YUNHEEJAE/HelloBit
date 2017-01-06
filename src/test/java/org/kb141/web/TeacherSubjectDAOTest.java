@@ -36,7 +36,7 @@ public class TeacherSubjectDAOTest {
 	
 	@Test
 	public void readTest() throws Exception {
-		System.out.println(dao.read(22));
+		System.out.println(dao.read(29));
 	}
 	
 	@Test
@@ -61,7 +61,7 @@ public class TeacherSubjectDAOTest {
 	@Test
 	public void getTeacherSubject() throws Exception{
 		
-		System.out.println(dao.getTeacherSubject(1));
+		System.out.println(dao.getTeacherSubject(30));
 		
 	}
 	// ============================ service =======================
@@ -76,7 +76,7 @@ public class TeacherSubjectDAOTest {
 	
 	@Test
 	public void viewTest()throws Exception{
-		System.out.println(teacherSubjectService.view(23));	
+		System.out.println(teacherSubjectService.view(29));	
 	}
 	
 	@Test
@@ -100,11 +100,10 @@ public class TeacherSubjectDAOTest {
 		
 	@Test
 	public void getTeacherSubjectService() throws Exception{
-		System.out.println(teacherSubjectService.getTeacherSubject(37));
+		System.out.println(teacherSubjectService.getTeacherSubject(36));
 	}
 	
-		
-	}
+}
 	
 	
 	

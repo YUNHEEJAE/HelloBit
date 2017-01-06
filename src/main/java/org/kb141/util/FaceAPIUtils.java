@@ -134,7 +134,7 @@ public class FaceAPIUtils {
         {
             URIBuilder builder = new URIBuilder("https://api.projectoxford.ai/face/v1.0/persongroups/"+personGroupId+"/persons/"+personId+"/persistedFaces");
 
-            builder.setParameter("userData", "test1");
+//            builder.setParameter("userData", "test1");
 
             URI uri = builder.build();
             HttpPost request = new HttpPost(uri);
@@ -240,16 +240,15 @@ public class FaceAPIUtils {
 			System.out.println( "info ==========================================" + array);
 			
 			//JSON에서 faceId 추출해서 'faceId','faceId','faceId',  << 이모양으로 만들어서 str에 저장
-			for(int i = 0 ; i < array.size(); i++){
-				 JSONObject obj = (JSONObject) array.get(i);
-				 str +=  "'" + obj.get("faceId") + "'," ;
-			}
-
-			if (entity != null) {
-				System.out.println(str);
+			if(array != null){
+				for(int i = 0 ; i < array.size(); i++){
+					 JSONObject obj = (JSONObject) array.get(i);
+					 str +=  "'" + obj.get("faceId") + "'," ;
+				}
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("error : " + e.getMessage());
+			
 		}
 		return str;
 	}
@@ -258,6 +257,8 @@ public class FaceAPIUtils {
 	
 	
 	public List<String> identifyFace(String faceIds, String personGroupId) {
+		System.out.println(("faceid : " + faceIds + "persongroupID : " + personGroupId));
+		
 		HttpClient httpclient = HttpClients.createDefault();
 
 		List<String> result = new ArrayList<String>();
@@ -271,20 +272,25 @@ public class FaceAPIUtils {
             HttpPost request = new HttpPost(uri);
             request.setHeader("Content-Type", "application/json");
             request.setHeader("Ocp-Apim-Subscription-Key", "935f6dcdc2154d5aa9a794fe1e53e0e6");
-
-
+            
+            
             // Request body
             StringEntity reqEntity = new StringEntity("{'faceIds':["+faceIds+"],'personGroupId':'"+personGroupId+"','maxNumOfCandidatesReturned':1}");
+            
+            System.out.println(reqEntity);
+            
             request.setEntity(reqEntity);
-
+            
             HttpResponse response = httpclient.execute(request);
             HttpEntity entity = response.getEntity();
             
             String data = EntityUtils.toString(entity);
+            System.out.println(data);
             
             JSONParser parser = new JSONParser();
             JSONArray array = (JSONArray) parser.parse(data);
-            
+            System.out.println("array : " + array.toJSONString());
+            System.out.println("entity : " + entity);
 //            JSONObject obj = (JSONObject) array.get(0);
 //            JSONArray candidatesArray = (JSONArray) obj.get("candidates");
 //            JSONObject candidatesObj = (JSONObject) candidatesArray.get(0);
@@ -292,9 +298,8 @@ public class FaceAPIUtils {
 //            JSONObject jsonObj = (JSONObject) parser.parse(data);
 //            System.out.println(jsonObj);
             
-            if (entity != null) 
-            {
-            	System.out.println(EntityUtils.toString(entity));
+            if(data!=null){
+            	System.out.println("======================================go");
             	 for(int i = 0 ; i < array.size(); i++){
                  	JSONObject obj = (JSONObject) array.get(i);
                  	JSONArray candidatesArray = (JSONArray) obj.get("candidates");
@@ -307,7 +312,7 @@ public class FaceAPIUtils {
                  }
             }
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
@@ -316,7 +321,7 @@ public class FaceAPIUtils {
         
 	}
 	
-	public List<String> detectAndIdentifyFace(byte[] imgData, String personGroupId) throws IOException {
+	public List<String> detectAndIdentifyFace(byte[] imgData, String personGroupId) throws Exception {
 		
 		return identifyFace(detectFace(imgData), personGroupId);
 		

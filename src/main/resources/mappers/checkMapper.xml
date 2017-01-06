@@ -6,9 +6,8 @@
 <mapper namespace="org.kb141.mapper.CheckMapper">
 
 	<insert id="create" parameterType="CheckVO">
-		insert into tbl_check (sid,
-		pno, emotion)
-		values (#{sid}, #{pno}, #{emotion})
+		insert into tbl_check (sid,	pno, emotion, checktime)
+		values (#{sid}, #{pno}, #{emotion}, #{checktime})
 	</insert>
 
 	<select id="checkList" resultType="CheckVO">
@@ -27,33 +26,20 @@
 		tbl_take_program where pno = #{pno} and state = true
 	</select>
 
-	<select id="checkWeek" resultType="WeekDataVO">
-		select
-		sum(if(week_result =
-		'mo',1,0)) mon, sum(if(week_result = 'tu',1,0)) tue,
-		sum(if(week_result = 'we',1,0)) wed, sum(if(week_result = 'th',1,0))
-		thu,
-		sum(if(week_result = 'fr',1,0)) fri
-		from
-		(select * ,
-		case
-		when
-		checktime >= (select ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 4 ))
-		then 'fr'
-		when checktime >= (select ADDDATE( CURDATE(), -
-		WEEKDAY(CURDATE()) + 3 ))
-		then 'th'
-		when checktime >= (select ADDDATE(
-		CURDATE(), - WEEKDAY(CURDATE()) + 2 ))
-		then 'we'
-		when checktime >=
-		(select ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 1 ))
-		then 'tu'
-		when
-		checktime >= (select ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 0 ))
-		then 'mo'
-		end as week_result
-		from tbl_check where pno = #{pno}) t
+	<select id="checkWeek" resultType="CheckWeekVO">
+		select 
+			sum(if(week_result = 'mo',1,0)) mon, sum(if(week_result = 'tu',1,0)) tue, 
+			sum(if(week_result = 'we',1,0)) wed, sum(if(week_result = 'th',1,0)) thu, 
+		    sum(if(week_result = 'fr',1,0)) fri
+		from(
+		select * , case
+		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 4 )) then 'fr'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 3 )) then 'th'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 2 )) then 'we'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 1 )) then 'tu'
+		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 0 )) then 'mo'
+			end as week_result
+		from tbl_check where pno = #{pno} group by date(checktime), sid) t
 	</select>
 
 	<select id="lateMember" resultType="CheckVO">
@@ -69,33 +55,56 @@
 	</select>
 
 
-
-	<select id="checkLaterMan" resultType="String">
-		<![CDATA[
-			select sid from (select sid, date_format(checktime, "%H:%i:%S")latetime from tbl_check where pno=#{pno})ch where ch.latetime >= "09:10:00" group by sid order by count(sid) desc
-		]]>
-	</select>
-
 	<select id="checkLaterCnt" resultType="Integer">
 		<![CDATA[
 			select count(distinct(date_format(checktime, "%y-%c-%d")))cnt from tbl_check where pno = #{pno} and date_format(checktime, "%H:%i:%S") >= '09:10:00' group by sid order by cnt desc
 		]]>
 	</select>
-
+ 
 	<select id="checkAttendanceCnt" resultType="Integer">
 		<![CDATA[
-			select count(distinct(date_format(checktime, "%y-%c-%d"))) from tbl_check where pno = #{pno}
+			select count(distinct(date_format(checktime, "%y-%c-%d"))) datecnt from tbl_check where pno = #{pno}
 		]]>
 	</select>
 
 	<select id="checkStudent" resultType="CheckTimeVO">
 		<![CDATA[
-			select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime,
-			case when time(checktime)<='09:00' then 'blue'
-			else 'red' end as states
-			from tbl_check where sid=#{sid} group by date(checktime)
+			select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states
+			from (select sid, pno, min(checktime) as firsttime, max(checktime) as lasttime
+			from tbl_check where sid = #{sid} group by date(checktime)) t
+		]]>
+	</select>
+	
+	<!-- by Senyo -->
+	
+	<select id="todayCheck" resultType="CheckTimeVO">
+		<![CDATA[
+			select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states from (
+			select sid, pno, min(checktime) firsttime, max(checktime) lasttime from tbl_check
+			where pno = #{pno} and checktime > curdate() and checktime < (curdate() + 1)
+			group by date(checktime), sid) t
 		]]>
 	</select>
 
 
+	<select id="checkLateMan" resultType="CheckLateManVO">
+		<![CDATA[
+			select sname, count(*) delaycnt
+			from (select cno, sid, pno, min(checktime) checktime from tbl_check where pno = #{pno} group by date(checktime), sid ) t join tbl_student s
+		    where time(t.checktime)>'09:10' and t.sid = s.sid group by t.sid order by delaycnt desc
+		]]>
+	</select>
+	
+	<select id="checkPeriodMonthName" resultType="CheckPeriodMonthNameVO">
+	select date_format(opendate,'%b') as 'first',
+	date_format(date_add(opendate, interval +1 month),'%b') as 'second',
+	date_format(date_add(opendate, interval +2 month),'%b') as 'third' ,
+	date_format(date_add(opendate, interval +3 month),'%b') as 'fourth' ,
+	date_format(date_add(opendate, interval +4 month),'%b') as 'fifth' ,
+	date_format(date_add(opendate, interval +5 month),'%b') as 'sixth' ,
+	date_format(closedate,'%b') as 'seventh'
+	from tbl_program where pno =(select pno from tbl_take_program where
+	sid=#{sid})
+	</select>
+	
 </mapper>

@@ -120,7 +120,9 @@
 				</div>
 				</form>
 				<button type="button" class="btn btn-success" id="btnModify">Modify</button>
-				<a href="view?pno=${param.pno}"<button type="button" class="btn btn-warning" id="btnCancel" >Cancel</button></a>  
+
+				<a href="view?pno=${param.pno}"><button type="button" class="btn btn-warning" id="btnCancel" >Cancel</button></a>
+
 			</div>
 		</div>
 		</section>

@@ -67,6 +67,11 @@ public class StudentDAOTest {
 	}
 	
 	
+	@Test
+	public void getcheckDateCountTest() throws Exception{
+		System.out.println(dao.checkDateCount("yhj"));
+	}
+	
 	
 	// =============== SERVICE ==================
 	
@@ -125,6 +130,10 @@ public class StudentDAOTest {
 		System.out.println(service.getViewProgram("yhj"));
 	}
 	
+	@Test
+	public void getcheckDateCountServiceTest() throws Exception{
+		System.out.println(service.getcheckDateCount("yhj"));
+	}
 	
 	
 }

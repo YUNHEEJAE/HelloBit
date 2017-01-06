@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,47 +18,49 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program List <small>Blank example to the boxed layout</small>
+			Faculity List <small> 학생 / 교직원 / 교실 관리 페이지 입니다.</small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
+			<li><a href="list"><i class="fa fa-dashboard active"></i>
+					Home</a></li>
+
 		</ol>
 		</section>
-
 		<!-- Main content -->
 		<section class="content">
 		<hr />
 		<div class="row">
-				<form class="createBtn">
-				<input type="submit" class='btn btn-block btn-primary' value='create' id='createBtn'></form>
-
+			<div class="col-md-10 col-md-offset-1">
 				
-			<div class="col-sm-9 col-md-12">
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs subjectTab">
-					<li class="active"><a href="#student" data-toggle="tab"
-						name='student'> <span class="glyphicon glyphicon-th-list"></span> Student
-					</a></li>
-					<li><a href="#teacher" data-toggle="tab" name='teacher'><span
-							class="glyphicon glyphicon-th-list"></span> Teacher</a></li>
-					<li><a href="#faculity" data-toggle="tab" name='faculity'><span
-							class="glyphicon glyphicon-th-list"></span> Faculity</a></li>
-					<li><a href="#classroom" data-toggle="tab" name='classroom'><span
-							class="glyphicon glyphicon-th-list"></span> Classroom</a></li>
-					<li><a href="#subject" data-toggle="tab" name='subject'><span
-							class="glyphicon glyphicon-th-list"></span> Subject</a></li>
-					<li><a href="#teachersubject" data-toggle="tab" name='teachersubject'><span
-							class="glyphicon glyphicon-th-list"></span> TeacherSubject</a></li>					
-					<input type='hidden' class='saveid'>
-											
-				</ul>
+				<div class="col-sm-9 col-md-12">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs subjectTab">
+						<li class="active"><a href="#student" data-toggle="tab" name='student'><span
+								class="glyphicon glyphicon-th-list"></span>Student</a></li>
+						<li><a href="#teacher" data-toggle="tab" name='teacher'><span
+								class="glyphicon glyphicon-th-list"></span> Teacher</a></li>
+						<li><a href="#faculity" data-toggle="tab" name='faculity'><span
+								class="glyphicon glyphicon-th-list"></span> Faculity</a></li>
+						<li><a href="#classroom" data-toggle="tab" name='classroom'><span
+								class="glyphicon glyphicon-th-list"></span> Classroom</a></li>
+						<li><a href="#subject" data-toggle="tab" name='subject'><span
+								class="glyphicon glyphicon-th-list"></span> Subject</a></li>
+						<li><a href="#teachersubject" data-toggle="tab"
+							name='teachersubject'><span
+								class="glyphicon glyphicon-th-list"></span> TeacherSubject</a></li>
+						<input type='hidden' class='saveid'>
+					</ul>
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div class="tab-pane programlist active in" id="java"></div>
 
-				<!-- Tab panes -->
-				<div class="tab-content">
-					<div class="tab-pane programlist active in" id="java" ></div>
-
+					</div>
+				</div>
+				<div class="col-md-3 pull-right">
+					<form class="createBtn" method="get">
+						<input type="submit" class='btn btn-block btn-primary' 
+							value='추가' id='createBtn'>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -75,6 +78,14 @@
 
 
 $(document).ready(function() {
+	
+		var result = {result};
+	
+		if(result == "success"){
+			alert("인증 사진 등록 완료")
+		}
+	
+	
 	
 		$("#faculity_2").attr("class", "active");	
 		$("#faculity_list").attr("class", "active");	
@@ -100,11 +111,7 @@ $(document).ready(function() {
 		function getCategoryList(targetCategory) {
 			console.log("getCategoryList is called..")
 			console.log(targetCategory);
-			if(targetCategory == "student"){
-				$("#createBtn").hide();
-			}else{
-				$("#createBtn").show();
-			}
+			
 			$(".programlist").attr("id", targetCategory);
 			
 			$.getJSON("/web/faculity/"+ targetCategory +"list/" , function(data) {
@@ -125,24 +132,25 @@ $(document).ready(function() {
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
 							break;
 							
-							case 'faculity' : 	str += "<a href=faculityview?fid=" + this.fid +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'faculity' : 	str += "<a href=faculityview?fid="+this.fid+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.fname+"</span>"
 							break;
 							
-							case 'classroom' : 	str += "<a href=classroomview?roomname=" + this.roomname +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'classroom' : 	str += "<a href=classroomview?roomname="+this.roomname+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.roomname+"</span>"
-							+ "<span class=''>"+this.rempty+"</span>"
+							+ "<span class=''>"+(this.rempty == true ? "비어 있음" : "사용 중")+"</span>"
 							break;
 							
-							case 'subject' : 	str += "<a href=subjectview?subno=" + this.subno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'subject' : 	str += "<a href=subjectview?subno=" +this.subno+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.subno+"</span>"
-							+ "<span class=''>"+this.subname +" "+ this.subgrade+"</span>"
+							+ "<span class=''>"+this.subname+" "+this.subgrade+"</span>"
 							break;
 							
-							case 'teachersubject' : str += "<a href=teachersubjectview?tsno=" + this.tsno +" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
+							case 'teachersubject' : str += "<a href=teachersubjectview?tsno="+this.tsno+" class='list-group-item'> <span class='glyphicon glyphicon-star-empty'></span>"
 							+ " <span class='name' style='min-width: 120px; display: inline-block;'>"+this.tname+"</span>"
-							+ "<span class=''>"+this.subname + " " + this.subgrade+"</span>"
+							+ "<span class=''>"+this.subname+" " +this.subgrade+"</span>"
 							break;
+							
 							}
 
 					});
@@ -163,14 +171,10 @@ $(document).ready(function() {
 		});
 		
  		$("#createBtn").on("click",function(event){
-			
 			console.log(event);
 			var domain = $(".saveid").val();
-			
 			console.log(domain);
-			
 			$(".createBtn").attr("action",domain+"register").submit();			
-			
 		}) ;
  		
 
@@ -183,7 +187,7 @@ $(document).ready(function() {
 			
 			$(".updateBtn").attr("action",domain+"modify").submit();			
 			
-		}) ;
+		});
  		
  		$("#deleteBtn").on("click",function(event){
 			

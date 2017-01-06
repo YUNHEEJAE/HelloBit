@@ -26,7 +26,7 @@
 		<!-- Main content -->
 		<section class="content">
 		<div class="row">
-			<div class="col-md-12"> 
+			<div class="col-md-8 col-md-offset-2"> 
 				<form method="post" id="inputForm">
 				<!-- Text input-->
 				<div class="form-group">
@@ -76,7 +76,7 @@
 					    	</select>
 					    </div>
 					    
-					    <div class="col-md-2">
+					    <div class="col-md-2 pull-right">
 					   		<button type="button" class="btn btn-info" id="addCurriculum">추가</button>
 					   		<button type="button" class="btn btn-warning" id="delCurriculum">삭제</button>
 				    	</div>
@@ -112,7 +112,6 @@
 				  <input id="maximum" name="maximum" type="text" placeholder="00" value="30"  class="form-control" required="">
 				</div>
 				
-				
 				<div class="form-group">
 					<label class=" control-label" for="persongroupid" >Person Group ID</label>  
 					<div>
@@ -120,17 +119,18 @@
 						<input id="persongroupid" name="persongroupid" placeholder="person_group_id" class="form-control"   required="">
 					</div>
 					
-					<div class="col-md-1">
+					<div class="col-md-1 pull-right">
 				   		<button type="button" class="btn btn-info" id="getPersonGroupId">생성</button>
 			    	</div>
 					</div>
 				   <span class="help-block">버튼을 누르면 카테고리와 기수에 따라 자동으로 생성됩니다.</span>  
 				</div>
-				
 				</form>
-				<button type="button" class="btn btn-success" id="btnRegister">Register</button>
-				<a href="list"<button type="button" class="btn btn-warning" id="btnCancel" >Cancel</button></a>
 				
+				<div class="pull-right">
+				<button type="button" class="btn btn-success" id="btnRegister">Register</button>
+				<a href="list"><button type="button" class="btn btn-warning" id="btnCancel" >Cancel</button></a>
+				</div>
 				
 			</div>
 		</div>

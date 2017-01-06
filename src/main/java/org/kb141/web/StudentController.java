@@ -118,6 +118,7 @@ public class StudentController {
 		model.addAttribute("studentVO", studentService.view(sid));
 		model.addAttribute("programVO", studentService.getViewProgram(sid));
 		model.addAttribute("checkTimeVO", checkService.checkStudent(sid));
+		model.addAttribute("CheckDateVO", studentService.getcheckDateCount(sid));
 	}
 	
 	
@@ -127,11 +128,13 @@ public class StudentController {
 	
 		logger.info("수강신청 !!");
 		logger.info("VO : " + vo);
-	
+		
 		rttr.addFlashAttribute("result" , "success");
 		
 		takeprogramService.join(vo);
+		
 		return "redirect:../program/list";
+
 	
 		
 	}

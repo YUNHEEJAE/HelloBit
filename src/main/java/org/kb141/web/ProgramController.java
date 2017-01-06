@@ -62,11 +62,16 @@ public class ProgramController {
 	@Inject
 	private FaceAPIUtils faceAPI;
 	
+
+	@Inject
+	private ProgramService service;
 	
 	@GetMapping("/classroom")
 	public void programpage(ClassroomVO vo, Model model){
 		logger.info("program GET .....");
 	}
+	
+	
 	
 	@ResponseBody
 	@GetMapping(value="/classroomlist",  produces="application/json")
@@ -130,12 +135,7 @@ public class ProgramController {
 		return entity;
 	}
 
-	
 
-	
-
-
-	
 	@GetMapping("/view")
 	public void viewProgram(Integer pno , Model model)throws Exception{
 		logger.info("view called .............");
@@ -145,7 +145,6 @@ public class ProgramController {
 		model.addAttribute("stateCount" , takeprogramService.getstateTotal(pno));
 		
 	}
-	
 	
 	
 	@GetMapping("/categoryList/{category}")

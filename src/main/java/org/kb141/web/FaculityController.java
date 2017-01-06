@@ -1,6 +1,7 @@
 
 package org.kb141.web;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,11 +9,11 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
-import org.kb141.domain.ProgramVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -29,7 +30,6 @@ import org.kb141.service.SubjectService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
-import org.kb141.util.ByteConverter;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -76,9 +76,6 @@ public class FaculityController {
 	private TakeProgramService takeprogramService;
 	
 	@Inject
-	private ProgramService programService;
-	
-	@Inject
 	private TeacherSubjectService teacherSubjectService; 
 	
 	@Inject
@@ -86,6 +83,9 @@ public class FaculityController {
 	
 	@Inject
 	private CheckService checkService;
+	
+	@Inject
+	private ProgramService programService;
 	
 	@Inject
 	private FaceAPIUtils faceAPI;
@@ -113,31 +113,30 @@ public class FaculityController {
 			}
 		}
 		
-		// 여기다가 뭐 뭐 넘겨줘야 하지. 희재꺼랑 똑같이 해야지
-//		model.addAttribute(arg0)
+		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
+		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
+		List<CheckTimeVO> jigak = new ArrayList<CheckTimeVO>();
 		
-		int check = checkService.getcheckDate(pno);
+		for (CheckTimeVO checkTimeVO : result) {
+			if(checkTimeVO.getStates().equals("blue") ){
+				chulseok.add(checkTimeVO);
+			} else {
+				jigak.add(checkTimeVO);
+			}
+		}
+		
 		int total = takeprogramService.getstateTotal(pno);
-		int late = checkService.getcheckLate(pno);
-		int absent = total - check; 
-		logger.debug(""+absent);
 		
-		
-		
+		model.addAttribute("program", programService.view(pno));
+		model.addAttribute("attendanceCnt",checkService.getAttendanceCnt(pno));
+		model.addAttribute("check", result.size());
+		model.addAttribute("late", jigak.size());
+		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("total", total);
-		model.addAttribute("check", check);
-		model.addAttribute("absent", absent);
-		model.addAttribute("late", late);
-		model.addAttribute("laterMan", checkService.getcheckLaterMan(pno));
-		model.addAttribute("lateCnt", checkService.getcheckLaterCnt(pno));
-		model.addAttribute("AttendanceCnt",checkService.getcheckAttendanceCnt(pno));
-
-		
-		
+		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
+		model.addAttribute("week", checkService.getCheckWeek(pno));
 		
 	}
-	
-	
 	
 	@GetMapping("/noticeBoard")
 	public void getNoticeBoard(Model model) throws Exception {
@@ -158,6 +157,7 @@ public class FaculityController {
 //		return list;
 //
 //	}
+	
 
 	@GetMapping("/list")
 	public void list() throws Exception{
@@ -243,6 +243,19 @@ public class FaculityController {
 		return entity;
 	}
 	 
+	@GetMapping("/teachersubjectlist")
+	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(){
+		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
+		try{
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(teacherSubjectService.getJoinAllList(), HttpStatus.OK);
+		}catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<List<JoinTeacherSubjectVO>>(HttpStatus.BAD_REQUEST);
+		}
+		logger.info("JoinTeacherSubjectVOList : " + entity);
+		return entity;
+	}
+	
 //	@GetMapping("/teachersubjectlist/{pno}")
 //	public ResponseEntity<List<JoinTeacherSubjectVO>> TeacherSubjectList(@PathVariable("pno") Integer pno){
 //		ResponseEntity<List<JoinTeacherSubjectVO>> entity = null;
@@ -274,22 +287,24 @@ public class FaculityController {
 		TakeProgramVO vo = new TakeProgramVO();
 		logger.info("============" + state + pno + "=============");
 		vo.setPno(pno);
-		if(state.equals("true")){
-			vo.setState(true);
-		}
-		else{
-			vo.setState(false);
-		}
+//		if(state.equals("true")){
+//			vo.setState(true);
+//		}
+//		else{
+//			vo.setState(false);
+//		}
+		
+		vo.setState(state.equals("true") ? true : false);
 
 		ResponseEntity<List<TakeProgramVO>> entity = null;
-		try{
+		try {
 			entity = new ResponseEntity<List<TakeProgramVO>>(takeprogramService.getstateList(vo) , HttpStatus.OK);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<TakeProgramVO>>(HttpStatus.BAD_REQUEST);
-			
 		}
-			return entity;
+		
+		return entity;
 		
 	}
 
@@ -309,6 +324,7 @@ public class FaculityController {
 			vo.setSid(sid[i]);
 			vo.setPno(pno);
 			String api = faceAPI.createPersonId(sid[i], groupid);
+			logger.info("api : " + api);
 			vo.setPersonid(api);
 			System.out.println(vo);
 			takeprogramService.modify(vo);
@@ -367,7 +383,24 @@ public class FaculityController {
 		}
 		return entity;
 	}
+	@GetMapping("/studentregister")
+	public void studentRegister() throws Exception{
+		logger.info("Student Create.....");
+	}
+	
+	@PostMapping("/studentregister")
+	public String studentRegisterPOST(StudentVO vo,  String filename , RedirectAttributes rttr) throws Exception{
+		
+		logger.info("register POST....");
+		logger.info("VO : " + vo);
+		logger.info("filename : " + filename);
+		studentService.register(vo , filename);
+		rttr.addFlashAttribute("result","success");
+		
+		return "redirect:list";
 
+	}
+	
 	
 	@GetMapping("/studentview")
 	public void StudentView(Model model, String sid) throws Exception {
@@ -566,31 +599,37 @@ public class FaculityController {
 	@GetMapping("/pictureRegister")
 	public void picturePage(String sid , Model model)throws Exception{
 		logger.info("picture called.............");
+		logger.info("sid : " + sid);
 		model.addAttribute("sid" , sid);
 		
 	}
 	
 	
 	@PostMapping("/pictureRegister")
-	public void pictureRegister(String[] url ,String sid)throws Exception{
+	public String pictureRegister(String[] persistedId , String sid , RedirectAttributes rttr)throws Exception{
 		
-		
+	
 		logger.info("pictureReg called......");	
-		logger.info("sid : " + sid);
-		logger.info("url :" + Arrays.toString(url));
-		ImageVO vo = new ImageVO();
-		ByteConverter bc = new ByteConverter();
-		TakeProgramVO tvo = takeprogramService.view(sid);
-		ProgramVO pvo = programService.view(tvo.getPno());
-		String personId = tvo.getPersonid();
-		String personGroupId = pvo.getPersongroupid();
 		
-		for(int i = 0 ; i < url.length ; i ++){
+
+		logger.info("persistedId :" + persistedId);
+		
+		logger.info("sid : " + sid);
+		ImageVO vo = new ImageVO();
+		
+		for(int i = 0 ; i < persistedId.length ; i ++){
+			
 			vo.setSid(sid);
-			vo.setPersistedfaceid(faceAPI.addPersonFace(bc.ByteConvert(url[i]), personId, personGroupId));
-			faceAPI.trainPersonGroup(personGroupId);
+			vo.setPersistedfaceid(persistedId[i]);
+			logger.info("vo :" + vo );
 			imageService.register(vo);
+			logger.info("========================");
 		}
+//		rttr.addFlashAttribute("result" , "success");
+		
+//		return "redirect:list";
+		
+		return null;
 	}
 	
 	@GetMapping("/teachersubjectregister")
