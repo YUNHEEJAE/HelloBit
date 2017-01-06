@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
@@ -193,16 +194,24 @@
 				<!-- /.box-body -->
 
 			</div>
-			
+		<%-- 	 <div type="hiddin" id ='hidden' value='${StudentCheckKLogVO.checktime}'></div>  --%>
 		<div class="box box-default color-palette-box">
         <div class="box-header with-border">
           <h3 class="box-title"><b>수강생 출석 로그</b></h3>
         </div>
         <div class="box-body">
-          <div class="row">
+          <div class="row" style="text-align:center;">
           
-			<div id="chatMessage" style="width:200px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"></div>
-					
+								
+					<div id="chatMessage" >
+	
+								
+						<%-- 	<span value="<fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd "/>"></span> --%>
+						<%-- 	<span value="${StudentCheckKLogVO.sname} / ${StudentCheckKLogVO.checktime}" > --%>
+							<c:forEach items="${StudentCheckKLogVO}" var='StudentCheckKLogVO' >
+								 <div>${StudentCheckKLogVO.sname} / <fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div>
+							</c:forEach>
+					</div>	
           </div>
           <!-- /.row -->
           <div class="row">
@@ -239,7 +248,6 @@ $(document).ready(function() {
 	
 	
 	
-	
 	$("#faculity_1").attr("class", "active");
 	$("#pno_37").attr("class", "active");
 
@@ -250,9 +258,12 @@ $(document).ready(function() {
 			
 			sock.onmessage = function(event) {
 				console.log(event.data);
-				$("#chatMessage").after(event.data+"<br>");
+				$("#chatMessage").after("<div>"+event.data+"</div><br />");
+				$("#chatMessage div")[9].remove(); 
+				
 			};
 	};
+	console.log($("#hidden").val());
 	// This will get the first returned node in the jQuery collection.
 	var areaChartData = null;
 

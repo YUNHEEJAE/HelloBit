@@ -132,6 +132,7 @@ public class FaculityController {
 		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
 		model.addAttribute("week", checkService.getCheckWeek(pno));
 		model.addAttribute("emotionList", emotionUtils.emotionCounter(result));
+		model.addAttribute("StudentCheckKLogVO",checkService.getstudentCheckLog(pno));
 	}
 	
 	@GetMapping("/noticeBoard")

@@ -8,6 +8,7 @@ import org.kb141.domain.CheckLateManVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.StudentCheckKLogVO;
 import org.kb141.persistence.CheckDAO;
 import org.springframework.stereotype.Service;
 
@@ -159,6 +160,18 @@ public class CheckServiceImpl implements CheckService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
+
+	@Override
+	public List<StudentCheckKLogVO> getstudentCheckLog(Integer pno) {
+		List<StudentCheckKLogVO> result = null;
+		try {
+			result = checkDAO.studentCheckLog(pno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return result;
 	}
 

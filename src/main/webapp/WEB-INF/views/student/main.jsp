@@ -126,7 +126,7 @@
 												</span>
 												<div class="info-box-content">
 													<span class="info-box-number" style="text-transform: uppercase;">${emotion }</span>
-													<span class="text" id="text_info_${i.index }" value=" <fmt:formatDate value="${checkVOList[i.index].checktime }" type="both" pattern="yyyyMMddHHmmss"/>">
+													<span class="text" id="text_info_${i.index }" value="<fmt:formatDate value="${checkVOList[i.index].checktime }" type="both" pattern="yyyyMMddHHmmss"/>">
 <%-- 													<fmt:formatDate value="${checkVOList[i.index].checktime }" type="both" pattern="yyyyMMddHHmmss"/> --%>
 													</span>
 												</div>
