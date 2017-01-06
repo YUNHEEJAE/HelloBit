@@ -64,13 +64,13 @@
 							style="display: none;">취 소</button>
 					</div>
 					<form id='admission' action="../faculity/admission" method="post">
-						<input type="hidden" name="pno" value=""> 
+						<input type="hidden" id="admissionPno" name="pno" value=""> 
 <!-- 						<input type="hidden" name="sid" value="">  -->
-							<input type="hidden"
-							name="persongroupid" value="">
+							<input type="hidden" id="persongroupid"
+							name="groupid" value="">
 					</form>
 					<form id='cancel' action="../faculity/cancel" method="post">
-						<input type="hidden" name="pno" value="">
+						<input type="hidden" name="pno" id="canclePno" value="">
 <!-- 						 <input type="hidden" name="sid" value=""> -->
 					</form>
 				</div>
@@ -145,6 +145,12 @@ function getCategoryList(targetCategory) {
 		$('#application').css('visibility' , 'visible');
 		$('#selectstate').attr('data-pno',pno);
 		$('#selectstate').attr('data-groupid',groupid);
+		
+		$("#admissionPno").attr('value', pno);
+		$("#canclePno").attr('value',pno);
+		$("#persongroupid").attr('value', groupid);
+		
+		
 		getWaitingList(pno); 
 	});
 	
@@ -255,37 +261,33 @@ function getCategoryList(targetCategory) {
 		return year +"/"+month+"/"+day;
 	}
 	
-	//체크리스트에 체크를 하면~~~
-	$(".tab-content").on("click",".studentList .takeStudentList .studentCheckBox", function (event) {
-		console.log("click checkBox");
-		console.log(event.currentTarget.value);
-		var result = $('.studentCheckBox:checked');
-		console.log("sid: " +result[0].value);
-		console.log(result);
-		var test = $('#selectstate');
-		console.log(test);
+// 	//체크리스트에 체크를 하면~~~
+// 	$(".tab-content").on("click",".studentList .takeStudentList .studentCheckBox", function (event) {
+// 		console.log("click checkBox");
+// // 		console.log(event.currentTarget.value);
+// // 		var result = $('.studentCheckBox:checked');
+// // 		console.log("sid: " +result[0].value);
 		
-		// 		var sid = new Array();
+// 		var sid = new Array();
 		
-// 	 	$('#cancel').append("<input type='hidden' name='pno' value='"+pno+"'>") 
 // 		for(var  i = 0 ; i < result.length ; i++){
-// 			sid[i] = result[i].attributes.value.value;
-// 			$('#cancel').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
-// 		}
-// 		 $('#cancel').submit(); 
+// 			sid[i] = result[i].value;
+// 			$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
+// 		} 
+// 	});
+	
+	$("#approvalBtn").on("click", function (event) {
+		var result = $('.studentCheckBox:checked');
+		console.log(result[0].value);
 		
+		var sid = new Array();
 		
+		for(var  i = 0 ; i < result.length ; i++){
+			sid[i] = result[i].value;
+			$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
+		}
 		
-// 		event.currentTarget.checked=true;
-// 		var takeProgram = event.currentTarget;
-// 		var pno = takeProgram.dataset.pno;
-// 		var groupid = takeProgram.dataset.groupid;
-// // 		console.log(takeProgram);
-// // 		console.log(pno); 
-// // 		console.log(groupid);
-// 		$('#application').css('visibility' , 'visible');
-// 		$('#selectstate').attr('data-pno',pno);
-// 		getWaitingList(pno); 
+		$('#admission').submit();
 	});
 	
 	
