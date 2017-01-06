@@ -1,28 +1,21 @@
 package org.kb141.util;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.xml.bind.DatatypeConverter;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.apache.ibatis.type.BlobByteObjectArrayTypeHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -123,6 +116,29 @@ public class FaceAPIUtils {
         }
         return personId;
 	}
+	
+	
+	public void deletePersonId(String personId, String personGroupId) {
+		
+		HttpClient httpclient = HttpClients.createDefault();
+		try {
+
+			URIBuilder builder = new URIBuilder("https://api.projectoxford.ai/face/v1.0/persongroups/"+personGroupId+"/persons/" + personId);
+			URI uri = builder.build();
+			HttpDelete request = new HttpDelete(uri);
+			request.setHeader("Ocp-Apim-Subscription-Key", "935f6dcdc2154d5aa9a794fe1e53e0e6");
+			HttpResponse response = httpclient.execute(request);
+			HttpEntity entity = response.getEntity();
+			if (entity != null) {
+				System.out.println("PersonId Delete Success!");
+				// System.out.println(EntityUtils.toString(entity));
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	
 	// RETURN : persistedFaceId
 	public String addPersonFace(byte[] imgData, String personId, String personGroupId) {
@@ -240,16 +256,15 @@ public class FaceAPIUtils {
 			System.out.println( "info ==========================================" + array);
 			
 			//JSON에서 faceId 추출해서 'faceId','faceId','faceId',  << 이모양으로 만들어서 str에 저장
-			for(int i = 0 ; i < array.size(); i++){
-				 JSONObject obj = (JSONObject) array.get(i);
-				 str +=  "'" + obj.get("faceId") + "'," ;
-			}
-
-			if (entity != null) {
-				System.out.println("str : "+ str);
+			if(array != null){
+				for(int i = 0 ; i < array.size(); i++){
+					 JSONObject obj = (JSONObject) array.get(i);
+					 str +=  "'" + obj.get("faceId") + "'," ;
+				}
 			}
 		} catch (Exception e) {
 			System.out.println("error : " + e.getMessage());
+			
 		}
 		return str;
 	}

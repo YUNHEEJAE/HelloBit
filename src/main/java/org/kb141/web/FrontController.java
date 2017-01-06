@@ -80,22 +80,50 @@ public class FrontController {
 
 	}
 
-	@ResponseBody
+//	@ResponseBody
+//	@PostMapping(value = "/frontAuth" , produces="application/json")
+//	public StudentVO frontAuth(String blob , String groupId)throws Exception{
+//		ByteConverter bc = new ByteConverter();
+//		logger.info("groupId :" + groupId);
+//		byte[] image = bc.ByteConvert(blob);
+//		StudentVO vo = new StudentVO();
+//
+//		List<String> faceIds = faceAPI.detectAndIdentifyFace(image, groupId);
+//		logger.info("----------------");
+//		
+//		logger.info("faceId : " + faceIds);
+//			if(faceIds.size() != 0){
+//				vo = (studentService.viewSname(faceIds.get(0)));				
+//			}	
+//		return vo;
+//	}
+	
+	
 	@PostMapping(value = "/frontAuth" , produces="application/json")
-	public StudentVO frontAuth(String blob , String groupId)throws Exception{
+	public ResponseEntity<StudentVO> frontAuths(String blob , String groupId)throws Exception{
 		ByteConverter bc = new ByteConverter();
 		logger.info("groupId :" + groupId);
 		byte[] image = bc.ByteConvert(blob);
 		StudentVO vo = new StudentVO();
-
+		ResponseEntity<StudentVO> entity = null; 
 		List<String> faceIds = faceAPI.detectAndIdentifyFace(image, groupId);
 		logger.info("----------------");
 		
 		logger.info("faceId : " + faceIds);
-			if(faceIds.size() != 0){
-				vo = (studentService.viewSname(faceIds.get(0)));				
-			}	
-		return vo;
+	
+		try{
+			vo = (studentService.viewSname(faceIds.get(0)));
+
+			entity = new ResponseEntity<StudentVO>(vo , HttpStatus.OK);
+		}catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+			logger.info("no faceId....");
+			entity = new ResponseEntity<StudentVO>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+		
+	
 	}
 
 	@InitBinder
@@ -104,14 +132,18 @@ public class FrontController {
 	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 	
+
 	@ResponseBody
 	@PostMapping(value ="/emotion")
-	public void getEmotion(CheckVO vo)throws Exception{
+	public String getEmotion(CheckVO vo)throws Exception{
 //		CheckVO vo = new CheckVO();
 		logger.info("emotion called..................");	
 		logger.info("CheckVO :" + vo);	
 		logger.info("emotion : " + vo.getEmotion());
+		
 		checkService.create(vo);
+		
+		return "출석완료";
 	}  
 	
 }

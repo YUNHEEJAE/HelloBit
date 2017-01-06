@@ -24,4 +24,11 @@ public class FaceAPIUtilsTest {
 		}
 	}
 	
+	
+	@Test
+	public void deletePersonIdTest() throws Exception{
+		utils.deletePersonId("8a5c46a3-f9cc-48fc-a050-db512be2be31", "windows_20");
+		
+	}
+	
 }

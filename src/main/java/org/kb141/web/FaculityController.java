@@ -106,7 +106,7 @@ public class FaculityController {
 	public void faculityMain(Integer pno, HttpServletRequest request, Model model) throws Exception{
 		logger.info("FACULITY MAIN");
 		
-		cookieChecker.cookieChecker(request.getCookies(), pno);;
+		cookieChecker.cookieChecker(request.getCookies(), pno);
 		
 		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
 		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();

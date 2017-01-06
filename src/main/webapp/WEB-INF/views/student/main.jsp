@@ -48,9 +48,11 @@
 									<div class="box-body"
 										style="color: #00A65A; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">${CheckDateVO.attend}</div>
 								</div>
-								<p style="color: #00A65A; font-size: 20px; text-align: center; vertical-align: middle;">
-										오예~!</p>
-								<p class="text-muted right" id ="handal" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
+								<!-- <p style="color: #00A65A; font-size: 20px; text-align: center; vertical-align: middle;">
+										오예~!</p> -->
+										<div class="box-footer">
+											<p class="text-muted right" id ="handal" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
+										</div>
 							</div>
 						</div>
 						<div class="col-md-3 checkedBoxOuter">
@@ -62,10 +64,13 @@
 									<div class="box-body"
 										style="color: #F39C12; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
 										${CheckDateVO.late}</div>
-										
 								</div>
-								<p style="color: #F39C12; font-size: 20px; text-align: center; vertical-align: middle;">
-										헐레벌떡!</p>
+										<div class="box-footer">
+											<p class="text-muted right" id ="handal2" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
+										</div>
+										
+								<!-- <p style="color: #F39C12; font-size: 20px; text-align: center; vertical-align: middle;">
+										헐레벌떡!</p> -->
 								
 							</div>
 						</div>
@@ -79,8 +84,13 @@
 										style="color: #DD4B39; font-weight: 700; font-size: 90px; text-align: center; vertical-align: middle;">
 										${CheckDateVO.absent}</div>
 								</div>
-								<p style="color: #DD4B39; font-size: 20px; text-align: center; vertical-align: middle;">
-										피치 못할 사정이...</p>
+										<div class="box-footer">
+											<p class="text-muted right" id ="handal3" style="font-size: 12px; text-align:right; margin-right:10px;vertical-align: bottom;"></p>
+										</div>
+										
+										
+								<!-- <p style="color: #DD4B39; font-size: 20px; text-align: center; vertical-align: middle;">
+										피치 못할 사정이...</p> -->
 								
 							</div>
 						</div>
@@ -115,42 +125,13 @@
 												<i class="ion ${emotion == 'neutral' ? 'ion-ios-moon' : 'ion-android-warning' }"></i>
 												</span>
 												<div class="info-box-content">
-													<span class="info-box-number">My Feel is ${emotion }</span>
-													<span class="text">at ${checkVOList[i.index].checktime }</span>
+													<span class="info-box-number" style="text-transform: uppercase;">${emotion }</span>
+													<span class="text" id="text_info_${i.index }" value=" <fmt:formatDate value="${checkVOList[i.index].checktime }" type="both" pattern="yyyyMMddHHmmss"/>">
+<%-- 													<fmt:formatDate value="${checkVOList[i.index].checktime }" type="both" pattern="yyyyMMddHHmmss"/> --%>
+													</span>
 												</div>
 											</div>
 										</c:forEach>
-										
-									
-<!-- 									<div class="info-box"> -->
-<!-- 										<span class="info-box-icon bg-red"> -->
-<!-- 											<i class="fa fa-star-o"></i> -->
-<!-- 										</span> -->
-<!-- 										<div class="info-box-content"> -->
-<%-- 											<span class="info-box-text">${emotionList[0] }</span> --%>
-<!-- 											<span class="info-box-number">93,139</span> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-									
-<!-- 									<div class="info-box"> -->
-<!-- 										<span class="info-box-icon bg-red"> -->
-<!-- 											<i class="fa fa-star-o"></i> -->
-<!-- 										</span> -->
-<!-- 										<div class="info-box-content"> -->
-<!-- 											<span class="info-box-text">Likes</span> -->
-<%-- 											<span class="info-box-number">${emotionList[1] }</span> --%>
-<!-- 										</div> -->
-<!-- 									</div> -->
-									
-<!-- 									<div class="info-box"> -->
-<!-- 										<span class="info-box-icon bg-red"> -->
-<!-- 											<i class="fa fa-star-o"></i> -->
-<!-- 										</span> -->
-<!-- 										<div class="info-box-content"> -->
-<!-- 											<span class="info-box-text">Likes</span> -->
-<%-- 											<span class="info-box-number">${emotionList[2] }</span> --%>
-<!-- 										</div> -->
-<!-- 									</div> -->
 								
 								</div>
 							</div>
@@ -174,10 +155,14 @@
   <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 <script>
 $(document).ready(function () {
-	var d =new Date();
-	var curdate = (d.getMonth()+1);
-	console.log(curdate);
-	$("#handal").html(curdate+" 월 한달 간");
+	var date =new Date();
+	var year  = date.getFullYear();
+	var month = date.getMonth() + 1;
+	var lastDay =(new Date( year,month, 0) ).getDate();
+	console.log(year+','+month+','+lastDay);
+	$("#handal").html(year+"-"+month+"-1 ~ "+year+"-"+month+"-"+lastDay);
+	$("#handal2").html(year+"-"+month+"-1 ~ "+year+"-"+month+"-"+lastDay);
+	$("#handal3").html(year+"-"+month+"-1 ~ "+year+"-"+month+"-"+lastDay);
 // 	(function() {
 // 		var boxText = "";
 		
@@ -235,6 +220,84 @@ $(document).ready(function () {
 	          break;
 	      }
 	    });
+	    
+// 	    <fmt:formatDate value="${checkVOList[i.index].checktime }" type="both" pattern="yyyyMMddHHmmss"/>
+	    
+	function transferTime(time){
+		var now = new Date();
+		var sYear = time.substring(0,4);
+		var sMonth = time.substring(4,6)-1;
+		var sDate = time.substring(6,8);
+		var sHour = time.substring(8,10);
+		var sMin = time.substring(10,12);
+		var sSecond = time.substring(12,14);
+		var sc = 1000;
+		
+		var today = new Date(sYear,sMonth,sDate,sHour,sMin,sSecond);
+		 //지나간 초
+		var pastSecond = parseInt((now-today)/sc,10);
+		
+		var date;
+		var hour;
+		var min;
+		var str = "";
+		var restSecond = 0;
+		
+		if(pastSecond > 86400){
+			date = parseInt(pastSecond / 86400,10);
+			restSecond = pastSecond % 86400;
+			str = date + "일 ";
+			if(restSecond > 3600){
+				hour = parseInt(restSecond / 3600,10);
+				restSecond = restSecond % 3600;
+				str = str + hour + "시간 ";
+			if(restSecond > 60){
+				min = parseInt(restSecond / 60,10);
+				restSecond = restSecond % 60;
+				str = str + min + "분 " + restSecond + "초 전";
+			}else{
+				str = str + restSecond + "초 전";
+			}
+				}else if(restSecond > 60){
+					min = parseInt(restSecond / 60,10);
+					restSecond = restSecond % 60;
+					str = str + min + "분 " + restSecond + "초 전";
+				}else{
+					str = str + restSecond + "초 전";
+				}
+		}else if(pastSecond > 3600){
+			hour = parseInt(pastSecond / 3600,10);
+			restSecond = pastSecond % 3600;
+			str = str + hour + "시간 ";
+			if(restSecond > 60){
+				min = parseInt(restSecond / 60,10);
+				restSecond = restSecond % 60;
+				str = str + min + "분 " + restSecond + "초 전";
+			}else{
+				str = str + restSecond + "초 전";
+			}
+		}else if(pastSecond > 60){
+			 min = parseInt(pastSecond / 60,10);
+			 restSecond = pastSecond % 60;
+			 str = str + min + "분 " + restSecond + "초 전";
+		}else{
+			str = pastSecond + "초 전";
+		}
+		return str;
+	}
+	
+	for(var i = 0 ; i < 5 ; i++){
+		
+		var target = $("#text_info_"+i);
+		console.log($(target).attr("value"));
+		console.log(transferTime($(target).attr("value")));
+		$(target).html(transferTime($(target).attr("value")));
+		
+// 		$(target).attr("value")
+// 		$(target).html($(target).attr(transferTime(time));
+		
+	}
+	    
 
 
 // 	var barChart = null;

@@ -8,6 +8,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+
 public class EchoHandler extends TextWebSocketHandler {
    
 
@@ -51,6 +52,8 @@ public class EchoHandler extends TextWebSocketHandler {
 
 	}
 
+	
+	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		// super.afterConnectionClosed(session, status);

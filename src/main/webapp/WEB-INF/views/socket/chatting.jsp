@@ -23,12 +23,19 @@
 	$(document).ready(function() {
 		// 			alert("æ»≥Á");
 
-		sock = new SockJS("/web/echo-ws");
+		sock = new SockJS("/web/logWebsocket");
 		sock.onopen = function(event) {
-// 			sock.send("æ»≥Á«œººø‰");
+				console.log(event);
+				
+				sock.onmessage = function(event) {
+					console.log(event);
+				}
+				
+				
 		}
 		
 		sock.onmessage = function(event) {
+			console.log(11111);
 			console.log(event.data);
 			$("#chatMessage").append(event.data + "<br/>");
 		}
