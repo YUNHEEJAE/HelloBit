@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="../resources/dist/css/cssBipolarChart.css">
 <link rel="stylesheet"
 	href="../resources/dist/css/skins/_all-skins.min.css">
+
 </head>
 <body>
 	<div class="content-wrapper" style="min-height: 976px;">
@@ -99,7 +100,7 @@
 		</div>
 		<br>
 
-<!-- 		<div class="row row-eq-height"> -->
+		<div class="row row-eq-height">
 		<div class="col-md-6">
 			<!-- BAR CHART -->
 			<div class="box box-success">
@@ -139,7 +140,7 @@
 <!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
 <!--               </div> -->
             </div>
-            <div class="box-body">
+            <div class="box-body" id="peiChart-div">
               <canvas id="pieChart" style="height:250px" class="pieChart"></canvas>
             </div>
             <!-- /.box-body -->
@@ -198,10 +199,9 @@
 			
 
 		</div>
-<!-- 		</div> -->
+		</div>
 		</section>
 	</div>
-
 </body>
 
 <%@include file="footer.jsp"%>
@@ -307,9 +307,9 @@ $(document).ready(function() {
       //String - The colour of each segment stroke
       segmentStrokeColor: "#fff",
       //Number - The width of each segment stroke
-      segmentStrokeWidth: 2,
+      segmentStrokeWidth: 3,
       //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 30, // This is 0 for Pie charts
+      percentageInnerCutout: 50, // This is 0 for Pie charts
       //Number - Amount of animation steps
       animationSteps: 150,
       //String - Animation easing effect
@@ -327,9 +327,6 @@ $(document).ready(function() {
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
     pieChart.Doughnut(PieData, pieOptions);
-	
-	
-
 });
 </script>
 
