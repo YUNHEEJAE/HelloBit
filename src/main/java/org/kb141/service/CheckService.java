@@ -34,4 +34,6 @@ public interface CheckService {
 	
 	public List<CheckVO> getMyList(String sid);
 
+	public CheckWeekVO getAllCheckWeek();
+	
 }

@@ -95,4 +95,29 @@
 		select * from tbl_check where sid = #{sid} order by checktime desc limit 5
 	</select>
 	
+<!-- faculity Mapper -->
+	
+	<select id="allCheckWeek" resultType="CheckWeekVO">
+	<![CDATA[
+		select 
+			sum(if(week_result = 'mo',1,0)) mon, sum(if(week_result = 'tu',1,0)) tue, 
+			sum(if(week_result = 'we',1,0)) wed, sum(if(week_result = 'th',1,0)) thu, 
+		    sum(if(week_result = 'fr',1,0)) fri
+		from(
+		select * ,
+			case
+		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 4 )) then 'fr'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 3 )) then 'th'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 2 )) then 'we'
+			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 1 )) then 'tu'
+		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 0 )) then 'mo'
+			end as week_result
+		from tbl_check group by date(checktime), sid) t
+		]]>
+	</select>
+	
+	
+	
+	
+	
 </mapper>

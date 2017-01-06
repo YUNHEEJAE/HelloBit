@@ -87,6 +87,11 @@ public class CheckDAOTest {
 		System.out.println(dao.checkAttendanceCnt(1));
 	}
 	
+	@Test
+	public void allCheckWeekTest() throws Exception{
+		System.out.println(dao.allCheckWeek());
+	}
+	
 	// =======================SERVICE=========================
 
 	@Test
@@ -210,7 +215,6 @@ public class CheckDAOTest {
 			}
 			emotionMap.put(state, emotionMap.get(state) + 1);		
 		}
-		
 		System.out.println(emotionMap);
 		
 		// 감정 = 제일 큰 값의 key 값 따야지.
@@ -219,10 +223,12 @@ public class CheckDAOTest {
 	}
 	@Test
 	public void getMyListTest() throws Exception {
-		
 		System.out.println(service.getMyList("yhj"));		
-		
 	}
 	
+	@Test
+	public void getAllCheckWeek() throws Exception{
+		System.out.println(service.getAllCheckWeek());
+	}
 	
 }

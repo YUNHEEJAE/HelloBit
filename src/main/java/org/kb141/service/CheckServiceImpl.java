@@ -162,4 +162,16 @@ public class CheckServiceImpl implements CheckService {
 		return result;
 	}
 
+	@Override
+	public CheckWeekVO getAllCheckWeek() {
+		CheckWeekVO vo = new CheckWeekVO();
+		
+		try {
+			vo = checkDAO.allCheckWeek();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+
 }

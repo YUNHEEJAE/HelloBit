@@ -79,4 +79,9 @@ public class CheckDAOImpl implements CheckDAO {
 		return sqlSession.selectList(NAME + "checkMyList", sid);
 	}
 
+	@Override
+	public CheckWeekVO allCheckWeek() throws Exception {
+		return sqlSession.selectOne(NAME + "allCheckWeek");
+	}
+
 }
