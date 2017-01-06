@@ -106,7 +106,7 @@ public class FaculityController {
 	public void faculityMain(Integer pno, HttpServletRequest request, Model model) throws Exception{
 		logger.info("FACULITY MAIN");
 		
-		cookieChecker.cookieChecker(request.getCookies(), pno);;
+		cookieChecker.cookieChecker(request.getCookies(), pno);
 		
 		List<CheckTimeVO> result = checkService.getTodayCheck(pno);
 		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
@@ -125,14 +125,13 @@ public class FaculityController {
 		model.addAttribute("program", programService.view(pno));
 		model.addAttribute("attendanceCnt",checkService.getAttendanceCnt(pno));
 		model.addAttribute("result", result );
-		model.addAttribute("check", result.size() );
+		model.addAttribute("check", result.size());
 		model.addAttribute("late", jigak.size());
 		model.addAttribute("total", total);
 		model.addAttribute("absent", total - chulseok.size());
 		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
 		model.addAttribute("week", checkService.getCheckWeek(pno));
 		model.addAttribute("emotionList", emotionUtils.emotionCounter(result));
-		
 	}
 	
 	@GetMapping("/noticeBoard")
