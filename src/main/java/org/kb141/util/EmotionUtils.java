@@ -33,7 +33,7 @@ public class EmotionUtils {
 			String state = null;
 			for (String key : keys) {
 				Object curval = obj.get(key);
-				System.out.println(curval.getClass());
+//				System.out.println(curval.getClass());
 				
 				if(curval.getClass() == Double.class) {
 					currScore = (Double) obj.get(key);
@@ -63,8 +63,7 @@ public class EmotionUtils {
 			String state = null;
 			for (String key : keys) {
 				Object curval = obj.get(key);
-				System.out.println(curval.getClass());
-				
+//				System.out.println(curval.getClass());
 				if(curval.getClass() == Double.class) {
 					currScore = (Double) obj.get(key);
 				} else if ((curval.getClass() == Long.class)) {
