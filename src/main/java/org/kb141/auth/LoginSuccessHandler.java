@@ -25,7 +25,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
 
-//		System.out.println(auth);
 		
 		GrantedAuthority curole = auth.getAuthorities().iterator().next();
 		
@@ -37,6 +36,12 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		cookie.setPath("/");
 		
 		response.addCookie(cookie);
+		
+		Cookie cookie2 = new Cookie("LOGIN_ID2", roleID);
+		cookie2.setPath("/");
+		cookie2.setMaxAge(1000000);
+		
+		response.addCookie(cookie2);
 		
 		
 		if (rolePath.equals("teacher")) {
