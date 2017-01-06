@@ -60,7 +60,7 @@ public class LogHandler extends TextWebSocketHandler implements WebSocketConfigu
 				System.out.println(webSocketSession);
 				if (!session.getId().equals(webSocketSession.getId())) {
 					webSocketSession.sendMessage(
-							new TextMessage(session.getRemoteAddress().getHostName() + " : " + message.getPayload()));
+							new TextMessage(message.getPayload()));
 				}
 			}
 					

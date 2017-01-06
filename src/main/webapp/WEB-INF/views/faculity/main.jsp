@@ -193,6 +193,25 @@
 
 			</div>
 			
+		<div class="box box-default color-palette-box">
+        <div class="box-header with-border">
+          <h3 class="box-title"><b>수강생 출석 로그</b></h3>
+        </div>
+        <div class="box-body">
+          <div class="row">
+          
+			<div id="chatMessage" style="width:200px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"></div>
+					
+          </div>
+          <!-- /.row -->
+          <div class="row">
+
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+      </div>
+			
 		
 			
 			
@@ -213,14 +232,27 @@
 <script src="../resources/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
-
+<script src="../resources/js/sockjs-1.1.1.min.js"></script>
 <!-- page script -->
 <script>
 $(document).ready(function() {
-
+	
+	
+	
+	
 	$("#faculity_1").attr("class", "active");
 	$("#pno_37").attr("class", "active");
+
 	
+	sock = new SockJS("/web/logWebsocket");
+	sock.onopen = function(event) {
+			console.log(event);
+			
+			sock.onmessage = function(event) {
+				console.log(event.data);
+				$("#chatMessage").after(event.data+"<br>");
+			};
+	};
 	// This will get the first returned node in the jQuery collection.
 	var areaChartData = null;
 
