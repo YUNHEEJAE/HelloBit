@@ -256,16 +256,15 @@ public class FaceAPIUtils {
 			System.out.println( "info ==========================================" + array);
 			
 			//JSON에서 faceId 추출해서 'faceId','faceId','faceId',  << 이모양으로 만들어서 str에 저장
-			for(int i = 0 ; i < array.size(); i++){
-				 JSONObject obj = (JSONObject) array.get(i);
-				 str +=  "'" + obj.get("faceId") + "'," ;
-			}
-
-			if (entity != null) {
-				System.out.println("str : "+ str);
+			if(array != null){
+				for(int i = 0 ; i < array.size(); i++){
+					 JSONObject obj = (JSONObject) array.get(i);
+					 str +=  "'" + obj.get("faceId") + "'," ;
+				}
 			}
 		} catch (Exception e) {
 			System.out.println("error : " + e.getMessage());
+			
 		}
 		return str;
 	}

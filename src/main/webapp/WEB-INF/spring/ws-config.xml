@@ -7,10 +7,12 @@
 
 
 	 <bean id="echoHandler" class="org.kb141.handler.EchoHandler"></bean> 
+	  <bean id="logHandler" class="org.kb141.handler.LogHandler"></bean>
 
 
-	<websocket:handlers>
+	<websocket:handlers allowed-origins="http://localhost:63342">
 		<websocket:mapping handler="echoHandler" path="/echo-ws" />
+	<websocket:mapping handler="logHandler" path="/logWebsocket"/>
 		<websocket:sockjs />
 	</websocket:handlers>
     

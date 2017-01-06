@@ -127,6 +127,11 @@
 						<input type="hidden" value="${view.pno}" name="pno">
 						<%--    <input type="hidden" value="${view.persongroupid}" name="groupid"> --%>
 					</form>
+
+					<a href="../program/modify?pno=${view.pno}">
+						<button type="button" class="btn btn-info pull-right" id="modifyBtn">
+          <i class="glyphicon glyphicon-ok"></i> 수정 하기 </button></a>   
+
 					<a href="http://localhost:8081/web/program/list"><button
 							type="button" class="btn btn-primary pull-right"
 							style="margin-right: 5px;">
@@ -138,7 +143,7 @@
 		</section> </section>
 	</div>
 
-
+  
 	<%@include file="../faculity/footer.jsp"%>
 	<script>
 		$(document).ready(function() {
