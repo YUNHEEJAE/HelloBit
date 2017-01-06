@@ -151,4 +151,15 @@ public class CheckServiceImpl implements CheckService {
 		return result;
 	}
 
+	@Override
+	public List<CheckVO> getMyList(String sid) {
+		List<CheckVO> result = null;
+		try {
+			result = checkDAO.checkMyList(sid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

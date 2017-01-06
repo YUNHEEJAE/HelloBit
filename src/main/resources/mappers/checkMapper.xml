@@ -6,8 +6,9 @@
 <mapper namespace="org.kb141.mapper.CheckMapper">
 
 	<insert id="create" parameterType="CheckVO">
-		insert into tbl_check (sid,	pno, emotion, checktime)
-		values (#{sid}, #{pno}, #{emotion}, #{checktime})
+		insert into tbl_check (sid,
+		pno, emotion)
+		values (#{sid}, #{pno}, #{emotion})
 	</insert>
 
 	<select id="checkList" resultType="CheckVO">
@@ -32,7 +33,8 @@
 			sum(if(week_result = 'we',1,0)) wed, sum(if(week_result = 'th',1,0)) thu, 
 		    sum(if(week_result = 'fr',1,0)) fri
 		from(
-		select * , case
+		select * ,
+			case
 		    when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 4 )) then 'fr'
 			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 3 )) then 'th'
 			when checktime >= (select  ADDDATE( CURDATE(), - WEEKDAY(CURDATE()) + 2 )) then 'we'
@@ -41,12 +43,6 @@
 			end as week_result
 		from tbl_check where pno = #{pno} group by date(checktime), sid) t
 	</select>
-
-	<select id="lateMember" resultType="CheckVO">
-		select * from tbl_check where
-		checktime > #{latetime}
-	</select>
-
 
 	<select id="checkLate" resultType="Integer">
 		<![CDATA[
@@ -80,7 +76,7 @@
 	<select id="todayCheck" resultType="CheckTimeVO">
 		<![CDATA[
 			select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states from (
-			select sid, pno, min(checktime) firsttime, max(checktime) lasttime from tbl_check
+			select sid, pno, min(checktime) firsttime, max(checktime) lasttime, emotion from tbl_check
 			where pno = #{pno} and checktime > curdate() and checktime < (curdate() + 1)
 			group by date(checktime), sid) t
 		]]>
@@ -95,16 +91,8 @@
 		]]>
 	</select>
 	
-	<select id="checkPeriodMonthName" resultType="CheckPeriodMonthNameVO">
-	select date_format(opendate,'%b') as 'first',
-	date_format(date_add(opendate, interval +1 month),'%b') as 'second',
-	date_format(date_add(opendate, interval +2 month),'%b') as 'third' ,
-	date_format(date_add(opendate, interval +3 month),'%b') as 'fourth' ,
-	date_format(date_add(opendate, interval +4 month),'%b') as 'fifth' ,
-	date_format(date_add(opendate, interval +5 month),'%b') as 'sixth' ,
-	date_format(closedate,'%b') as 'seventh'
-	from tbl_program where pno =(select pno from tbl_take_program where
-	sid=#{sid})
+	<select id="checkMyList" resultType="CheckVO">
+		select * from tbl_check where sid = #{sid} order by checktime desc limit 5
 	</select>
 	
 </mapper>

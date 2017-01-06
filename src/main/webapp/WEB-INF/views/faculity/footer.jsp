@@ -57,6 +57,7 @@
 <!-- <script src="../resources/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
+
 <script>
 	$(document).ready( function() {
 		(function() {
@@ -66,7 +67,7 @@
 
 
 				$(data).each(function() {
-					str += "<li class='' id='pno_" + this.pno + "'><a href='../faculity/main?pno=" + this.pno + "' ><i class='fa fa-circle-o'></i> " + this.category.toUpperCase() + " - " + this.torder+ "</a></li>";
+					str += "<li class='' id='pno_" + this.pno + "'><a href='../faculity/main?pno=" + this.pno + "' ><i class='fa fa-chevron-right'></i> " + this.category.toUpperCase() + " - " + this.torder+ "</a></li>";
 				});
 				
 				$("#faculity_1 > ul").html(str);

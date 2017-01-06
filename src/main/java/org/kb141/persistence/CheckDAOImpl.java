@@ -6,7 +6,6 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kb141.domain.CheckLateManVO;
-import org.kb141.domain.CheckPeriodMonthNameVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
@@ -76,8 +75,8 @@ public class CheckDAOImpl implements CheckDAO {
 	}
 
 	@Override
-	public CheckPeriodMonthNameVO checkPeriodMonthName(String sid) throws Exception {
-		return sqlSession.selectOne(NAME+"checkPeriodMonthName", sid);
+	public List<CheckVO> checkMyList(String sid) throws Exception {
+		return sqlSession.selectList(NAME + "checkMyList", sid);
 	}
 
 }

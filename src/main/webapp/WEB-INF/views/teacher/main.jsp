@@ -23,13 +23,9 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			Program Register <small>Blank example to the boxed layout</small>
+			Teacher page <small>강사님 관리 페이지입니다.</small>
 		</h1>
-		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Boxed</li>
-		</ol>
+
 		</section>
 
 		<!-- Main content -->

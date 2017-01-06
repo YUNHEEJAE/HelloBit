@@ -65,7 +65,7 @@ $(document).ready(function() {
 			
 			
 			$(data).each(function() {
-				str += "<li><a href='main?pno="+this.pno+"' id='pno_"+this.pno+"'><i class='fa fa-circle-o'>" +
+				str += "<li><a href='main?pno="+this.pno+"' id='pno_"+this.pno+"'><i class='fa fa-chevron-right'>" +
 						"</i> "+ this.category.toUpperCase() + " - " + this.torder+ "</a></li>";
 			});
 			

@@ -143,7 +143,7 @@
 		</section> </section>
 	</div>
 
-
+  
 	<%@include file="../faculity/footer.jsp"%>
 	<script>
 		$(document).ready(function() {
