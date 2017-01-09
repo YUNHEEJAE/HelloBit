@@ -28,7 +28,7 @@ public interface CheckDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<CheckVO> checkList() throws Exception;
+	public List<StudentCheckKLogVO> checkList() throws Exception;
 	
 	public Integer checkMember(Integer pno) throws Exception;
 	

@@ -10,7 +10,7 @@
 	  <bean id="logHandler" class="org.kb141.handler.LogHandler"></bean>
 
 
-	<websocket:handlers allowed-origins="http://192.168.0.18:8081">
+	<websocket:handlers allowed-origins="http://192.168.0.18:8080">
 		<websocket:mapping handler="echoHandler" path="/echo-ws" />
 	<websocket:mapping handler="logHandler" path="/logWebsocket"/>
 	

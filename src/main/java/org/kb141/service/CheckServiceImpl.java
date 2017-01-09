@@ -28,8 +28,8 @@ public class CheckServiceImpl implements CheckService {
 	}
 
 	@Override
-	public List<CheckVO> checkList() {
-		List<CheckVO> result = null;
+	public List<StudentCheckKLogVO> checkList() {
+		List<StudentCheckKLogVO> result = null;
 		try {
 			result = checkDAO.checkList();
 		} catch (Exception e) {

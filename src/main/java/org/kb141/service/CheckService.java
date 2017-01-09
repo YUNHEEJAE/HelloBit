@@ -12,7 +12,7 @@ public interface CheckService {
 
 	public void create(CheckVO vo);
 
-	public List<CheckVO> checkList();
+	public List<StudentCheckKLogVO> checkList();
 
 	public Integer getcheckMember(Integer pno);
 

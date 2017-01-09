@@ -208,7 +208,7 @@
 								
 			
 							<c:forEach items="${StudentCheckKLogVO}" var='StudentCheckKLogVO' >
-								 <div>${StudentCheckKLogVO.sname} / <fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm"/><br /></div>
+								 <div>${StudentCheckKLogVO.sname} / <fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div>
 							</c:forEach>
 					</div>	
           </div>
@@ -247,6 +247,7 @@ $(document).ready(function() {
 	
 	
 	
+	
 	$("#faculity_1").attr("class", "active");
 	$("#pno_37").attr("class", "active");
 
@@ -259,7 +260,7 @@ $(document).ready(function() {
 				console.log(event.data);
 				var logger = event.data.substring(2,19);
 				logger.substring("");
-				$("#chatMessage").before("<div>"+event.data.substring(2,19)+"<br></div>");
+				$("#chatMessage").before("<div>"+event.data.substring(2,5)+" / "+event.data.substring(5,26)+"<br></div>");
 				$("#chatMessage div")[9].remove(); 
 				
 			};

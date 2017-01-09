@@ -25,7 +25,7 @@ public class CheckDAOImpl implements CheckDAO {
 	}
 
 	@Override
-	public List<CheckVO> checkList() throws Exception {
+	public List<StudentCheckKLogVO> checkList() throws Exception {
 		return sqlSession.selectList(NAME + "checkList");
 	}
 

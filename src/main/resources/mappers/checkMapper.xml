@@ -11,9 +11,8 @@
 		values (#{sid}, #{pno}, #{emotion})
 	</insert>
 
-	<select id="checkList" resultType="CheckVO">
-		select * from tbl_check order
-		by checktime desc
+	<select id="checkList" resultType="StudentCheckKLogVO">
+	select sname,checktime from tbl_check c join tbl_student s where c.sid = s.sid order by checktime desc limit 10
 	</select>
 
 	<select id="checkDate" resultType="Integer">
