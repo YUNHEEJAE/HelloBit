@@ -65,13 +65,13 @@
 					</div>
 					<form id='admission' action="../faculity/admission" method="post">
 						<input type="hidden" id="admissionPno" name="pno" value=""> 
-<!-- 						<input type="hidden" name="sid" value="">  -->
 							<input type="hidden" id="persongroupid"
 							name="groupid" value="">
 					</form>
 					<form id='cancel' action="../faculity/cancel" method="post">
 						<input type="hidden" name="pno" id="canclePno" value="">
-<!-- 						 <input type="hidden" name="sid" value=""> -->
+						<input type="hidden" id="persongroupid"
+							name="groupid" value="">
 					</form>
 				</div>
 			</div>
@@ -149,7 +149,8 @@ function getCategoryList(targetCategory) {
 		$("#admissionPno").attr('value', pno);
 		$("#canclePno").attr('value',pno);
 		$("#persongroupid").attr('value', groupid);
-		
+		$("#successList").attr('class','');
+		$("#waitingList").attr('class','active');
 		
 		getWaitingList(pno); 
 	});
@@ -170,26 +171,7 @@ function getCategoryList(targetCategory) {
 			showApplicationList(data);
 		});	
 	} 
-	
 
-// 	$(document).on("click" ,".programlist > .takeprogramlist", function(event){	
-// 		console.log("Click list name");
-// 		console.log(event.currentTarget.attributes.value.value);
-// 		$('#application').css('visibility' , 'visible');
-// 		var test = event.target.parentNode;
-// // 		var groupid = event.currentTarget.attributes.value.value;
-// // 		var hash = event.currentTarget.hash;	
-// // 		var hashPno =	hash.split("#");	
-// // 		var pno = hashPno[1];
-// // 		console.log(pno);
-// // 		getWaitingList(pno);  
-// // 		trueButton(pno , groupid);	
-// 	}); 
-	
-
-	
-
-	
 	
 	// 신청 완료 리스트 버튼을 누르면
 	$("#successList").on("click" , function(event){
@@ -223,15 +205,8 @@ function getCategoryList(targetCategory) {
 	});
 	
 	
-	
-	$("#faculity_2").attr("class", "active");	
-	$("#faculity_takeprogramlist").attr("class", "active");	
-	
 	var result = '${result}';
 	if(result =="success"){alert("변경 완료");}
-	
-	
-	
 	
 	//수강신청 리스트 목록
 	function showApplicationList(data){
@@ -261,27 +236,12 @@ function getCategoryList(targetCategory) {
 		return year +"/"+month+"/"+day;
 	}
 	
-// 	//체크리스트에 체크를 하면~~~
-// 	$(".tab-content").on("click",".studentList .takeStudentList .studentCheckBox", function (event) {
-// 		console.log("click checkBox");
-// // 		console.log(event.currentTarget.value);
-// // 		var result = $('.studentCheckBox:checked');
-// // 		console.log("sid: " +result[0].value);
-		
-// 		var sid = new Array();
-		
-// 		for(var  i = 0 ; i < result.length ; i++){
-// 			sid[i] = result[i].value;
-// 			$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
-// 		} 
-// 	});
 	
 	$("#approvalBtn").on("click", function (event) {
 		var result = $('.studentCheckBox:checked');
 		console.log(result[0].value);
 		
 		var sid = new Array();
-		
 		for(var  i = 0 ; i < result.length ; i++){
 			sid[i] = result[i].value;
 			$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
@@ -290,157 +250,18 @@ function getCategoryList(targetCategory) {
 		$('#admission').submit();
 	});
 	
-	
-	//<button id="trueBtn" class="btn btn-block btn-success">승인</button>
-	//<button id="trueBtn" class="btn btn-block btn-success">취소</button>
-
-
-	
-	
-	
+	$("#cancelBtn").on("click", function (event) {
+		var result = $('.studentCheckBox:checked');
+		console.log(result[0].value);
 		
-// 	$('#falseList').on('click' , function(){
-// 		console.log(pno);
-			
-// 		console.log(event.target.name);
-// 		console.log($('#trueBtn')[0]);
-// 		var btn = $('#trueBtn');
-// 		btn.html('승인');
-// 		console.log("groupid : " + groupid);	
-// 		getFalseList(pno);
-// 			// 승인 버튼 
-// 		trueButton(pno , groupid);
-// 	});
-	
-
-	
-
-				
-// 	$('#trueBtn').on('click' , function(event){	
-// 		event.preventDefault();
-// 		var result = $('.check:checked');												
-// 		console.log(result[0].attributes.value.value);
-// 		var sid = new Array();
-// 	 	$('#cancel').append("<input type='hidden' name='pno' value='"+pno+"'>") 
-// 		for(var  i = 0 ; i < result.length ; i++){
-// 			sid[i] = result[i].attributes.value.value;
-// 			$('#cancel').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
-// 		}
-// 		 $('#cancel').submit(); 
-// 	 });
-
-	
-// 	getCategoryList("java");
-
-// 	$('#trueBtn').on('click' , function(event){		
-// 		event.preventDefault();
-// 		console.log(event);
-// 		var result = $('.check:checked');												
-// 		console.log(result[0].attributes.value.value);
-// 		var sid = new Array();
-					
-// 		$('#admission').append("<input type='hidden' name='pno' value='"+pno+"'>") 
-// 		$('#admission').append("<input type='hidden' name='groupid' value='"+groupid+"'>")
-// 			for(var  i = 0 ; i < result.length ; i++){
-// 				sid[i] = result[i].attributes.value.value;
-// 				$('#admission').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");			
-// 			}
-// 		$('#admission').submit(); 
-// 	});
-
-
-
-
-
-
-
-
-
-
-
-	
-	/* 	$(".list-group-item takeprogramlist").on("click", function(event){
-				event.preventDefault();
-				console.log(event);
-		}); */
-
-		/* 
-		$("takeprogramlist").on("click" , function(event){	
-			console.log(event.currentTarget.attributes.value.value);
-
-			$('.state').css('visibility' , 'visible');
-			$('#trueBtn').css('visibility' , 'visible');
-
-					var groupid = event.currentTarget.attributes.value.value;
-					var hash = event.currentTarget.hash;	
-					var hashPno =	hash.split("#");	
-					var pno = hashPno[1];
-					var obj = {"pno" : pno}; 
-						console.log(pno);
-						getFalseList(obj);  
-						trueButton(pno , groupid);	
-							$('#falseList').on('click' , function(){
-										console.log(pno);
-											
-										console.log(event.target.name);
-										console.log($('#trueBtn')[0]);
-										var btn = $('#trueBtn');
-										btn.html('승인');
-										console.log("groupid : " + groupid);	
-										getFalseList(pno);
-											// 승인 버튼 
-										trueButton(pno , groupid);
-									});
-					
-							$('#falseList').on('click' , function(event){
-								console.log("groupid : " + groupid);	
-								event.preventDefault();
-								console.log(event);
-								$('#falseList >  a').attr("href" , pno);
-								var btn = $('#trueBtn');
-								btn.html('승인');
-									
-								getFalseList(obj);
-								
-								trueButton(pno , groupid);
-	
-										// 취소 버튼 
-								$("#successList").on("click" , function(event){
-									console.log("groupid : " + groupid);	
-									event.preventDefault();
-									var btn = $('#trueBtn');
-									btn.html('취소');
-									
-									getTrueList(obj);
-											
-										$('#trueBtn').on('click' , function(event){	
-											event.preventDefault();
-											var result = $('.check:checked');												
-											console.log(result[0].attributes.value.value);
-											var sid = new Array();
-											 $('#cancel').append("<input type='hidden' name='pno' value='"+pno+"'>") 
-											for(var  i = 0 ; i < result.length ; i++){
-												sid[i] = result[i].attributes.value.value;
-												$('#cancel').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
-												
-											}
-											 $('#cancel').submit(); 
-											 });
-									}); // end a click
-							});  // end docs
+		var sid = new Array();
+		for(var  i = 0 ; i < result.length ; i++){
+			sid[i] = result[i].value;
+			$('#cancel').append("<input type='hidden' name='sid' value='"+sid[i]+"'>");
+		}
 		
-						}); // end 
-													
-								
-			// end getJson
-		
-	// end category list */
-
-
-
-	
-		
-		
+		$('#cancel').submit();
+	});
 		
 });
 </script>
