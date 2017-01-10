@@ -101,7 +101,7 @@
 		</div>
 		<br>
 
-		<div class="row row-eq-height">
+		<div class="row">
 		<div class="col-md-6">
 			<!-- BAR CHART -->
 			<div class="box box-success">
@@ -200,17 +200,28 @@
           <h3 class="box-title"><b>수강생 출석 로그</b></h3>
         </div>
         <div class="box-body">
-          <div class="row" style="text-align:center;">
-					<div id="chatMessage" >
-							<c:forEach items="${StudentCheckKLogVO}" var='StudentCheckKLogVO' >
-								 <div>${StudentCheckKLogVO.sname} / <fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div>
-							</c:forEach>
-					</div>	
-          </div>
-          <!-- /.row -->
-          <div class="row">
-
-          </div>
+<!--           <div class="row" style="text-align:center;"> -->
+<!-- 					<div id="chatMessage" > -->
+<%-- 							<c:forEach items="${StudentCheckKLogVO}" var='StudentCheckKLogVO' > --%>
+<%-- 								 <div>${StudentCheckKLogVO.sname} / <fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div> --%>
+<%-- 							</c:forEach> --%>
+<!-- 					</div>	 -->
+<!--           </div> -->
+          
+          <table class="table table-condensed" style="text-align: center;" id="chatTable">
+				<tr id="chatMessageTR">
+					<th style="text-align: center">이름</th>
+					<th style="text-align: center">시간</th>
+				</tr>
+				<c:forEach items="${StudentCheckKLogVO}" var='StudentCheckKLogVO' >
+					<tr>
+						 <td>${StudentCheckKLogVO.sname}</td>
+						 <td><fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+					</tr>
+				</c:forEach>
+			</table>
+          
+          
           <!-- /.row -->
         </div>
         <!-- /.box-body -->
@@ -247,8 +258,8 @@ $(document).ready(function() {
 				console.log(event.data);
 				var logger = event.data.substring(2,19);
 				logger.substring("");
-				$("#chatMessage").before("<div>"+event.data.substring(2,5)+" / "+event.data.substring(5,26)+"<br></div>");
-				$("#chatMessage div")[9].remove(); 
+				$("#chatMessageTR").after("<tr><td>" + event.data.substring(2,5) + "</td><td>"+event.data.substring(5,26)+"</td></tr>");
+				$("#chatTable > tbody > tr:last-child").remove();
 				
 			};
 	};

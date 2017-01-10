@@ -84,7 +84,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 				programCookie.setPath("/");
 				response.addCookie(programCookie);
 				
-				response.sendRedirect("/web/faculity/main?pno=" + myProgram.get(0).getPno());
+//				response.sendRedirect("/web/faculity/main?pno=" + myProgram.get(0).getPno());
+				response.sendRedirect("/web/faculity/overview");
 				
 				
 			} catch (Exception e) {
