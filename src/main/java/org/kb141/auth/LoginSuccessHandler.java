@@ -26,6 +26,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 			throws IOException, ServletException {
 
 		
+		Cookie[] cookies = request.getCookies();
+		
+		for (Cookie cookie : cookies) {
+			System.out.println(cookie.getName() + " : " + cookie.getValue());
+		}
+		
+		
+		
 		GrantedAuthority curole = auth.getAuthorities().iterator().next();
 		
 		String rolePath = curole.toString().substring(5).toLowerCase();
@@ -36,13 +44,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		cookie.setPath("/");
 		
 		response.addCookie(cookie);
-		
-		Cookie cookie2 = new Cookie("LOGIN_ID2", roleID);
-		cookie2.setPath("/");
-		cookie2.setMaxAge(1000000);
-		
-		response.addCookie(cookie2);
-		
 		
 		if (rolePath.equals("teacher")) {
 			

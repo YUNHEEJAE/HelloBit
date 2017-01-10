@@ -24,6 +24,8 @@
 
 	<security:logout logout-url="/myLogout" success-handler-ref="logoutSuccessHandler"/>
 	<security:access-denied-handler ref="userDeniedHandler"/>
+	
+<!--     <security:remember-me key="REMEMEBER_ME" token-validity-seconds="10000" /> -->
 
 	<security:intercept-url pattern="/forStudent" access="ROLE_STUDENT"/>
 	<security:intercept-url pattern="/forTeacher" access="ROLE_TEACHER"/>
@@ -33,11 +35,12 @@
 	
 </security:http>
 
-<!-- 		<bean id="kb141AuthService" class="org.kb141.auth.KB141AuthService"></bean> -->
-			<bean id="loginSuccessHandler" class="org.kb141.auth.LoginSuccessHandler"></bean>
-			<bean id="loginFailureHandler" class="org.kb141.auth.LoginFailureHandler"></bean>
-			<bean id="userDeniedHandler" class="org.kb141.auth.UserDeniedHandler"></bean>
-			<bean id="logoutSuccessHandler" class="org.kb141.auth.LogoutSuccessHandler"></bean>
+<bean id="loginSuccessHandler" class="org.kb141.auth.LoginSuccessHandler"></bean>
+<bean id="loginFailureHandler" class="org.kb141.auth.LoginFailureHandler"></bean>
+<bean id="userDeniedHandler" class="org.kb141.auth.UserDeniedHandler"></bean>
+<bean id="logoutSuccessHandler" class="org.kb141.auth.LogoutSuccessHandler"></bean>
+<!-- <bean id="rememberMeServiceHandler" class="org.kb141.auth.RememberMeServiceHandler"></bean> -->
+
 
 <security:authentication-manager>
 
@@ -61,5 +64,6 @@
 
 </security:authentication-manager>
 
+<security:global-method-security secured-annotations="enabled"></security:global-method-security>
 
 </beans>
