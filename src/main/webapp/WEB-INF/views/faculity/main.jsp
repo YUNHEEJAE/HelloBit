@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
@@ -16,6 +17,7 @@
 <link rel="stylesheet" href="../resources/dist/css/cssBipolarChart.css">
 <link rel="stylesheet"
 	href="../resources/dist/css/skins/_all-skins.min.css">
+
 </head>
 <body>
 	<div class="content-wrapper" style="min-height: 976px;">
@@ -99,7 +101,7 @@
 		</div>
 		<br>
 
-<!-- 		<div class="row row-eq-height"> -->
+		<div class="row row-eq-height">
 		<div class="col-md-6">
 			<!-- BAR CHART -->
 			<div class="box box-success">
@@ -108,16 +110,16 @@
 						<b>이번주 출석 현황</b>
 					</h3>
 
-					<div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool"
-							data-widget="collapse">
-							<i class="fa fa-minus"></i>
-						</button>
-						<button type="button" class="btn btn-box-tool"
-							data-widget="remove">
-							<i class="fa fa-times"></i>
-						</button>
-					</div>
+<!-- 					<div class="box-tools pull-right"> -->
+<!-- 						<button type="button" class="btn btn-box-tool" -->
+<!-- 							data-widget="collapse"> -->
+<!-- 							<i class="fa fa-minus"></i> -->
+<!-- 						</button> -->
+<!-- 						<button type="button" class="btn btn-box-tool" -->
+<!-- 							data-widget="remove"> -->
+<!-- 							<i class="fa fa-times"></i> -->
+<!-- 						</button> -->
+<!-- 					</div> -->
 				</div>
 				<div class="box-body">
 					<div class="chart">
@@ -133,14 +135,14 @@
             <div class="box-header with-border">
               <h3 class="box-title"><b>기분 도너츠</b></h3>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
+<!--               <div class="box-tools pull-right"> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> -->
+<!--                 </button> -->
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+<!--               </div> -->
             </div>
-            <div class="box-body">
-              <canvas id="pieChart" style="height:250px"></canvas>
+            <div class="box-body" id="peiChart-div">
+              <canvas id="pieChart" style="height:250px" class="pieChart"></canvas>
             </div>
             <!-- /.box-body -->
           </div>
@@ -192,16 +194,41 @@
 				<!-- /.box-body -->
 
 			</div>
+		<%-- 	 <div type="hiddin" id ='hidden' value='${StudentCheckKLogVO.checktime}'></div>  --%>
+		<div class="box box-default color-palette-box">
+        <div class="box-header with-border">
+          <h3 class="box-title"><b>수강생 출석 로그</b></h3>
+        </div>
+        <div class="box-body">
+          <div class="row" style="text-align:center;">
+          
+								
+					<div id="chatMessage" >
+	
+								
+			
+							<c:forEach items="${StudentCheckKLogVO}" var='StudentCheckKLogVO' >
+								 <div>${StudentCheckKLogVO.sname} / <fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div>
+							</c:forEach>
+					</div>	
+          </div>
+          <!-- /.row -->
+          <div class="row">
+
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+      </div>
 			
 		
 			
 			
 
 		</div>
-<!-- 		</div> -->
+		</div>
 		</section>
 	</div>
-
 </body>
 
 <%@include file="footer.jsp"%>
@@ -213,14 +240,33 @@
 <script src="../resources/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
-
+<script src="../resources/js/sockjs-1.1.1.min.js"></script>
 <!-- page script -->
 <script>
 $(document).ready(function() {
-
+	
+	
+	
+	
 	$("#faculity_1").attr("class", "active");
 	$("#pno_37").attr("class", "active");
+
 	
+	sock = new SockJS("/web/logWebsocket");
+	sock.onopen = function(event) {
+			console.log(event);
+			
+			
+			sock.onmessage = function(event) {
+				console.log(event.data);
+				var logger = event.data.substring(2,19);
+				logger.substring("");
+				$("#chatMessage").before("<div>"+event.data.substring(2,5)+" / "+event.data.substring(5,26)+"<br></div>");
+				$("#chatMessage div")[9].remove(); 
+				
+			};
+	};
+
 	// This will get the first returned node in the jQuery collection.
 	var areaChartData = null;
 
@@ -307,11 +353,11 @@ $(document).ready(function() {
       //String - The colour of each segment stroke
       segmentStrokeColor: "#fff",
       //Number - The width of each segment stroke
-      segmentStrokeWidth: 2,
+      segmentStrokeWidth: 3,
       //Number - The percentage of the chart that we cut out of the middle
       percentageInnerCutout: 50, // This is 0 for Pie charts
       //Number - Amount of animation steps
-      animationSteps: 100,
+      animationSteps: 150,
       //String - Animation easing effect
       animationEasing: "easeOutBounce",
       //Boolean - Whether we animate the rotation of the Doughnut
@@ -321,15 +367,12 @@ $(document).ready(function() {
       //Boolean - whether to make the chart responsive to window resizing
       responsive: true,
       // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true
+      maintainAspectRatio: false
       //String - A legend template
     };
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
     pieChart.Doughnut(PieData, pieOptions);
-	
-	
-
 });
 </script>
 

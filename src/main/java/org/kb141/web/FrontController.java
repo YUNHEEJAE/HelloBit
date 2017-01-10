@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.ProgramVO;
+import org.kb141.domain.StudentCheckKLogVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.service.CheckService;
 import org.kb141.service.ProgramService;
@@ -67,14 +68,14 @@ public class FrontController {
 	
 	@ResponseBody
 	@GetMapping("/authpage/checklist")
-	public ResponseEntity<List<CheckVO>>checkList(){
+	public ResponseEntity<List<StudentCheckKLogVO>>checkList(){
 		
-		ResponseEntity<List<CheckVO>> entity = null;
+		ResponseEntity<List<StudentCheckKLogVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<CheckVO>>(checkService.checkList(), HttpStatus.OK);
+			entity = new ResponseEntity<List<StudentCheckKLogVO>>(checkService.checkList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<List<CheckVO>>(HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<List<StudentCheckKLogVO>>(HttpStatus.BAD_REQUEST);
 		}	
 		return entity;
 

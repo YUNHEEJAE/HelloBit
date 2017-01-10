@@ -9,6 +9,7 @@ import org.kb141.domain.CheckLateManVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.StudentCheckKLogVO;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -24,7 +25,7 @@ public class CheckDAOImpl implements CheckDAO {
 	}
 
 	@Override
-	public List<CheckVO> checkList() throws Exception {
+	public List<StudentCheckKLogVO> checkList() throws Exception {
 		return sqlSession.selectList(NAME + "checkList");
 	}
 
@@ -77,6 +78,11 @@ public class CheckDAOImpl implements CheckDAO {
 	@Override
 	public List<CheckVO> checkMyList(String sid) throws Exception {
 		return sqlSession.selectList(NAME + "checkMyList", sid);
+	}
+
+	@Override
+	public List<StudentCheckKLogVO> studentCheckLog(Integer pno) throws Exception {
+		return sqlSession.selectList(NAME + "studentCheckLog",pno);
 	}
 
 }
