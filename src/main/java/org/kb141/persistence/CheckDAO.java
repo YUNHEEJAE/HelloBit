@@ -12,6 +12,7 @@ import org.kb141.domain.CheckVO;
  *
  */
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.StudentCheckKLogVO;
 public interface CheckDAO {
 
 	/**
@@ -27,7 +28,7 @@ public interface CheckDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<CheckVO> checkList() throws Exception;
+	public List<StudentCheckKLogVO> checkList() throws Exception;
 	
 	public Integer checkMember(Integer pno) throws Exception;
 	
@@ -52,6 +53,7 @@ public interface CheckDAO {
 	// 내 최근 5개 로그 데이터 가져오기 by Senyo
 	public List<CheckVO> checkMyList(String sid) throws Exception;
 	
-	
+	// pno별로 수강생 출석 로그 10개씩
+	public List<StudentCheckKLogVO> studentCheckLog(Integer pno) throws Exception;
 	
 }

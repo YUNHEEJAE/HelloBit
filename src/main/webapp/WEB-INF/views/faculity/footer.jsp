@@ -1,7 +1,7 @@
 
 <footer class="main-footer">
 	<div class="pull-right hidden-xs">
-		<b>Version</b>0.9
+		<b>Version </b>0.9
 	</div>
 	<strong>Copyright &copy; 2016-2017 <a
 		href="https://github.com/YUNHEEJAE/HelloBit" target="_blank">Team KB141</a>.
@@ -57,7 +57,7 @@
 <!-- <script src="../resources/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../resources/dist/js/demo.js"></script>
-
+<script src="../resources/plugins/iCheck/icheck.min.js"></script>
 <script>
 	$(document).ready( function() {
 		(function() {

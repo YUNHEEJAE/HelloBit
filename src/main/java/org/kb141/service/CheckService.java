@@ -6,12 +6,13 @@ import org.kb141.domain.CheckLateManVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.StudentCheckKLogVO;
 
 public interface CheckService {
 
 	public void create(CheckVO vo);
 
-	public List<CheckVO> checkList();
+	public List<StudentCheckKLogVO> checkList();
 
 	public Integer getcheckMember(Integer pno);
 
@@ -34,4 +35,5 @@ public interface CheckService {
 	
 	public List<CheckVO> getMyList(String sid);
 
+	public List<StudentCheckKLogVO> getstudentCheckLog(Integer pno);
 }

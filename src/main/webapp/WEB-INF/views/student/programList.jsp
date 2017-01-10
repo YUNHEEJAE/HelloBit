@@ -21,7 +21,7 @@
 			Program List <small>강의 신청 페이지 입니다.</small>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="list"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="programList"><i class="fa fa-dashboard"></i> Home</a></li>
 		</ol>
 		</section>
 
