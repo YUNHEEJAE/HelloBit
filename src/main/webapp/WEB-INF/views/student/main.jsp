@@ -12,7 +12,7 @@
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="main"><i class="fa fa-dashboard"></i> Home</a></li>
-			
+
 			</ol>
 		</section>
 		<!-- Main content -->
@@ -246,40 +246,41 @@ $(document).ready(function () {
 		if(pastSecond > 86400){
 			date = parseInt(pastSecond / 86400,10);
 			restSecond = pastSecond % 86400;
-			str = date + "일 ";
-			if(restSecond > 3600){
-				hour = parseInt(restSecond / 3600,10);
-				restSecond = restSecond % 3600;
-				str = str + hour + "시간 ";
-			if(restSecond > 60){
-				min = parseInt(restSecond / 60,10);
-				restSecond = restSecond % 60;
-				str = str + min + "분 " + restSecond + "초 전";
-			}else{
-				str = str + restSecond + "초 전";
-			}
-				}else if(restSecond > 60){
-					min = parseInt(restSecond / 60,10);
-					restSecond = restSecond % 60;
-					str = str + min + "분 " + restSecond + "초 전";
-				}else{
-					str = str + restSecond + "초 전";
-				}
+			str = date + "일 전";
+// 			if(restSecond > 3600){
+// 				hour = parseInt(restSecond / 3600,10);
+// 				restSecond = restSecond % 3600;
+// 				str = str + hour + "시간 ";
+// 				if(restSecond > 60){
+// 					min = parseInt(restSecond / 60,10);
+// 					restSecond = restSecond % 60;
+// 					str = str + min + "분 " + restSecond + "초 전";
+// 				}else{
+// 					str = str + restSecond + "초 전";
+// 				}
+// 			}else if(restSecond > 60){
+// 				min = parseInt(restSecond / 60,10);
+// 				restSecond = restSecond % 60;
+// 				str = str + min + "분 " + restSecond + "초 전";
+// 			}else{
+// 				str = str + restSecond + "초 전";
+// 			}
 		}else if(pastSecond > 3600){
 			hour = parseInt(pastSecond / 3600,10);
 			restSecond = pastSecond % 3600;
-			str = str + hour + "시간 ";
-			if(restSecond > 60){
-				min = parseInt(restSecond / 60,10);
-				restSecond = restSecond % 60;
-				str = str + min + "분 " + restSecond + "초 전";
-			}else{
-				str = str + restSecond + "초 전";
-			}
+			str = str + hour + "시간 전";
+// 			if(restSecond > 60){
+// 				min = parseInt(restSecond / 60,10);
+// 				restSecond = restSecond % 60;
+// 				str = str + min + "분 " + restSecond + "초 전";
+// 			}else{
+// 				str = str + restSecond + "초 전";
+// 			}
 		}else if(pastSecond > 60){
 			 min = parseInt(pastSecond / 60,10);
-			 restSecond = pastSecond % 60;
-			 str = str + min + "분 " + restSecond + "초 전";
+// 			 restSecond = pastSecond % 60;
+			 str = str + min + "분 전";
+// 			 + restSecond + "초 전";
 		}else{
 			str = pastSecond + "초 전";
 		}
@@ -287,15 +288,8 @@ $(document).ready(function () {
 	}
 	
 	for(var i = 0 ; i < 5 ; i++){
-		
 		var target = $("#text_info_"+i);
-		console.log($(target).attr("value"));
-		console.log(transferTime($(target).attr("value")));
 		$(target).html(transferTime($(target).attr("value")));
-		
-// 		$(target).attr("value")
-// 		$(target).html($(target).attr(transferTime(time));
-		
 	}
 	    
 

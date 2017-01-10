@@ -42,6 +42,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,9 +55,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/faculity")
+@Secured("ROLE_FACULITY")
 public class FaculityController {
-
-	
 	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
   
@@ -135,11 +135,11 @@ public class FaculityController {
 		model.addAttribute("StudentCheckKLogVO",checkService.getstudentCheckLog(pno));
 	}
 	
-	@GetMapping("/noticeBoard")
+	@GetMapping("/notice")
 	public void getNoticeBoard(Model model) throws Exception {
 		logger.info("noticeBoard called....");
 
-		model.addAttribute("list", noticeService.getNoticeList());
+		model.addAttribute("notice", noticeService.getNoticeList());
 	}
 
 	
@@ -334,10 +334,10 @@ public class FaculityController {
 	
 	// 수강 취소 
 	@PostMapping(value="/cancel")
-	public String CancelEnrolment(String[] sid , Integer pno , RedirectAttributes rttr)throws Exception{
+	public String CancelEnrolment(String[] sid , Integer pno , String groupid, RedirectAttributes rttr)throws Exception{
 		
 		TakeProgramVO vo = new TakeProgramVO();
-		
+
 		logger.info("cancel called...");
 		
 		logger.info("sid && pno " + sid + pno);
@@ -346,11 +346,14 @@ public class FaculityController {
 			vo.setState(false);
 			vo.setPno(pno);
 			vo.setSid(sid[i]);
+			String personid = vo.getPersonid();
+			
+			faceAPI.deletePersonId(personid, groupid);
 		
 			takeprogramService.modify(vo);
 			
 		}
-		
+		rttr.addFlashAttribute("result" , "success");
 		return "redirect:takeprogramlist";
 	}
 	

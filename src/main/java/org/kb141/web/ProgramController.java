@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -67,6 +68,7 @@ public class ProgramController {
 	private ProgramService service;
 	
 	@GetMapping("/classroom")
+//	@Secured("ROLE_FACULITY")
 	public void programpage(ClassroomVO vo, Model model){
 		logger.info("program GET .....");
 	}
@@ -74,6 +76,7 @@ public class ProgramController {
 	
 	
 	@ResponseBody
+//	@Secured("ROLE_FACULITY")
 	@GetMapping(value="/classroomlist",  produces="application/json")
 	public List<ClassroomVO> getClassroomList(Model model) throws Exception{
 		logger.info("classroomlist Start......");
@@ -90,6 +93,7 @@ public class ProgramController {
 
 	
 	@ResponseBody
+//	@Secured("ROLE_FACULITY")
 	@GetMapping(value="/allcurriculumlist", produces="application/json")
 	public List<CurriculumVO> allCurriculumList() throws Exception {
 		logger.info("커리큘럼 전체 리스트");
@@ -97,6 +101,7 @@ public class ProgramController {
 	}
 	
 	@ResponseBody
+//	@Secured("ROLE_FACULITY")
 	@GetMapping(value="curriculumlist", produces="application/json")
 	public List<CurriculumVO> curriculumList(Integer pno) throws Exception{
 		logger.info("커리큘럼 PNO로 검색한 리스트");
@@ -104,6 +109,7 @@ public class ProgramController {
 	}
 	
 	@PostMapping("/registercurriculum")
+//	@Secured("ROLE_FACULITY")
 	public String registerCurriculum(CurriculumVO vo) throws Exception {
 		logger.info("curriculum Register Post...");
 		logger.info("VO : " + vo);
@@ -117,12 +123,14 @@ public class ProgramController {
 
 	
 	@GetMapping("/list")
+//	@Secured({"ROLE_FACULITY", "ROLE_STUDENT"})
 	public void list() throws Exception{
 		logger.info("PROGRAM LIST.....");
 	}
 	
 	
 	@GetMapping("/allList")
+//	@Secured({"ROLE_FACULITY", "ROLE_STUDENT"})
 	public ResponseEntity<List<ProgramVO>> allList() {
 		ResponseEntity<List<ProgramVO>> entity = null;
 		try {
@@ -137,6 +145,7 @@ public class ProgramController {
 
 
 	@GetMapping("/view")
+//	@Secured({"ROLE_FACULITY", "ROLE_STUDENT"})
 	public void viewProgram(Integer pno , Model model)throws Exception{
 		logger.info("view called .............");
 
@@ -148,6 +157,7 @@ public class ProgramController {
 	
 	
 	@GetMapping("/categoryList/{category}")
+//	@Secured({"ROLE_FACULITY", "ROLE_STUDENT"})
 	public ResponseEntity<List<ProgramVO>> categoryList(@PathVariable("category") String category){
 		
 		ResponseEntity<List<ProgramVO>> entity = null;
@@ -161,6 +171,7 @@ public class ProgramController {
 	}
 	
 	@GetMapping("/register")
+//	@Secured("ROLE_FACULITY")
 	public void register(Model model) throws Exception {
 		logger.info("Program Register Called....");
 		model.addAttribute("classroomList", classroomservice.getClassroomList());
@@ -175,6 +186,7 @@ public class ProgramController {
 	}
 	
 	@PostMapping("/register")
+//	@Secured("ROLE_FACULITY")
 	public String registerPost(ProgramVO vo, String curriculums) throws Exception {
 		logger.info("Program Register Post Called....");
 		logger.info("VO : " + vo);
@@ -191,6 +203,7 @@ public class ProgramController {
 	}
 	
 	@GetMapping("/modify")
+//	@Secured("ROLE_FACULITY")
 	public void modify(Integer pno, Model model) throws Exception {
 		logger.info("PNO : " + pno);
 		model.addAttribute("classroomList", classroomservice.getClassroomList());
@@ -199,6 +212,7 @@ public class ProgramController {
 	}
 	
 	@PostMapping("/modify")
+//	@Secured("ROLE_FACULITY")
 	public String modifyPost(ProgramVO vo, String curriculums) throws Exception {
 		logger.info("Program Modify Post Called....");
 		logger.info("VO : " + vo);
