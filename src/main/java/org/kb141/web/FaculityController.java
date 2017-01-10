@@ -141,6 +141,14 @@ public class FaculityController {
 
 		model.addAttribute("notice", noticeService.getNoticeList());
 	}
+	
+	@GetMapping("/noticeview")
+	public void getNoticeBoardview(Model model,Integer nno) throws Exception {
+		logger.info("noticeBoard called....");
+
+			
+		model.addAttribute("noticeVO", noticeService.view(nno));
+	}
 
 	
 //	@GetMapping(value = "/faculitylist", produces = "application/json")

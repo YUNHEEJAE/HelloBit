@@ -82,6 +82,9 @@
 			</div>
 		</div>
 		</section>
+		
+		<input type="hidden" id ='hiidennno'>
+		
 	</div>
 </body>
 <%@include file="footer.jsp"%>
@@ -91,7 +94,7 @@ var str="";
 <c:forEach items="${notice}" var="notice">
 
 	str +='<li class="noticeItem">'+
-		'<div class="nno" data-nno="${notice.nno}">${notice.nno}</div> <a class="ntitle" href="#"' +
+		'<div class="nno" data-nno="${notice.nno}">${notice.nno}</div> <a class="ntitle" href="noticeview?nno=${notice.nno}"' +
 		'title="${notice.ntitle}">${notice.ntitle}</a>'+
 		'<div class="nwriter">${notice.nwriter}</div>'+
 		'<div class="nregdate"><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.nregdate}"/></div></li>';
@@ -112,7 +115,15 @@ function getFormatDate(date){
 	day=day>=10?day:'0'+day;
 	return year+"-"+month+"-"+day;
 }
-	
+
+
+
+	$(".noticeItem").on("click",function(event){
+		console.log(event);
+		console.log(event.currentTarget.firstChild.innerHTML);
+		
+		$("#hiidennno").attr("name",event.currentTarget.firstChild.innerHTML).submit();
+	})
 	
 	
 	

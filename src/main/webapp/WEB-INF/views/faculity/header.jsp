@@ -99,7 +99,7 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-<!-- 						active 오또오또케 -->
+								<!-- active 오또오또케 -->
 							<li class=""  id="faculity_list">
 								<a href="../faculity/list">
 									<i class="fa fa-chevron-right"></i>
