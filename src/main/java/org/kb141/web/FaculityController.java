@@ -661,11 +661,11 @@ public class FaculityController {
 			imageService.register(vo);
 			logger.info("========================");
 		}
-//		rttr.addFlashAttribute("result" , "success");
+		rttr.addFlashAttribute("result" , "success");
 		
-//		return "redirect:list";
+		return "redirect:list";
 		
-		return null;
+
 	}
 	
 	@GetMapping("/teachersubjectregister")
