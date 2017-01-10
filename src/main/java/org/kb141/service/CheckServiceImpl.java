@@ -8,6 +8,7 @@ import org.kb141.domain.CheckLateManVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.Criteria;
 import org.kb141.domain.OverViewVO;
 import org.kb141.domain.StudentCheckKLogVO;
 import org.kb141.persistence.CheckDAO;
@@ -29,8 +30,8 @@ public class CheckServiceImpl implements CheckService {
 	}
 
 	@Override
-	public List<CheckVO> checkList() {
-		List<CheckVO> result = null;
+	public List<StudentCheckKLogVO> checkList() {
+		List<StudentCheckKLogVO> result = null;
 		try {
 			result = checkDAO.checkList();
 		} catch (Exception e) {
@@ -217,6 +218,28 @@ public class CheckServiceImpl implements CheckService {
 		
 		try {
 			result = checkDAO.allTodayemotion();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<CheckTimeVO> getAllTodayCheckTime(Criteria cri) {
+		List<CheckTimeVO> result = null;
+		try {
+			result = checkDAO.allTodayChecktime(cri);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public Integer listCountCriteria(Criteria cri) {
+		int result = 0;
+		try {
+			result = checkDAO.countPaging(cri);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -12,6 +12,7 @@ import org.kb141.domain.CheckVO;
  *
  */
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.Criteria;
 import org.kb141.domain.OverViewVO;
 import org.kb141.domain.StudentCheckKLogVO;
 public interface CheckDAO {
@@ -29,7 +30,7 @@ public interface CheckDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<CheckVO> checkList() throws Exception;
+	public List<StudentCheckKLogVO> checkList() throws Exception;
 	
 	public Integer checkMember(Integer pno) throws Exception;
 	
@@ -65,5 +66,9 @@ public interface CheckDAO {
 	public OverViewVO allCheck() throws Exception;
 	
 	public List<CheckTimeVO> allTodayemotion() throws Exception;
+	
+	public List<CheckTimeVO> allTodayChecktime(Criteria cri) throws Exception;
+	
+	public int countPaging(Criteria cri) throws Exception;
 	
 }

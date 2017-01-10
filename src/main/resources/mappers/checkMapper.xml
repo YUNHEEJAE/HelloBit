@@ -11,9 +11,8 @@
 		values (#{sid}, #{pno}, #{emotion})
 	</insert>
 
-	<select id="checkList" resultType="CheckVO">
-		select * from tbl_check order
-		by checktime desc
+	<select id="checkList" resultType="StudentCheckKLogVO">
+	select sname,checktime from tbl_check c join tbl_student s where c.sid = s.sid order by checktime desc limit 10
 	</select>
 
 	<select id="checkDate" resultType="Integer">
@@ -87,13 +86,14 @@
 		<![CDATA[
 			select sname, count(*) delaycnt
 			from (select cno, sid, pno, min(checktime) checktime from tbl_check where pno = #{pno} group by date(checktime), sid ) t join tbl_student s
-		    where time(t.checktime)>'09:10' and t.sid = s.sid group by t.sid order by delaycnt desc
+		    where time(t.checktime)>'09:10' and t.sid = s.sid group by t.sid order by delaycnt desc limit 5
 		]]>
 	</select>
 	
 	<select id="checkMyList" resultType="CheckVO">
 		select * from tbl_check where sid = #{sid} order by checktime desc limit 5
 	</select>
+	
 	
 <!-- faculity Mapper -->
 	
@@ -144,9 +144,15 @@
 	</select>
 	
 	
+	<select id="allTodayCheckTime" resultType="StudentCheckKLogVO">
+	select s.sname, c.checktime from (
+   select * from tbl_check where date_format(checktime,"%Y-%c-%d") = date_format(curdate(),"%Y-%c-%d"))c, tbl_student s 
+    where s.sid = c.sid order by checktime desc limit #{pageStart} , #{perPageNum}
+	</select>
 	
-	
-	
+	<select id="TodayCheckTimeCount" resultType="Integer">
+	select count(*) from tbl_check where date_format(checktime,"%Y-%c-%d") = date_format(curdate(),"%Y-%c-%d")
+	</select>
 	
 	
 	

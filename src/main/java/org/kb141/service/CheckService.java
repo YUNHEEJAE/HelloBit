@@ -6,6 +6,7 @@ import org.kb141.domain.CheckLateManVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.Criteria;
 import org.kb141.domain.OverViewVO;
 import org.kb141.domain.StudentCheckKLogVO;
 
@@ -13,7 +14,7 @@ public interface CheckService {
 
 	public void create(CheckVO vo);
 
-	public List<CheckVO> checkList();
+	public List<StudentCheckKLogVO> checkList();
 
 	public Integer getcheckMember(Integer pno);
 
@@ -45,5 +46,9 @@ public interface CheckService {
 	public OverViewVO getAllCheck();
 	
 	public List<CheckTimeVO> getAllTodayEmotion();
+	
+	public List<CheckTimeVO> getAllTodayCheckTime(Criteria cri);
+	
+	public Integer listCountCriteria(Criteria cri);
 	
 }

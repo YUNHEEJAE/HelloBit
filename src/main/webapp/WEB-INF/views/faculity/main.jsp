@@ -201,13 +201,7 @@
         </div>
         <div class="box-body">
           <div class="row" style="text-align:center;">
-          
-								
 					<div id="chatMessage" >
-	
-								
-						<%-- 	<span value="<fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd "/>"></span> --%>
-						<%-- 	<span value="${StudentCheckKLogVO.sname} / ${StudentCheckKLogVO.checktime}" > --%>
 							<c:forEach items="${StudentCheckKLogVO}" var='StudentCheckKLogVO' >
 								 <div>${StudentCheckKLogVO.sname} / <fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div>
 							</c:forEach>
@@ -221,11 +215,6 @@
         </div>
         <!-- /.box-body -->
       </div>
-			
-		
-			
-			
-
 		</div>
 		</div>
 		</section>
@@ -245,25 +234,25 @@
 <!-- page script -->
 <script>
 $(document).ready(function() {
-	
-	
-	
 	$("#faculity_1").attr("class", "active");
 	$("#pno_37").attr("class", "active");
 
 	
 	sock = new SockJS("/web/logWebsocket");
 	sock.onopen = function(event) {
+		
 			console.log(event);
 			
 			sock.onmessage = function(event) {
 				console.log(event.data);
-				$("#chatMessage").after("<div>"+event.data+"</div><br />");
+				var logger = event.data.substring(2,19);
+				logger.substring("");
+				$("#chatMessage").before("<div>"+event.data.substring(2,5)+" / "+event.data.substring(5,26)+"<br></div>");
 				$("#chatMessage div")[9].remove(); 
 				
 			};
 	};
-	console.log($("#hidden").val());
+
 	// This will get the first returned node in the jQuery collection.
 	var areaChartData = null;
 

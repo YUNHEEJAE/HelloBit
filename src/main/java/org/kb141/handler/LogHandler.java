@@ -29,7 +29,7 @@ public class LogHandler extends TextWebSocketHandler implements WebSocketConfigu
 	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry wsh) {
-			wsh.addHandler(logHandler(), "/logWebsocket").setAllowedOrigins("http://localhost:8081/web");
+			wsh.addHandler(logHandler(), "/logWebsocket").setAllowedOrigins("http://192.168.0.12:8081/web").withSockJS();
 		
 	}
 	@Bean
@@ -47,9 +47,11 @@ public class LogHandler extends TextWebSocketHandler implements WebSocketConfigu
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println(session.getId() + "님이 접속하셨습니다.");
+		
 		System.out.println("연결 IP: " + session.getRemoteAddress().getHostName());
 		connectedUsers.add(session); 
+		
+	
 	}
 
 	@Override

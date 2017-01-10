@@ -1,23 +1,19 @@
 
 package org.kb141.web;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ClassroomVO;
+import org.kb141.domain.Criteria;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
+import org.kb141.domain.PageMaker;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -41,7 +37,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -657,10 +652,10 @@ public class FaculityController {
 			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
 	}
 	
-	@GetMapping("/overView")
-	public void OverViewGET(Model model)throws Exception{
+	@GetMapping("/overview")
+	public void OverViewGET(Criteria cri, Model model)throws Exception{
 		logger.info("OverView Start ........................");
-//		model.addAttribute("allTodayCheck",checkService.getAllTodayCheck());
+		model.addAttribute("allTodayCheck",checkService.getAllTodayCheck());
 		
 		List<CheckTimeVO> result = checkService.getAllTodayEmotion();
 		
@@ -668,12 +663,15 @@ public class FaculityController {
 		
 		model.addAttribute("allCheck", checkService.getAllCheck());
 		
+		model.addAttribute("allTodayCheckTime",checkService.getAllTodayCheckTime(cri));
 		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+//		pageMaker.setTotalCount(130);
 		
+		pageMaker.setTotalCount(checkService.listCountCriteria(cri));
+		
+		model.addAttribute("pageMaker", pageMaker);
 		
 	}
-	
-	
-
-
 }

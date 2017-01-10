@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
-import org.kb141.domain.OverViewVO;
+import org.kb141.domain.StudentCheckKLogVO;
 import org.kb141.service.CheckService;
 import org.kb141.service.TakeProgramService;
 import org.kb141.util.FaceAPIUtils;
@@ -66,7 +66,7 @@ public class CheckController {
 	
 	@ResponseBody
 	@GetMapping("/checklist")
-	public List<CheckVO> checkList() throws Exception{
+	public List<StudentCheckKLogVO> checkList() throws Exception{
 		logger.info("checklist Start .......");
 		
 		logger.info("CheckList : " + service.checkList());

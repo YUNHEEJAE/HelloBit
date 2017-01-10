@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
+import org.kb141.domain.Criteria;
 import org.kb141.persistence.CheckDAO;
 import org.kb141.service.CheckService;
 import org.springframework.test.context.ContextConfiguration;
@@ -107,9 +108,34 @@ public class CheckDAOTest {
 	}
 	
 	@Test
-	public void AllTodayEmotion() throws Exception{
+	public void AllTodayEmotionTest() throws Exception{
 		System.out.println(dao.allTodayemotion());
 	}
+	
+	@Test
+	public void AllTodayCheckTimeTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		List<CheckTimeVO> list =  dao.allTodayChecktime(cri);
+		
+		for(int i = 0 ; i < list.size(); i++){
+			System.out.println(list.get(i));
+		}
+		
+	}
+	
+	@Test
+	public void countingPagingTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		System.out.println(dao.countPaging(cri));
+	}
+	
+	
+	
+	
 	// =======================SERVICE=========================
 
 	@Test
@@ -265,5 +291,26 @@ public class CheckDAOTest {
 	public void getAllTodayEmotion() throws Exception{
 		System.out.println(service.getAllTodayEmotion());
 	}
+	
+	@Test
+	public void getAllTodayCheckTime() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		List<CheckTimeVO> list =  service.getAllTodayCheckTime(cri);
+		
+		for(int i = 0 ; i < list.size(); i++){
+			System.out.println(list.get(i));
+		}
+	}
+	
+	@Test
+	public void getListCountCriteriaTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		System.out.println(service.listCountCriteria(cri));
+	}
+	
 	
 }

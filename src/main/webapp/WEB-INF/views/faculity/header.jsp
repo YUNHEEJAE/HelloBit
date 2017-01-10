@@ -116,7 +116,7 @@
 						</ul>
 					</li>
 					
-						<li class="treeview" id="faculity_1"><a href="overView"> 
+						<li class="treeview" id="faculity_1"><a href="overview"> 
 					<i class="fa fa-align-justify text-red"></i> <span> OverView </span>
 				</a>
 					</li>

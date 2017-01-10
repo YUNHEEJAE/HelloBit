@@ -162,16 +162,29 @@
         </div>
         <div class="box-body">
           <div class="row" style="text-align:center;">
-          
-								
 					<div id="chatMessage" >
-	
-								
-						<%-- 	<span value="<fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd "/>"></span> --%>
-						<%-- 	<span value="${StudentCheckKLogVO.sname} / ${StudentCheckKLogVO.checktime}" > --%>
-							<c:forEach items="${StudentCheckKLogVO}" var='StudentCheckKLogVO' >
-								 <div>${StudentCheckKLogVO.sname} / <fmt:formatDate value="${StudentCheckKLogVO.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div>
+							<c:forEach items="${allTodayCheckTime}" var='allTodayCheckTime' >
+								 <div>${allTodayCheckTime.sname} / <fmt:formatDate value="${allTodayCheckTime.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div>
 							</c:forEach>
+							
+							<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li><a href="overview?page=${pageMaker.startPaqge -1}">&laquo;</a></li>
+									</c:if>
+									
+									<c:forEach begin="${pageMaker.startPage}" end = "${pageMaker.endPage}" var="idx">
+											<li
+													<c:out value="${pageMaker.cri.page == idx?'class = active':''}"/>>
+													<a href = "overview?page=${idx}">${idx}</a>
+											</li>
+									</c:forEach>
+									
+									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<li><a href = "overview?page=${pageMaker.endPage +1}">&raquo;</a>
+										</li>
+									</c:if>
+							</ul>
+							
 					</div>	
           </div>
           <!-- /.row -->
@@ -182,11 +195,6 @@
         </div>
         <!-- /.box-body -->
       </div>
-			
-		
-			
-			
-
 		</div>
 		</div>
 		</section>
@@ -219,11 +227,13 @@ $(document).ready(function() {
 			
 			sock.onmessage = function(event) {
 				console.log(event.data);
-				$("#chatMessage").after("<div>"+event.data+"</div><br />");
+				var logger = event.data.substring(2,19);
+				logger.substring("");
+				$("#chatMessage").before("<div>"+event.data.substring(2,5)+" / "+event.data.substring(5,26)+"<br></div>");
 				$("#chatMessage div")[9].remove(); 
-				
 			};
 	};
+	
 	console.log($("#hidden").val());
 	// This will get the first returned node in the jQuery collection.
 	var areaChartData = null;
@@ -333,7 +343,6 @@ $(document).ready(function() {
     pieChart.Doughnut(PieData, pieOptions);
 });
 </script>
-
 
 
 </html>
