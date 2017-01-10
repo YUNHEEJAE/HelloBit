@@ -56,7 +56,7 @@ div {
 	line-height: 150px;
 }
 
-.checkedBoxFooter{
+.checkedBoxFooter {
 	margin-bottom: -20px;
 }
 
@@ -74,15 +74,15 @@ body, ul, ol, li, blockquote, form, p, dl, dt, dd, input, h1, h2, h3, h4,
 	padding: 0;
 }
 
-ul, menu, dir {
-	display: block;
-	list-style-type: disc;
-	-webkit-margin-before: 1em;
-	-webkit-margin-after: 1em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	-webkit-padding-start: 0px;
-}
+/* ul, menu, dir { */
+/* 	display: block; */
+/* 	list-style-type: disc; */
+/* 	-webkit-margin-before: 1em; */
+/* 	-webkit-margin-after: 1em; */
+/* 	-webkit-margin-start: 0px; */
+/* 	-webkit-margin-end: 0px; */
+/* 	-webkit-padding-start: 0px; */
+/* } */
 
 .threadTable li {
 	padding: 0 100px 0 0;
@@ -148,4 +148,196 @@ li {
 	width: 60px;
 	color: #999;
 	text-align: right;
+}
+
+.noticeListCont {
+	border: 1px solid #f2f3f4;
+	border-width: 0 1px;
+	position: relative;
+	clear: both;
+}
+
+.notice-controls {
+	border: 1px solid #f2f3f4;
+	border-width: 0 1px;
+	position: relative;
+	clear: both;
+}
+
+.noticeList {
+	clear: both;
+	border-spacing: 0;
+	border: 0;
+	width: 100%;
+	background: #fff;
+	border-top: 1px solid #e0e0e0;
+	cursor: pointer;
+}
+
+.noticeList li {
+	padding: 0 200px 0 50px;
+}
+
+.noticeList li {
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid #e0e0e0;
+	height: 30px;
+	position: relative;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.noticeList .nno {
+	width: 40px;
+	text-align: center;
+	color: #999;
+	left: 15px;
+}
+
+.noticeList li div, .noticeList li a {
+	display: block;
+	position: absolute;
+	top: 0;
+	height: 30px;
+	line-height: 30px;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.noticeList .ntitle {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: static;
+	padding-left: 20px; 
+}
+
+.noticeList li a {
+	line-height: 29px;
+}
+
+.noticeList a {
+	text-decoration: none;
+	color: #222;
+}
+
+.noticeList .nwriter {
+	width: 90px;
+	text-align: center;
+	right: 100px;
+	letter-spacing: -1px;
+}
+
+.noticeList .nregdate {
+	letter-spacing: 0;
+	width: 70px;
+	font-size: 12px;
+	letter-spacing: 1px;
+	text-align: center;
+	color: #999;
+	right: 20px; 
+}
+
+
+
+
+
+
+.noticeMenu {
+	clear: both;
+	border-spacing: 0;
+	border: 0;
+	width: 100%;
+	background: #fff;
+	cursor: pointer;
+}
+
+.noticeMenu li {
+	padding: 0 200px 0 50px;
+}
+
+.noticeMenu li {
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid #e0e0e0; 
+	height: 30px;
+	position: relative;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.noticeMenu .nno {
+	width: 40px;
+	text-align: center;
+	color: #999;
+	left: 15px;
+}
+
+.noticeMenu li div, .noticeMenu li a {
+	display: block;
+	position: absolute;
+	top: 0;
+	height: 30px;
+	line-height: 30px;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.noticeMenu .ntitle {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: static;
+	padding-left: 20px; 
+	color : #999;
+}
+
+.noticeMenu li a {
+	line-height: 29px;
+}
+
+.noticeMenu a {
+	text-decoration: none;
+	color: #222;
+}
+
+.noticeMenu .nwriter {
+	width: 90px;
+	text-align: center;
+	right: 100px;
+	letter-spacing: -1px;
+	color : #999;
+}
+
+.noticeMenu .nregdate {
+	letter-spacing: 0;
+	width: 70px;
+	letter-spacing: 1px;
+	text-align: center;
+	color: #999;
+	right: 20px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.content-wrapper{
+	position: relative;
 }

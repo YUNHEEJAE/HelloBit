@@ -9,7 +9,7 @@ public class NoticeVO {
 	private String ntitle;
 	private String ncontent;
 	private Date nregdate;
-	private Date nppdatedate;
+	private Date nupdatedate;
 
 	public Integer getNno() {
 		return nno;
@@ -51,18 +51,18 @@ public class NoticeVO {
 		this.nregdate = nregdate;
 	}
 
-	public Date getNppdatedate() {
-		return nppdatedate;
+	public Date getNupdatedate() {
+		return nupdatedate;
 	}
 
-	public void setNppdatedate(Date nppdatedate) {
-		this.nppdatedate = nppdatedate;
+	public void setNupdatedate(Date nupdatedate) {
+		this.nupdatedate = nupdatedate;
 	}
 
 	@Override
 	public String toString() {
 		return "NoticeVO [nno=" + nno + ", nwriter=" + nwriter + ", ntitle=" + ntitle + ", ncontent=" + ncontent
-				+ ", nregdate=" + nregdate + ", nppdatedate=" + nppdatedate + "]";
+				+ ", nregdate=" + nregdate + ", nupdatedate=" + nupdatedate + "]";
 	}
 
 }

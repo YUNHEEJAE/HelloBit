@@ -14,6 +14,7 @@ import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
 import org.kb141.domain.PageMaker;
+import org.kb141.domain.NoticeVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -37,6 +38,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,9 +52,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/faculity")
+@Secured("ROLE_FACULITY")
 public class FaculityController {
-
-	
 	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
   
@@ -130,11 +132,46 @@ public class FaculityController {
 		model.addAttribute("StudentCheckKLogVO",checkService.getstudentCheckLog(pno));
 	}
 	
-	@GetMapping("/noticeBoard")
+	@GetMapping("/notice")
 	public void getNoticeBoard(Model model) throws Exception {
 		logger.info("noticeBoard called....");
 
-		model.addAttribute("list", noticeService.getNoticeList());
+		model.addAttribute("notice", noticeService.getNoticeList());
+	}
+	
+	@GetMapping("/noticeregister")
+	public void noticeRegisterGet() throws Exception {
+		logger.info("notice register called...");
+	}
+	
+	@PostMapping("/noticeregister")
+	public String noticeRegisterPost(NoticeVO vo) throws Exception {
+		logger.info("notice register called...");
+		
+		System.out.println(vo);
+		
+		noticeService.register(vo);
+		
+		return "redirect:notice";
+	}
+	
+	@GetMapping("/noticemodify")
+	public void noticeModifyGet(Integer nno, Model model) throws Exception {
+		logger.info("notice modify called...");
+		
+		model.addAttribute("NoticeVO", noticeService.view(nno));
+		
+	}
+	
+	@PostMapping("/noticemodify")
+	public String noticeModifyPost(NoticeVO vo) throws Exception {
+		logger.info("notice modify called...");
+		
+		System.out.println(vo);
+		
+		noticeService.modify(vo);
+		
+		return "redirect:notice/view?nno=" + vo.getNno();
 	}
 
 	
@@ -329,10 +366,10 @@ public class FaculityController {
 	
 	// 수강 취소 
 	@PostMapping(value="/cancel")
-	public String CancelEnrolment(String[] sid , Integer pno , RedirectAttributes rttr)throws Exception{
+	public String CancelEnrolment(String[] sid , Integer pno , String groupid, RedirectAttributes rttr)throws Exception{
 		
 		TakeProgramVO vo = new TakeProgramVO();
-		
+
 		logger.info("cancel called...");
 		
 		logger.info("sid && pno " + sid + pno);
@@ -341,11 +378,14 @@ public class FaculityController {
 			vo.setState(false);
 			vo.setPno(pno);
 			vo.setSid(sid[i]);
+			String personid = vo.getPersonid();
+			
+			faceAPI.deletePersonId(personid, groupid);
 		
 			takeprogramService.modify(vo);
 			
 		}
-		
+		rttr.addFlashAttribute("result" , "success");
 		return "redirect:takeprogramlist";
 	}
 	
@@ -617,11 +657,11 @@ public class FaculityController {
 			imageService.register(vo);
 			logger.info("========================");
 		}
-//		rttr.addFlashAttribute("result" , "success");
+		rttr.addFlashAttribute("result" , "success");
 		
-//		return "redirect:list";
+		return "redirect:list";
 		
-		return null;
+
 	}
 	
 	@GetMapping("/teachersubjectregister")

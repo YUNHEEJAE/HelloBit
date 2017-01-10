@@ -27,6 +27,9 @@
 	href="../resources/dist/css/skins/_all-skins.min.css">
 <!-- iCheck -->
 <link rel="stylesheet" href="../resources/plugins/iCheck/flat/blue.css">
+<link rel="stylesheet" href="../resources/plugins/iCheck/minimal/minimal.css">
+<link rel="stylesheet" href="../resources/plugins/iCheck/minimal/grey.css">
+
 <!-- Morris chart -->
 <link rel="stylesheet" href="../resources/plugins/morris/morris.css">
 <!-- jvectormap -->
