@@ -8,6 +8,8 @@ import org.kb141.domain.CheckLateManVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.Criteria;
+import org.kb141.domain.OverViewVO;
 import org.kb141.domain.StudentCheckKLogVO;
 import org.kb141.persistence.CheckDAO;
 import org.springframework.stereotype.Service;
@@ -164,6 +166,18 @@ public class CheckServiceImpl implements CheckService {
 	}
 
 	@Override
+	public CheckWeekVO getAllCheckWeek() {
+		CheckWeekVO vo = new CheckWeekVO();
+
+		try {
+			vo = checkDAO.allCheckWeek();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+
+	@Override
 	public List<StudentCheckKLogVO> getstudentCheckLog(Integer pno) {
 		List<StudentCheckKLogVO> result = null;
 		try {
@@ -171,7 +185,64 @@ public class CheckServiceImpl implements CheckService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return result;
+	}
 
+	@Override
+	public Integer getAllTodayCheck() {
+		Integer allToday = null;
+		try {
+			allToday = checkDAO.allTodayCheck();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return allToday;
+	}
+
+	@Override
+	public OverViewVO getAllCheck() {
+		OverViewVO vo = null;
+		
+		try {
+			vo = checkDAO.allCheck();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return vo;
+	}
+
+	@Override
+	public List<CheckTimeVO> getAllTodayEmotion() {
+		List<CheckTimeVO> result = null;
+		
+		try {
+			result = checkDAO.allTodayemotion();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<CheckTimeVO> getAllTodayCheckTime(Criteria cri) {
+		List<CheckTimeVO> result = null;
+		try {
+			result = checkDAO.allTodayChecktime(cri);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public Integer listCountCriteria(Criteria cri) {
+		int result = 0;
+		try {
+			result = checkDAO.countPaging(cri);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 

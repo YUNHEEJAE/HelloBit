@@ -70,7 +70,7 @@
 				<div class="user-panel" style ="height:65px" >
 					<div class="pull-left image">
 						<img src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg"
-							class="img-circle" alt="User Image">
+							class="img-circle" alt="">
 					</div> 
 					<div class="pull-left info">
 						<p>${cookie.LOGIN_ID.value }</p>
@@ -118,6 +118,12 @@
 						</li>
 						</ul>
 					</li>
+					
+						<li class="treeview" id="faculity_1"><a href="overview"> 
+					<i class="fa fa-align-justify text-red"></i> <span> OverView </span>
+				</a>
+					</li>
+					
 					<li><a href="/web/myLogout"><i class="fa fa-sign-out text-red"></i> <span>LOG-OUT</span></a></li>
 				</ul>
 			</section>

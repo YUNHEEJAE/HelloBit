@@ -1,23 +1,20 @@
 
 package org.kb141.web;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ClassroomVO;
+import org.kb141.domain.Criteria;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
+import org.kb141.domain.PageMaker;
+import org.kb141.domain.NoticeVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -140,6 +137,41 @@ public class FaculityController {
 		logger.info("noticeBoard called....");
 
 		model.addAttribute("notice", noticeService.getNoticeList());
+	}
+	
+	@GetMapping("/noticeregister")
+	public void noticeRegisterGet() throws Exception {
+		logger.info("notice register called...");
+	}
+	
+	@PostMapping("/noticeregister")
+	public String noticeRegisterPost(NoticeVO vo) throws Exception {
+		logger.info("notice register called...");
+		
+		System.out.println(vo);
+		
+		noticeService.register(vo);
+		
+		return "redirect:notice";
+	}
+	
+	@GetMapping("/noticemodify")
+	public void noticeModifyGet(Integer nno, Model model) throws Exception {
+		logger.info("notice modify called...");
+		
+		model.addAttribute("NoticeVO", noticeService.view(nno));
+		
+	}
+	
+	@PostMapping("/noticemodify")
+	public String noticeModifyPost(NoticeVO vo) throws Exception {
+		logger.info("notice modify called...");
+		
+		System.out.println(vo);
+		
+		noticeService.modify(vo);
+		
+		return "redirect:notice/view?nno=" + vo.getNno();
 	}
 	
 	@GetMapping("/noticeview")
@@ -667,6 +699,27 @@ public class FaculityController {
 			logger.info("teachersubject : " + tsno);
 			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
 	}
-
-
+	
+	@GetMapping("/overview")
+	public void OverViewGET(Criteria cri, Model model)throws Exception{
+		logger.info("OverView Start ........................");
+		model.addAttribute("allTodayCheck",checkService.getAllTodayCheck());
+		
+		List<CheckTimeVO> result = checkService.getAllTodayEmotion();
+		
+		model.addAttribute("allEmotionList", emotionUtils.emotionCounter(result));
+		
+		model.addAttribute("allCheck", checkService.getAllCheck());
+		
+		model.addAttribute("allTodayCheckTime",checkService.getAllTodayCheckTime(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+//		pageMaker.setTotalCount(130);
+		
+		pageMaker.setTotalCount(checkService.listCountCriteria(cri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+	}
 }

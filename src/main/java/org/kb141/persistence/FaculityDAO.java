@@ -16,5 +16,8 @@ public void create(FaculityVO vo) throws Exception;
 	public void delete(String fid) throws Exception;
 	
 	public List<FaculityVO> getList() throws Exception;
+
+	
+	
 	
 }
