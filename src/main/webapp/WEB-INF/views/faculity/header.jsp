@@ -115,6 +115,12 @@
 						</li>
 						</ul>
 					</li>
+					
+						<li class="treeview" id="faculity_1"><a href="overView"> 
+					<i class="fa fa-align-justify text-red"></i> <span> OverView </span>
+				</a>
+					</li>
+					
 					<li><a href="/web/myLogout"><i class="fa fa-sign-out text-red"></i> <span>LOG-OUT</span></a></li>
 				</ul>
 			</section>

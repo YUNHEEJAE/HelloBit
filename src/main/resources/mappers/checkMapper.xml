@@ -116,8 +116,44 @@
 		]]>
 	</select>
 	
+	<select id="allTodayCheck" resultType="Integer">
+	select count(distinct(sid)) from tbl_check where date_format(checktime, "%y-%c-%d") = date_format(curdate(),"%y-%c-%d")
+	</select>
+	
+	<select id="allCheck" resultType="OverViewVO">
+	<![CDATA[
+		select  count(*)attend, sum(if(states='red',1,0))late, 
+	(select count(*) from tbl_take_program where pno in(select pno from tbl_program where opendate < curdate()) and state = 1) - count(*)absent
+	,(select count(*) from tbl_take_program where pno in(select pno from tbl_program where opendate < curdate()) and state = 1)total from (
+		select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states  
+			from (
+				select sid, pno, min(checktime) firsttime, max(checktime) lasttime, emotion from tbl_check
+				where checktime > curdate() and checktime < (curdate() + 1)
+				group by date(checktime), sid) t)tt group by total
+				]]>
+	</select>
+	
+	
+	<select id="allTodayEmotion" resultType="CheckTimeVO">
+	 <![CDATA[
+	 	select *, case when time(t.firsttime)<='09:00' then 'blue' else 'red' end as states from (
+			select sid, pno, min(checktime) firsttime, max(checktime) lasttime, emotion from tbl_check
+			where  checktime > curdate() and checktime < (curdate() + 1)
+			group by date(checktime), sid) t
+			]]>
+	</select>
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	<select id="studentCheckLog" resultType="StudentCheckKLogVO">
+				select sname,checktime 
+				from tbl_check c join tbl_student s 
+				where pno = #{pno} and c.sid = s.sid order by checktime desc limit 10
+	</select>
 </mapper>

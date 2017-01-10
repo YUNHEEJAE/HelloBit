@@ -40,7 +40,7 @@
 
 					<div class="info-box-content">
 						<span class="info-box-text">출석한 인원</span> <span
-							class="info-box-number">${check} 명</span>
+							class="info-box-number">${allCheck.attend} 명</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
@@ -48,21 +48,21 @@
 			</div>
 			<!-- /.col -->
 
-
-			<div class="col-md-3 col-sm-6 col-xs-12">
-				<div class="info-box">
-					<span class="info-box-icon bg-red"><i
-						class="ion ion-sad"></i></span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">지각한 인원</span> <span
-							class="info-box-number">${late} 명</span>
+		<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-red"><i
+								class="ion ion-sad"></i></span>
+		
+							<div class="info-box-content">
+								<span class="info-box-text">지각한 인원</span> <span
+									class="info-box-number">${allCheck.late} 명</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
 					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<!-- /.info-box -->
-			</div>
-			<!-- /.col -->
+					<!-- /.col -->
+
 
  			<!-- fix for small devices only --> 
 <!-- 			<div class="clearfix visible-sm-block"></div> -->
@@ -74,7 +74,7 @@
 
 					<div class="info-box-content">
 						<span class="info-box-text">결석한 인원</span> <span
-							class="info-box-number">${absent} 명</span>
+							class="info-box-number">${allCheck.absent} 명</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
@@ -90,7 +90,7 @@
 
 					<div class="info-box-content">
 						<span class="info-box-text">총인원</span> <span
-							class="info-box-number">${total} 명</span>
+							class="info-box-number">${allCheck.total} 명</span>
 					</div>
 					<!-- /.info-box-content -->
 				</div>
@@ -154,46 +154,7 @@
 		<div class="col-md-6">
 		
 			
-			<!-- Table -->
-			<div class="box box-danger">
-				<div class="box-header with-border">
-					<h3 class="box-title">
-					<b>지각자 명단</b>
-					</h3>
-				</div>
-				<!-- /.box-header -->
-				<div class="box-body">
-					<table class="table table-bordered">
-
-						<tr>
-							<th style="width: 40px"><small>순위</small></th>
-							<th>이름</th>
-							<th>지각률 %</th>
-							<th style="width: 40px"><small>횟수</small></th>
-						</tr>
-
-						<c:forEach items="${lateManList }" var="checkLateManVO"
-							varStatus="i">
-
-							<tr>
-								<td>${i.count }.</td>
-								<td>${checkLateManVO.sid}</td>
-								<td>
-									<div class="progress progress-xs progress-striped">
-										<div
-											class="progress-bar progress-bar-${i.count == 1 ? 'danger' : 'warning' }"
-											style="width: ${checkLateManVO.delaycnt / attendanceCnt * 100}%"></div>
-									</div>
-								</td>
-								<td><span
-									class="badge bg-${i.count == 1 ? 'red' : 'yellow' }">${checkLateManVO.delaycnt}</span></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-				<!-- /.box-body -->
-
-			</div>
+			
 		<%-- 	 <div type="hiddin" id ='hidden' value='${StudentCheckKLogVO.checktime}'></div>  --%>
 		<div class="box box-default color-palette-box">
         <div class="box-header with-border">
@@ -267,7 +228,7 @@ $(document).ready(function() {
 	// This will get the first returned node in the jQuery collection.
 	var areaChartData = null;
 
-	$.getJSON("/web/check/checkWeek/${param.pno}", function(data) {
+	$.getJSON("/web/check/allCheckWeek", function(data) {
 		console.log(data);
 
 		areaChartData = {
@@ -329,7 +290,7 @@ $(document).ready(function() {
 	//-------------
     //- PIE CHART -
     //-------------
-    // Get context with jQuery - using jQuery's .get() method.
+//     Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
     var pieChart = new Chart(pieChartCanvas);
     //  String[] keys = { "happiness", "neutral", "sadness", "anger", "fear","surprise"};
@@ -337,12 +298,12 @@ $(document).ready(function() {
 //     var pieColor = ["#00c0ef", "#d2d6de","#f39c12","#f56954","#00a65a","#3c8dbc"];
 // sad anger fear = red, surprise, 
     var PieData = [
-		{ value: ${emotionList["anger"]}, 		color: "#f56954", highlight: "#f56954", label: "화나요" },
-		{ value: ${emotionList["happiness"]}, 	color: "#3c8dbc", highlight: "#3c8dbc", label: "행복해요" },
-		{ value: ${emotionList["neutral"]}, 	color: "#d2d6de", highlight: "#d2d6de", label: "편안해요" },
-		{ value: ${emotionList["sadness"]}, 	color: "#f39c12", highlight: "#f39c12", label: "슬퍼요" },
-		{ value: ${emotionList["surprise"]}, 	color: "#00a65a", highlight: "#00a65a", label: "놀라워요" },
-		{ value: ${emotionList["fear"]}, 		color: "#00c0ef", highlight: "#00c0ef", label: "두려워요" }
+		{ value: ${allEmotionList["anger"]}, 		color: "#f56954", highlight: "#f56954", label: "화나요" },
+		{ value: ${allEmotionList["happiness"]}, 	color: "#3c8dbc", highlight: "#3c8dbc", label: "행복해요" },
+		{ value: ${allEmotionList["neutral"]}, 	color: "#d2d6de", highlight: "#d2d6de", label: "편안해요" },
+		{ value: ${allEmotionList["sadness"]}, 	color: "#f39c12", highlight: "#f39c12", label: "슬퍼요" },
+		{ value: ${allEmotionList["surprise"]}, 	color: "#00a65a", highlight: "#00a65a", label: "놀라워요" },
+		{ value: ${allEmotionList["fear"]}, 		color: "#00c0ef", highlight: "#00c0ef", label: "두려워요" }
     ];
     var pieOptions = {
       //Boolean - Whether we should show a stroke on each segment

@@ -132,6 +132,7 @@ public class FaculityController {
 		model.addAttribute("lateManList", checkService.getcheckLateMan(pno));
 		model.addAttribute("week", checkService.getCheckWeek(pno));
 		model.addAttribute("emotionList", emotionUtils.emotionCounter(result));
+		model.addAttribute("StudentCheckKLogVO",checkService.getstudentCheckLog(pno));
 	}
 	
 	@GetMapping("/noticeBoard")
@@ -655,6 +656,24 @@ public class FaculityController {
 			logger.info("teachersubject : " + tsno);
 			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
 	}
+	
+	@GetMapping("/overView")
+	public void OverViewGET(Model model)throws Exception{
+		logger.info("OverView Start ........................");
+//		model.addAttribute("allTodayCheck",checkService.getAllTodayCheck());
+		
+		List<CheckTimeVO> result = checkService.getAllTodayEmotion();
+		
+		model.addAttribute("allEmotionList", emotionUtils.emotionCounter(result));
+		
+		model.addAttribute("allCheck", checkService.getAllCheck());
+		
+		
+		
+		
+	}
+	
+	
 
 
 }
