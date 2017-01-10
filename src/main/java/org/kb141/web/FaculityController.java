@@ -18,6 +18,7 @@ import org.kb141.domain.ClassroomVO;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
+import org.kb141.domain.NoticeVO;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -140,6 +141,41 @@ public class FaculityController {
 		logger.info("noticeBoard called....");
 
 		model.addAttribute("notice", noticeService.getNoticeList());
+	}
+	
+	@GetMapping("/noticeregister")
+	public void noticeRegisterGet() throws Exception {
+		logger.info("notice register called...");
+	}
+	
+	@PostMapping("/noticeregister")
+	public String noticeRegisterPost(NoticeVO vo) throws Exception {
+		logger.info("notice register called...");
+		
+		System.out.println(vo);
+		
+		noticeService.register(vo);
+		
+		return "redirect:notice";
+	}
+	
+	@GetMapping("/noticemodify")
+	public void noticeModifyGet(Integer nno, Model model) throws Exception {
+		logger.info("notice modify called...");
+		
+		model.addAttribute("NoticeVO", noticeService.view(nno));
+		
+	}
+	
+	@PostMapping("/noticemodify")
+	public String noticeModifyPost(NoticeVO vo) throws Exception {
+		logger.info("notice modify called...");
+		
+		System.out.println(vo);
+		
+		noticeService.modify(vo);
+		
+		return "redirect:notice/view?nno=" + vo.getNno();
 	}
 
 	
