@@ -36,15 +36,15 @@
             <div class="box-header with-border">
               <i class="fa fa-text-width"></i>
 
-              <h3 class="box-title">${noticeVO.ntitle }</h3>
+              <h3 class="box-title" name="ntitle">${noticeVO.ntitle }</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <dl class="dl-horizontal">
               	<br><br>
               	
-                <dt>${noticeVO.nwriter }</dt>
-                <dd>${noticeVO.ncontent }</dd>
+                <dt name="nwriter">${noticeVO.nwriter }</dt>
+                <dd name="ncontent">${noticeVO.ncontent }</dd>
                 <dt><br></dt>
                 <dd><br></dd>
                 <dd><br></dd>
@@ -56,14 +56,15 @@
 			   </dl>
 			 <br>
 			 
-			 <div class="row pull-right">
-	              <div class="col-md-3"><button type="button" class="btn btn-block btn-warning" id="modisucBtn">수정완료</button></div>
-				  <div class="col-md-3"><button type="button" class="btn btn-block btn-default">돌아가기</button></div>
-	              <div class="col-md-3"><button type="button" class="btn btn-block btn-info">수정</button></div>
-	              <div class="col-md-3"><button type="button" class="btn btn-block btn-danger">삭제</button></div>
+			 <div class="col-md-8 pull-right">
+	         
+				  <div class="col-md-4"><button type="button" class="btn btn-block btn-default" id='backBtn'>돌아가기</button></div>
+	              <div class="col-md-4"><button type="button" class="btn btn-block btn-info" id='modiBtn' onclick="noticemodify">수정</button></div>
+	              <div class="col-md-4"><button type="button" class="btn btn-block btn-danger" id='delBtn'>삭제</button></div>
              </div>
 			              
 			             
+
 
 			              
 			              
@@ -80,40 +81,35 @@
 
 		</div>
 		</section>
+				<form method="post" action="noticeRemove" id="nnoform">
+				<input type="hidden" value ="${noticeVO.nno}" name="nno">
+				</form>	
 	</div>
 </body>
 <%@include file="footer.jsp"%>
 
 <script>
-	
-	$("#modisucBtn").hide();
-var str="";
-<c:forEach items="${notice}" var="notice">
+					
+					$("#modisucBtn").hide();
 
-	str +='<li class="noticeItem">'+
-		'<div class="nno" data-nno="${notice.nno}">${notice.nno}</div> <a class="ntitle" href="#"' +
-		'title="${notice.ntitle}">${notice.ntitle}</a>'+
-		'<div class="nwriter">${notice.nwriter}</div>'+
-		'<div class="nregdate"><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.nregdate}"/></div></li>';
- 
-</c:forEach>
-$(".noticeList").append(str);
-	
-	
-	
-	
-	
-function getFormatDate(date){
-	var stringDate = new Date(date);
-	var year = stringDate.getFullYear();
-	var month= (1+stringDate.getMonth());
-	month = month >=10?month:'0' + month;
-	var day = stringDate.getDate();
-	day=day>=10?day:'0'+day;
-	return year+"-"+month+"-"+day;
-}
-	
-	
+			
+			$("#delBtn").on("click", function() {
+				if (confirm("정말삭제하시겠습니까?") == true) {
+
+					$("#nnoform").submit();
+				} else {
+					return;
+				}
+			});
+			
+			$("#modiBtn").on("click",function(){
+				
+			});
+			
+			$("#backBtn").on("click", function() {
+				history.back(1);
+			});
+				
 	
 	
 </script>

@@ -181,7 +181,13 @@ public class FaculityController {
 			
 		model.addAttribute("noticeVO", noticeService.view(nno));
 	}
-
+	
+	@PostMapping("/noticeRemove")
+	public String getNoticeBoardRemove(Integer nno)throws Exception{
+		logger.info("noticeBoardRemove called....");
+		noticeService.remove(nno);
+		return "redirect:notice";
+	}
 	
 //	@GetMapping(value = "/faculitylist", produces = "application/json")
 //	@ResponseBody
