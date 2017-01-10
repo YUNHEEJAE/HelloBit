@@ -256,6 +256,7 @@ $(document).ready(function() {
 	sock.onopen = function(event) {
 			console.log(event);
 			
+			
 			sock.onmessage = function(event) {
 				console.log(event.data);
 				var logger = event.data.substring(2,19);
