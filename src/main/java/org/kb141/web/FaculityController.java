@@ -730,9 +730,9 @@ public class FaculityController {
 		model.addAttribute("allEmotionList", emotionUtils.emotionCounter(result));
 		
 		model.addAttribute("allCheck", checkService.getAllCheck());
+		cri.setPerPageNum(15);
 		
 		model.addAttribute("allTodayCheckTime",checkService.getAllTodayCheckTime(cri));
-		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 //		pageMaker.setTotalCount(130);

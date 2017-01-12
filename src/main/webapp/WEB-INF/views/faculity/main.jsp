@@ -246,7 +246,7 @@
 <script>
 $(document).ready(function() {
 	$("#faculity_1").attr("class", "active");
-	$("#pno_37").attr("class", "active");
+	$("#pno_37").attr("class", "active"); 
 
 	
 	sock = new SockJS("/web/logWebsocket");

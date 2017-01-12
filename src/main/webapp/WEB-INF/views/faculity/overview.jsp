@@ -24,7 +24,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			${program.pcourse} <small>${program.torder }기 - ${program.roomname }호</small>
+			Overview
 		</h1>
 		</section>
 
@@ -182,7 +182,7 @@
 			</table>
         </div>
         <!-- /.box-body -->
-        	<div class="box-footer">	
+        	<div class="box-footer" style="text-align: center;">	
 				<ul class="pagination" >
 					<c:if test="${pageMaker.prev}">
 						<li><a href="overview?page=${pageMaker.startPaqge -1}">&laquo;</a></li>
@@ -221,7 +221,6 @@
 <!-- page script -->
 <script>
 $(document).ready(function() {
-	
 	
 	
 	$("#faculity_overview").attr("class", "active");
