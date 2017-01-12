@@ -329,13 +329,22 @@ li {
 
 
 
+#searchBtn{
+	border: none;
+	background: none;
+	margin-right: -5px;
+}
 
+#keywordInput{
+	padding-left: 10px
+}
 
-
-
-
-
-
+.box-tools{
+	height : 200px;
+	width:195px;
+	margin:auto;
+	border: 1px solid #e0e0e0;
+}
 
 
 .content-wrapper{

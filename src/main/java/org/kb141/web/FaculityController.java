@@ -35,8 +35,10 @@ import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
 import org.kb141.util.CookieChecker;
+import org.kb141.util.Criteria;
 import org.kb141.util.EmotionUtils;
 import org.kb141.util.FaceAPIUtils;
+import org.kb141.util.PageMaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -136,10 +138,18 @@ public class FaculityController {
 	}
 	
 	@GetMapping("/notice")
-	public void getNoticeBoard(Model model) throws Exception {
+	public void getNoticeBoard(Criteria cri, Model model) throws Exception {
 		logger.info("noticeBoard called....");
+		
+		cri.setPerPageNum(15);
+		model.addAttribute("notice", noticeService.listCriteria(cri));
 
-		model.addAttribute("notice", noticeService.getNoticeList());
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotal(noticeService.listCountCriteria(cri));
+		
+		model.addAttribute("pageMaker",pageMaker);
+	
 	}
 
 	

@@ -23,9 +23,22 @@
 		delete from tbl_notice where nno = #{nno}
 	</delete>
 	
-	<select id="allList" resultType="NoticeVO">
-		select * from tbl_notice
+<!-- 	<select id="allList" resultType="NoticeVO"> -->
+<!-- 		select * from tbl_notice -->
+<!-- 	</select> -->
+
+	<select id="listPage" resultType="NoticeVO">
+	<![CDATA[
+ 	select * from tbl_notice where nno>0 order by nno desc, nregdate desc limit #{pageStart}, 15
+	]]>
 	</select>
+
+
+	<select id = "countPaging" resultType="int">
+		<![CDATA[
+		select count(nno) from tbl_notice where nno>0
+	]]>
+	</select> 
 
 
 </mapper>
