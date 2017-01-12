@@ -25,7 +25,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
 
-//		System.out.println(auth);
+		
+		Cookie[] cookies = request.getCookies();
+		
+		for (Cookie cookie : cookies) {
+			System.out.println(cookie.getName() + " : " + cookie.getValue());
+		}
+		
+		
 		
 		GrantedAuthority curole = auth.getAuthorities().iterator().next();
 		
@@ -37,7 +44,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		cookie.setPath("/");
 		
 		response.addCookie(cookie);
-		
 		
 		if (rolePath.equals("teacher")) {
 			
@@ -78,7 +84,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 				programCookie.setPath("/");
 				response.addCookie(programCookie);
 				
-				response.sendRedirect("/web/faculity/main?pno=" + myProgram.get(0).getPno());
+//				response.sendRedirect("/web/faculity/main?pno=" + myProgram.get(0).getPno());
+				response.sendRedirect("/web/faculity/overview");
 				
 				
 			} catch (Exception e) {

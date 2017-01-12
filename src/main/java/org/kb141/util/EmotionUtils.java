@@ -48,9 +48,7 @@ public class EmotionUtils {
 			}
 			emotionMap.put(state, emotionMap.get(state) + 1);		
 		}
-		
 		return emotionMap;
-		
 	}
 	
 	public List<String> emotionHandler(List<CheckVO> resultList) throws ParseException {

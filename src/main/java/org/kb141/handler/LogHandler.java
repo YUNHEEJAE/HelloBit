@@ -29,7 +29,7 @@ public class LogHandler extends TextWebSocketHandler implements WebSocketConfigu
 	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry wsh) {
-			wsh.addHandler(logHandler(), "/logWebsocket").setAllowedOrigins("http://192.168.0.6:8081/web").withSockJS();
+			wsh.addHandler(logHandler(), "/logWebsocket").setAllowedOrigins("http://192.168.0.12:8081/web").withSockJS();
 		
 	}
 	@Bean

@@ -9,7 +9,6 @@ import org.kb141.domain.CheckWeekVO;
 import org.kb141.domain.StudentCheckKLogVO;
 import org.kb141.service.CheckService;
 import org.kb141.service.TakeProgramService;
-import org.kb141.util.ByteConverter;
 import org.kb141.util.FaceAPIUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,6 +82,14 @@ public class CheckController {
 		
 		return service.getCheckWeek(pno);
 	}
-
+	
+	@ResponseBody
+	@GetMapping("/allCheckWeek")
+	public CheckWeekVO allCheckWeek() throws Exception {
+		logger.info("Weeklist Start...");
+		
+		return service.getAllCheckWeek();
+	}
+	
 
 }

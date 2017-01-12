@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kb141.domain.NoticeVO;
-import org.kb141.util.Criteria;
+import org.kb141.domain.Criteria;
 import org.springframework.stereotype.Repository;
 
 @Repository

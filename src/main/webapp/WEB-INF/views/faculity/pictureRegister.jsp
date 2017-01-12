@@ -228,17 +228,16 @@ img{
               <!-- /.box-footer -->
        
             <div class="box-footer">
-                <button class="btn btn-default"> 메인 화면</button>
                 
                 <form action="pictureRegister" method="post" id="regform">
                 		<input type="hidden" name="sid" value="${sid}" id="userid">
-          
                 </form>
+                <button onclick="location.href='/web/faculity/list'" class="btn btn-default" id ='back'> 리스트로 돌아가기</button>
                 <button class="btn btn-info pull-right" id="regBtn">등 록</button>
               </div>
-              
-          </div>
-          
+ 
+          </div>      
+         
 <div class="modal fade" id="myModal" role="dialog">
  <div class="modal-dialog">
 	<div class="container" id="loaded">
@@ -469,11 +468,11 @@ img{
                 }; // onload end..
                 xhr.send(); 	 
         } 
-     		
+ 
      		 $("#regBtn").click(function (event) {
 						$('#regform').submit();
 				});
-     		
+
      		
      		
 

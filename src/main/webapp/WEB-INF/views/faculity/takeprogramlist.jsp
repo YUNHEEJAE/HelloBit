@@ -10,9 +10,10 @@
 				Faculity List <small>수 강 현황 관리 페이지 입니다.</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="list"><i class="fa fa-dashboard active"></i>Home</a></li>
+				<li><a href="takeprogramlist"><i class="fa fa-dashboard active"></i>Home</a></li>
 			</ol>
 		</section>
+
 
 		<!-- Main content -->
 		<section class="content">

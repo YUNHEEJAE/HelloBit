@@ -3,7 +3,7 @@ package org.kb141.persistence;
 import java.util.List;
 
 import org.kb141.domain.NoticeVO;
-import org.kb141.util.Criteria;
+import org.kb141.domain.Criteria;
 
 public interface NoticeDAO {
 

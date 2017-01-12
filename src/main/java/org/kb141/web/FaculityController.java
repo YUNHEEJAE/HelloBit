@@ -1,23 +1,20 @@
 
 package org.kb141.web;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.ClassroomVO;
+import org.kb141.domain.Criteria;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
+import org.kb141.domain.NoticeVO;
+import org.kb141.domain.PageMaker;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -35,15 +32,13 @@ import org.kb141.service.TakeProgramService;
 import org.kb141.service.TeacherService;
 import org.kb141.service.TeacherSubjectService;
 import org.kb141.util.CookieChecker;
-import org.kb141.util.Criteria;
 import org.kb141.util.EmotionUtils;
 import org.kb141.util.FaceAPIUtils;
-import org.kb141.util.PageMaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,9 +51,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/faculity")
+@Secured("ROLE_FACULITY")
 public class FaculityController {
-
-	
 	
 	private static final Logger logger = LoggerFactory.getLogger(FaculityController.class);
   
@@ -151,7 +145,56 @@ public class FaculityController {
 		model.addAttribute("pageMaker",pageMaker);
 	
 	}
+	
+	@GetMapping("/noticeregister")
+	public void noticeRegisterGet() throws Exception {
+		logger.info("notice register called...");
+	}
+	
+	@PostMapping("/noticeregister")
+	public String noticeRegisterPost(NoticeVO vo) throws Exception {
+		logger.info("notice register called...");
+		
+		System.out.println(vo);
+		
+		noticeService.register(vo);
+		
+		return "redirect:notice";
+	}
+	
+	@GetMapping("/noticemodify")
+	public void noticeModifyGet(Integer nno, Model model) throws Exception {
+		logger.info("notice modify called...");
+		
+		model.addAttribute("NoticeVO", noticeService.view(nno));
+		
+	}
+	
+	@PostMapping("/noticemodify")
+	public String noticeModifyPost(NoticeVO vo) throws Exception {
+		logger.info("notice modify called...");
+		
+		System.out.println(vo);
+		
+		noticeService.modify(vo);
+		
+		return "redirect:notice/view?nno=" + vo.getNno();
+	}
+	
+	@GetMapping("/noticeview")
+	public void getNoticeBoardview(Model model,Integer nno) throws Exception {
+		logger.info("noticeBoard called....");
 
+			
+		model.addAttribute("noticeVO", noticeService.view(nno));
+	}
+	
+	@PostMapping("/noticeRemove")
+	public String getNoticeBoardRemove(Integer nno)throws Exception{
+		logger.info("noticeBoardRemove called....");
+		noticeService.remove(nno);
+		return "redirect:notice";
+	}
 	
 //	@GetMapping(value = "/faculitylist", produces = "application/json")
 //	@ResponseBody
@@ -635,11 +678,11 @@ public class FaculityController {
 			imageService.register(vo);
 			logger.info("========================");
 		}
-//		rttr.addFlashAttribute("result" , "success");
+		rttr.addFlashAttribute("result" , "success");
 		
-//		return "redirect:list";
+		return "redirect:list";
 		
-		return null;
+
 	}
 	
 	@GetMapping("/teachersubjectregister")
@@ -669,6 +712,27 @@ public class FaculityController {
 			logger.info("teachersubject : " + tsno);
 			model.addAttribute("teachersubjectVO", teacherSubjectService.getTeacherSubject(tsno));
 	}
-
-
+	
+	@GetMapping("/overview")
+	public void OverViewGET(Criteria cri, Model model)throws Exception{
+		logger.info("OverView Start ........................");
+		model.addAttribute("allTodayCheck",checkService.getAllTodayCheck());
+		
+		List<CheckTimeVO> result = checkService.getAllTodayEmotion();
+		
+		model.addAttribute("allEmotionList", emotionUtils.emotionCounter(result));
+		
+		model.addAttribute("allCheck", checkService.getAllCheck());
+		
+		model.addAttribute("allTodayCheckTime",checkService.getAllTodayCheckTime(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+//		pageMaker.setTotalCount(130);
+		
+		pageMaker.setTotal(checkService.listCountCriteria(cri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
+	}
 }

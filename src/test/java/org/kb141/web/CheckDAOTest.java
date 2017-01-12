@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
+import org.kb141.domain.Criteria;
 import org.kb141.persistence.CheckDAO;
 import org.kb141.service.CheckService;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,7 +34,7 @@ public class CheckDAOTest {
 	@Test
 	public void createTest() throws Exception {
 		CheckVO obj = new CheckVO();
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 		obj.setSid("ljp");
 		obj.setPno(1);
 		String emotion = "\"scores\"" + ": {" + "\"anger\"" + ": 0," + "\"contempt\"" + ": 0, " + "\"disgust\"" + ":0,"
@@ -81,16 +82,60 @@ public class CheckDAOTest {
 		System.out.println(dao.checkStudent("lsy"));
 	}
 
-	
 	@Test
-	public void checkAttendanceCntTest() throws Exception{
+	public void checkAttendanceCntTest() throws Exception {
 		System.out.println(dao.checkAttendanceCnt(1));
 	}
-	
+
 	@Test
-	public void studentCheckLogTest() throws Exception{
+	public void allCheckWeekTest() throws Exception {
+		System.out.println(dao.allCheckWeek());
+	}
+
+	@Test
+	public void studentCheckLogTest() throws Exception {
 		System.out.println(dao.studentCheckLog(37));
 	}
+	
+	@Test
+	public void AllTodayCheckTest() throws Exception{
+		System.out.println(dao.allTodayCheck());
+	}
+	
+	@Test
+	public void AllCheckTest() throws Exception{
+		System.out.println(dao.allCheck());
+	}
+	
+	@Test
+	public void AllTodayEmotionTest() throws Exception{
+		System.out.println(dao.allTodayemotion());
+	}
+	
+	@Test
+	public void AllTodayCheckTimeTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		List<CheckTimeVO> list =  dao.allTodayChecktime(cri);
+		
+		for(int i = 0 ; i < list.size(); i++){
+			System.out.println(list.get(i));
+		}
+		
+	}
+	
+	@Test
+	public void countingPagingTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		System.out.println(dao.countPaging(cri));
+	}
+	
+	
+	
+	
 	// =======================SERVICE=========================
 
 	@Test
@@ -115,19 +160,15 @@ public class CheckDAOTest {
 	public void getcheckMemberTest() throws Exception {
 		System.out.println(service.getcheckMember(1));
 	}
-	
 
 	@Test
-	public void getTime() throws Exception{
+	public void getTime() throws Exception {
 		Date date = new Date();
 		String s = date.toString();
 		System.out.println(s);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		System.out.println(sdf.format(date));
 	}
-	
-	
-	
 
 	@Test
 	public void getcheckDateTest() throws Exception {
@@ -159,47 +200,47 @@ public class CheckDAOTest {
 		System.out.println(service.checkStudent("lsy"));
 	}
 
-	
 	@Test
-	public void getcheckAttendanceCntTest() throws Exception{
+	public void getcheckAttendanceCntTest() throws Exception {
 		System.out.println(service.getAttendanceCnt(1));
 	}
-	
+
 	@Test
 	public void getTodayCheck() throws Exception {
 		List<CheckTimeVO> result = service.getTodayCheck(37);
 		List<CheckTimeVO> chulseok = new ArrayList<CheckTimeVO>();
 		List<CheckTimeVO> jigak = new ArrayList<CheckTimeVO>();
-		
+
 		System.out.println(result);
-		
+
 		for (CheckTimeVO checkTimeVO : result) {
-			if(checkTimeVO.getStates().equals("blue") ){
+			if (checkTimeVO.getStates().equals("blue")) {
 				chulseok.add(checkTimeVO);
 			} else {
 				jigak.add(checkTimeVO);
 			}
 		}
-		
+
 		System.out.println("CHULSEOK : " + chulseok);
 		System.out.println("CHULSEOK size : " + chulseok.size());
 		System.out.println("JIGAK : " + jigak);
 		System.out.println("JIGAK : size " + jigak.size());
-		
+
 	}
-	
+
 	@Test
 	public void emotionParseTest() throws Exception {
 		List<CheckTimeVO> result = service.getTodayCheck(37);
 		Map<String, Integer> emotionMap = new HashMap<String, Integer>();
-//		String[] keys = {"contempt", "surprise", "happiness", "neutral", "sadness", "disgust", "anger", "fear"};
-		String[] keys = { "happiness", "neutral", "sadness", "anger", "fear","surprise"};
+		// String[] keys = {"contempt", "surprise", "happiness", "neutral",
+		// "sadness", "disgust", "anger", "fear"};
+		String[] keys = { "happiness", "neutral", "sadness", "anger", "fear", "surprise" };
 		JSONParser parser = new JSONParser();
 
 		for (String key : keys) {
 			emotionMap.put(key, 0);
 		}
-		
+
 		for (CheckTimeVO checkTimeVO : result) {
 			JSONObject obj = (JSONObject) parser.parse("{" + checkTimeVO.getEmotion() + "}");
 			long highScore = -1;
@@ -207,30 +248,69 @@ public class CheckDAOTest {
 			String state = null;
 			for (String key : keys) {
 				currScore = (Long) obj.get(key);
-				if(highScore < currScore) {
+				if (highScore < currScore) {
 					highScore = currScore;
 					state = key;
 				}
 			}
-			emotionMap.put(state, emotionMap.get(state) + 1);		
+			emotionMap.put(state, emotionMap.get(state) + 1);
 		}
-		
 		System.out.println(emotionMap);
-		
+
 		// 감정 = 제일 큰 값의 key 값 따야지.
-		// 
-		
+		//
+
 	}
+
 	@Test
 	public void getMyListTest() throws Exception {
-		
-		System.out.println(service.getMyList("yhj"));		
-		
+		System.out.println(service.getMyList("yhj"));
+	}
+
+	@Test
+	public void getAllCheckWeek() throws Exception{
+		System.out.println(service.getAllCheckWeek());
 	}
 	
 	@Test
-	public void getStudentCheckLogTest() throws Exception{
+	public void getStudentCheckLogTest() throws Exception {
 		System.out.println(service.getstudentCheckLog(37));
 	}
+
+	@Test
+	public void getAllTodayCheck() throws Exception{
+		System.out.println(service.getAllTodayCheck());
+	}
+	
+	@Test
+	public void getAllCheck() throws Exception{
+		System.out.println(service.getAllCheck());
+	}
+	
+	@Test
+	public void getAllTodayEmotion() throws Exception{
+		System.out.println(service.getAllTodayEmotion());
+	}
+	
+	@Test
+	public void getAllTodayCheckTime() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		List<CheckTimeVO> list =  service.getAllTodayCheckTime(cri);
+		
+		for(int i = 0 ; i < list.size(); i++){
+			System.out.println(list.get(i));
+		}
+	}
+	
+	@Test
+	public void getListCountCriteriaTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(10);
+		System.out.println(service.listCountCriteria(cri));
+	}
+	
 	
 }

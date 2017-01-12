@@ -1,4 +1,4 @@
-package org.kb141.util;
+package org.kb141.domain;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -87,9 +87,6 @@ public class PageMaker {
 	
 		return uriComponents.toUriString();
 	}
-	
-	
-	
 
 	@Override
 	public String toString() {

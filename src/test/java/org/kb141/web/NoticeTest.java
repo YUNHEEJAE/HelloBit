@@ -34,7 +34,7 @@ public class NoticeTest {
 
 	@Test
 	public void readTest() throws Exception {
-		System.out.println(noticedao.read(2));
+		System.out.println(noticedao.read(15));
 	}
 
 	@Test
@@ -95,7 +95,7 @@ public class NoticeTest {
 	
 	@Test
 	public void ViewTest() throws Exception{
-		System.out.println(service.view(4));
+		System.out.println(service.view(15));
 	}
 	
 	@Test

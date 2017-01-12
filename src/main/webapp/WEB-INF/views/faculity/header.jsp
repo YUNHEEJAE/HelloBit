@@ -70,7 +70,7 @@
 				<div class="user-panel" style ="height:65px" >
 					<div class="pull-left image">
 						<img src="http://pds26.egloos.com/pds/201212/24/34/a0085634_50d858d263333.jpg"
-							class="img-circle" alt="User Image">
+							class="img-circle" alt="">
 					</div> 
 					<div class="pull-left info">
 						<p>${cookie.LOGIN_ID.value }</p>
@@ -82,6 +82,12 @@
 				<ul class="sidebar-menu">
 					<li class="header">교직원 ${cookie.LOGIN_ID.value }님 환영합니다.</li>
 			<!-- active 오또케 -->
+										
+					<li class="treeview" id="faculity_overview">
+						<a href="overview"> 
+						<i class="fa fa-align-justify text-red"></i>
+						<span> Overview </span></a>
+					</li>
 					<li class="treeview" id="faculity_1"><a href="#"> 
 					<i class="fa fa-align-justify text-red"></i> <span> 강의 정보</span>
 					<span class="pull-right-container"> 
@@ -99,7 +105,7 @@
 							</span>
 						</a>
 						<ul class="treeview-menu">
-<!-- 						active 오또오또케 -->
+								<!-- active 오또오또케 -->
 							<li class=""  id="faculity_list">
 								<a href="../faculity/list">
 									<i class="fa fa-chevron-right"></i>
@@ -118,6 +124,8 @@
 						</li>
 						</ul>
 					</li>
+
+					<li><a href="/web/notice"><i class="fa fa-align-justify text-red"></i> <span> 공지 사항</span></a></li>
 					<li><a href="/web/myLogout"><i class="fa fa-sign-out text-red"></i> <span>LOG-OUT</span></a></li>
 				</ul>
 			</section>

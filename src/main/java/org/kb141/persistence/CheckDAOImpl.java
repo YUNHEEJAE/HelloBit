@@ -9,6 +9,8 @@ import org.kb141.domain.CheckLateManVO;
 import org.kb141.domain.CheckTimeVO;
 import org.kb141.domain.CheckVO;
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.Criteria;
+import org.kb141.domain.OverViewVO;
 import org.kb141.domain.StudentCheckKLogVO;
 import org.springframework.stereotype.Repository;
 
@@ -81,8 +83,38 @@ public class CheckDAOImpl implements CheckDAO {
 	}
 
 	@Override
-	public List<StudentCheckKLogVO> studentCheckLog(Integer pno) throws Exception {
+	public CheckWeekVO allCheckWeek() throws Exception {
+		return sqlSession.selectOne(NAME + "allCheckWeek");
+	}
+	
+	@Override
+		public List<StudentCheckKLogVO> studentCheckLog(Integer pno) throws Exception {
 		return sqlSession.selectList(NAME + "studentCheckLog",pno);
+	}
+
+	@Override
+	public Integer allTodayCheck() throws Exception {
+		return sqlSession.selectOne(NAME + "allTodayCheck");
+	}
+
+	@Override
+	public OverViewVO allCheck() throws Exception {
+		return sqlSession.selectOne(NAME + "allCheck");
+	}
+
+	@Override
+	public List<CheckTimeVO> allTodayemotion() throws Exception {
+		return sqlSession.selectList(NAME + "allTodayEmotion");
+	}
+
+	@Override
+	public List<CheckTimeVO> allTodayChecktime(Criteria cri) throws Exception {
+		return sqlSession.selectList(NAME + "allTodayCheckTime", cri);
+	}
+
+	@Override
+	public int countPaging(Criteria cri) throws Exception {
+		return sqlSession.selectOne(NAME + "TodayCheckTimeCount", cri);
 	}
 
 }

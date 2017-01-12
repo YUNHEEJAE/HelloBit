@@ -47,15 +47,17 @@
 					<!-- /.box-body -->
 				</div>
 				<div class="row">
-				<button class="writeBtn btn btn-primary pull-right">글쓰기</button> 
+					<button class="writeBtn btn btn-primary pull-right">글쓰기</button>
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="box-tools ">
-									<div class="has-feedback"> 
-										<input type="text" name="keyword" id="keywordInput" value="${cri.keyword }" class=""
-											placeholder="Search" style="width: 160px; border: none">
-											<button class="glyphicon glyphicon-search feedback" id="searchBtn" style="line-height:inherit;" ></button>
+									<div class="has-feedback">
+										<input type="text" name="keyword" id="keywordInput"
+											value="${cri.keyword }" class="" placeholder="Search"
+											style="width: 160px; border: none">
+										<button class="glyphicon glyphicon-search feedback"
+											id="searchBtn" style="line-height: inherit;"></button>
 									</div>
 								</div>
 							</div>
@@ -65,25 +67,24 @@
 							<nav>
 							<ul class="pagination">
 								<c:if test="${pageMaker.prev}">
-									<li><a href="notice?page=${pageMaker.startPage-1}" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
+									<li><a href="notice?page=${pageMaker.startPage-1}"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 									</a></li>
 								</c:if>
-								
-								<c:forEach begin = "${pageMaker.startPage }"
-								end="${pageMaker.endPage }" var = "idx">
-								<li 
-								<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-								<a href="notice?page=${idx}">${idx}</a>
-								</li>
+
+								<c:forEach begin="${pageMaker.startPage }"
+									end="${pageMaker.endPage }" var="idx">
+									<li
+										<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+										<a href="notice?page=${idx}">${idx}</a>
+									</li>
 								</c:forEach>
-								
+
 								<c:if test="${pageMaker.next && pageMaker.endPage>0}">
-								<li><a href="notice?page=${pageMaker.endPage+1 }" aria-label="Next"> <span
-										aria-hidden="true">&raquo;</span>
-								</a></li>
+									<li><a href="notice?page=${pageMaker.endPage+1 }"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									</a></li>
 								</c:if>
-								
 
 							</ul>
 							</nav>
@@ -94,35 +95,37 @@
 			</div>
 		</div>
 		</section>
+
+		<input type="hidden" id='hiidennno'>
+
 	</div>
 </body>
 <%@include file="footer.jsp"%>
 <script>
-
-
-	var str="";
+	var str = "";
 	<c:forEach items="${notice}" var="notice">
 
-		str +='<li class="noticeItem">'+
-			'<div class="nno" data-nno="${notice.nno}">${notice.nno}</div> <a class="ntitle" href="#"' +
-			'title="${notice.ntitle}">${notice.ntitle}</a>'+
-			'<div class="nwriter">${notice.nwriter}</div>'+
-			'<div class="nregdate"><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.nregdate}"/></div></li>';
-	 
+	str += '<li class="noticeItem">'
+			+ '<div class="nno" data-nno="${notice.nno}">${notice.nno}</div> <a class="ntitle" href="#"' +
+			'title="${notice.ntitle}">${notice.ntitle}</a>'
+			+ '<div class="nwriter">${notice.nwriter}</div>'
+			+ '<div class="nregdate"><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.nregdate}"/></div></li>';
+
 	</c:forEach>
 	$(".noticeList").append(str);
 
+	$(".has-feedback").on("click", "#searchBtn", function(event) {
+		console.log(event);
+	});
+
 
 	
-	
-	
-$(".has-feedback").on("click", "#searchBtn",function(event) {
-	console.log(event); 
-});
-	
-	
-	
-	
-	
+	$(".noticeItem").on("click", function(event) {
+		console.log(event);
+		console.log(event.currentTarget.firstChild.innerHTML);
+
+		$("#hiidennno").attr("name",
+		event.currentTarget.firstChild.innerHTML).submit();
+	});
 </script>
 </html>

@@ -1,4 +1,4 @@
-package org.kb141.util;
+package org.kb141.domain;
 
 public class Criteria {
 
@@ -41,10 +41,6 @@ public class Criteria {
 		return (this.page-1)*perPageNum;
 	}
 	
-	
-	
-	
-
 	public String getsType() {
 		return sType;
 	}
@@ -67,8 +63,4 @@ public class Criteria {
 				+ "]";
 	}
 
-
-	
-
-	
 }

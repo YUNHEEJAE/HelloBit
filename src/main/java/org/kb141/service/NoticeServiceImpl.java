@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.Criteria;
 import org.kb141.domain.NoticeVO;
 import org.kb141.persistence.NoticeDAO;
-import org.kb141.util.Criteria;
 import org.springframework.stereotype.Service;
 
 @Service

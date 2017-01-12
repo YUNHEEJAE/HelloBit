@@ -12,6 +12,8 @@ import org.kb141.domain.CheckVO;
  *
  */
 import org.kb141.domain.CheckWeekVO;
+import org.kb141.domain.Criteria;
+import org.kb141.domain.OverViewVO;
 import org.kb141.domain.StudentCheckKLogVO;
 public interface CheckDAO {
 
@@ -53,7 +55,20 @@ public interface CheckDAO {
 	// 내 최근 5개 로그 데이터 가져오기 by Senyo
 	public List<CheckVO> checkMyList(String sid) throws Exception;
 	
+	// 교직원페이지에서 전체 학생 log 중 이번주 만 뽑은것 by LJP
+	public CheckWeekVO allCheckWeek() throws Exception;
+	
 	// pno별로 수강생 출석 로그 10개씩
 	public List<StudentCheckKLogVO> studentCheckLog(Integer pno) throws Exception;
+	
+	public Integer allTodayCheck() throws Exception;
+	
+	public OverViewVO allCheck() throws Exception;
+	
+	public List<CheckTimeVO> allTodayemotion() throws Exception;
+	
+	public List<CheckTimeVO> allTodayChecktime(Criteria cri) throws Exception;
+	
+	public int countPaging(Criteria cri) throws Exception;
 	
 }
