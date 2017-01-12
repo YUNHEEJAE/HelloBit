@@ -120,7 +120,7 @@
 					</li>
 					
 						<li class="treeview" id="faculity_1"><a href="overview"> 
-					<i class="fa fa-align-justify text-red"></i> <span> OverView </span>
+					<i class="fa fa-align-justify text-red"></i> <span> Overview </span>
 				</a>
 					</li>
 					

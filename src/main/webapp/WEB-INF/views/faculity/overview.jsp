@@ -24,7 +24,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>
-			${program.pcourse} <small>${program.torder }기 - ${program.roomname }호</small>
+			Overview
 		</h1>
 		</section>
 
@@ -214,7 +214,6 @@
 <!-- page script -->
 <script>
 $(document).ready(function() {
-	
 	
 	
 	$("#faculity_1").attr("class", "active");
