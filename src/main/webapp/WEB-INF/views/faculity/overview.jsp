@@ -101,7 +101,7 @@
 		</div>
 		<br>
 
-		<div class="row row-eq-height">
+		<div class="row">
 		<div class="col-md-6">
 			<!-- BAR CHART -->
 			<div class="box box-success">
@@ -161,39 +161,46 @@
           <h3 class="box-title"><b>수강생 출석 로그</b></h3>
         </div>
         <div class="box-body">
-          <div class="row" style="text-align:center;">
-					<div id="chatMessage" >
-							<c:forEach items="${allTodayCheckTime}" var='allTodayCheckTime' >
-								 <div>${allTodayCheckTime.sname} / <fmt:formatDate value="${allTodayCheckTime.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div>
-							</c:forEach>
-							
-							<ul class="pagination">
-									<c:if test="${pageMaker.prev}">
-										<li><a href="overview?page=${pageMaker.startPaqge -1}">&laquo;</a></li>
-									</c:if>
-									
-									<c:forEach begin="${pageMaker.startPage}" end = "${pageMaker.endPage}" var="idx">
-											<li
-													<c:out value="${pageMaker.cri.page == idx?'class = active':''}"/>>
-													<a href = "overview?page=${idx}">${idx}</a>
-											</li>
-									</c:forEach>
-									
-									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-										<li><a href = "overview?page=${pageMaker.endPage +1}">&raquo;</a>
-										</li>
-									</c:if>
-							</ul>
-							
-					</div>	
-          </div>
-          <!-- /.row -->
-          <div class="row">
-
-          </div>
-          <!-- /.row -->
+<!--           <div class="row" style="text-align:center;"> -->
+<!-- 					<div id="chatMessage" > -->
+<%-- 							<c:forEach items="${allTodayCheckTime}" var='allTodayCheckTime' > --%>
+<%-- 								 <div>${allTodayCheckTime.sname} / <fmt:formatDate value="${allTodayCheckTime.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/><br /></div> --%>
+<%-- 							</c:forEach> --%>
+<!-- 					</div> -->
+					
+			<table class="table table-condensed" style="text-align: center;" id="chatTable">
+				<tr id="chatMessageTR">
+					<th style="text-align: center">이름</th>
+					<th style="text-align: center">시간</th>
+				</tr>
+				<c:forEach items="${allTodayCheckTime}" var='allTodayCheckTime' >
+					<tr>
+						 <td>${allTodayCheckTime.sname}</td>
+						 <td><fmt:formatDate value="${allTodayCheckTime.checktime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+					</tr>
+				</c:forEach>
+			</table>
         </div>
         <!-- /.box-body -->
+        	<div class="box-footer" style="text-align: center;">	
+				<ul class="pagination" >
+					<c:if test="${pageMaker.prev}">
+						<li><a href="overview?page=${pageMaker.startPaqge -1}">&laquo;</a></li>
+					</c:if>
+					
+					<c:forEach begin="${pageMaker.startPage}" end = "${pageMaker.endPage}" var="idx">
+							<li
+									<c:out value="${pageMaker.cri.page == idx?'class = active':''}"/>>
+									<a href = "overview?page=${idx}">${idx}</a>
+							</li>
+					</c:forEach>
+					
+					<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						<li><a href = "overview?page=${pageMaker.endPage +1}">&raquo;</a>
+						</li>
+					</c:if>
+				</ul>
+			</div>	
       </div>
 		</div>
 		</div>
@@ -216,9 +223,7 @@
 $(document).ready(function() {
 	
 	
-	$("#faculity_1").attr("class", "active");
-	$("#pno_37").attr("class", "active");
-
+	$("#faculity_overview").attr("class", "active");
 	
 	sock = new SockJS("/web/logWebsocket");
 	sock.onopen = function(event) {
@@ -228,8 +233,12 @@ $(document).ready(function() {
 				console.log(event.data);
 				var logger = event.data.substring(2,19);
 				logger.substring("");
-				$("#chatMessage").before("<div>"+event.data.substring(2,5)+" / "+event.data.substring(5,26)+"<br></div>");
-				$("#chatMessage div")[9].remove(); 
+				$("#chatMessageTR").after("<tr><td>" + event.data.substring(2,5) + "</td><td>"+event.data.substring(5,26)+"</td></tr>");
+				$("#chatTable > tbody > tr:last-child").remove();
+
+				
+				
+				
 			};
 	};
 	

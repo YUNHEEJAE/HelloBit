@@ -82,6 +82,12 @@
 				<ul class="sidebar-menu">
 					<li class="header">교직원 ${cookie.LOGIN_ID.value }님 환영합니다.</li>
 			<!-- active 오또케 -->
+										
+					<li class="treeview" id="faculity_overview">
+						<a href="overview"> 
+						<i class="fa fa-align-justify text-red"></i>
+						<span> Overview </span></a>
+					</li>
 					<li class="treeview" id="faculity_1"><a href="#"> 
 					<i class="fa fa-align-justify text-red"></i> <span> 강의 정보</span>
 					<span class="pull-right-container"> 
@@ -119,11 +125,8 @@
 						</ul>
 					</li>
 					
-						<li class="treeview" id="faculity_1"><a href="overview"> 
-					<i class="fa fa-align-justify text-red"></i> <span> Overview </span>
-				</a>
-					</li>
-					
+
+					<li><a href="/web/notice"><i class="fa fa-align-justify text-red"></i> <span> 공지 사항</span></a></li>
 					<li><a href="/web/myLogout"><i class="fa fa-sign-out text-red"></i> <span>LOG-OUT</span></a></li>
 				</ul>
 			</section>

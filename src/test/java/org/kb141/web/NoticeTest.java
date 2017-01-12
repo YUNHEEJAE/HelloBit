@@ -1,9 +1,12 @@
 package org.kb141.web;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kb141.domain.Criteria;
 import org.kb141.domain.NoticeVO;
 import org.kb141.persistence.NoticeDAO;
 import org.kb141.service.NoticeService;
@@ -31,7 +34,7 @@ public class NoticeTest {
 
 	@Test
 	public void readTest() throws Exception {
-		System.out.println(noticedao.read(2));
+		System.out.println(noticedao.read(15));
 	}
 
 	@Test
@@ -54,6 +57,31 @@ public class NoticeTest {
 		System.out.println(noticedao.allList());
 	}
 	
+	
+//	@Test
+//	public void listPageTest() throws Exception{
+//		int page = 3;
+//		List<NoticeVO> list = noticedao.listPage(page);
+//		
+//		for(NoticeVO noticeVO : list){
+//			System.out.println(noticeVO.getNno() + ":" + noticeVO.getNtitle());
+//		}
+//	}
+	
+	@Test
+	public void listCriteriaTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(15);
+		System.out.println(cri.getPageStart());
+		
+		List<NoticeVO> list = noticedao.listCriteria(cri);
+		
+		for(NoticeVO noticeVO : list){
+			System.out.println(noticeVO.getNno() + ":" + noticeVO.getNtitle());
+		}
+	}
+	
 	//===================SERVICE TEST===================
 	
 	@Test
@@ -67,7 +95,7 @@ public class NoticeTest {
 	
 	@Test
 	public void ViewTest() throws Exception{
-		System.out.println(service.view(4));
+		System.out.println(service.view(15));
 	}
 	
 	@Test
@@ -93,4 +121,10 @@ public class NoticeTest {
 		service.remove(4);
 	}
 
+	
+	@Test
+	public void listCountTest() throws Exception{
+		Criteria cri = new Criteria();
+		System.out.println(service.listCountCriteria(cri));
+	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.kb141.domain.Criteria;
 import org.kb141.domain.NoticeVO;
 import org.kb141.persistence.NoticeDAO;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Inject
 	NoticeDAO noticedao;
-	
+
 	@Override
 	public void register(NoticeVO vo) {
 		try {
@@ -31,7 +32,7 @@ public class NoticeServiceImpl implements NoticeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
@@ -42,7 +43,7 @@ public class NoticeServiceImpl implements NoticeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -62,7 +63,30 @@ public class NoticeServiceImpl implements NoticeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
+		return result;
+	}
+
+	@Override
+	public List<NoticeVO> listCriteria(Criteria cri) {
+		List<NoticeVO> result = null;
+
+		try {
+			result = noticedao.listCriteria(cri);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int listCountCriteria(Criteria cri) {
+		int result = 0;
+		try {
+			result = noticedao.countPaging(cri);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
