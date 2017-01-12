@@ -6,10 +6,10 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kb141.domain.Criteria;
 import org.kb141.domain.NoticeVO;
 import org.kb141.persistence.NoticeDAO;
 import org.kb141.service.NoticeService;
-import org.kb141.util.Criteria;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
