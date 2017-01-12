@@ -39,6 +39,14 @@
 		select count(nno) from tbl_notice where nno>0
 	]]>
 	</select> 
+	
+	<select id ='search' resultType="NoticeVO">
+		select * from tbl_notice where ntitle like #{keyword} or ncontent like #{keyword} order by nregdate desc limit #{pageStart}, 15
+	</select>
 
+	<select id ='searchcount' resultType="int">
+		select count(*) from tbl_notice where ntitle like #{keyword} or ncontent like #{keyword} order by nregdate desc 
+	</select>
+	
 
 </mapper>

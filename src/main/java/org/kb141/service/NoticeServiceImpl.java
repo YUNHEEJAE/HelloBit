@@ -90,4 +90,27 @@ public class NoticeServiceImpl implements NoticeService {
 		return result;
 	}
 
+	@Override
+	public List<NoticeVO> getsearach(Criteria cri) {
+		List<NoticeVO> result = null;
+
+		try {
+			result = noticedao.search(cri);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public int getsearachCount(Criteria cri) {
+		int result = 0;
+		try {
+			result = noticedao.searchCount(cri);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

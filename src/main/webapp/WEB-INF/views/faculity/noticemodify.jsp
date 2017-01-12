@@ -84,7 +84,7 @@ $(document).ready(function() {
 	
 	$("#btnCancel").on("click", function () {
 		event.preventDefault();
-		location.href='view?nno=' + ${NoticeVO.nno};
+		location.href='/noticeview?nno=' + ${NoticeVO.nno};
 	});
 	
 	

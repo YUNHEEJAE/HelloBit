@@ -20,4 +20,8 @@ public interface NoticeService {
 	public List<NoticeVO> listCriteria(Criteria cri);
 	
 	public int listCountCriteria(Criteria cri);
+	
+	public List<NoticeVO> getsearach(Criteria cri);
+	
+	public int getsearachCount(Criteria cri);
 }

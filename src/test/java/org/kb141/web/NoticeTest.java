@@ -82,6 +82,27 @@ public class NoticeTest {
 		}
 	}
 	
+	@Test
+	public void searchTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(15);
+		cri.setKeyword("바보");
+		System.out.println(cri.getPageStart());
+		
+		List<NoticeVO> list = noticedao.search(cri);
+		
+		for(NoticeVO noticeVO : list){
+			System.out.println(noticeVO.getNno() + ":" + noticeVO.getNtitle());
+		}
+	}
+	@Test
+	public void searchCountTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setKeyword("ㅠㅠ");
+		System.out.println(noticedao.searchCount(cri));
+	}
+	
 	//===================SERVICE TEST===================
 	
 	@Test
@@ -126,5 +147,25 @@ public class NoticeTest {
 	public void listCountTest() throws Exception{
 		Criteria cri = new Criteria();
 		System.out.println(service.listCountCriteria(cri));
+	}
+	
+	@Test
+	public void getSearchTest() throws Exception{
+		Criteria cri = new Criteria();
+
+		cri.setPage(1);
+		cri.setPerPageNum(15);
+		cri.setKeyword("바보");
+		System.out.println(cri.getPageStart());
+		
+		List<NoticeVO> list = service.getsearach(cri);
+		System.out.println(list);
+	}
+	
+	@Test
+	public void getSearchCountTest() throws Exception{
+		Criteria cri = new Criteria();
+		cri.setKeyword("ㅠㅠ");
+		System.out.println(service.getsearachCount(cri));
 	}
 }

@@ -54,6 +54,16 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return sqlSession.selectOne(NAME+"countPaging", cri);
 	}
 
+	@Override
+	public List<NoticeVO> search(Criteria cri) throws Exception {
+		return sqlSession.selectList(NAME+"search", cri);
+	}
+
+	@Override
+	public int searchCount(Criteria cri) throws Exception {
+		return sqlSession.selectOne(NAME+"searchcount",cri);
+	}
+
 //	@Override
 //	public List<NoticeVO> listPage(int page) throws Exception {
 //

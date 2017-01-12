@@ -134,17 +134,43 @@ public class FaculityController {
 	@GetMapping("/notice")
 	public void getNoticeBoard(Criteria cri, Model model) throws Exception {
 		logger.info("noticeBoard called....");
-		
+		logger.info(""+cri);
 		cri.setPerPageNum(15);
-		model.addAttribute("notice", noticeService.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		logger.info(cri.getKeyword());
+		if(cri.getKeyword().equals("%null%")){
+			
+			model.addAttribute("notice", noticeService.listCriteria(cri));
+			pageMaker.setTotal(noticeService.listCountCriteria(cri));
+			
+		
+		}else{
+		
+		
+		model.addAttribute("notice", noticeService.getsearach(cri));
+		pageMaker.setTotal(noticeService.getsearachCount(cri));
+		}
+		model.addAttribute("pageMaker",pageMaker);
+	}
+	
+	/*@GetMapping("/noticesearch")
+	public String getNoticeBoardSearch(Criteria cri, Model model) throws Exception {
+		logger.info("noticeBoardSearch called....");
+		logger.info(""+cri);
+		cri.setPerPageNum(15);
+		model.addAttribute("notice", noticeService.getsearach(cri));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotal(noticeService.listCountCriteria(cri));
+		pageMaker.setTotal(noticeService.getsearachCount(cri));
 		
 		model.addAttribute("pageMaker",pageMaker);
+		
+		return "faculity/notice";
+	}*/
 	
-	}
+	
 	
 	@GetMapping("/noticeregister")
 	public void noticeRegisterGet() throws Exception {
@@ -178,7 +204,7 @@ public class FaculityController {
 		
 		noticeService.modify(vo);
 		
-		return "redirect:notice/view?nno=" + vo.getNno();
+		return "redirect:noticeview?nno=" + vo.getNno();
 	}
 	
 	@GetMapping("/noticeview")
@@ -188,8 +214,15 @@ public class FaculityController {
 			
 		model.addAttribute("noticeVO", noticeService.view(nno));
 	}
+	@GetMapping("/noticeview2")
+	public void getNoticeBoardview2(Model model,Integer nno) throws Exception {
+		logger.info("noticeBoard called....");
+		
+		
+		model.addAttribute("noticeVO", noticeService.view(nno));
+	}
 	
-	@PostMapping("/noticeRemove")
+	@PostMapping("/noticeremove")
 	public String getNoticeBoardRemove(Integer nno)throws Exception{
 		logger.info("noticeBoardRemove called....");
 		noticeService.remove(nno);
@@ -723,9 +756,9 @@ public class FaculityController {
 		model.addAttribute("allEmotionList", emotionUtils.emotionCounter(result));
 		
 		model.addAttribute("allCheck", checkService.getAllCheck());
+		cri.setPerPageNum(15);
 		
 		model.addAttribute("allTodayCheckTime",checkService.getAllTodayCheckTime(cri));
-		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 //		pageMaker.setTotalCount(130);

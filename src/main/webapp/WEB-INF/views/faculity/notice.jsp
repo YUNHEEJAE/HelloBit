@@ -49,19 +49,21 @@
 				<div class="row">
 					<button class="writeBtn btn btn-primary pull-right">글쓰기</button>
 					<div class="col-md-12">
-						<div class="row">
+					<div class="row">
+						<form method="get" id="f1">
 							<div class="col-md-12">
 								<div class="box-tools ">
 									<div class="has-feedback">
 										<input type="text" name="keyword" id="keywordInput"
-											value="${cri.keyword }" class="" placeholder="Search"
+											value="${pagemaker.keyword }" class="" placeholder="Search"
 											style="width: 160px; border: none">
 										<button class="glyphicon glyphicon-search feedback"
 											id="searchBtn" style="line-height: inherit;"></button>
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
+					</div>
 						<!-- Pagination Start -->
 						<div class="paging text-center">
 							<nav>
@@ -76,12 +78,12 @@
 									end="${pageMaker.endPage }" var="idx">
 									<li
 										<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-										<a href="notice?page=${idx}">${idx}</a>
+										<a href="notice?page=${idx}&&keyword=${param.keyword }">${idx}</a>
 									</li>
 								</c:forEach>
 
 								<c:if test="${pageMaker.next && pageMaker.endPage>0}">
-									<li><a href="notice?page=${pageMaker.endPage+1 }"
+									<li><a href="notice?page=${pageMaker.endPage+1 }&&keyword=${param.keyword}"
 										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 									</a></li>
 								</c:if>
@@ -94,6 +96,7 @@
 				</div>
 			</div>
 		</div>
+
 		</section>
 
 		<input type="hidden" id='hiidennno'>
@@ -116,6 +119,8 @@
 
 	$(".has-feedback").on("click", "#searchBtn", function(event) {
 		console.log(event);
+
+		$("#f1").attr("action","notice").submit();
 	});
 
 

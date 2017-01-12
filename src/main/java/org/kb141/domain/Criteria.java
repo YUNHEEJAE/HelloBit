@@ -50,7 +50,7 @@ public class Criteria {
 	}
 
 	public String getKeyword() {
-		return keyword;
+		return "%"+keyword+"%";
 	}
 
 	public void setKeyword(String keyword) {
