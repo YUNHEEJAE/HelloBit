@@ -1,89 +1,97 @@
 package org.kb141.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageMaker {
 
-	private int startPage;
-	private int endPage;
-	private int totalCount;
-	private boolean prev;
-	private boolean next;
-	private int displayPageNum = 19;
+	private int total, startPage, endPage;
+	private Boolean prev, next;
+
+	private int displayPageNum = 10;
 	private Criteria cri;
-	
-	
-	
-	
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+		calcData();
+	}
+
 	public int getStartPage() {
 		return startPage;
 	}
+
 	public void setStartPage(int startPage) {
 		this.startPage = startPage;
 	}
+
 	public int getEndPage() {
 		return endPage;
 	}
+
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
 	}
-	public int getTotalCount() {
-		return totalCount;
-	}
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-		
-		calcData();
-	}
-	
-	private void calcData() {
-	
-		endPage =(int)(Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum);
-		
-		startPage = (endPage - displayPageNum) + 1;
-		
-		int tempEndPage = (int)(Math.ceil(totalCount/(double)cri.getPerPageNum()));
-		
-		if(endPage>tempEndPage){
-			endPage = tempEndPage;
-		}
-		
-		prev = startPage == 1? false : true;
-		
-		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
-		
-	}
-	
-	
-	public boolean isPrev() {
+
+	public Boolean getPrev() {
 		return prev;
 	}
-	public void setPrev(boolean prev) {
+
+	public void setPrev(Boolean prev) {
 		this.prev = prev;
 	}
-	public boolean isNext() {
+
+	public Boolean getNext() {
 		return next;
 	}
-	public void setNext(boolean next) {
+
+	public void setNext(Boolean next) {
 		this.next = next;
 	}
+
 	public int getDisplayPageNum() {
 		return displayPageNum;
 	}
+
 	public void setDisplayPageNum(int displayPageNum) {
 		this.displayPageNum = displayPageNum;
 	}
+
 	public Criteria getCri() {
 		return cri;
 	}
+
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
-	@Override
-	public String toString() {
-		return "PageMaker [startPage=" + startPage + ", endPage=" + endPage + ", totalCount=" + totalCount + ", prev="
-				+ prev + ", next=" + next + ", displayPageNum=" + displayPageNum + ", cri=" + cri + "]";
+
+	private void calcData() {
+		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
+		startPage = (endPage - displayPageNum) + 1;
+
+		int tempEndPage = (int) (Math.ceil(total / (double) cri.getPerPageNum()));
+
+		if (endPage > tempEndPage) {
+			endPage = tempEndPage;
+		}
+
+		prev = startPage == 1 ? false : true;
+		next = endPage * cri.getPerPageNum() >= total ? false : true;
 	}
 	
+	public String makeSearch(int page){
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page).queryParam("keyword", ((Criteria)cri).getKeyword()).build();
 	
-	
-	
+		return uriComponents.toUriString();
+	}
+
+	@Override
+	public String toString() {
+		return "PageMaker [total=" + total + ", startPage=" + startPage + ", endPage=" + endPage + ", prev=" + prev
+				+ ", next=" + next + ", displayPageNum=" + displayPageNum + ", cri=" + cri + "]";
+	}
+
 }

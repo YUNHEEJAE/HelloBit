@@ -3,6 +3,7 @@ package org.kb141.service;
 import java.util.List;
 
 import org.kb141.domain.NoticeVO;
+import org.kb141.domain.Criteria;
 
 public interface NoticeService {
 
@@ -16,4 +17,7 @@ public interface NoticeService {
 
 	public List<NoticeVO> getNoticeList();
 	
+	public List<NoticeVO> listCriteria(Criteria cri);
+	
+	public int listCountCriteria(Criteria cri);
 }

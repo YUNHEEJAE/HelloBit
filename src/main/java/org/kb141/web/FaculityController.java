@@ -13,8 +13,8 @@ import org.kb141.domain.Criteria;
 import org.kb141.domain.FaculityVO;
 import org.kb141.domain.ImageVO;
 import org.kb141.domain.JoinTeacherSubjectVO;
-import org.kb141.domain.PageMaker;
 import org.kb141.domain.NoticeVO;
+import org.kb141.domain.PageMaker;
 import org.kb141.domain.StudentVO;
 import org.kb141.domain.SubjectVO;
 import org.kb141.domain.TakeProgramVO;
@@ -38,7 +38,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -133,10 +132,18 @@ public class FaculityController {
 	}
 	
 	@GetMapping("/notice")
-	public void getNoticeBoard(Model model) throws Exception {
+	public void getNoticeBoard(Criteria cri, Model model) throws Exception {
 		logger.info("noticeBoard called....");
+		
+		cri.setPerPageNum(15);
+		model.addAttribute("notice", noticeService.listCriteria(cri));
 
-		model.addAttribute("notice", noticeService.getNoticeList());
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotal(noticeService.listCountCriteria(cri));
+		
+		model.addAttribute("pageMaker",pageMaker);
+	
 	}
 	
 	@GetMapping("/noticeregister")
@@ -730,7 +737,7 @@ public class FaculityController {
 		pageMaker.setCri(cri);
 //		pageMaker.setTotalCount(130);
 		
-		pageMaker.setTotalCount(checkService.listCountCriteria(cri));
+		pageMaker.setTotal(checkService.listCountCriteria(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 		
