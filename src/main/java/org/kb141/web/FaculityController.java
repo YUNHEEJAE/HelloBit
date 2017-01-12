@@ -171,7 +171,7 @@ public class FaculityController {
 		
 		noticeService.modify(vo);
 		
-		return "redirect:notice/view?nno=" + vo.getNno();
+		return "redirect:noticeview?nno=" + vo.getNno();
 	}
 	
 	@GetMapping("/noticeview")
@@ -181,8 +181,15 @@ public class FaculityController {
 			
 		model.addAttribute("noticeVO", noticeService.view(nno));
 	}
+	@GetMapping("/noticeview2")
+	public void getNoticeBoardview2(Model model,Integer nno) throws Exception {
+		logger.info("noticeBoard called....");
+		
+		
+		model.addAttribute("noticeVO", noticeService.view(nno));
+	}
 	
-	@PostMapping("/noticeRemove")
+	@PostMapping("/noticeremove")
 	public String getNoticeBoardRemove(Integer nno)throws Exception{
 		logger.info("noticeBoardRemove called....");
 		noticeService.remove(nno);

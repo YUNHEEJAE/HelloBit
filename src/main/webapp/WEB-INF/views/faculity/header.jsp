@@ -125,7 +125,7 @@
 						</ul>
 					</li>
 
-					<li><a href="/web/notice"><i class="fa fa-align-justify text-red"></i> <span> 공지 사항</span></a></li>
+					<li><a href="notice"><i class="fa fa-align-justify text-red"></i> <span> 공지 사항</span></a></li>
 					<li><a href="/web/myLogout"><i class="fa fa-sign-out text-red"></i> <span>LOG-OUT</span></a></li>
 				</ul>
 			</section>

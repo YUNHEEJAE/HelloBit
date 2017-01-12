@@ -24,92 +24,65 @@
 		</ol>
 		</section>
 		<section class="content">
-		<div class="row">
-			<div class="col-md-2">
-
-        	</div>
-        
-        
-        <!-- ./col -->
-        <div class="col-md-8">
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <i class="fa fa-text-width"></i>
-
-              <h3 class="box-title" name="ntitle">${noticeVO.ntitle }</h3>
+       	<div class="box box-solid">
+			<div class="row">
+	       		<div class="col-md-8 col-md-offset-2">
+	                <hr>
+	       		
+	                <h1>${noticeVO.ntitle }</h1>
+	                <!-- Author -->
+	                <p class="lead">by ${noticeVO.nwriter }</p>
+	
+	                <hr>
+	
+	                <!-- Date/Time -->
+	                <p><span class="glyphicon glyphicon-time"></span> Posted on <fmt:formatDate pattern="yyyy년 MM월 dd일" value="${noticeVO.nregdate}"/></p>
+	
+	                <hr>
+	
+	                <!-- Post Content -->
+	                <p class="lead">${noticeVO.ncontent}</p>
+	                <hr>
+	             <div class="row">
+                 	<div class = "pull-right"><button type="button" class="btn btn-block btn-danger" id='delBtn'>삭제</button></div>
+                 	<div class = "pull-right" style="margin-left: 10px; margin-right: 10px">
+                 	<button type="button" class="btn btn-block btn-info" id='modiBtn'>수정</button></div>
+                 	<div class = "pull-right"><button type="button" class="btn btn-block btn-default" id='backBtn'>돌아가기</button></div>
+	             </div>
+	               <hr>
+				</div>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <dl class="dl-horizontal">
-              	<br><br>
-              	
-                <dt name="nwriter">${noticeVO.nwriter }</dt>
-                <dd name="ncontent">${noticeVO.ncontent }</dd>
-                <dt><br></dt>
-                <dd><br></dd>
-                <dd><br></dd>
-                <dt><br></dt>
-                <dd><br></dd>
-                <dt><br></dt>
-                <dd><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${noticeVO.nregdate}"/></dd>
-         
-			   </dl>
-			 <br>
-			 
-			 <div class="col-md-8 pull-right">
-	         
-				  <div class="col-md-4"><button type="button" class="btn btn-block btn-default" id='backBtn'>돌아가기</button></div>
-	              <div class="col-md-4"><button type="button" class="btn btn-block btn-info" id='modiBtn' onclick="noticemodify">수정</button></div>
-	              <div class="col-md-4"><button type="button" class="btn btn-block btn-danger" id='delBtn'>삭제</button></div>
-             </div>
-			              
-			             
-
-
-			              
-			              
-			              
-			            </div>
-			            <!-- /.box-body -->
-			          </div>
-			          <!-- /.box -->
-			        </div>
-			        <!-- ./col -->
-						
-					
-
-
 		</div>
 		</section>
-				<form method="post" action="noticeRemove" id="nnoform">
-				<input type="hidden" value ="${noticeVO.nno}" name="nno">
+				<form method="post" id="nnoform" action="noticeremove">
+					<input type="hidden" value ="${noticeVO.nno}" name="nno">
 				</form>	
 	</div>
 </body>
 <%@include file="footer.jsp"%>
 
 <script>
-					
-					$("#modisucBtn").hide();
+$(document).ready(function () {
 
-			
-			$("#delBtn").on("click", function() {
-				if (confirm("정말삭제하시겠습니까?") == true) {
+$("#delBtn").on("click", function() {
+	event.preventDefault();
+	if (confirm("정말 삭제하시겠습니까?") == true) {
+		$("#nnoform").submit();
+	} else {
+		return;
+	}
+});
 
-					$("#nnoform").submit();
-				} else {
-					return;
-				}
-			});
-			
-			$("#modiBtn").on("click",function(){
-				
-			});
-			
-			$("#backBtn").on("click", function() {
-				history.back(1);
-			});
-				
+$("#modiBtn").on("click",function(){
+	event.preventDefault();
+	location.href='noticemodify?nno=' + ${noticeVO.nno};
+});
+
+$("#backBtn").on("click", function() {
+	history.back(1);
+});
+
+});
 	
 	
 </script>
