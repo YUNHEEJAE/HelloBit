@@ -106,7 +106,7 @@
 	<c:forEach items="${notice}" var="notice">
 
 	str += '<li class="noticeItem">'
-			+ '<div class="nno" data-nno="${notice.nno}">${notice.nno}</div> <a class="ntitle" href="#"' +
+			+ '<div class="nno" data-nno="${notice.nno}">${notice.nno}</div> <a class="ntitle" href="noticeview?nno=${notice.nno}"' +
 			'title="${notice.ntitle}">${notice.ntitle}</a>'
 			+ '<div class="nwriter">${notice.nwriter}</div>'
 			+ '<div class="nregdate"><fmt:formatDate pattern="yyyy/MM/dd" value="${notice.nregdate}"/></div></li>';
